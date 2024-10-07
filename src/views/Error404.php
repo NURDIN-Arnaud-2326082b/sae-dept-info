@@ -1,0 +1,40 @@
+<?php
+
+namespace App\src\views;
+
+class Error404
+{
+
+    public function show(): void {
+    ?>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+        <meta charset="utf-8">
+        <meta name="keywords" content="raclette">
+        <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud, PORTELLI Angelo">
+        <meta name="Description" content="raclette" >
+        <link rel="stylesheet" href="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/png" href="" sizes="32x32" />
+        <link rel="icon" type="image/png" href="" sizes="16x16" />
+            <title>Error 404</title>
+        </head>
+        <body>
+        <div id="content-page">
+            <link rel="stylesheet" href="">
+            <script src=""></script>
+            <div class="container">
+                <div class="copy-container center-xy">
+                    <p>
+                        404, page not found.
+                    </p>
+                </div>
+            </div>
+        </div>
+        </body>
+        </html>
+        <?php
+    }
+}
