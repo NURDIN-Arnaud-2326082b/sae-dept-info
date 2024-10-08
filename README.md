@@ -1,6 +1,8 @@
 # sae-dept-info
 2nd year SAE IUT
+
 ---
+
 ## ✅ Todo list
 
 - [ ] **Recherche et implémentation** des variables d'environnement pour les identifiants en base de données dans le code.
@@ -12,7 +14,7 @@
 - [x] **Enregistrer** la charte graphique sur GitHub pour qu'elle soit accessible partout.
 
 ## Liste pages
----
+
 * Page principale similaire à l'ENT:
   - Panel pour chaque page
   - Bar de recherche avec raccourci ctrl + k
@@ -25,8 +27,8 @@
   - BDE: organsé par le BDE
  
 #### Navbar
----
+
 Sur branch pages/navbar
 
-#### Navbar
+#### Homepage
 Sur branch pages/homepage
