@@ -3,6 +3,7 @@ namespace App\src\database;
 
 use PDO;
 use PDOException;
+use Dotenv\Dotenv;
 
 /**
  * Singleton class responsible for managing the database connection.
@@ -12,20 +13,22 @@ class DatabaseConnection
     private static ?DatabaseConnection $instance = null;
     private PDO $conn;
 
-    // TODO : Rendre ces informations de connexion sécurisées, donc innaccessible en clair
-    private string $host = 'mysql-mytenrac.alwaysdata.net';
-    private string $db_name = 'mytenrac_db';
-    private string $username = 'mytenrac';
-    private string $password = 'tenracgoat';
-
     /**
      * Private constructor to establish the database connection.
      * Ensures that the connection is established only once (Singleton Pattern).
      */
     private function __construct()
     {
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../../..');
+        $dotenv->load();
+
+        $host = $_ENV['DB_HOST'];
+        $db_name = $_ENV['DB_NAME'];
+        $username = $_ENV['DB_USER'];
+        $password = $_ENV['DB_PASS'];
+
         try {
-            $this->conn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
+            $this->conn = new PDO('mysql:host=' . $host . ';dbname=' . $db_name, $username, $password);
             $this->conn->exec('set names utf8');
         } catch (PDOException $exception) {
             echo 'Connection Error: ' . $exception->getMessage();
