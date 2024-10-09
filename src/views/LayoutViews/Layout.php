@@ -48,7 +48,13 @@ class Layout
         </head>
         <body>
             <header>
-                <?php $this->navbar->show(); ?>
+                <?php
+                // Assuming you have a method to get CSS and JS paths
+                $cssPaths = ['/assets/styles/navbar.css', '/assets/styles/another.css'];
+                $jsPaths = ['/assets/js/searchbar.js', '/assets/js/another.js'];
+                $navbar = new Navbar();
+                $navbar->show($cssPaths, $jsPaths);
+                ?>
             </header>
             <div id="content-page">
                 <?= $this->content; ?>
