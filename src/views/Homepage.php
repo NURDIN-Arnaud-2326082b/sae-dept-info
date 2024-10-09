@@ -13,9 +13,6 @@ class Homepage {
             <link rel="stylesheet" href="">
         </head>
         <body>
-        <header>
-            <?php include 'Navbar.php'; ?>
-        </header>
         <main>
             <div class="panel-container">
                 <!-- Panel pour la page principale -->
