@@ -1,0 +1,22 @@
+/* Styles similaires à ceux précédemment définis */
+.panel-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.panel {
+    background-color: #1F63DE; /* Bleu principal */
+    color: #FFFFFF; /* Texte blanc */
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    cursor: move; /* Change le curseur pour montrer qu'on peut déplacer */
+    width: 200px;
+}
+
+.panel h2 {
+    margin: 0;
+    font-size: 18px;
+}
