@@ -17,7 +17,7 @@
 
 * Page principale similaire à l'ENT:
   - Panel pour chaque page
-  - Bar de recherche avec raccourci ctrl + k
+  - Barre de recherche avec raccourci ctrl + k
 * Présentation du département
 * Présentation de la formation et les deux parcours (A et B)
 * Présentation de l'alternance
