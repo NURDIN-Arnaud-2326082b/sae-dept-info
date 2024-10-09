@@ -69,6 +69,6 @@ class Homepage {
         </footer>
         </body>
         <?php
-        (new Layout('Tenrac', ob_get_clean()))->show();
+        (new Layout('Homepage', ob_get_clean()))->show();
     }
 }
