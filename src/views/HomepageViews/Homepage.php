@@ -1,5 +1,7 @@
 <?php
-namespace App\src\views;
+namespace App\src\views\HomepageViews;
+
+use App\src\views\LayoutViews\Layout;
 
 class Homepage {
     public function show(): void {

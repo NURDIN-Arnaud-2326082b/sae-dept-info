@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\views;
+namespace App\src\views\FooterViews;
 
 class Footer {
 
