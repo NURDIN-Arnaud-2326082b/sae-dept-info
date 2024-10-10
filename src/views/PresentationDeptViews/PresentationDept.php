@@ -14,8 +14,7 @@ class PresentationDept
             <link rel="stylesheet" href="">
         <main>
 
-
-
+            <p>Test de la page de présentation du département</p>
 
         </main>
         <?php

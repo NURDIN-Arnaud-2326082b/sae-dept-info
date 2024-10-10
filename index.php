@@ -39,7 +39,7 @@ $routes = [
         $controller->defaultMethod();
     },
 
-    '/PresentationDept' => function() {
+    'presentationdept' => function() {
         $controller = new PresentationDeptController();
         $controller->defaultMethod();
     },
