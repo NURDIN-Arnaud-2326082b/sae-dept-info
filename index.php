@@ -1,35 +1,35 @@
 <?php
-
-use App\src\controllers\pages\error404Controller;
-use App\src\database\DatabaseConnection;
-use App\src\controllers\pages\HomepageController;
-
 session_start();
 
 require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
-
+use App\src\controllers\pages\HomepageController;
+use App\src\database\DatabaseConnection;
+use App\src\controllers\pages\error404Controller;
 
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));
-// Définir les segments de contrôleur, action et méthode (avec des valeurs par défaut)
-$controllerSegment = $segments[0] ?? ''; // Contrôleur par défaut
-$actionSegment = $segments[1] ?? 'index'; // Action par défaut
-$methodSegment = $segments[2] ?? 'defaultMethod'; // Méthode par défaut
+$routePath = implode('/', $segments);
+if ($routePath === '') {
+$routePath = '/';
+}
 
-// Connexion à la base de données
+$controllerSegment = $segments[0] ?? 'authentication';
+$actionSegment = $segments[1] ?? 'ConnectUser';
+$methodSegment = $segments[2] ?? 'defaultMethod';
+
 $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
-// Vérification si l'utilisateur est connecté (pour des pages protégées)
 function isLogged(): void
 {
-    if (!isset($_SESSION['login'])) {
-        header('Location: /login');
-        exit();
-    }
+if (!isset($_SESSION['login'])) {
+header('Location: /login');
+exit();
 }
+}
+
 
 if ($controllerSegment === '') {
     $controllerSegment = 'Homepage';
@@ -40,7 +40,7 @@ var_dump($controllerName);
 $actionName = $actionSegment . 'Action';
 // Générer le namespace complet du contrôleur
 
-$controllerClass = "/src/controllers/pages/{$controllerName}.php";
+$controllerClass = "App\\Controllers\\pages\\{$controllerName}";
 var_dump(class_exists($controllerClass));
 // Vérifier si la classe du contrôleur existe
 if (class_exists($controllerClass)) {
