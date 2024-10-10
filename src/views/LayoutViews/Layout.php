@@ -34,11 +34,11 @@ class Layout
     {
         ?>
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="fr">
         <head>
             <title><?= $this->title ?></title>
             <meta charset="utf-8">
-            <meta name="keywords" content="raclette">
+            <meta name="keywords" content="">
             <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud, PORTELLI Angelo">
             <meta name="Description" content="" >
             <link rel="stylesheet" href="">
@@ -49,7 +49,7 @@ class Layout
         <body>
             <header>
                 <?php
-                // Assuming you have a method to get CSS and JS paths
+
                 $cssPaths = ['/assets/styles/navbar.css', '/assets/styles/another.css'];
                 $jsPaths = ['/assets/js/searchbar.js', '/assets/js/another.js'];
                 $navbar = new Navbar();

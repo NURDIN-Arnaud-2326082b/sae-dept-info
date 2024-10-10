@@ -16,7 +16,7 @@ class Homepage {
                 </div>
 
                 <!-- Panel pour la présentation du département -->
-                <div class="panel" onclick="window.location.href='departement.html';">
+                <div class="panel" onclick="window.location.href='/presentationdept';">
                     <h2>Présentation du département</h2>
                 </div>
 
@@ -57,6 +57,6 @@ class Homepage {
             </div>
         </main>
         <?php
-        (new Layout('Homepage', ob_get_clean()))->show();
+        (new Layout('Accueil', ob_get_clean()))->show();
     }
 }

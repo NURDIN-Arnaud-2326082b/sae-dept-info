@@ -10,6 +10,7 @@ require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
 use App\src\controllers\pages\HomepageController;
+use App\src\controllers\pages\PresentationDeptController;
 use App\src\database\DatabaseConnection;
 use App\src\controllers\pages\error404Controller;
 
@@ -42,7 +43,13 @@ $routes = [
         $controller = new HomepageController();
         $controller->defaultMethod();
     },
+
+    'presentationdept' => function() {
+        $controller = new PresentationDeptController();
+        $controller->defaultMethod();
+    },
     ];
+
 
 // Recherche de la route
 if (isset($routes[$routePath])) {
