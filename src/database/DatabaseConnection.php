@@ -10,10 +10,10 @@ class DatabaseConnection
     private static ?DatabaseConnection $instance = null;
     private PDO $conn;
     // TODO : Rendre ces informations de connexion sécurisées, donc innaccessible en clair
-    private string $host = 'mysql-mytenrac.alwaysdata.net';
-    private string $db_name = 'mytenrac_db';
-    private string $username = 'mytenrac';
-    private string $password = 'tenracgoat';
+    private string $host = 'mysql-departementinfoaix.alwaysdata.net';
+    private string $db_name = 'departementinfoaix_bd';
+    private string $username = '379537';
+    private string $password = '%departementinfoaix13';
     /**
      * Private constructor to establish the database connection.
      * Ensures that the connection is established only once (Singleton Pattern).
