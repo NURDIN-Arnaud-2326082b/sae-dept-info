@@ -20,6 +20,6 @@ class HomepageController
      */
     public function defaultMethod(): void
     {
-        (new \App\src\views\Homepage())->show();
+        (new \App\src\views\HomepageViews\Homepage())->show();
     }
 }

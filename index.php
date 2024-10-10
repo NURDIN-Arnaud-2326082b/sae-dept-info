@@ -22,7 +22,7 @@ $methodSegment = $segments[2] ?? 'defaultMethod';
 $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
-function isLogged()
+function isLogged(): void
 {
     if (!isset($_SESSION['login'])) {
         header('Location: /login');
