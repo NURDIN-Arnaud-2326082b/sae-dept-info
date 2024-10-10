@@ -7,14 +7,7 @@ class Homepage {
     public function show(): void {
         ob_start();
         ?>
-            <link rel="stylesheet" href="/assets/styles/homepage.css">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Dept info</title>
-            <link rel="stylesheet" href="">
-        </head>
-        <body>
+        <link rel="stylesheet" href="/assets/styles/homepage.css">
         <main>
             <div class="panel-container">
                 <!-- Panel pour la page principale -->
@@ -63,10 +56,6 @@ class Homepage {
                 </div>
             </div>
         </main>
-        <footer>
-            <?php include 'Footer.php'; ?>
-        </footer>
-        </body>
         <?php
         (new Layout('Homepage', ob_get_clean()))->show();
     }
