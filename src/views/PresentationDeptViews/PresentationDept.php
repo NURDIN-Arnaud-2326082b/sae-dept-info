@@ -1,8 +1,14 @@
 <?php
-namespace App\src\views;
 
-class Homepage {
-    public function show(): void {
+namespace App\src\views\PresentationDeptViews;
+
+use App\src\views\PresentationViews\Layout;
+
+class PresentationDept
+{
+
+    public function show(): void
+    {
         ob_start();
         ?>
         <head>
@@ -23,6 +29,7 @@ class Homepage {
         </footer>
         </body>
         <?php
-        (new Layout('Homepage', ob_get_clean()))->show();
+        (new Layout('Tenrac', ob_get_clean()))->show();
     }
+
 }

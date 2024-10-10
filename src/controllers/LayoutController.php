@@ -14,6 +14,6 @@ class LayoutController
      */
     public function execute(): void
     {
-        (new \App\src\views\Layout('Tenrac Website', null))->show();
+        (new \App\src\views\LayoutViews\Layout('Tenrac Website', null))->show();
     }
 }
