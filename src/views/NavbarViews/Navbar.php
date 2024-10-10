@@ -15,6 +15,7 @@ class Navbar
             <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
 
 
+
             <div class="search-bar">
                 <label for="search"></label>
                 <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
