@@ -2,7 +2,7 @@
 
 namespace App\src\views\PresentationFormationParcoursViews;
 
-use App\src\views\Layout;
+use App\src\views\LayoutViews\Layout;
 
 class PresentationFormationParcours
 {
@@ -26,6 +26,14 @@ class PresentationFormationParcours
                             <p> Ce parcours se concentre sur le cycle de vie du logiciel : de l'expression du besoin du client,<br>
                                 à la conception, à la validation et à la maintenace de l'application. Il forme au métier de <br>
                                 concepteur-développeur (mobile, web, Internet des objets</p>
+
+                        <h3> Parcours B : Dépoiement d'appliations communicantes et sécurisées </h3>
+                            <p> Ce parcours prépare les étudiants à la mise en place et à la sécurité des systèmes d'information <br>
+                                et des applications. Il forme aux métiers d'administrateur système/réseaux ou applicatifs, cybersécurité, <br>
+                                DevOps, intégrateur d'application, ... </p>
+                <h2> Organisation des études</h2>
+                    <h3> Structure et organisation </h3>
+                        <p> Répartie sur 3 années, la formation représente 1800 heures encadrées </p>
 
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
