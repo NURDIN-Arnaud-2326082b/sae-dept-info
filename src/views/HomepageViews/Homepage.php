@@ -16,10 +16,11 @@ class Homepage {
                 </div>
 
                 <!-- Panel pour la présentation du département -->
-                <div class="panel" onclick="window.location.href='departement.html';">
-                    <h2>Présentation du département</h2>
+                <div class="panel">
+                    <a href="/PresentationDept" class="panel-link">
+                        <h2>Présentation du département</h2>
+                    </a>
                 </div>
-
                 <!-- Panel pour la présentation de la formation -->
                 <div class="panel" onclick="window.location.href='formation.html';">
                     <h2>Présentation de la formation</h2>
@@ -57,6 +58,6 @@ class Homepage {
             </div>
         </main>
         <?php
-        (new Layout('Homepage', ob_get_clean()))->show();
+        (new Layout('Accueil', ob_get_clean()))->show();
     }
 }
