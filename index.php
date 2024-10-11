@@ -35,18 +35,17 @@ if ($controllerSegment === '') {
     $controllerSegment = 'Homepage';
 }
 $controllerName = ucfirst($controllerSegment) . 'Controller';
-var_dump($controllerName);
 // Convertir le nom de l'action (par exemple, "index" devient "indexAction")
 $actionName = $actionSegment . 'Action';
 // Générer le namespace complet du contrôleur
 
-$controllerClass = "App\\Controllers\\pages\\{$controllerName}";
-var_dump(class_exists($controllerClass));
+$controllerClass = "App\\src\\controllers\\pages\\{$controllerName}";
 // Vérifier si la classe du contrôleur existe
 if (class_exists($controllerClass)) {
     // Instancier le contrôleur
-    $controller = new $controllerName();
-
+    $controller = new $controllerClass();
+    var_dump($controller);
+    var_dump($actionName);
     // Vérifier si la méthode demandée existe dans ce contrôleur
     if (method_exists($controller, $actionName)) {
         // Appeler la méthode correspondante
