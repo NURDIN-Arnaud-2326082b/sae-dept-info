@@ -2,7 +2,7 @@
 namespace App\src\controllers;
 session_start();
 
-require_once 'src/views/Homepage.php';
+require_once 'src/views/Menu.php';
 require_once 'src/views/Layout.php';
 
 class LayoutController

@@ -1,9 +1,9 @@
 <?php
-namespace App\src\views\HomepageViews;
+namespace App\src\views\MenuViews;
 
 use App\src\views\LayoutViews\Layout;
 
-class Homepage {
+class Menu {
     public function show(): void {
         ob_start();
         ?>

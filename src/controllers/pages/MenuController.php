@@ -3,7 +3,7 @@ namespace App\src\controllers\pages;
 
 use App\src\database\DatabaseConnection;
 
-class HomepageController
+class MenuController
 {
     /**
      * Constructeur de la classe.
@@ -20,6 +20,6 @@ class HomepageController
      */
     public function defaultMethod(): void
     {
-        (new \App\src\views\HomepageViews\Homepage())->show();
+        (new \App\src\views\MenuViews\Menu())->show();
     }
 }
