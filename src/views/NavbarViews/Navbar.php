@@ -12,9 +12,10 @@ class Navbar
         }
         ?>
         <nav>
-            <img src="../../assets/images/logo-amu-noir.png" alt="Logo amu noir" class="logo">
+            <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
 
-            <!-- Search bar with keyboard shortcut -->
+
+
             <div class="search-bar">
                 <label for="search"></label>
                 <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
