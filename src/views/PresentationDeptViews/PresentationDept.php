@@ -13,55 +13,39 @@ class PresentationDept
         ?>
             <link rel="stylesheet" href="/assets/styles/presentationDept.css">
         <main>
-            <section class="department-info">
-                <div class="department-image">
-                    <img src="/assets/images/departement.jpg" alt="Image du Département">
-                </div>
-                <div class="department-description">
-                    <h2>Qui sommes-nous ?</h2>
-                    <p>Le département d'informatique de l'IUT d'Aix-en-Provence propose une formation innovante et adaptée aux besoins du marché. Nous offrons des cursus variés allant du développement web à l'intelligence artificielle.</p>
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1>Présentation du Département Informatique</h1>
+                    <p>Découvrez notre département, ses missions, et ses valeurs.</p>
+                    <a href="#content" class="btn-scroll">En savoir plus</a>
                 </div>
             </section>
 
-            <section class="features">
-                <h2>Nos atouts</h2>
-                <div class="feature-grid">
+            <section id="content" class="department-content">
+                <div class="intro">
+                    <h2>À propos de nous</h2>
+                    <p>Le Département Informatique de l'IUT d'Aix-Marseille est engagé à fournir une formation de qualité à ses étudiants, tout en favorisant l'innovation et la recherche. Nous offrons des parcours variés adaptés aux besoins du marché et de la société.</p>
+                </div>
+
+                <div class="features-grid">
                     <div class="feature">
-                        <h3>Laboratoires modernes</h3>
-                        <p>Accédez à des équipements à la pointe de la technologie.</p>
+                        <img src="/assets/images/img.png" alt="Innovation">
+                        <h3>Innovation</h3>
+                        <p>Un département à la pointe des nouvelles technologies, avec des projets innovants dans divers domaines.</p>
                     </div>
                     <div class="feature">
-                        <h3>Projets innovants</h3>
-                        <p>Participez à des projets qui vous préparent au monde professionnel.</p>
+                        <img src="/assets/images/img.png" alt="Excellence">
+                        <h3>Excellence</h3>
+                        <p>Nos enseignants et nos chercheurs sont reconnus pour leur expertise dans le domaine de l'informatique.</p>
                     </div>
                     <div class="feature">
-                        <h3>Partenariats industriels</h3>
-                        <p>Collaborez avec des entreprises leaders du secteur.</p>
-                    </div>
-                    <div class="feature">
-                        <h3>Taux de placement élevé</h3>
-                        <p>Notre réseau vous aide à trouver un emploi après vos études.</p>
+                        <img src="/assets/images/img.png" alt="Projets Étudiants">
+                        <h3>Projets Étudiants</h3>
+                        <p>Les étudiants participent à des projets pratiques tout au long de leur cursus, en lien avec les entreprises.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="faculty">
-                <h2>Notre Équipe</h2>
-                <div class="faculty-grid">
-                    <div class="faculty-member">
-                        <h3>Professeur A</h3>
-                        <p>Expert en développement web et applications mobiles.</p>
-                    </div>
-                    <div class="faculty-member">
-                        <h3>Professeur B</h3>
-                        <p>Spécialiste en intelligence artificielle et apprentissage machine.</p>
-                    </div>
-                    <div class="faculty-member">
-                        <h3>Professeur C</h3>
-                        <p>Responsable des projets de recherche en cybersécurité.</p>
-                    </div>
-                </div>
-            </section>
         </main>
         <?php
         (new Layout('Présentation du département', ob_get_clean()))->show();

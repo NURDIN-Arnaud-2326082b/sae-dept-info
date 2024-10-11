@@ -1,105 +1,112 @@
-/* styles/presentation.css */
-
-/* Style global */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4; /* Couleur de fond douce */
-    color: #333; /* Couleur du texte */
+html {
+    scroll-behavior: smooth;
 }
 
-header {
-    background-color: #0056b3; /* Couleur de l'en-tête */
+.hero-section {
+    background: url('/assets/images/img.png') no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
     text-align: center;
-    padding: 20px 0; /* Espacement vertical */
+    position: relative;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2.5em; /* Taille du titre */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
-header p {
-    font-size: 1.2em; /* Taille de la description */
+.hero-content {
+    z-index: 1;
 }
 
-/* Style du main */
-main {
-    padding: 20px; /* Espacement autour du contenu principal */
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
 }
 
-/* Section des informations sur le département */
-.department-info {
-    display: flex; /* Utilisation de flexbox pour une disposition côte à côte */
-    align-items: center; /* Alignement vertical au centre */
-    margin-bottom: 40px; /* Espacement entre les sections */
+.hero-content p {
+    font-size: 1.5em;
 }
 
-.department-image img {
-    max-width: 100%; /* Image responsive */
-    height: auto; /* Garde les proportions de l'image */
-    border-radius: 8px; /* Coins arrondis */
-    margin-right: 20px; /* Espacement entre l'image et le texte */
+.btn-scroll {
+    background-color: #0066CC;
+    color: white;
+    padding: 0.75em 1.5em;
+    text-decoration: none;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin-top: 1.5em;
 }
 
-.department-description {
-    flex: 1; /* Prend le reste de l'espace */
+.btn-scroll:hover {
+    background-color: #004999;
 }
 
-/* Section des atouts */
-.features {
-    background-color: #ffffff; /* Fond blanc pour la section */
-    padding: 20px; /* Espacement à l'intérieur de la section */
-    border-radius: 8px; /* Coins arrondis */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombre douce */
+
+.department-content {
+    padding: 4em 2em;
+    background-color: #f4f4f9;
+    text-align: center;
 }
 
-.feature-grid {
-    display: grid; /* Utilisation de la grille pour les atouts */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Grille responsive */
-    gap: 20px; /* Espacement entre les éléments de la grille */
+.department-content .intro {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-bottom: 3em;
+}
+
+.department-content h2 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+}
+
+.department-content p {
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+    justify-items: center;
+    align-items: start;
 }
 
 .feature {
-    background-color: #e9ecef; /* Fond gris clair */
-    padding: 15px; /* Espacement à l'intérieur de chaque atout */
-    border-radius: 8px; /* Coins arrondis */
-    text-align: center; /* Centre le texte */
+    background-color: white;
+    padding: 1.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    text-align: center;
 }
 
-/* Section de l'équipe enseignante */
-.faculty {
-    margin-top: 40px; /* Espacement au-dessus de la section */
+.feature:hover {
+    transform: translateY(-20px);
 }
 
-.faculty-grid {
-    display: grid; /* Utilisation de la grille pour les membres de l'équipe */
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Grille responsive */
-    gap: 20px; /* Espacement entre les éléments de la grille */
+.feature img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1em;
 }
 
-.faculty-member {
-    background-color: #e9ecef; /* Fond gris clair */
-    padding: 15px; /* Espacement à l'intérieur de chaque membre */
-    border-radius: 8px; /* Coins arrondis */
-    text-align: center; /* Centre le texte */
+.feature h3 {
+    margin-bottom: 0.75em;
+    font-size: 1.8em;
 }
 
-/* Style du footer */
-footer {
-    background-color: #0056b3; /* Couleur du footer */
-    color: white; /* Couleur du texte */
-    text-align: center; /* Centre le texte */
-    padding: 15px 0; /* Espacement vertical */
-}
-
-footer a {
-    color: #ffffff; /* Couleur des liens */
-    text-decoration: none; /* Pas de soulignement */
-}
-
-footer a:hover {
-    text-decoration: underline; /* Soulignement au survol */
+.feature p {
+    font-size: 1.1em;
+    color: #666;
 }
