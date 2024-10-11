@@ -43,8 +43,8 @@ class Layout
             <meta name="Description" content="" >
             <link rel="stylesheet" href="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="icon" type="image/png" href="" sizes="32x32" />
-            <link rel="icon" type="image/png" href="" sizes="192x192" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="32x32" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="192x192" />
         </head>
         <body>
             <header>
