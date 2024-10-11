@@ -34,22 +34,22 @@ class Layout
     {
         ?>
         <!DOCTYPE html>
-        <html lang="en">
+        <html lang="fr">
         <head>
             <title><?= $this->title ?></title>
             <meta charset="utf-8">
-            <meta name="keywords" content="raclette">
+            <meta name="keywords" content="">
             <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud, PORTELLI Angelo">
             <meta name="Description" content="" >
             <link rel="stylesheet" href="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="icon" type="image/png" href="" sizes="32x32" />
-            <link rel="icon" type="image/png" href="" sizes="192x192" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="32x32" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="192x192" />
         </head>
         <body>
             <header>
                 <?php
-                // Assuming you have a method to get CSS and JS paths
+
                 $cssPaths = ['/assets/styles/navbar.css', '/assets/styles/another.css'];
                 $jsPaths = ['/assets/js/searchbar.js', '/assets/js/another.js'];
                 $navbar = new Navbar();
