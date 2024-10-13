@@ -2,8 +2,8 @@
 namespace App\src\controllers;
 session_start();
 
-require_once 'src/views/Menu.php';
-require_once 'src/views/Layout.php';
+require_once 'src/views/MenuViews/Menu.php';
+require_once 'src/views/LayoutViews/Layout.php';
 
 class LayoutController
 {
@@ -14,6 +14,6 @@ class LayoutController
      */
     public function execute(): void
     {
-        (new \App\src\views\LayoutViews\Layout('Tenrac Website', null))->show();
+        (new \App\src\views\LayoutViews\Layout('', null))->show();
     }
 }

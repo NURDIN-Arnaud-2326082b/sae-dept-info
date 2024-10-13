@@ -49,7 +49,6 @@ class Layout
         <body>
             <header>
                 <?php
-
                 $cssPaths = ['/assets/styles/navbar.css', '/assets/styles/another.css'];
                 $jsPaths = ['/assets/js/searchbar.js', '/assets/js/another.js'];
                 $navbar = new Navbar();

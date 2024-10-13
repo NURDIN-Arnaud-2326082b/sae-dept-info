@@ -1,22 +1,25 @@
-.panel-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2em;
-    padding: 4em;
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+    color: #333;
+    white-space: nowrap;
+    margin-top: 100px;
 }
 
-.panel {
-    background-color: #1F63DE;
-    color: #FFFFFF;
-    padding: 20px;
-    text-align: center;
-    justify-content: center;
-    border-radius: 8px;
-    width: 200px;
-    margin-top: 30%;
+
+.marquee h2 {
+    display: inline-block;
+    padding-left: 50%;
+    animation: marquee 20s linear infinite;
 }
 
-.panel h2 {
-    margin: 0;
-    font-size: 18px;
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
 }

@@ -45,7 +45,6 @@ class PresentationDept
                     </div>
                 </div>
             </section>
-
         </main>
         <?php
         (new Layout('Présentation du département', ob_get_clean()))->show();

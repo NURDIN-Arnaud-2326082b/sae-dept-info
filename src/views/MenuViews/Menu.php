@@ -7,7 +7,7 @@ class Menu {
     public function show(): void {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/homepage.css">
+        <link rel="stylesheet" href="/assets/styles/menu.css">
         <main>
             <div class="panel-container">
                 <!-- Panel pour la page principale -->
