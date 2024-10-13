@@ -7,7 +7,9 @@ class Footer {
     public function show(): void {
         ob_start();
         ?>
-        <p>Footer</p>
+        <link rel="stylesheet" href="/assets/styles/footer.css">
+
+        <div class="wave"></div>
         <?php
     }
 }
