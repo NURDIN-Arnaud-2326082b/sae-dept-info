@@ -52,7 +52,8 @@ class PresentationFormationParcours
                                 deux parcours aborderont par ailleurs l’utilisation d’outils d’IA liés respectivement aux questions <br>
                                 d’optimisation et de sécurisation. D’un point de vue pratique, une partie du cursus pourra être réalisé <br>
                                 en alternance ; une sortie diplômante à bac + 2 restera possible via l’obtention du D.U.T Informatique. <br>
-                                Enfin, il sera en principe envisageable de suivre 1 ou 2 semestres à l’étranger pendant le cursus.</p>
+                                Enfin, il sera en principe envisageable de suivre 1 ou 2 semestres à l’étranger pendant le cursus. <br> <br> </p>
+
 
 
 
