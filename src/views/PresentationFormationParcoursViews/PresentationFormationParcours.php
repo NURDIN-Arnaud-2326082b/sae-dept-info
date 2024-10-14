@@ -53,9 +53,6 @@ class PresentationFormationParcours
                                 d’optimisation et de sécurisation. D’un point de vue pratique, une partie du cursus pourra être réalisé <br>
                                 en alternance ; une sortie diplômante à bac + 2 restera possible via l’obtention du D.U.T Informatique. <br>
                                 Enfin, il sera en principe envisageable de suivre 1 ou 2 semestres à l’étranger pendant le cursus.</p>
-                <h2> Stages et projets encadrés </h2>
-            <ul> <li> <strong> Le programme : 2000 heures de cours + 600 h de Projet tutoré répartis sur 6 semestres en 3 années avec un maximum de 32h de cours par semaine.
-            Périodes de stages de 22 à 26 semaines.
 
 
 
