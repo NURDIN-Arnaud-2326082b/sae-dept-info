@@ -2,7 +2,6 @@
 namespace App\src\views\HomepageViews;
 
 use App\src\views\LayoutViews\Layout;
-use App\src\views\NavbarViews\Navbar;
 class Homepage {
     public function show(): void {
         ob_start();
@@ -10,12 +9,106 @@ class Homepage {
         <link rel="stylesheet" href="/assets/styles/homepage.css">
         <main>
             <div class="marquee">
-                <h2>Journée Porte Ouvertes - Annonce importante n°2 - Annonce importante n°3</h2>
+                <h2>Journée Porte Ouvertes - Bonbon gratuits - Annonce importante n°3</h2>
             </div>
 
-            <section class="presentation">
-                <h1>Bienvenue sur le site
+    <div class="articles-grid">
+
+        <!-- Premier article -->
+        <div class="article-preview">
+            <div class="article-content">
+                <h3>Découvrez nos formations</h3>
+                <p>
+                    Au sein du département informatique de l'IUT d'Aix-en-Provence,
+                    nous proposons une gamme complète de formations adaptées aux besoins du marché du travail et aux aspirations de nos étudiants.
+                    <br><br>
+                    Rejoignez-nous pour bénéficier d'un enseignement de qualité, dispensé par des professionnels du secteur,
+                    et préparez-vous à une carrière passionnante et dynamique dans le domaine de l'informatique !
+                </p>
+                <button class="read-more" onclick="openModal('modal1')">Lire la suite</button>
+            </div>
+            <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+        </div>
+
+        <!-- Modal du premier article -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('modal1')">&times;</span>
+                <h2>Titre de l'article</h2>
+                <p>Contenu détaillé de l'article ici...</p>
+            </div>
+        </div>
+
+
+        <div class="article-preview">
+            <div class="article-content">
+                <h3>Devenez parrain/marraine !</h3>
+                <p>
+                    Parrainer
+                    <br><br>
+                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
+                </p>
+                <a href="article" class="read-more">En savoir plus</a>
+            </div>
+            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+        </div>
+
+        <div class="article-preview">
+            <div class="article-content">
+                <h3>Devenez parrain/marraine !</h3>
+                <p>
+                    Parrainer
+                    <br><br>
+                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
+                </p>
+                <a href="article" class="read-more">En savoir plus</a>
+            </div>
+            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+        </div>
+
+        <div class="article-preview">
+            <div class="article-content">
+                <h3>Devenez parrain/marraine !</h3>
+                <p>
+                    Parrainer
+                    <br><br>
+                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
+                </p>
+                <a href="article" class="read-more">En savoir plus</a>
+            </div>
+            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+        </div>
+
+        <div class="article-preview">
+            <div class="article-content">
+                <h3>Devenez parrain/marraine !</h3>
+                <p>
+                    Parrainer
+                    <br><br>
+                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
+                </p>
+                <a href="article" class="read-more">En savoir plus</a>
+            </div>
+            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+        </div>
+
+        <div class="article-preview">
+            <div class="article-content">
+                <h3>Devenez parrain/marraine !</h3>
+                <p>
+                    Parrainer
+                    <br><br>
+                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
+                </p>
+                <a href="article" class="read-more">En savoir plus</a>
+            </div>
+            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+        </div>
+</div>
+
+
         </main>
+        <script src="/assets/js/modal.js"></script>
         <?php
         (new Layout('Accueil', ob_get_clean()))->show();
     }

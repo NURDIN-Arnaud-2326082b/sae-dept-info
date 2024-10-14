@@ -9,3 +9,15 @@
     overflow: hidden;
     z-index: -1;
 }
+
+/* Pour le placer toujours en bas si la page est plus petite que la fenêtre */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* Pour que le contenu principal prenne tout l'espace disponible */
+}
