@@ -32,12 +32,13 @@ class PresentationFormationParcours
                                 et des applications. Il forme aux métiers d'administrateur système/réseaux ou applicatifs, cybersécurité, <br>
                                 DevOps, intégrateur d'application, ...  <br> <br> </p>
 
-                <h2> Organisation des études</h2>
+                <h2> Organisation des études </h2>
                     <h3> Structure et organisation </h3>
                         <p> Répartie sur 3 années, la formation représente 1800 heures encadrées, auxquelles s'ajoutent 600 heures <br>
-                            de projet encadré et à minima 22 à 26 semaines de stage et/ou d'alternance.
-                            Cette formation requiert des savoir-être et des savoir-faire, tant académiques que professionnels, <br>
-                            organisés autour du développement des six grandes compétences qui caractérisent le B.U.T. Informatique : <br> <br> </p>
+                            de projet encadré réparties sur 6 semestres en 3 années avec un maximum de 32h de cours par semaine <br>
+                            et à minima 22 à 26 semaines de stage et/ou d'alternance. Cette formation requiert des <br>
+                            savoir-être et des savoir-faire, tant académiques que professionnels, organisés autour <br>
+                            du développement des six grandes compétences qui caractérisent le B.U.T. Informatique : <br> <br> </p>
                             <ul> <li> Réaliser un développement d’application </li>
                                  <li> Optimiser des solutions informatiques </li>
                                  <li> Administrer des systèmes informatiques communicants complexes </li>
@@ -52,6 +53,10 @@ class PresentationFormationParcours
                                 d’optimisation et de sécurisation. D’un point de vue pratique, une partie du cursus pourra être réalisé <br>
                                 en alternance ; une sortie diplômante à bac + 2 restera possible via l’obtention du D.U.T Informatique. <br>
                                 Enfin, il sera en principe envisageable de suivre 1 ou 2 semestres à l’étranger pendant le cursus.</p>
+                <h2> Stages et projets encadrés </h2>
+            <ul> <li> <strong> Le programme : 2000 heures de cours + 600 h de Projet tutoré répartis sur 6 semestres en 3 années avec un maximum de 32h de cours par semaine.
+            Périodes de stages de 22 à 26 semaines.
+
 
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
