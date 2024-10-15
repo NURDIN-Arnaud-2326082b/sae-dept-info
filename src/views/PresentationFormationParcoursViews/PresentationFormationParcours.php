@@ -2,7 +2,7 @@
 
 namespace App\src\views\PresentationFormationParcoursViews;
 
-use App\src\views\LayoutViews\Layout;
+use App\src\views\Layout;
 
 class PresentationFormationParcours
 {
@@ -54,8 +54,11 @@ class PresentationFormationParcours
                                 en alternance ; une sortie diplômante à bac + 2 restera possible via l’obtention du D.U.T Informatique. <br>
                                 Enfin, il sera en principe envisageable de suivre 1 ou 2 semestres à l’étranger pendant le cursus. <br> <br> </p>
 
+                    <h3> Alternance </h3>
+                        <p> En BUT Informatique, l'alternance est possible dès la 2ème année. Consultez le <a href="/ressources/Alternance INFO Aix.pdf">calendrier d'alternance</a>.</p>
 
-
+                    <h3> Mobilité internationale </h3>
+                        <p> 1 semestre ou 2 possible à l'étranger, ou stage. </p>
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
         </main>
