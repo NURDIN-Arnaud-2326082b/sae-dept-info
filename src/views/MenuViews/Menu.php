@@ -16,7 +16,7 @@ class Menu {
                 </div>
 
                 <!-- Panel pour la présentation du département -->
-                <div class="panel" onclick="window.location.href='/presentationdept';">
+                <div class="panel" onclick="window.location.href='PresentationDept';">
                     <h2>Présentation du département</h2>
                 </div>
 
