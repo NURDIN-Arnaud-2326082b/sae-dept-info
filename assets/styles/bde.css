@@ -110,3 +110,17 @@ html {
     font-size: 1.1em;
     color: #666;
 }
+
+.marquee h2 {
+    display: inline-block;
+    padding-left: 50%;
+    animation: marquee 15s linear infinite;
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

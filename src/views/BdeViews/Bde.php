@@ -19,8 +19,10 @@ class Bde
                     <a href="#content" class="btn-scroll">En savoir plus</a>
                 </div>
             </section>
-
             <section id="content" class="department-content">
+                <div class="marquee">
+                    <h2>Les derniers évènements du BDE ici</h2>
+                </div>
                 <div class="intro">
                     <h2>À propos du BDE</h2>
                     <p>Le bureau des étudiants (BDE) de notre département informatique est un groupe d'étudiant très engagé pour la vie étudiante. Il propose régulièrement des évènements afin de favoriser l'insertion de tous les étudiants du département, augmenter la cohésion et permettre à tous de passer d'agréables moments pour décompresser en dehors des cours.</p>
