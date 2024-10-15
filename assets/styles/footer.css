@@ -1,0 +1,25 @@
+.footer {
+    background-color: #005691; /* Bleu AMU */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+img {
+    width: 20%;
+    height: auto;
+}
+
+
+/* Pour le placer toujours en bas si la page est plus petite que la fenêtre */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1; /* Pour que le contenu principal prenne tout l'espace disponible */
+}

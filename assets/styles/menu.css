@@ -1,22 +1,85 @@
-.panel-container {
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+    color: #333;
+    white-space: nowrap;
+    margin-top: 100px;
+}
+
+
+.marquee h2 {
+    display: inline-block;
+    padding-left: 50%;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+
+.articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2em;
-    padding: 4em;
-}
-
-.panel {
-    background-color: #1F63DE;
-    color: #FFFFFF;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
     padding: 20px;
-    text-align: center;
-    justify-content: center;
-    border-radius: 8px;
-    width: 200px;
-    margin-top: 30%;
+    overflow: hidden; /* Pour cacher les éléments qui dépassent */
 }
 
-.panel h2 {
-    margin: 0;
-    font-size: 18px;
+
+
+.article-preview {
+    display: flex; /* Utiliser flex pour l'alignement horizontal */
+    gap: 20px; /* Espace entre le texte et l'image */
+    border: 1px solid #ccc; /* Ajouter une bordure pour délimiter les articles */
+    padding: 10px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    transition: transform 0.3s ease; /* Transition douce pour la transformation */
+}
+
+
+.article-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.article-preview h3 {
+    font-size: 1.2em;
+    margin: 0 0 10px;
+}
+
+.article-preview p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.article-preview .read-more {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.article-preview .read-more:hover {
+    text-decoration: underline;
+}
+
+
+.article-content {
+    flex: 1;
+}
+
+.article-image {
+    width: 200px;
+    height: auto;
+    border-radius: 5px;
 }
