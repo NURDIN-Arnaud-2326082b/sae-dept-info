@@ -18,8 +18,8 @@ class MenuController
      * Affiche la page d'accueil.
      *
      */
-    public function defaultMethod(): void
+    public function defaultMethod($cssPaths, $jsPaths): void
     {
-        (new \App\src\views\MenuViews\Menu())->show();
+        (new \App\src\views\MenuViews\Menu())->show($cssPaths, $jsPaths);
     }
 }

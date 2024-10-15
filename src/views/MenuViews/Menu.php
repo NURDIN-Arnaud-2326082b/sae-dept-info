@@ -4,10 +4,22 @@ namespace App\src\views\MenuViews;
 use App\src\views\LayoutViews\Layout;
 
 class Menu {
-    public function show(): void {
+    public function show($cssPaths, $jsPaths): void {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/homepage.css">
+
+        <?php
+        foreach ($cssPaths as $cssPath) {
+            echo '<link rel="stylesheet" href="' . $cssPath . '">';
+        }
+        ?>
+
+        <?php
+        foreach ($jsPaths as $jsPath) {
+            echo '<script src="' . $jsPath . ' defer"></script>';
+        }
+        ?>
+
         <main>
             <div class="panel-container">
                 <!-- Panel pour la page principale -->
@@ -57,6 +69,7 @@ class Menu {
             </div>
         </main>
         <?php
-        (new Layout('Accueil', ob_get_clean()))->show();
+        $content = ob_get_clean();
+        (new Layout('Accueil', $content))->show();
     }
 }
