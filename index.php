@@ -57,7 +57,7 @@ if (class_exists($controllerClass)) {
         $controller->$methodSegment($cssPaths, $jsPaths);
     } else {
         $errorController = new Error404Controller();
-        $errorController->defaultMethod($cssPaths, $jsPaths);
+        $errorController->defaultMethod("/assets/styles/error404.css", "/assets/js/error404.js");
     }
 } else {
     $errorController = new Error404Controller();
