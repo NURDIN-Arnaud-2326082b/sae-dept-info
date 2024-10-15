@@ -9,7 +9,11 @@ class Footer {
         ?>
         <link rel="stylesheet" href="/assets/styles/footer.css">
 
-        <div class="wave"></div>
+        <footer class="footer">
+            <img src="/assets/images/logo_amu.png" alt="logo iut">
+            <p>© 2024 Département Informatique - IUT d'Aix-Marseille</p>
+        </footer>
+
         <?php
     }
 }

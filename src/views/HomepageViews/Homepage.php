@@ -25,20 +25,10 @@ class Homepage {
                     Rejoignez-nous pour bénéficier d'un enseignement de qualité, dispensé par des professionnels du secteur,
                     et préparez-vous à une carrière passionnante et dynamique dans le domaine de l'informatique !
                 </p>
-                <button class="read-more" onclick="openModal('modal1')">Lire la suite</button>
+                <a href="article" class="read-more">En savoir plus</a>
             </div>
             <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
-
-        <!-- Modal du premier article -->
-        <div id="modal1" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('modal1')">&times;</span>
-                <h2>Titre de l'article</h2>
-                <p>Contenu détaillé de l'article ici...</p>
-            </div>
-        </div>
-
 
         <div class="article-preview">
             <div class="article-content">
@@ -108,7 +98,6 @@ class Homepage {
 
 
         </main>
-        <script src="/assets/js/modal.js"></script>
         <?php
         (new Layout('Accueil', ob_get_clean()))->show();
     }
