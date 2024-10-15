@@ -19,7 +19,7 @@ class MenuController
      * Affiche la page d'accueil.
      *
      */
-    public function defaultMethod(): void
+    public function defaultMethod($cssPaths, $jsPaths): void
     {
         (new Menu())->show();
     }
