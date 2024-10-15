@@ -11,7 +11,7 @@ class Menu {
         <main>
             <div class="panel-container">
                 <!-- Panel pour la page principale -->
-                <div class="panel" onclick="window.location.href='home.html';">
+                <div class="panel" onclick="window.location.href='Home.html';">
                     <h2>🏠 Page principale</h2>
                 </div>
 
@@ -41,7 +41,7 @@ class Menu {
                 </div>
 
                 <!-- Panel pour la présentation du BDE -->
-                <div class="panel" onclick="window.location.href='bde.html';">
+                <div class="panel" onclick="window.location.href='Bde';">
                     <h2>Présentation du BDE</h2>
                 </div>
 
@@ -50,10 +50,6 @@ class Menu {
                     <h2>Évènements - Département</h2>
                 </div>
 
-                <!-- Panel pour les événements du BDE -->
-                <div class="panel" onclick="window.location.href='events-bde.html';">
-                    <h2>Évènements - BDE</h2>
-                </div>
             </div>
         </main>
         <?php
