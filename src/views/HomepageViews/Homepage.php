@@ -30,6 +30,7 @@ class Homepage {
             <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
+        <!-- Deuxième article -->
         <div class="article-preview">
             <div class="article-content">
                 <h3>Devenez parrain/marraine !</h3>
@@ -43,6 +44,7 @@ class Homepage {
             <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
+        <!-- Troisième article -->
         <div class="article-preview">
             <div class="article-content">
                 <h3>Devenez parrain/marraine !</h3>
@@ -56,6 +58,7 @@ class Homepage {
             <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
+        <!-- Quatrième article -->
         <div class="article-preview">
             <div class="article-content">
                 <h3>Devenez parrain/marraine !</h3>
@@ -69,6 +72,7 @@ class Homepage {
             <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
+        <!-- Cinquième article -->
         <div class="article-preview">
             <div class="article-content">
                 <h3>Devenez parrain/marraine !</h3>
@@ -82,6 +86,7 @@ class Homepage {
             <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
+        <!-- Sixième article -->
         <div class="article-preview">
             <div class="article-content">
                 <h3>Devenez parrain/marraine !</h3>
