@@ -59,6 +59,25 @@ class PresentationFormationParcours
 
                     <h3> Mobilité internationale </h3>
                         <p> 1 semestre ou 2 possible à l'étranger, ou stage. </p>
+                <h2> Contenus, parcours et débouchés </h2>
+                    <h3> Parcours A : Réalisation d’applications : conception, développement, validation </h3>
+                        <h4>Objectifs du parcours</h4>
+                            <p> Ce parcours forme des cadres intermédiaires capables : </p>
+                                <ul> <li> de développer des applications complexes, c’est-à-dire recueillir et analyser les besoins du client, développer <br>
+                                        ou adapter une application complexe de qualité, réaliser la maintenance ou le suivi de cette application ; </li>
+                                     <li> de mettre en place des jeux de tests, c’est-à-dire construire des jeux d’essais, automatiser leur exécution et assurer l’intégration continue.</li>
+
+
+
+                        En outre, la personne titulaire du B.U.T. Informatique parcours Réalisation d’applications : conception, développement, validation dispose de compétences en matière de raisonnement et de modélisation mathématiques, en droit, économie et gestion des entreprises et des administrations, en expression-communication et en langue anglaise.
+
+                        Activités préparées par le parcours
+
+                        Le développement d’application consiste à recueillir les besoins des clients, analyser ces besoins, concevoir et réaliser une implémentation répondant au cahier des charges, dans des contextes qui peuvent être spécialisés en fonction de domaines métiers (gestion, finance, santé, jeux vidéos,...) ou des plateformes de développement spécifiques (web, mobile, desktop, IoT...). Le développeur peut accéder à des métiers plus spécialisés : développement web, développement mobile, développement frontend, développement fullstack, développement backend, architecte logiciel, lead developer, DevOps. Le développement doit suivre l’état de l’art en matière de processus qualité, de sécurité et d’efficacité (temps de calcul, green computing), ce qui nécessite le développement de compétences variées. Les équipes de développement pouvant être de taille conséquente, il est nécessaire d’être formé aux diverses techniques de travail en équipe usuelles dans le domaine.
+
+                        Les métiers de testeurs correspondent à l’intégration d’applications, leur déploiement et la conception et réalisation de tests visant à en assurer la qualité. Ces métiers en plein essor permettent de faire le lien entre les exigences métiers spécifiques à un domaine et la partie développement explicitée plus haut. Les tests peuvent concerner les tests utilisateur, les tests fonctionnels, la non-régression.
+
+
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
         </main>
