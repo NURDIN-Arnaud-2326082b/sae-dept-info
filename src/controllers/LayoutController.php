@@ -1,19 +1,19 @@
 <?php
 namespace App\src\controllers;
-session_start();
 
-require_once 'src/views/Menu.php';
-require_once 'src/views/Layout.php';
+use App\src\views\LayoutViews\Layout;
+
+session_start();
 
 class LayoutController
 {
     /**
      * Exécute l'action par défaut du contrôleur.
      *
-     * Cette méthode affiche le layout principal du site (avec le titre "Tenrac Website") sans contenu spécifique.
+     * Cette méthode affiche le layout principal du site sans contenu spécifique.
      */
     public function execute(): void
     {
-        (new \App\src\views\LayoutViews\Layout('Tenrac Website', null))->show();
+        (new Layout('IUT Aix département informatique', null))->show();
     }
 }
