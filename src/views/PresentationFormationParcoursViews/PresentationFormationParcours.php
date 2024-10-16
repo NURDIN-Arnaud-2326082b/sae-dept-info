@@ -91,7 +91,7 @@ class PresentationFormationParcours
                         <h4> Compétences </h4>
                              <p> Le parcours Réalisations d'Applications : Conception, Développement, Validation s’appuie sur un renforcement de la compétence <br>
                                  "Administrer des systèmes informatiques communicants complexes". </p>
-                        <h4><a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAA?ens=1"> Matières </a> </h4>
+                        <h4> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAA?ens=1"> Matières </a> </h4>
                         <h4> Métiers </h4>
                             <p> Sont notamment accessibles à l’issue de la formation les métiers de Concepteur-Développeur d'applications, Testeur, Tech Lead, Développeur <br>
                                 et Administrateur systèmes et réseaux, Développeur et intégrateur Web, Spécialiste bases de données… </p>
@@ -135,7 +135,7 @@ class PresentationFormationParcours
                             <p> Le parcours, Déploiement d’applications communicantes et sécurisées, s’appuie sur un renforcement de la compétence "Administrer des systèmes <br>
                                 informatiques communicants complexes". </p>  <br> <br>
 
-                        <h4><a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAB?ens=1"> Matières </a></h4>
+                        <h4> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAB?ens=1"> Matières </a> </h4>
 
                         <h4> Métiers </h4>
                             <p> Sont notamment accessibles à l’issue de la formation les métiers de Concepteur-Développeur d'applications, Testeur, Tech Lead, Développeur <br>
@@ -145,6 +145,17 @@ class PresentationFormationParcours
                                      éventuellement écoles d’ingénieurs… </li>
                                      <li> A l’issue des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs publiques <br>
                                      (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger.</li> </ul> <br> <br>
+                <h2> Modalités de candidature </h2>
+                    <h3> <a href=""> Candidature</a> </h3>
+                        <p> Recrutement via <a href="https://dossierappel.parcoursup.fr/Candidats/public/fiches/afficherFicheFormation?g_ta_cod=2701&typeBac=0&originePc=0"> Parcoursup </a> </p>
+                        <p> Pour connaître les critères de sélection des candidats sur Parcoursup, consultez le <a href="/ressources/Rapport public 2023 - BUT INFO COM MLP.pdf">rapport de recrutement Parcoursup de l'année précédente </a> </p>
+
+                    <h3> Profil des candidats </h3>
+                        <ul> <li> Titulaire du baccalauréat général à coloration scientifique (au moins 1 spécialité parmi Mathématiques, Numérique et Sciences Informatiques, <br>
+                                  Sciences de l'Ingénieur, Physique Chimie) </li>
+                             <li> Titulaire du baccalauréat de voie technologique STI2D </li> </ul>
+
+
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
         </main>
