@@ -26,7 +26,7 @@ class Navbar
                     <label for="search"></label>
                     <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
                 <?php else: ?>
-                    <a href="connexion.php">Se connecter</a>
+                    <a href="/Connexion">Se connecter</a>
                 <?php endif; ?>
             </div>
         </nav>
