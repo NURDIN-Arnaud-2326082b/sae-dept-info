@@ -36,7 +36,7 @@ exit();
 
 
 if ($controllerSegment === '') {
-    $controllerSegment = 'Homepage';
+    $controllerSegment = 'homepage';
 }
 
 $controllerName = ucfirst($controllerSegment) . 'Controller';
