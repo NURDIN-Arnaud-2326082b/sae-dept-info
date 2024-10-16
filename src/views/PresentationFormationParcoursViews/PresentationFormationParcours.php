@@ -9,7 +9,7 @@ class PresentationFormationParcours
     public function show(): void {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/main.css">
+        <link rel="stylesheet" href="">
         <main>
             <h1> Présentation du département informatique et des deux parcours (A et B) </h1>
                 <h2> Objectifs du BUT informatique </h2>
@@ -87,6 +87,7 @@ class PresentationFormationParcours
                                     visant à en assurer la qualité. Ces métiers en plein essor permettent de faire le lien entre les exigences métiers spécifiques à <br>
                                     un domaine et la partie développement explicitée plus haut. Les tests peuvent concerner les tests utilisateur, les tests fonctionnels, <br>
                                     la non-régression. <br> <br> </p>
+
                         <h4> Compétences </h4>
                              <p> Le parcours Réalisations d'Applications : Conception, Développement, Validation s’appuie sur un renforcement de la compétence <br>
                                  "Administrer des systèmes informatiques communicants complexes". </p>
@@ -99,6 +100,37 @@ class PresentationFormationParcours
                                       licences générales, éventuellement écoles d’ingénieurs… </li>
                                  <li> A l’issues des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs <br>
                                       publiques (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger. </li> </ul> <br> <br>
+
+                    <h3> Parcours Déploiement d’applications communicantes et sécurisées </h3>
+                        <h4> Objectifs du parcours </h4>
+                            <p> Ce parcours forme des cadres intermédiaires capables : </p>
+                                <ul> <li> de concevoir l’architecture du système d’information, d’installer et de configurer les matériels et les logiciels <br>
+                                          informatiques dont a besoin une organisation ; </li>
+                                     <li> de maintenir, développer et adapter (optimiser) l’infrastructure matérielle et logicielle, tout en veillant aux besoins <br>
+                                          des utilisateurs et aux évolutions technologiques ; </li>
+                                     <li> de construire des applications client-serveur correspondant à un besoin métier ; </li>
+                                     <li> d’anticiper les différents risques relatifs à la sécurité informatique et de mettre en place les solutions et procédures <br>
+                                          nécessaires à la continuité de service, dans le cas (en particulier) de cyberattaques. </li> </ul> <br> <br>
+
+                                     <p> En outre, la personne titulaire du B.U.T. Informatique parcours Déploiement d’applications communicantes et sécurisées <br>
+                                         dispose de compétences en matière de raisonnement et de modélisation mathématiques, en droit, économie et gestion des <br>
+                                         entreprises et des administrations, en expression-communication et en langue anglaise. </p> <br> <br>
+
+                                <h3> Activités préparées par le parcours </h3>
+                                    <p> Les activités de ce parcours s’articulent autour de trois axes : l’installation, la configuration et l’optimisation des <br>
+                                        systèmes informatiques. Les missions confiées concernent également le déploiement et la sécurisation de réseaux d’une part, <br>
+                                        l’installation et la configuration de services applicatifs ainsi que le développement d’applications client-serveur répondant <br>
+                                        aux exigences d’une organisation d’autre part.</p>
+
+                                    <p>Les activités regroupent les métiers chargés de créer l’environnement de travail et de  communication d’une entreprise, tels <br>
+                                        qu’administrateur système et réseaux, DevOps, chargé du déploiement d’applications dans un environnement cloud et gestionnaire <br>
+                                        de la cybersécurité.</p>
+
+                                    <p> Par ailleurs la complexité des technologies utilisées implique aussi une assistance utilisateur (dépannage, installation, formation, <br>
+                                        paramétrage...) pour répondre aux besoins.</p>
+
+                                    <p> Dans notre monde ultra-connecté, la sécurisation et la bonne circulation des informations sont devenues un enjeu vital pour les organisations. <br>
+                                        L’architecte système et réseau, garant des données, doit se tenir au courant de toutes les évolutions technologiques et réglementaires.</p>
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
         </main>
