@@ -36,7 +36,7 @@ exit();
 
 
 if ($controllerSegment === '') {
-    $controllerSegment = 'Menu';
+    $controllerSegment = 'Homepage';
 }
 
 $controllerName = ucfirst($controllerSegment) . 'Controller';
@@ -45,21 +45,18 @@ $actionName = $actionSegment . 'Action';
 $controllerClass = "App\\src\\controllers\\pages\\{$controllerName}";
 if (class_exists($controllerClass)) {
     $controller = new $controllerClass();
-
-    $baseName = strtolower(str_replace('Controller', '', $controllerName));
-    $cssPaths = ["/assets/styles/{$baseName}.css"];
-    $jsPaths = ["/assets/js/{$baseName}.js"];
-
-    if ($actionName != 'Action' && method_exists($controller, $actionName)) {
-        $controller->$actionName($cssPaths, $jsPaths);
-        $controller->$methodSegment($cssPaths, $jsPaths);
-    } elseif ($actionName === 'Action') {
-        $controller->$methodSegment($cssPaths, $jsPaths);
-    } else {
+    if ($actionName != 'Action'  && method_exists($controller, $actionName)) {
+        $controller->$actionName();
+        $controller->$methodSegment();
+    }
+    elseif ($actionName === 'Action') {
+        $controller->$methodSegment();
+    }
+    else {
         $errorController = new Error404Controller();
-        $errorController->defaultMethod("/assets/styles/error404.css", "/assets/js/error404.js");
+        $errorController->defaultMethod();
     }
 } else {
     $errorController = new Error404Controller();
-    $errorController->defaultMethod("/assets/styles/error404.css", "/assets/js/error404.js");
+    $errorController->defaultMethod();
 }
