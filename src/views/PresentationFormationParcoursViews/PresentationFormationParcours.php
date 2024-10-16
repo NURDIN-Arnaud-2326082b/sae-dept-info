@@ -55,7 +55,7 @@ class PresentationFormationParcours
                                 Enfin, il sera en principe envisageable de suivre 1 ou 2 semestres à l’étranger pendant le cursus. <br> <br> </p>
 
                     <h3> Alternance </h3>
-                        <p> En BUT Informatique, l'alternance est possible dès la 2ème année. Consultez le <a href="/ressources/Alternance INFO Aix.pdf">calendrier d'alternance</a>.</p>
+                        <p> En BUT Informatique, l'alternance est possible dès la 2ème année. Consultez le <a href="https://iut.univ-amu.fr/sites/default/files/media-ressource/Alternance INFO Aix.pdf">calendrier d'alternance</a>.</p>
 
                     <h3> Mobilité internationale </h3>
                         <p> 1 semestre ou 2 possible à l'étranger, ou stage. </p>
@@ -101,7 +101,7 @@ class PresentationFormationParcours
                                  <li> A l’issues des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs <br>
                                       publiques (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger. </li> </ul> <br> <br>
 
-                    <h3> Parcours Déploiement d’applications communicantes et sécurisées </h3>
+                    <h3> Parcours B :  Déploiement d’applications communicantes et sécurisées </h3>
                         <h4> Objectifs du parcours </h4>
                             <p> Ce parcours forme des cadres intermédiaires capables : </p>
                                 <ul> <li> de concevoir l’architecture du système d’information, d’installer et de configurer les matériels et les logiciels <br>
@@ -146,16 +146,20 @@ class PresentationFormationParcours
                                      <li> A l’issue des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs publiques <br>
                                      (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger.</li> </ul> <br> <br>
                 <h2> Modalités de candidature </h2>
-                    <h3> <a href=""> Candidature</a> </h3>
+                    <h3> Candidature </h3>
                         <p> Recrutement via <a href="https://dossierappel.parcoursup.fr/Candidats/public/fiches/afficherFicheFormation?g_ta_cod=2701&typeBac=0&originePc=0"> Parcoursup </a> </p>
-                        <p> Pour connaître les critères de sélection des candidats sur Parcoursup, consultez le <a href="/ressources/Rapport public 2023 - BUT INFO COM MLP.pdf">rapport de recrutement Parcoursup de l'année précédente </a> </p>
+                        <p> Pour connaître les critères de sélection des candidats sur Parcoursup, consultez le <a href="https://iut.univ-amu.fr/sites/default/files/media-ressource/Rapport public 2023 - BUT INFO COM MLP.pdf">rapport de recrutement Parcoursup de l'année précédente </a> </p>
 
                     <h3> Profil des candidats </h3>
                         <ul> <li> Titulaire du baccalauréat général à coloration scientifique (au moins 1 spécialité parmi Mathématiques, Numérique et Sciences Informatiques, <br>
                                   Sciences de l'Ingénieur, Physique Chimie) </li>
                              <li> Titulaire du baccalauréat de voie technologique STI2D </li> </ul>
 
-
+                <h2> INFOS PRATIQUES </h2>
+                    <p><a href="https://iut.univ-amu.fr/fr/dates-de-rentree"> Dates de rentrée </a> <br>
+                        <a href="https://iut.univ-amu.fr/fr/journees-portes-ouvertes"> Journée Portes Ouvertes </a> <br>
+                        <a href="https://iut.univ-amu.fr/sites/default/files/media-ressource/FicheBUT_23-24_INFO_AIX.pdf"> Fiche de la formation </a> <br>
+                        <strong> Adresse : </strong> 413, Avenue Gaston Berger 13100 Aix-en-Provence <br> <br> </p>
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
         </main>
