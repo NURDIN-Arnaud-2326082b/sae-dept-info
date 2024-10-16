@@ -26,26 +26,25 @@ class Bde
                 <div class="intro">
                     <h2>À propos du BDE</h2>
                     <p>Le bureau des étudiants (BDE) de notre département informatique est un groupe d'étudiant très engagé pour la vie étudiante. Il propose régulièrement des évènements afin de favoriser l'insertion de tous les étudiants du département, augmenter la cohésion et permettre à tous de passer d'agréables moments pour décompresser en dehors des cours.</p>
-                    <div class="features-grid">
-                        <div class="feature">
-                            <img src="/assets/images/img.png" alt="Innovation">
-                            <h3>Le bureau</h3>
-                            <p>Le bureau du BDE se situe au deuxième étage du bâtiment. Celui-ci est composé de deux pièces : <br> - la zone administrative pour toutes les demandes administrative ou inscription aux évènements.<br> - la zone détente comportant une tv une nintendo switch t une ps4 toutes les deux dotées d'une grande variété de jeux.</p>
-                        </div>
-                        <div class="feature">
-                            <img src="/assets/images/img.png" alt="Innovation">
-                            <h3>La salle détente</h3>
-                            <p>Le BDE a à disposition une salle détente permettant aux étudiants voulant passer un moment calme au département que ce soit pour décompresser ou travailler tranquillement au deuxième étage à côté du bureau du BDE.</p>
-                        </div>
-                        <div class="feature">
-                            <img src="/assets/images/img.png" alt="Excellence">
-                            <h3>La buvette</h3>
-                            <p>Le BDE est doté d'une buvette dans son bureau proposant une variété de snacks et boissons aux étudiants avec des prix abordables pour tous.</p>
-                        </div>
-                    </div>
-                    <h2>Les membres</h2>
                 </div>
-
+                <div class="features-grid">
+                    <div class="feature">
+                        <img src="/assets/images/img.png" alt="Innovation">
+                        <h3>Le bureau</h3>
+                        <p>Le bureau du BDE se situe au deuxième étage du bâtiment. Celui-ci est composé de deux pièces : <br> - la zone administrative pour toutes les demandes administrative ou inscription aux évènements.<br> - la zone détente comportant une tv une nintendo switch t une ps4 toutes les deux dotées d'une grande variété de jeux.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="/assets/images/img.png" alt="Innovation">
+                        <h3>La salle détente</h3>
+                        <p>Le BDE a à disposition une salle détente permettant aux étudiants voulant passer un moment calme au département que ce soit pour décompresser ou travailler tranquillement au deuxième étage à côté du bureau du BDE.</p>
+                    </div>
+                    <div class="feature">
+                        <img src="/assets/images/img.png" alt="Excellence">
+                        <h3>La buvette</h3>
+                        <p>Le BDE est doté d'une buvette dans son bureau proposant une variété de snacks et boissons aux étudiants avec des prix abordables pour tous.</p>
+                    </div>
+                </div>
+                <h2>Les membres</h2>
                 <div class="features-grid">
                     <div class="feature">
                         <img src="/assets/images/img.png" alt="Innovation">
