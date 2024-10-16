@@ -12,28 +12,28 @@ class Navbar
         }
 
         ?>
-        <nav>
-            <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
 
         <nav class="navbar">
             <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
 
             <div class="search-bar">
-                <?php if (!$this->isHomepage()): ?>
+                <?php
+                $currentFile = basename($_SERVER['PHP_SELF']);
+
+                $isHomepage = ($currentFile === 'index.php');
+
+                if (!$isHomepage): ?>
                     <label for="search"></label>
                     <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
-                <?php endif; ?>
-            </div>
-                <div class="search-bar">
-                <?php if ($this->isHomepage()): ?>
+                <?php else: ?>
                     <a href="connexion.php">Se connecter</a>
                 <?php endif; ?>
-                </div>
+            </div>
         </nav>
-        <?php
-    }
 
-    private function isHomepage(): bool {
-        return basename($_SERVER['PHP_SELF']) === 'Homepage.php';
+
+
+
+        <?php
     }
 }
