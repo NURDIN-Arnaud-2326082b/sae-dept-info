@@ -17,6 +17,22 @@ class Homepage {
         <!-- Premier article -->
         <div class="article-preview">
             <div class="article-content">
+                <h3>Découvrez notre département</h3>
+                <p>
+                    Le département Informatique de l'IUT d'Aix-en-Provence, rattaché à l'Université d'Aix-Marseille,
+                    offre une formation reconnue et dynamique aux métiers de l'informatique.
+                    <br><br>
+                    Situé au cœur d'un campus moderne et convivial,
+                    le département forme des étudiants aux technologies de pointe et aux compétences recherchées sur le marché du travail.
+                </p>
+                <a href="/PresentationDept" class="read-more">En savoir plus</a>
+            </div>
+            <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+        </div>
+
+        <!-- Deuxième article -->
+        <div class="article-preview">
+            <div class="article-content">
                 <h3>Découvrez nos formations</h3>
                 <p>
                     Au sein du département informatique de l'IUT d'Aix-en-Provence,
@@ -28,20 +44,6 @@ class Homepage {
                 <a href="article" class="read-more">En savoir plus</a>
             </div>
             <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
-        </div>
-
-        <!-- Deuxième article -->
-        <div class="article-preview">
-            <div class="article-content">
-                <h3>Devenez parrain/marraine !</h3>
-                <p>
-                    Parrainer
-                    <br><br>
-                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
-                </p>
-                <a href="article" class="read-more">En savoir plus</a>
-            </div>
-            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Troisième article -->
