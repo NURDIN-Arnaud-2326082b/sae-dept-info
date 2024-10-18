@@ -3,6 +3,7 @@
 namespace App\src\views\ConnexionViews;
 
 use App\src\views\LayoutViews\Layout;
+use App\src\controllers\pages\CasAuthController;
 
 class Connexion
 {
@@ -10,6 +11,8 @@ class Connexion
     public function show(): void
     {
         ob_start();
+        $authController = new CasAuthController();
+        $authController->login(); // Appel de la méthode de connexion
         ?>
         <link rel="stylesheet" href="/assets/styles/connexion.css">
         <main>
