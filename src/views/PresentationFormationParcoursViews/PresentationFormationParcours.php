@@ -160,6 +160,36 @@ class PresentationFormationParcours
                         <a href="https://iut.univ-amu.fr/fr/journees-portes-ouvertes"> Journée Portes Ouvertes </a> <br>
                         <a href="https://iut.univ-amu.fr/sites/default/files/media-ressource/FicheBUT_23-24_INFO_AIX.pdf"> Fiche de la formation </a> <br>
                         <strong> Adresse : </strong> 413, Avenue Gaston Berger 13100 Aix-en-Provence <br> <br> </p>
+                <h2> CONTACTS </h2>
+                    <h5> Accueil formation </h5>
+                        <p> <a href="tel:0413946379">04 13 94 63 79</a> <br>
+                            <a href="mailto:iut-aix-informatique@univ-amu.fr"> Email </a> </p>
+
+                    <h5> Christine MAKSSOUD </h5>
+                        <p> Chef du département Informatique <br>
+                            & Responsable alternance <br>
+                            <a href="mailto:christine.makssoud@univ-amu.fr"> Email </a> </p>
+
+                    <h5> Michaël MARTIN-NEVOT </h5>
+                        <p> Responsable Parcoursup </p>
+
+                    <h5> Samuele ANNI </h5>
+                        <p> Directeur des études BUT1 <br>
+                            <a href="mailto:samuele.anni@univ-amu.fr"> Email </a> </p>
+
+                    <h5> Frédéric FLOUVAT </h5>
+                        <p> Responsable de Parcours A : <br>
+                            Réalisation d'applications : <br>
+                            conception, développement, <br>
+                            validation <br>
+                            <a href="mailto:frederic.flouvat@univ-amu.fr"> Email </a> </p>
+
+                    <h5> Safa YAHI </h5>
+                        <p> Responsable de Parcours B : <br>
+                            Déploiement d'application <br>
+                            communicantes et sécurisées <br>
+                            <a href="mailto:safa.YAHI@univ-amu.fr"> Email </a> </p>
+
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
         </main>
