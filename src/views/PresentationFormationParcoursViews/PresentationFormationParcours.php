@@ -2,35 +2,60 @@
 
 namespace App\src\views\PresentationFormationParcoursViews;
 
-use App\src\views\Layout;
+use App\src\views\LayoutViews\Layout;
 
 class PresentationFormationParcours
 {
-    public function show(): void {
+
+    public function show(): void
+    {
         ob_start();
         ?>
-        <link rel="stylesheet" href="">
+            <link rel="stylesheet" href="/assets/styles/presentationFormationParcours.css">
         <main>
-            <h1> Présentation du département informatique et des deux parcours (A et B) </h1>
-                <h2> Objectifs du BUT informatique </h2>
-                    <p> Le BUT Informatique est un diplôme national dont l'objectif est de former des informaticiens généralistes. <br>
-                        Ceux-ci participent à la conception, la réalisation et la mise en œuvre de solutions informatiques. <br>
-                        Le site d’Aix prépare plus spécialement au métier de "développeur fullstack", ainsi qu’à l’administration <br>
-                        et la sécurisation de systèmes informatiques communicants. Les informaticiens issus de cette formation <br>
-                        possèdent des compétences à la fois pratiques et théoriques leur permettant d'envisager une <br>
-                        insertion professionnelle immédiate ou une poursuite d'études. <br> <br> </p>
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h1> Présentation du BUT informatique et des deux parcours (A et B) </h1>
+                    <p> Dcouvrez le BUT informatique, ses objectifs, ses parcours</p>
+                    <a href="#content" class="btn-scroll"> En savoir plus </a>
+                </div>
+            </section>
 
-                    <p> Le département informatique d'Aix-en-Provence propose deux parcours dès la deuxième année : </p>
+            <section id="content" class="department-content">
+                <div class="intro">
+                    <h2> Objectifs du BUT informatique </h2>
+                    <p> Le BUT Informatique est un diplôme national dont l'objectif est de former des informaticiens généralistes.
+                        Ceux-ci participent à la conception, la réalisation et la mise en œuvre de solutions informatiques.
+                        Le site d’Aix prépare plus spécialement au métier de "développeur fullstack", ainsi qu’à l’administration
+                        et la sécurisation de systèmes informatiques communicants. Les informaticiens issus de cette formation
+                        possèdent des compétences à la fois pratiques et théoriques leur permettant d'envisager une insertion professionnelle immédiate
+                        ou une poursuite d'études. Le département informatique d'Aix-en-Provence propose deux parcours dès la deuxième année :
+                </div>
 
+                <div class="features-grid">
+                    <div class="feature">
+                        <img src="/assets/images/img.png" alt="Parcours A">
                         <h3> Parcours A : Réalisation d'applications : développement, conception, validation </h3>
-                            <p> Ce parcours se concentre sur le cycle de vie du logiciel : de l'expression du besoin du client,<br>
-                                à la conception, à la validation et à la maintenace de l'application. Il forme au métier de <br>
-                                concepteur-développeur (mobile, web, Internet des objets</p>
-
+                        <p> Ce parcours se concentre sur le cycle de vie du logiciel : de l'expression du besoin du client,<br>
+                            à la conception, à la validation et à la maintenace de l'application. Il forme au métier de <br>
+                            concepteur-développeur (mobile, web, Internet des objets</p>
+                    </div>
+                    <div class="feature">
+                        <img src="/assets/images/img.png" alt="Parcours B">
                         <h3> Parcours B : Dépoiement d'appliations communicantes et sécurisées </h3>
-                            <p> Ce parcours prépare les étudiants à la mise en place et à la sécurité des systèmes d'information <br>
-                                et des applications. Il forme aux métiers d'administrateur système/réseaux ou applicatifs, cybersécurité, <br>
-                                DevOps, intégrateur d'application, ...  <br> <br> </p>
+                        <p> Ce parcours prépare les étudiants à la mise en place et à la sécurité des systèmes d'information <br>
+                            et des applications. Il forme aux métiers d'administrateur système/réseaux ou applicatifs, cybersécurité, <br>
+                            DevOps, intégrateur d'application, ... </p>
+                    </div>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature">
+                        <img src="/assets/images/img.png" alt="Objectifs">
+
+                    </div>
+                </div>
+
 
                 <h2> Organisation des études </h2>
                     <h3> Structure et organisation </h3>
@@ -192,6 +217,7 @@ class PresentationFormationParcours
 
 
             <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix"> En savoir plus </a> </p>
+            </section>
         </main>
         <?php
         (new Layout('Présentation de la formation et des deux parcours (A et B)', ob_get_clean()))->show();
