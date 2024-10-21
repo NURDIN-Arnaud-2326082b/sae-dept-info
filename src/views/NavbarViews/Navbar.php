@@ -14,8 +14,9 @@ class Navbar
         ?>
 
         <nav class="navbar">
-            <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
-
+            <a href="http://localhost:8080">
+                <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
+            </a>
             <div class="search-bar">
                 <?php
                 $currentFile = basename($_SERVER['PHP_SELF']);
@@ -30,7 +31,6 @@ class Navbar
                 <?php endif; ?>
             </div>
         </nav>
-
 
 
 
