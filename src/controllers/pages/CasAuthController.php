@@ -22,12 +22,12 @@ class CasAuthController
         exit();
     }
 
-    public function logout()
+    public function logout(): void
     {
         $this->casAuth->logout();
     }
 
-    public function getUser()
+    public function getUser() : ?string
     {
         return $this->casAuth->getUser();
     }
