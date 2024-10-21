@@ -1,25 +1,18 @@
 <?php
+
 namespace App\src\controllers\pages;
 
-use App\src\database\DatabaseConnection;
+use App\src\views\HomepageViews\Homepage;
 
 class HomepageController
 {
+
     /**
      * Constructeur de la classe.
      */
-    public function __construct()
-    {
-        $database = DatabaseConnection::getInstance();
-        $db = $database->getConnection();
-    }
-
-    /**
-     * Affiche la page d'accueil.
-     *
-     */
     public function defaultMethod(): void
     {
-        (new \App\src\views\Homepage())->show();
+        (new homepage())->show();
     }
+
 }

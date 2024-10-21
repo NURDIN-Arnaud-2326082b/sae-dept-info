@@ -1,10 +1,15 @@
 <?php
+require_once './vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 
 require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
-use App\src\controllers\pages\HomepageController;
+
 use App\src\database\DatabaseConnection;
 use App\src\controllers\pages\error404Controller;
 
@@ -12,37 +17,46 @@ $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));
 $routePath = implode('/', $segments);
 if ($routePath === '') {
-    $routePath = '/';
+$routePath = '/';
 }
-
 $controllerSegment = $segments[0] ?? 'authentication';
-$actionSegment = $segments[1] ?? 'ConnectUser';
+$actionSegment = $segments[1] ?? '';
 $methodSegment = $segments[2] ?? 'defaultMethod';
 
 $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
-function isLogged()
+function isLogged(): void
 {
-    if (!isset($_SESSION['login'])) {
-        header('Location: /login');
-        exit();
-    }
+if (!isset($_SESSION['login'])) {
+header('Location: /login');
+exit();
+}
 }
 
 
-// Définition des routes
-$routes = [
-    '/' => function() {
-        $controller = new HomepageController();
-        $controller->defaultMethod();
-    },
-    ];
+if ($controllerSegment === '') {
+    $controllerSegment = 'homepage';
+}
 
-// Recherche de la route
-if (isset($routes[$routePath])) {
-    $routes[$routePath]();
+$controllerName = ucfirst($controllerSegment) . 'Controller';
+$actionName = $actionSegment . 'Action';
+
+$controllerClass = "App\\src\\controllers\\pages\\{$controllerName}";
+if (class_exists($controllerClass)) {
+    $controller = new $controllerClass();
+    if ($actionName != 'Action'  && method_exists($controller, $actionName)) {
+        $controller->$actionName();
+        $controller->$methodSegment();
+    }
+    elseif ($actionName === 'Action') {
+        $controller->$methodSegment();
+    }
+    else {
+        $errorController = new Error404Controller();
+        $errorController->defaultMethod();
+    }
 } else {
-    $view = new error404Controller();
-    $view->defaultMethod();
+    $errorController = new Error404Controller();
+    $errorController->defaultMethod();
 }
