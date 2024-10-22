@@ -33,15 +33,16 @@ class Homepage {
         <!-- Deuxième article -->
         <div class="article-preview">
             <div class="article-content">
-                <h3>Devenez parrain/marraine !</h3>
+                <h3>Présentation du département</h3>
                 <p>
-                    Parrainer
+                    Le département informatique de l'IUT d'Aix-en-Provence est un département dynamique et innovant,
+                    qui propose des formations de qualité dans le domaine de l'informatique.
                     <br><br>
-                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
+                    Découvrez nos locaux, nos enseignants, nos étudiants, nos projets, nos partenariats, et bien plus encore !
                 </p>
-                <a href="article" class="read-more">En savoir plus</a>
+                <a href="/PresentationDept" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/départment.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Troisième article -->
