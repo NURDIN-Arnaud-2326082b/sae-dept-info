@@ -3,7 +3,8 @@ namespace App\src\views\NavbarViews;
 
 class Navbar
 {
-    public function show(array $cssPaths, array $jsPaths): void {
+    public function show(array $cssPaths, array $jsPaths, bool $isHomepage): void
+    {
         foreach ($cssPaths as $cssPath) {
             echo '<link rel="stylesheet" href="' . $cssPath . '">';
         }
@@ -18,21 +19,14 @@ class Navbar
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
             <div class="search-bar">
-                <?php
-                $currentFile = basename($_SERVER['PHP_SELF']);
-
-                $isHomepage = ($currentFile === 'index.php');
-
-                if (!$isHomepage): ?>
+                <?php if (!$isHomepage): ?>
                     <label for="search"></label>
                     <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
                 <?php else: ?>
-                    <a href="/Connexion">Se connecter</a>
+                    <a href="/menu">Se connecter</a>
                 <?php endif; ?>
             </div>
         </nav>
-
-
 
         <?php
     }

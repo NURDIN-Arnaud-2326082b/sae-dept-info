@@ -57,6 +57,6 @@ class Menu {
             </div>
         </main>
         <?php
-        (new Layout('Accueil', ob_get_clean()))->show();
+        (new Layout('Menu', ob_get_clean()))->show();
     }
 }

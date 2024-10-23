@@ -51,8 +51,9 @@ class Layout
                 <?php
                 $cssPaths = ['/assets/styles/navbar.css', '/assets/styles/another.css'];
                 $jsPaths = ['/assets/js/searchbar.js', '/assets/js/another.js'];
+                $isHomepage = basename($_SERVER['PHP_SELF']) === 'index.php';
                 $navbar = new Navbar();
-                $navbar->show($cssPaths, $jsPaths);
+                $navbar->show($cssPaths, $jsPaths, $isHomepage);
                 ?>
             </header>
             <div id="content-page">
