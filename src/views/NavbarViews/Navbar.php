@@ -11,11 +11,10 @@ class Navbar
         foreach ($jsPaths as $jsPath) {
             echo '<script src="' . $jsPath . '"></script>';
         }
-
         ?>
 
         <nav class="navbar">
-            <a href="http://localhost:8080">
+            <a href="/">
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
             <div class="search-bar">

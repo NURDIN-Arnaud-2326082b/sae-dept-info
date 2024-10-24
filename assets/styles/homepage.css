@@ -51,8 +51,8 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Assure que l'image couvre toute la boîte sans déformation */
-    z-index: 1; /* Image en arrière-plan */
+    object-fit: cover;
+    z-index: 1;
 }
 
 .article-content {
@@ -60,9 +60,9 @@
     z-index: 2;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    padding: 20px;
+    padding: 3px;
     height: 100%;
-    display: flex;
+    display: grid;
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 10px; /* Ajustement pour le bouton */
@@ -79,22 +79,11 @@
     margin-bottom: 20px;
 }
 
-.article-preview .read-more {
-    align-self: flex-start;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px 10px; /* Réduction du padding */
-    border-radius: 5px;
-    min-width: 120px; /* Largeur minimale du bouton */
-    text-align: center; /* Centrer le texte */
-    height: 40px; /* Ajustement pour la hauteur */
-    line-height: 30px; /* Centrer verticalement le texte */
+.article-link {
+    text-decoration: none; /* Supprime le soulignement du lien */
+    color: inherit; /* Pour hériter de la couleur du texte de l'article */
 }
 
-.article-preview .read-more:hover {
-    text-decoration: underline;
-    background-color: rgba(255, 255, 255, 1);
+.article-link:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Ajouter un effet de survol si souhaité */
 }
-
