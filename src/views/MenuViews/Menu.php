@@ -14,6 +14,11 @@ class Menu {
                 <div class="panel" onclick="window.location.href='Home.html';">
                     <h2>🏠 Page principale</h2>
                 </div>
+          
+                <!-- Panel pour le planning des cours -->
+                <div class="panel" onclick="window.location.href='home.html';">
+                    <h2>Planning des cours</h2>
+                </div>
 
                 <!-- Panel pour la présentation du département -->
                 <div class="panel" onclick="window.location.href='/presentationdept';">
@@ -53,6 +58,6 @@ class Menu {
             </div>
         </main>
         <?php
-        (new Layout('Accueil', ob_get_clean()))->show();
+        (new Layout('Menu', ob_get_clean()))->show();
     }
 }

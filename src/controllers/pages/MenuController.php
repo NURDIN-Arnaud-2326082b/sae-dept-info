@@ -1,7 +1,6 @@
 <?php
 namespace App\src\controllers\pages;
 
-use App\src\database\DatabaseConnection;
 use App\src\views\MenuViews\Menu;
 
 class MenuController
@@ -11,15 +10,14 @@ class MenuController
      */
     public function __construct()
     {
-        $database = DatabaseConnection::getInstance();
-        $db = $database->getConnection();
+
     }
 
     /**
      * Affiche la page d'accueil.
      *
      */
-    public function defaultMethod($cssPaths = [], $jsPaths = []): void
+    public function defaultMethod(): void
     {
         (new Menu())->show();
     }

@@ -33,17 +33,16 @@ class Homepage {
         <!-- Deuxième article -->
         <div class="article-preview">
             <div class="article-content">
-                <h3>Découvrez nos formations</h3>
+                <h3>Présentation du département</h3>
                 <p>
-                    Au sein du département informatique de l'IUT d'Aix-en-Provence,
-                    nous proposons une gamme complète de formations adaptées aux besoins du marché du travail et aux aspirations de nos étudiants.
+                    Le département informatique de l'IUT d'Aix-en-Provence est un département dynamique et innovant,
+                    qui propose des formations de qualité dans le domaine de l'informatique.
                     <br><br>
-                    Rejoignez-nous pour bénéficier d'un enseignement de qualité, dispensé par des professionnels du secteur,
-                    et préparez-vous à une carrière passionnante et dynamique dans le domaine de l'informatique !
+                    Découvrez nos locaux, nos enseignants, nos étudiants, nos projets, nos partenariats, et bien plus encore !
                 </p>
                 <a href="/PresentationDept" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/départment.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Troisième article -->
