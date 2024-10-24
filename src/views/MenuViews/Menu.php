@@ -17,7 +17,7 @@ class Menu {
 
                 <!-- Panel pour la présentation du département -->
                 <div class="panel" onclick="window.location.href='/presentationdept';">
-                    <h2>Présentation du département</h2>
+                    <h2>Emploi du temps</h2>
                 </div>
 
                 <!-- Panel pour la présentation de la formation -->
