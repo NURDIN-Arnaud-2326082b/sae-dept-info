@@ -21,10 +21,11 @@ class PresentationDeptController
      */
     public function updateArticleAction(): void
     {
+        $id = $_POST['id'];
         $titre = $_POST['titre'];
         $contenu = $_POST['contenu'];
         $model = new PresentationDeptModel(DatabaseConnection::getInstance());
-        $model->updateArticleAction($titre, $contenu);
+        $model->updateArticleAction($id,$titre, $contenu);
     }
 
 }

@@ -54,9 +54,10 @@ if (class_exists($controllerClass)) {
     }
     else {
         $errorController = new Error404Controller();
-        $errorController->defaultMethod();
+       $errorController->defaultMethod();
     }
 } else {
     $errorController = new Error404Controller();
     $errorController->defaultMethod();
+
 }

@@ -41,7 +41,7 @@ class Homepage {
                     Rejoignez-nous pour bénéficier d'un enseignement de qualité, dispensé par des professionnels du secteur,
                     et préparez-vous à une carrière passionnante et dynamique dans le domaine de l'informatique !
                 </p>
-                <a href="article" class="read-more">En savoir plus</a>
+                <a href="/PresentationDept" class="read-more">En savoir plus</a>
             </div>
             <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
