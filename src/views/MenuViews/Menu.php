@@ -16,7 +16,7 @@ class Menu {
                 </div>
 
                 <!-- Panel pour la présentation du département -->
-                <div class="panel" onclick="window.location.href='/presentationdept';">
+                <div class="panel" onclick="window.location.href='/planning';">
                     <h2>Emploi du temps</h2>
                 </div>
 
