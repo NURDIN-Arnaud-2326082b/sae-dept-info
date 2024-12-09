@@ -5,7 +5,7 @@ namespace App\src\models;
 use App\src\database\DatabaseConnection;
 use PDO;
 
-class PresentationDeptModel
+class BdeModel
 {
     /**
      * Constructeur de la classe PlatModel.
@@ -25,10 +25,10 @@ class PresentationDeptModel
     {
         if ($this->articleExists($id)) {
             // L'article existe, on fait une mise à jour
-            $sql = 'UPDATE presentationDept SET Title = :name, Content = :content WHERE Id_Article = :id';
+            $sql = 'UPDATE bde SET Title = :name, Content = :content WHERE Id_Article = :id';
         } else {
             // L'article n'existe pas, on fait une insertion
-            $sql = 'INSERT INTO presentationDept (Id_Article, Title, Content) VALUES (:id, :name, :content)';
+            $sql = 'INSERT INTO bde (Id_Article, Title, Content) VALUES (:id, :name, :content)';
         }
 
         $stmt = $this->connect->getConnection()->prepare($sql);
@@ -45,7 +45,7 @@ class PresentationDeptModel
 
     public function articleExists(int $id): bool
     {
-        $sql = 'SELECT COUNT(*) FROM presentationDept WHERE Id_Article = :id';
+        $sql = 'SELECT COUNT(*) FROM bde WHERE Id_Article = :id';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
         $stmt->execute();
@@ -56,7 +56,7 @@ class PresentationDeptModel
 
     public function genererArticle(int $id){
         if ($this->articleExists($id)){
-            $sql = 'SELECT Title,Content FROM presentationDept WHERE Id_Article = :id';
+            $sql = 'SELECT Title,Content FROM bde WHERE Id_Article = :id';
             $stmt = $this->connect->getConnection()->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -66,7 +66,7 @@ class PresentationDeptModel
     }
 
     public function recupTable(){
-        $sql = 'SELECT * FROM presentationDept';
+        $sql = 'SELECT * FROM bde';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
