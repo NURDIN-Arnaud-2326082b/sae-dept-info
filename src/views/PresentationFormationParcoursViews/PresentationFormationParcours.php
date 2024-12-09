@@ -33,7 +33,7 @@ class PresentationFormationParcours
                         possèdent des compétences à la fois pratiques et théoriques leur permettant d'envisager une insertion professionnelle immédiate
                         ou une poursuite d'études.</p>
 
-                    <p id="parcours"> Le département informatique d'Aix-en-Provence propose deux parcours dès la deuxième année : <a href=""</p>
+                    <p id="parcours"> Le département informatique d'Aix-en-Provence propose deux parcours dès la deuxième année : <a href="/src/views/ParcoursAViews/ParcoursA.php"> Parcours A </a> et <a href="/src/views/ParcoursBViews/ParcoursB.php"> Parcours B </a> </p>
                 </div>
 
                 <div class="features-grid">

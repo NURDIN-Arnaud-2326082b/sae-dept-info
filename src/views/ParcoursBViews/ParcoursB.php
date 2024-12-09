@@ -80,6 +80,6 @@ class ParcoursB
             </section>
         </main>
         <?php
-        (new Layout('Présentation de la formation et des deux parcours (A et B)', ob_get_clean()))->show();
+        (new Layout('Présentation du parcours B', ob_get_clean()))->show();
     }
 }
