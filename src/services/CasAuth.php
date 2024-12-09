@@ -8,7 +8,7 @@ class CasAuth
     public function __construct()
     {
         // Charge la bibliothèque phpCAS
-        phpCAS::client(\CAS_VERSION_2_0, 'ident.univ-amu.fr', 443, '/cas', "http://localhost/sae-dept-info");
+        phpCAS::client(\CAS_VERSION_2_0, 'ident.univ-amu.fr', 443, '/cas', "http://147.94.76.24/sae-dept-info");
 
         // Désactiver la validation du serveur CAS pour les tests
         // ATTENTION : à éviter en production, configurer le certificat en production
