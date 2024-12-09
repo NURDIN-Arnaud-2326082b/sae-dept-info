@@ -2,10 +2,22 @@
 namespace App\src\views\MenuViews;
 
 use App\src\views\LayoutViews\Layout;
+use App\src\controllers\pages\CasAuthController;
 
 class Menu {
     public function show(): void {
         ob_start();
+        $authController = new CasAuthController();
+
+// Vérification de l'utilisateur authentifié
+        if (!$authController->getUser()) {
+            header("Location: /views/ConnexionViews/Connexion"); // Rediriger si non authentifié
+            exit();
+        }
+
+        echo "<h1>Page protégée</h1>";
+        echo "<p>Bienvenue, " . htmlspecialchars($authController->getUser()) . "!</p>";
+        echo '<a href="?logout=">Déconnexion</a>';
         ?>
         <link rel="stylesheet" href="/assets/styles/menu.css">
         <main>
