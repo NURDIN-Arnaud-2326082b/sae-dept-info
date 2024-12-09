@@ -27,7 +27,7 @@ class Homepage {
                 </p>
                 <a href="/PresentationDept" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/formation.png" alt="éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Deuxième article -->
@@ -42,7 +42,7 @@ class Homepage {
                 </p>
                 <a href="/PresentationDept" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/départment.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/départment.png" alt="éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Troisième article -->
@@ -56,7 +56,7 @@ class Homepage {
                 </p>
                 <a href="article" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/img.png" alt="éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Quatrième article -->
@@ -70,7 +70,7 @@ class Homepage {
                 </p>
                 <a href="article" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/img.png" alt="éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Cinquième article -->
@@ -84,7 +84,7 @@ class Homepage {
                 </p>
                 <a href="article" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/img.png" alt="éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Sixième article -->
@@ -98,7 +98,7 @@ class Homepage {
                 </p>
                 <a href="article" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/img.png" alt="éco-ambassadeur" class="article-image">
         </div>
 </div>
 
