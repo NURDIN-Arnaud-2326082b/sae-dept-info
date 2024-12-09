@@ -59,7 +59,7 @@ class PresentationFormationParcours
 
                 <div class="features-grid">
                     <div class="feature">
-                        <img src="/assets/images/img.png" alt="Objectifs">
+                        <img src="/assets/images/img.png" alt="Structure">
                         <h3> Structure et organisation </h3>
                         <p> Répartie sur 3 années, la formation représente 1800 heures encadrées, auxquelles s'ajoutent 600 heures
                             de projet encadré réparties sur 6 semestres en 3 années avec un maximum de 32h de cours par semaine
@@ -68,7 +68,7 @@ class PresentationFormationParcours
                             du développement des six grandes compétences qui caractérisent le B.U.T. Informatique (ci-contre) </p>
                     </div>
                     <div class="feature">
-                        <img src="/assets/images/img.png" alt="Objectifs">
+                        <img src="/assets/images/img.png" alt="Compétences">
                         <h3> Compétences </h3>
                             <p> - Réaliser un développement d’application <br>
                                 - Optimiser des solutions informatiques <br>
@@ -78,7 +78,7 @@ class PresentationFormationParcours
                                 - Travailler dans une équipe informatique <br> <br> </p>
                     </div>
                     <div class="feature">
-                        <img src="/assets/images/img.png" alt="Objectifs">
+                        <img src="/assets/images/img.png" alt="Détails">
                         <h3> Détails </h3>
                         <p> Sur le site d’Aix-en-Provence, les deux parcours aborderont par ailleurs l’utilisation d’outils d’IA liés respectivement aux questions
                             d’optimisation et de sécurisation. D’un point de vue pratique, une partie du cursus pourra être réalisé en alternance dès la 2ème année
@@ -107,76 +107,87 @@ class PresentationFormationParcours
                                 et des administrations, en expression-communication et en langue anglaise. </p>
                     </div>
                     <div class="feature">
-                        <img src="/assets/images/img.png" alt="Objectifs">
-                                <h4> Activités préparées par le parcours </h4>
-                                    <p> Le développement d’application consiste à recueillir les besoins des clients, analyser ces besoins, concevoir et réaliser une
-                                        implémentation répondant au cahier des charges, dans des contextes qui peuvent être spécialisés en fonction de domaines métiers
-                                        (gestion, finance, santé, jeux vidéos,...) ou des plateformes de développement spécifiques (web, mobile, desktop, IoT...).
-                                        Le développeur peut accéder à des métiers plus spécialisés : développement web, développement mobile, développement frontend,
-                                        développement fullstack, développement backend, architecte logiciel, lead developer, DevOps. Le développement doit suivre l’état
-                                        de l’art en matière de processus qualité, de sécurité et d’efficacité (temps de calcul, green computing), ce qui nécessite le
-                                        développement de compétences variées. Les équipes de développement pouvant être de taille conséquente, il est nécessaire d’être
-                                        formé aux diverses techniques de travail en équipe usuelles dans le domaine. </p>
+                        <img src="/assets/images/img.png" alt="Activités">
+                        <h4> Activités préparées par le parcours </h4>
+                            <p> Le développement d’application consiste à recueillir les besoins des clients, analyser ces besoins, concevoir et réaliser une
+                                implémentation répondant au cahier des charges, dans des contextes qui peuvent être spécialisés en fonction de domaines métiers
+                                (gestion, finance, santé, jeux vidéos,...) ou des plateformes de développement spécifiques (web, mobile, desktop, IoT...).
+                                Le développeur peut accéder à des métiers plus spécialisés : développement web, développement mobile, développement frontend,
+                                développement fullstack, développement backend, architecte logiciel, lead developer, DevOps. Le développement doit suivre l’état
+                                de l’art en matière de processus qualité, de sécurité et d’efficacité (temps de calcul, green computing), ce qui nécessite le
+                                développement de compétences variées. Les équipes de développement pouvant être de taille conséquente, il est nécessaire d’être
+                                formé aux diverses techniques de travail en équipe usuelles dans le domaine. </p>
 
-                                    <p> Les métiers de testeurs correspondent à l’intégration d’applications, leur déploiement et la conception et réalisation de tests
-                                        visant à en assurer la qualité. Ces métiers en plein essor permettent de faire le lien entre les exigences métiers spécifiques à
-                                        un domaine et la partie développement explicitée plus haut. Les tests peuvent concerner les tests utilisateur, les tests fonctionnels,
-                                        la non-régression. </p>
+                            <p> Les métiers de testeurs correspondent à l’intégration d’applications, leur déploiement et la conception et réalisation de tests
+                                visant à en assurer la qualité. Ces métiers en plein essor permettent de faire le lien entre les exigences métiers spécifiques à
+                                un domaine et la partie développement explicitée plus haut. Les tests peuvent concerner les tests utilisateur, les tests fonctionnels,
+                                la non-régression. </p>
                     </div>
                     <div class="feature">
-                        <img src="/assets/images/img.png" alt="Objectifs">
+                        <img src="/assets/images/img.png" alt="Matières et poursuites d'études">
                         <h4> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAA?ens=1"> Matières </a> </h4>
                         <h4> Poursuites d’études </h4>
                             <p> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, <br>
                                 licences générales, éventuellement écoles d’ingénieurs… <br>
                                 A l’issues des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs
                                 publiques (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger. </p> <br> <br>
-                    </div>
+                </div>
                 </div>
                     <h3> Parcours B :  Déploiement d’applications communicantes et sécurisées </h3>
-                        <h4> Objectifs du parcours </h4>
+                    <div class="features-grid">
+                        <div class="feature">
+                            <h4> Objectifs du parcours </h4>
+                            <img src="/assets/images/img.png" alt="Objectifs">
                             <p> Ce parcours forme des cadres intermédiaires capables : </p>
-                                <ul> <li> de concevoir l’architecture du système d’information, d’installer et de configurer les matériels et les logiciels <br>
-                                          informatiques dont a besoin une organisation ; </li>
-                                     <li> de maintenir, développer et adapter (optimiser) l’infrastructure matérielle et logicielle, tout en veillant aux besoins <br>
-                                          des utilisateurs et aux évolutions technologiques ; </li>
-                                     <li> de construire des applications client-serveur correspondant à un besoin métier ; </li>
-                                     <li> d’anticiper les différents risques relatifs à la sécurité informatique et de mettre en place les solutions et procédures <br>
-                                          nécessaires à la continuité de service, dans le cas (en particulier) de cyberattaques. </li> </ul> <br> <br>
+                                    <ul> <li> de concevoir l’architecture du système d’information, d’installer et de configurer les matériels et les logiciels <br>
+                                              informatiques dont a besoin une organisation ; </li>
+                                         <li> de maintenir, développer et adapter (optimiser) l’infrastructure matérielle et logicielle, tout en veillant aux besoins <br>
+                                              des utilisateurs et aux évolutions technologiques ; </li>
+                                         <li> de construire des applications client-serveur correspondant à un besoin métier ; </li>
+                                         <li> d’anticiper les différents risques relatifs à la sécurité informatique et de mettre en place les solutions et procédures <br>
+                                              nécessaires à la continuité de service, dans le cas (en particulier) de cyberattaques. </li> </ul> <br> <br>
 
-                                     <p> En outre, la personne titulaire du B.U.T. Informatique parcours Déploiement d’applications communicantes et sécurisées <br>
-                                         dispose de compétences en matière de raisonnement et de modélisation mathématiques, en droit, économie et gestion des <br>
-                                         entreprises et des administrations, en expression-communication et en langue anglaise. </p> <br> <br>
+                                         <p> En outre, la personne titulaire du B.U.T. Informatique parcours Déploiement d’applications communicantes et sécurisées <br>
+                                             dispose de compétences en matière de raisonnement et de modélisation mathématiques, en droit, économie et gestion des <br>
+                                             entreprises et des administrations, en expression-communication et en langue anglaise. </p> <br> <br>
+                        </div>
+                        <div class="feature">
+                            <h4> Activités préparées par le parcours </h4>
+                            <img src="/assets/images/img.png" alt="Activités">
+                            <p> Les activités de ce parcours s’articulent autour de trois axes : l’installation, la configuration et l’optimisation des <br>
+                                systèmes informatiques. Les missions confiées concernent également le déploiement et la sécurisation de réseaux d’une part, <br>
+                                l’installation et la configuration de services applicatifs ainsi que le développement d’applications client-serveur répondant <br>
+                                aux exigences d’une organisation d’autre part.</p>
 
-                                <h3> Activités préparées par le parcours </h3>
-                                    <p> Les activités de ce parcours s’articulent autour de trois axes : l’installation, la configuration et l’optimisation des <br>
-                                        systèmes informatiques. Les missions confiées concernent également le déploiement et la sécurisation de réseaux d’une part, <br>
-                                        l’installation et la configuration de services applicatifs ainsi que le développement d’applications client-serveur répondant <br>
-                                        aux exigences d’une organisation d’autre part.</p>
+                            <p>Les activités regroupent les métiers chargés de créer l’environnement de travail et de  communication d’une entreprise, tels <br>
+                                qu’administrateur système et réseaux, DevOps, chargé du déploiement d’applications dans un environnement cloud et gestionnaire <br>
+                                de la cybersécurité.</p>
 
-                                    <p>Les activités regroupent les métiers chargés de créer l’environnement de travail et de  communication d’une entreprise, tels <br>
-                                        qu’administrateur système et réseaux, DevOps, chargé du déploiement d’applications dans un environnement cloud et gestionnaire <br>
-                                        de la cybersécurité.</p>
+                            <p> Par ailleurs la complexité des technologies utilisées implique aussi une assistance utilisateur (dépannage, installation, formation, <br>
+                                paramétrage...) pour répondre aux besoins.</p>
 
-                                    <p> Par ailleurs la complexité des technologies utilisées implique aussi une assistance utilisateur (dépannage, installation, formation, <br>
-                                        paramétrage...) pour répondre aux besoins.</p>
+                            <p> Dans notre monde ultra-connecté, la sécurisation et la bonne circulation des informations sont devenues un enjeu vital pour les organisations. <br>
+                                L’architecte système et réseau, garant des données, doit se tenir au courant de toutes les évolutions technologiques et réglementaires.</p>
+                        </div>
 
-                                    <p> Dans notre monde ultra-connecté, la sécurisation et la bonne circulation des informations sont devenues un enjeu vital pour les organisations. <br>
-                                        L’architecte système et réseau, garant des données, doit se tenir au courant de toutes les évolutions technologiques et réglementaires.</p>
-                        <h4> Compétences </h4>
-                            <p> Le parcours, Déploiement d’applications communicantes et sécurisées, s’appuie sur un renforcement de la compétence "Administrer des systèmes <br>
-                                informatiques communicants complexes". </p>  <br> <br>
+                        <div class="feature">
+                            <h4> Compétences </h4>
+                            <img src="/assets/images/img.png" alt="Compétences">
+                                <p> Le parcours, Déploiement d’applications communicantes et sécurisées, s’appuie sur un renforcement de la compétence "Administrer des systèmes <br>
+                                    informatiques communicants complexes". </p>  <br> <br>
 
-                        <h4> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAB?ens=1"> Matières </a> </h4>
+                            <h4> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAB?ens=1"> Matières </a> </h4>
 
-                        <h4> Métiers </h4>
-                            <p> Sont notamment accessibles à l’issue de la formation les métiers de Concepteur-Développeur d'applications, Testeur, Tech Lead, Développeur <br>
-                                et Administrateur systèmes et réseaux, Développeur et intégrateur Web, Spécialiste bases de données… </p>
-                        <h4> Poursuites d’études </h4>
-                            <ul> <li> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, licences générales, <br>
-                                     éventuellement écoles d’ingénieurs… </li>
-                                     <li> A l’issue des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs publiques <br>
-                                     (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger.</li> </ul> <br> <br>
+                            <h4> Métiers </h4>
+                                <p> Sont notamment accessibles à l’issue de la formation les métiers de Concepteur-Développeur d'applications, Testeur, Tech Lead, Développeur <br>
+                                    et Administrateur systèmes et réseaux, Développeur et intégrateur Web, Spécialiste bases de données… </p>
+                            <h4> Poursuites d’études </h4>
+                                <ul> <li> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, licences générales, <br>
+                                         éventuellement écoles d’ingénieurs… </li>
+                                         <li> A l’issue des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs publiques <br>
+                                         (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger.</li> </ul> <br> <br>
+                        </div>
+                    </div>
                 <h2> Modalités de candidature </h2>
                 <div class="features-grid">
                     <div class="feature">
