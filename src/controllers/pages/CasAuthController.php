@@ -5,7 +5,7 @@ use App\src\services\CasAuth;
 
 class CasAuthController
 {
-    private $casAuth;
+    private CasAuth $casAuth;
 
     public function __construct()
     {
