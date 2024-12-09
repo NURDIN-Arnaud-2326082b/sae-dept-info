@@ -20,6 +20,6 @@ class PresentationFormationParcoursController
      */
     public function defaultMethod(): void
     {
-        (new \App\src\views\PresentationFormationParcoursViews\PresentationFormationParcours())->show();
+        (new \App\src\views\PresentationFormationParcoursViews\ParcoursA())->show();
     }
 }
