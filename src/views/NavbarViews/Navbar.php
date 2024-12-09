@@ -3,19 +3,15 @@ namespace App\src\views\NavbarViews;
 
 class Navbar
 {
-    public function show(array $cssPaths, array $jsPaths): void {
-        foreach ($cssPaths as $cssPath) {
-            echo '<link rel="stylesheet" href="' . $cssPath . '">';
-        }
-        foreach ($jsPaths as $jsPath) {
-            echo '<script src="' . $jsPath . '"></script>';
-        }
-
+    public function show($user): void {
         ?>
+        <link rel="stylesheet" href="/assets/styles/navbar.css">
 
         <nav class="navbar">
-            <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
-
+            <a href="http://localhost:8080">
+                <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
+            </a>
+            <h1><?= $user->firstname ?></h1>
             <div class="search-bar">
                 <?php
                 $currentFile = basename($_SERVER['PHP_SELF']);
@@ -26,13 +22,10 @@ class Navbar
                     <label for="search"></label>
                     <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
                 <?php else: ?>
-                    <a href="/Connexion">Se connecter</a>
+                    <a href="/Menu">Se connecter</a>
                 <?php endif; ?>
             </div>
         </nav>
-
-
-
 
         <?php
     }
