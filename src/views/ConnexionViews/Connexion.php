@@ -7,7 +7,6 @@ use App\src\controllers\pages\CasAuthController;
 
 class Connexion
 {
-
     public function show(): void
     {
         ob_start();
@@ -15,8 +14,9 @@ class Connexion
         $authController->login(); // Appel de la méthode de connexion
         ?>
         <link rel="stylesheet" href="/assets/styles/connexion.css">
+
         <main>
-            <div class="panel-container">
+            <div class="container">
                 <div class="panel">
                     <h2>Connexion</h2>
                     <form action="/login" method="post">

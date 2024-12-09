@@ -6,6 +6,13 @@ use App\src\views\HomepageViews\Homepage;
 
 class HomepageController
 {
+    /**
+     * Constructeur de la classe.
+     */
+    public function __construct()
+    {
+
+    }
 
     /**
      * Constructeur de la classe.
@@ -14,5 +21,4 @@ class HomepageController
     {
         (new homepage())->show();
     }
-
 }
