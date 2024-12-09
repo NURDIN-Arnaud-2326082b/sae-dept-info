@@ -28,7 +28,7 @@ class Error404
             <div class="container">
                 <div class="copy-container center-xy">
                     <p>
-                        404, page not found.
+                        404, page not found, cousin.
                     </p>
                 </div>
             </div>

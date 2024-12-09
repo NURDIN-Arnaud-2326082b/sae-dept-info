@@ -10,8 +10,26 @@ require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
 
+// initialise le service Cas
+$casAuth = new App\src\services\CasAuth();
+
+// Force l'authentification
+$casAuth->forceAuthentication();
+
+// Récupère le nom d'utilisateur
+$user = $casAuth->getUser();
+
+
+// Gestion de la déconnexion
+if (isset($_GET['logout'])) {
+    $casAuth->logout();
+}
+
+
+
 use App\src\database\DatabaseConnection;
 use App\src\controllers\pages\error404Controller;
+use App\src\services\CasAuth;
 
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));

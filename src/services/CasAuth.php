@@ -37,7 +37,7 @@ class CasAuth
     public function logout(): void
     {
         // Déconnexion de l'utilisateur CAS
-        phpCAS::logout();
+        phpCAS::logoutWithRedirectService("http://localhost/sae-dept-info/menu");
     }
 
 }
