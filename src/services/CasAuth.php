@@ -5,6 +5,7 @@ use phpCAS;
 
 class CasAuth
 {
+    // Constructeur
     public function __construct()
     {
         // permet de définir le serveur CAS
