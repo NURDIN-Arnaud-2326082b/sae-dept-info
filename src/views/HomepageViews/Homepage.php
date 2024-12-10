@@ -68,7 +68,7 @@ class Homepage {
                     <br><br>
                     Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
                 </p>
-                <a href="article" class="read-more">En savoir plus</a>
+                <a href="/PresentationFormation" class="read-more">En savoir plus</a>
             </div>
             <img src="/assets/images/img.png" alt="éco-ambassadeur" class="article-image">
         </div>
@@ -82,7 +82,7 @@ class Homepage {
                     <br><br>
                     Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
                 </p>
-                <a href="article" class="read-more">En savoir plus</a>
+                <a href="/ParcoursA" class="read-more">En savoir plus</a>
             </div>
             <img src="/assets/images/img.png" alt="éco-ambassadeur" class="article-image">
         </div>
@@ -96,7 +96,7 @@ class Homepage {
                     <br><br>
                     Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
                 </p>
-                <a href="article" class="read-more">En savoir plus</a>
+                <a href="/ParcoursB" class="read-more">En savoir plus</a>
             </div>
             <img src="/assets/images/img.png" alt="éco-ambassadeur" class="article-image">
         </div>

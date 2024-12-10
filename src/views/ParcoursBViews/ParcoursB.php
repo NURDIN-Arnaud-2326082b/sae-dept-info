@@ -10,12 +10,12 @@ class ParcoursB
     {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/presentationFormationParcours.css">
+        <link rel="stylesheet" href="/assets/styles/presentationFormation.css">
         <main>
             <section class="hero-section">
                 <div class="hero-content">
-                    <h1> Présentation du BUT informatique et des deux parcours (A et B) </h1>
-                    <p> Dcouvrez le parcours B</p> <br>
+                    <h1> Présentation du parcours B </h1>
+                    <p> Découvrez le parcours B</p> <br>
                     <a href="#savoir" class="btn-scroll"> Parcours </a> <br> <br> <br>
                 </div>
             </section>

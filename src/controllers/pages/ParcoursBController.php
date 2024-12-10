@@ -2,8 +2,9 @@
 namespace App\src\controllers\pages;
 
 use App\src\database\DatabaseConnection;
+use App\src\views\ParcoursBViews\ParcoursB;
 
-class PresentationFormationParcoursController
+class ParcoursBController
 {
     /**
      * Constructeur de la classe.
@@ -20,6 +21,6 @@ class PresentationFormationParcoursController
      */
     public function defaultMethod(): void
     {
-        (new \App\src\views\PresentationFormationParcoursViews\ParcoursB())->show();
+        (new ParcoursB())->show();
     }
 }

@@ -11,7 +11,7 @@ class ParcoursA
     {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/presentationFormationParcours.css">
+        <link rel="stylesheet" href="/assets/styles/presentationFormation.css">
         <main>
             <section class="hero-section">
                 <div class="hero-content">
