@@ -62,7 +62,7 @@ class Homepage {
         <!-- Quatrième article -->
         <div class="article-preview">
             <div class="article-content">
-                <h3>Devenez parrain/marraine !</h3>
+                <h3>Découvrez la formation ! </h3>
                 <p>
                     Parrainer
                     <br><br>
@@ -76,7 +76,7 @@ class Homepage {
         <!-- Cinquième article -->
         <div class="article-preview">
             <div class="article-content">
-                <h3>Devenez parrain/marraine !</h3>
+                <h3>Découvrez le parcours A !</h3>
                 <p>
                     Parrainer
                     <br><br>
@@ -90,7 +90,7 @@ class Homepage {
         <!-- Sixième article -->
         <div class="article-preview">
             <div class="article-content">
-                <h3>Devenez parrain/marraine !</h3>
+                <h3>Découvrez le parcours B !</h3>
                 <p>
                     Parrainer
                     <br><br>
