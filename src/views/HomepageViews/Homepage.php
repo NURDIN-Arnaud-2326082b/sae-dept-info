@@ -58,11 +58,11 @@ class Homepage {
         <!-- Troisième article -->
         <div class="article-preview">
             <div class="article-content">
-                <h3>Devenez parrain/marraine !</h3>
+                <h3>Le Bureau Des Étudiants</h3>
                 <p>
-                    Parrainer
+                    Découvrez notre BDE actuel, ses membres, ses actions, ses évènements, et bien plus encore !
+
                     <br><br>
-                    Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
                 </p>
                 <a href="/Bde" class="read-more">En savoir plus</a>
             </div>

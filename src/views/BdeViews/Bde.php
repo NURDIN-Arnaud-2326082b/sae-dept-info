@@ -95,6 +95,6 @@ class Bde
             </section>
         </main>
         <?php
-        (new Layout('Présentation du département', ob_get_clean()))->show();
+        (new Layout('présentation du BDE', ob_get_clean()))->show();
     }
 }
