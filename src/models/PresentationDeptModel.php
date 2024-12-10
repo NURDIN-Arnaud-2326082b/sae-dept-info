@@ -19,6 +19,7 @@ class PresentationDeptModel
     }
 
     /**
+     * retrieve all items
      * @throws \Exception
      */
     public function updateArticleAction(int $id ,string $titre, string $contenu): void
@@ -43,6 +44,12 @@ class PresentationDeptModel
         }
     }
 
+    /**
+     * Vérifie si un article existe dans la base de données.
+     *
+     * @param int $id Identifiant de l'article.
+     * @return bool Retourne true si l'article existe, sinon false.
+     */
     public function articleExists(int $id): bool
     {
         $sql = 'SELECT COUNT(*) FROM article WHERE id = :id';
@@ -54,6 +61,12 @@ class PresentationDeptModel
         return $stmt->fetchColumn() > 0;
     }
 
+    /**
+     * Génère un article.
+     *
+     * @param int $id Identifiant de l'article.
+     * @return array|null Retourne un tableau associatif contenant le nom et le contenu de l'article, ou null si l'article n'existe pas.
+     */
     public function generer(int $id){
         if ($this->articleExists($id)){
             $sql = 'SELECT name,content FROM article WHERE id = :id';

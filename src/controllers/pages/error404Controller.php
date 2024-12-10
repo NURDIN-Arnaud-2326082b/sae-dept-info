@@ -14,6 +14,12 @@ class error404Controller
 
     }
 
+
+    /**
+     * Affiche la page d'erreur 404.
+     * @return void
+     *
+     */
     public function defaultMethod(): void
     {
         (new Error404())->show();

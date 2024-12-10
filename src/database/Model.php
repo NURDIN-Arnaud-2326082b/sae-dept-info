@@ -10,12 +10,21 @@ abstract class Model
     protected string $table;
     protected string $primaryKey = 'id';
 
+
+    /**
+     * Model constructor.
+     */
     public function __construct()
     {
         $this->db = DatabaseConnection::getInstance()->getConnection();
     }
 
-    // Fonction pour trouver un enregistrement par son ID
+    /**
+     * Find a record by its ID
+     *
+     * @param int $id
+     * @return object|null
+     */
     public function findById($id) {
         $pdo = $this->db;
         $stmt = $pdo->prepare("SELECT * FROM $this->table WHERE $this->primaryKey = :id");
@@ -23,14 +32,24 @@ abstract class Model
         return $stmt->fetch(PDO::FETCH_OBJ);
     }
 
-    // Fonction pour récupérer tous les enregistrements
+    /**
+     * Get all records
+     *
+     * @return array
+     */
     public function all() {
         $pdo = $this->db;
         $stmt = $pdo->query("SELECT * FROM $this->table");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 
-    // Fonction pour créer un nouvel enregistrement
+    /**
+     * Find a record by a specific column
+     *
+     * @param string $column
+     * @param $value
+     * @return object|null
+     */
     public function create($data) {
         $pdo = $this->db;
         $columns = implode(', ', array_keys($data));
@@ -41,7 +60,13 @@ abstract class Model
         return $pdo->lastInsertId();
     }
 
-    // Fonction pour mettre à jour un enregistrement
+    /**
+     * Update a record
+     *
+     * @param int $id
+     * @param array $data
+     * @return bool
+     */
     public function update($id, $data) {
         $pdo = $this->db;
         $columns = '';
@@ -55,7 +80,12 @@ abstract class Model
         return $stmt->execute($data);
     }
 
-    // Fonction pour supprimer un enregistrement
+    /**
+     * Delete a record
+     *
+     * @param int $id
+     * @return bool
+     */
     public function delete($id) {
         $pdo = $this->db;
         $stmt = $pdo->prepare("DELETE FROM $this->table WHERE $this->primaryKey = :id");

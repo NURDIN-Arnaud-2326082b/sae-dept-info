@@ -2,8 +2,16 @@
 
 namespace App\src\views\FooterViews;
 
+/**
+ * Footer Class
+ *
+ * Provides methods to render the footer of the application.
+ */
 class Footer {
 
+    /**
+     * Affiche le footer.
+     */
     public function show(): void {
         ob_start();
         ?>

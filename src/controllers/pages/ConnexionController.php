@@ -15,6 +15,11 @@ class ConnexionController
 
     }
 
+    /**
+     * Affiche la page de connexion.
+     * @return void
+     *
+     */
     public function defaultMethod(): void
     {
         (new connexion())->show();
