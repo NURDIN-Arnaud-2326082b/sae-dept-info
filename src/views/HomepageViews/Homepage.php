@@ -54,7 +54,7 @@ class Homepage {
                     <br><br>
                     Éveillez la force verte qui est en vous ! Si vous souhaitez agir pour préserver notre environnement, devenez éco-ambassadeur de la Région Sud !
                 </p>
-                <a href="article" class="read-more">En savoir plus</a>
+                <a href="/Bde" class="read-more">En savoir plus</a>
             </div>
             <img src="/assets/images/img.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
