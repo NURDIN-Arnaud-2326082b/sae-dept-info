@@ -3,7 +3,16 @@ namespace App\src\views\MenuViews;
 
 use App\src\views\LayoutViews\Layout;
 
+/**
+ * Menu Class
+ *
+ * Provides methods to render the menu page.
+ */
 class Menu {
+
+    /**
+     * Affiche le menu.
+     */
     public function show(): void {
         ob_start();
         ?>

@@ -9,6 +9,12 @@ class UserModel extends Model
     protected string $table = 'user';
     protected string $primaryKey = 'id';
 
+    /**
+     * Find a user by email
+     *
+     * @param string $email
+     * @return object|null
+     */
     public function findByEmail(string $email): ?object
     {
         try {
