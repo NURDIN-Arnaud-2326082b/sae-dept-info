@@ -6,14 +6,14 @@ use App\src\views\LayoutViews\Layout;
 
 class Connexion
 {
-
     public function show(): void
     {
         ob_start();
         ?>
         <link rel="stylesheet" href="/assets/styles/connexion.css">
+
         <main>
-            <div class="panel-container">
+            <div class="container">
                 <div class="panel">
                     <h2>Connexion</h2>
                     <form action="/login" method="post">
