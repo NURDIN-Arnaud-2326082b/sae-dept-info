@@ -3,9 +3,9 @@ namespace App\src\controllers\pages;
 
 use App\src\database\DatabaseConnection;
 use App\src\views\AlumniViews\Alumni;
-use App\src\views\ParcoursBViews\ParcoursB;
+use App\src\views\PresentationFormationViews\PresentationFormation;
 
-class ParcoursBController
+class AlumniController
 {
     /**
      * Constructeur de la classe.
@@ -17,11 +17,11 @@ class ParcoursBController
     }
 
     /**
-     * Affiche la page de presentation du parcours B.
+     * Affiche la page des alumnis.
      *
      */
     public function defaultMethod(): void
     {
-        (new ParcoursB())->show();
+        (new Alumni())->show();
     }
 }

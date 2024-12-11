@@ -65,16 +65,6 @@ class ParcoursB
                             informatiques communicants complexes". </p>  <br> <br>
 
                         <h3> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAB?ens=1"> Matières </a> </h3>
-
-                        <h3> Métiers </h3>
-                        <p> Sont notamment accessibles à l’issue de la formation les métiers de Concepteur-Développeur d'applications, Testeur, Tech Lead, Développeur <br>
-                            et Administrateur systèmes et réseaux, Développeur et intégrateur Web, Spécialiste bases de données… </p>
-                        <h3> Poursuites d’études </h3>
-                        <ul> <li> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, licences générales, <br>
-                                éventuellement écoles d’ingénieurs… </li>
-                            <li> A l’issue des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs publiques <br>
-                                (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger.</li> </ul> <br> <br>
-                    </div>
                 </div>
                 <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix" class="btn-scroll"> En savoir plus </a> </p>
             </section>

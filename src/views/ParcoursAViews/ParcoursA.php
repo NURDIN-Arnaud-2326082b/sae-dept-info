@@ -57,11 +57,6 @@ class ParcoursA
                     <div class="feature">
                         <img src="/assets/images/img.png" alt="Matières et poursuites d'études">
                         <h3> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAA?ens=1"> Matières </a> </h3>
-                        <h4> Poursuites d’études </h4>
-                        <p> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, <br>
-                            licences générales, éventuellement écoles d’ingénieurs… <br>
-                            A l’issues des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs
-                            publiques (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger. </p> <br> <br>
                     </div>
                 </div>
                 <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix" class="btn-scroll"> En savoir plus </a> </p>

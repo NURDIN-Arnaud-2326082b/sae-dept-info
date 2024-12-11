@@ -16,7 +16,7 @@ class PresentationFormationController
     }
 
     /**
-     * Affiche la page de presentation de la formation et des parcours (A et B).
+     * Affiche la page de presentation de la formation.
      *
      */
     public function defaultMethod(): void
