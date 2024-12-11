@@ -12,18 +12,18 @@ class UserModel extends Model
     public function findBylogin(string $name,string $mdp): ?object
     {
         try {
-            $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE name = :name and mdp = :password");
-            $stmt->execute(['name' => $name,'password' => $mdp]);
-            $result = $stmt->fetch(\PDO::FETCH_OBJ);
+            $stmt = $this->db->prepare("SELECT * FROM $this->table WHERE name = :name");
+            $stmt->execute(['name' => $name]);
+            $user = $stmt->fetch(\PDO::FETCH_OBJ);
 
-            if ($result === false) {
-                error_log("No user found with email: $name");
-                return null;
+            // Vérifier si un utilisateur est trouvé et si le mot de passe est correct
+            if ($user && password_verify($mdp, $user->mdp)) {
+                return $user; // Retourner l'utilisateur si tout est correct
             }
 
-            return $result;
+            return null; // Aucun utilisateur ou mot de passe incorrect
         } catch (\PDOException $e) {
-            error_log("Database error: " . $e->getMessage());
+            error_log("Erreur de la base de données : " . $e->getMessage());
             return null;
         }
     }
