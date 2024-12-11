@@ -7,13 +7,21 @@ use App\src\views\NavbarViews\Navbar;
 
 class NavbarController
 {
+
     private UserModel $userModel;
 
+    /**
+     * Constructeur de la classe.
+     */
     public function __construct()
     {
         $this->userModel = new UserModel();
     }
 
+    /**
+     * Affiche la page d'accueil.
+     *
+     */
     public function defaultMethod(): void
     {
         $user = $this->userModel->findBylogin("admin");

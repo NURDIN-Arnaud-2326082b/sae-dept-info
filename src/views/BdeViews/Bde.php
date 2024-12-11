@@ -4,8 +4,17 @@ namespace App\src\views\BdeViews;
 
 use App\src\views\LayoutViews\Layout;
 
+
+/**
+ * Class Bde
+ * @package App\src\views\BdeViews
+ */
 class Bde
 {
+
+    /**
+     * Affiche la page du BDE.
+     */
     public function show(): void
     {
         ob_start();

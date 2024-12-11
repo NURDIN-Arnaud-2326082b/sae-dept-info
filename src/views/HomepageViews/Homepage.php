@@ -2,7 +2,17 @@
 namespace App\src\views\HomepageViews;
 
 use App\src\views\LayoutViews\Layout;
+
+/**
+ * Homepage Class
+ *
+ * Provides methods to render the homepage of the application.
+ */
 class Homepage {
+
+    /**
+     * Affiche la page d'accueil.
+     */
     public function show(): void {
         ob_start();
         ?>

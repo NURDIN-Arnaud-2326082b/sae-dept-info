@@ -1,8 +1,17 @@
 <?php
 namespace App\src\views\NavbarViews;
 
+/**
+ * Navbar Class
+ *
+ * Provides methods to render the navbar of the application.
+ */
 class Navbar
 {
+
+    /**
+     * Affiche la navbar.
+     */
     public function show($user): void {
         ?>
         <link rel="stylesheet" href="/assets/styles/navbar.css">
