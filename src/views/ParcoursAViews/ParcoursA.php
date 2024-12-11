@@ -44,18 +44,17 @@ class ParcoursA
                             implémentation répondant au cahier des charges, dans des contextes qui peuvent être spécialisés en fonction de domaines métiers
                             (gestion, finance, santé, jeux vidéos,...) ou des plateformes de développement spécifiques (web, mobile, desktop, IoT...).
                             Le développeur peut accéder à des métiers plus spécialisés : développement web, développement mobile, développement frontend,
-                            développement fullstack, développement backend, architecte logiciel, lead developer, DevOps. Le développement doit suivre l’état
-                            de l’art en matière de processus qualité, de sécurité et d’efficacité (temps de calcul, green computing), ce qui nécessite le
-                            développement de compétences variées. Les équipes de développement pouvant être de taille conséquente, il est nécessaire d’être
-                            formé aux diverses techniques de travail en équipe usuelles dans le domaine. </p>
-
-                        <p> Les métiers de testeurs correspondent à l’intégration d’applications, leur déploiement et la conception et réalisation de tests
-                            visant à en assurer la qualité. Ces métiers en plein essor permettent de faire le lien entre les exigences métiers spécifiques à
-                            un domaine et la partie développement explicitée plus haut. Les tests peuvent concerner les tests utilisateur, les tests fonctionnels,
-                            la non-régression. </p>
+                            développement fullstack, développement backend, architecte logiciel, lead developer, DevOps.</p>
                     </div>
                     <div class="feature">
                         <img src="/assets/images/img.png" alt="Matières et poursuites d'études">
+                        <p>Le développement doit suivre l’état
+                            de l’art en matière de processus qualité, de sécurité et d’efficacité (temps de calcul, green computing), ce qui nécessite le
+                            développement de compétences variées. Les équipes de développement pouvant être de taille conséquente, il est nécessaire d’être
+                            formé aux diverses techniques de travail en équipe usuelles dans le domaine. Les métiers de testeurs correspondent à l’intégration d’applications, leur déploiement et la conception et réalisation de tests
+                            visant à en assurer la qualité. Ces métiers en plein essor permettent de faire le lien entre les exigences métiers spécifiques à
+                            un domaine et la partie développement explicitée plus haut. Les tests peuvent concerner les tests utilisateur, les tests fonctionnels,
+                            la non-régression. </p>
                         <h3> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAA?ens=1"> Matières </a> </h3>
                     </div>
                 </div>

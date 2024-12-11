@@ -51,20 +51,23 @@ class ParcoursB
                             qu’administrateur système et réseaux, DevOps, chargé du déploiement d’applications dans un environnement cloud et gestionnaire <br>
                             de la cybersécurité.</p>
 
+
+                    </div>
+
+                    <div class="feature">
                         <p> Par ailleurs la complexité des technologies utilisées implique aussi une assistance utilisateur (dépannage, installation, formation, <br>
                             paramétrage...) pour répondre aux besoins.</p>
 
                         <p> Dans notre monde ultra-connecté, la sécurisation et la bonne circulation des informations sont devenues un enjeu vital pour les organisations. <br>
                             L’architecte système et réseau, garant des données, doit se tenir au courant de toutes les évolutions technologiques et réglementaires.</p>
-                    </div>
 
-                    <div class="feature">
                         <h3> Compétences </h3>
                         <img src="/assets/images/img.png" alt="Compétences">
                         <p> Le parcours, Déploiement d’applications communicantes et sécurisées, s’appuie sur un renforcement de la compétence "Administrer des systèmes <br>
                             informatiques communicants complexes". </p>  <br> <br>
 
                         <h3> <a href="https://formations.univ-amu.fr/fr/all/BWIN/PRWINBAB?ens=1"> Matières </a> </h3>
+                    </div>
                 </div>
                 <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix" class="btn-scroll"> En savoir plus </a> </p>
             </section>
