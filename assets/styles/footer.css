@@ -2,7 +2,7 @@
     background-color: #005691; /* Bleu AMU */
     color: white;
     text-align: center;
-    padding: 20px 0;
+    padding: 20px;
 }
 
 img {
@@ -20,6 +20,4 @@ html, body {
     flex-direction: column;
 }
 
-.main-content {
-    flex: 1; /* Pour que le contenu principal prenne tout l'espace disponible */
-}
+

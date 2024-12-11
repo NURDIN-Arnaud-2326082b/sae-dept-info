@@ -24,7 +24,7 @@ class NavbarController
      */
     public function defaultMethod(): void
     {
-        $user = $this->userModel->findByEmail("test@test.com");
+        $user = $this->userModel->findBylogin("admin");
         $all = $this->userModel->all();
         (new Navbar())->show($user, $all);
     }
