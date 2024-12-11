@@ -2,7 +2,7 @@
 
 namespace App\src\views;
 
-use App\src\controllers\pageControlleur;
+use App\src\controllers\PageControlleur;
 use App\src\views\LayoutViews\Layout;
 
 class Page
@@ -11,7 +11,7 @@ class Page
     
     public function __construct(string $name)
     {
-        $this->pageControlleur = new pageControlleur($name);
+        $this->pageControlleur = new PageControlleur($name);
     }
     public function show(): void
     {

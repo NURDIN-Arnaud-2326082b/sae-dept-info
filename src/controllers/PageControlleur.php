@@ -3,9 +3,9 @@
 namespace App\src\controllers;
 use App\src\database\DatabaseConnection;
 use App\src\models\pageModel;
-use App\src\views\page;
+use App\src\views\Page;
 
-class pageControlleur
+class PageControlleur
 {
     private string $name;
     private pageModel $pageModel;

@@ -10,7 +10,7 @@ require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
 
-use App\src\controllers\pageControlleur;
+use App\src\controllers\PageControlleur;
 use App\src\database\DatabaseConnection;
 use App\src\controllers\pages\error404Controller;
 
@@ -41,7 +41,7 @@ if ($controllerSegment === '') {
 }
 
 $actionName = $actionSegment . 'Action';
-$controller = new pageControlleur($controllerSegment);
+$controller = new PageControlleur($controllerSegment);
 $cssPaths = ["/assets/styles/{$controllerSegment}.css"];
 $jsPaths = ["/assets/js/{$controllerSegment}.js"];
 if ($actionName != 'Action' && method_exists($controller, $actionName)) {
