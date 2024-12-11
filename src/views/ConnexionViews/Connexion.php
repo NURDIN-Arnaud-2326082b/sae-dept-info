@@ -5,9 +5,17 @@ namespace App\src\views\ConnexionViews;
 use App\src\views\LayoutViews\Layout;
 use App\src\controllers\pages\CasAuthController;
 
+/**
+ * Connexion Class
+ *
+ * Provides methods to render the connexion page.
+ */
 class Connexion
 {
 
+    /**
+     * Affiche la page de connexion.
+     */
     public function show(): void
     {
         ob_start();

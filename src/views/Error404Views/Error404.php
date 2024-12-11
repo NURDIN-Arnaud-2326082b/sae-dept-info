@@ -2,9 +2,17 @@
 
 namespace App\src\views\Error404Views;
 
+/**
+ * Error404 Class
+ *
+ * Provides methods to render the 404 error page.
+ */
 class Error404
 {
 
+    /**
+     * Affiche la page d'erreur 404.
+     */
     public function show(): void {
     ?>
         <!DOCTYPE html>

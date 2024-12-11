@@ -4,8 +4,17 @@ namespace App\src\views\PresentationDeptViews;
 
 use App\src\views\LayoutViews\Layout;
 
+/**
+ * PresentationDept Class
+ *
+ * Provides methods to render the presentation of the department page.
+ */
 class PresentationDept
 {
+
+    /**
+     * Affiche la page de présentation du département.
+     */
     public function show(): void
     {
         ob_start();

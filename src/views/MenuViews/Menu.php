@@ -4,7 +4,16 @@ namespace App\src\views\MenuViews;
 use App\src\views\LayoutViews\Layout;
 use App\src\controllers\pages\CasAuthController;
 
+/**
+ * Menu Class
+ *
+ * Provides methods to render the menu page.
+ */
 class Menu {
+
+    /**
+     * Affiche le menu.
+     */
     public function show(): void {
         ob_start();
         $authController = new CasAuthController();
@@ -26,7 +35,7 @@ class Menu {
                 <div class="panel" onclick="window.location.href='Home.html';">
                     <h2>🏠 Page principale</h2>
                 </div>
-          
+
                 <!-- Panel pour le planning des cours -->
                 <div class="panel" onclick="window.location.href='home.html';">
                     <h2>Planning des cours</h2>
