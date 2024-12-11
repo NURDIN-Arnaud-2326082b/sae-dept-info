@@ -1,22 +1,23 @@
 <?php
 namespace App\src\views\HomepageViews;
 
+use App\src\controllers\pages\HomepageController;
 use App\src\views\LayoutViews\Layout;
 class Homepage {
     public function show(): void {
         ob_start();
+        $controller = new HomepageController();
+        require_once "src/views/HomepageViews/fragments/partie1.php";
+        $controller->genererBanderole();
+        require_once "src/views/HomepageViews/fragments/partie2.php";
+        $controller->generer();
         ?>
-        <link rel="stylesheet" href="/assets/styles/homepage.css">
-        <main>
-            <div class="marquee">
-                <h2>Journée Porte Ouvertes - Bonbon gratuits - Annonce importante n°3</h2>
-            </div>
 
-    <div class="articles-grid">
+                <h2>Journée Porte Ouvertes - Bonbon gratuits - Annonce importante n°3</h2>
+
 
         <!-- Premier article -->
-        <div class="article-preview">
-            <div class="article-content">
+
                 <h3>Découvrez notre département</h3>
                 <p>
                     Le département Informatique de l'IUT d'Aix-en-Provence, rattaché à l'Université d'Aix-Marseille,
@@ -25,10 +26,7 @@ class Homepage {
                     Situé au cœur d'un campus moderne et convivial,
                     le département forme des étudiants aux technologies de pointe et aux compétences recherchées sur le marché du travail.
                 </p>
-                <a href="/PresentationDept" class="read-more">En savoir plus</a>
-            </div>
-            <img src="/assets/images/formation.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
-        </div>
+
 
         <!-- Deuxième article -->
         <div class="article-preview">
