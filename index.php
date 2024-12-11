@@ -10,6 +10,7 @@ require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
 
+use App\src\controllers\pageControlleur;
 use App\src\database\DatabaseConnection;
 use App\src\controllers\pages\error404Controller;
 
@@ -39,27 +40,17 @@ if ($controllerSegment === '') {
     $controllerSegment = 'Homepage';
 }
 
-$controllerName = ucfirst($controllerSegment) . 'Controller';
 $actionName = $actionSegment . 'Action';
-
-$controllerClass = "App\\src\\controllers\\pages\\{$controllerName}";
-if (class_exists($controllerClass)) {
-    $controller = new $controllerClass();
-
-    $baseName = strtolower(str_replace('Controller', '', $controllerName));
-    $cssPaths = ["/assets/styles/{$baseName}.css"];
-    $jsPaths = ["/assets/js/{$baseName}.js"];
-
-    if ($actionName != 'Action' && method_exists($controller, $actionName)) {
-        $controller->$actionName($cssPaths, $jsPaths);
-        $controller->$methodSegment($cssPaths, $jsPaths);
-    } elseif ($actionName === 'Action') {
-        $controller->$methodSegment($cssPaths, $jsPaths);
-    } else {
-        $errorController = new Error404Controller();
-        $errorController->defaultMethod("/assets/styles/error404.css", "/assets/js/error404.js");
-    }
+$controller = new pageControlleur($controllerSegment);
+$cssPaths = ["/assets/styles/{$controllerSegment}.css"];
+$jsPaths = ["/assets/js/{$controllerSegment}.js"];
+if ($actionName != 'Action' && method_exists($controller, $actionName)) {
+    $controller->$actionName($cssPaths, $jsPaths);
+    $controller->$methodSegment($cssPaths, $jsPaths);
+} elseif ($actionName === 'Action') {
+    $controller->$methodSegment($cssPaths, $jsPaths);
 } else {
     $errorController = new Error404Controller();
     $errorController->defaultMethod("/assets/styles/error404.css", "/assets/js/error404.js");
 }
+

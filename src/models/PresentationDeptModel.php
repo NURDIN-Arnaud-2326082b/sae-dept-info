@@ -7,16 +7,7 @@ use PDO;
 
 class PresentationDeptModel
 {
-    /**
-     * Constructeur de la classe PlatModel.
-     *
-     * Initialise une instance de la classe avec une connexion à la base de données.
-     *
-     * @param DatabaseConnection $connect Instance de la classe DbConnect pour la connexion à la base de données.
-     */
-    public function __construct(private DatabaseConnection $connect)
-    {
-    }
+
 
     /**
      * retrieve all items
