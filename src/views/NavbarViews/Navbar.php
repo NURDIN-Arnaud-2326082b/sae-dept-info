@@ -11,7 +11,7 @@ class Navbar
             <a href="http://localhost:8080">
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
-            <h1><?= $user->firstname ?></h1>
+            <h1><?= $user->name ?></h1>
             <div class="search-bar">
                 <?php
                 $currentFile = basename($_SERVER['PHP_SELF']);
