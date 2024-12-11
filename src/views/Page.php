@@ -5,7 +5,7 @@ namespace App\src\views;
 use App\src\controllers\pageControlleur;
 use App\src\views\LayoutViews\Layout;
 
-class page
+class Page
 {
     private pageControlleur $pageControlleur;
     

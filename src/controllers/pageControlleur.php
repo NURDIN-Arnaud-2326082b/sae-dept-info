@@ -18,7 +18,7 @@ class pageControlleur
 
     public function defaultMethod(): void
     {
-        (new page($this->name))->show();
+        (new Page($this->name))->show();
     }
 
     public function generer()
