@@ -42,7 +42,7 @@ class Homepage {
                 </p>
                 <a href="/PresentationDept" class="read-more">En savoir plus</a>
             </div>
-            <img src="/assets/images/départment.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
+            <img src="/assets/images/department.png" alt="Illustration de l'éco-ambassadeur" class="article-image">
         </div>
 
         <!-- Troisième article -->

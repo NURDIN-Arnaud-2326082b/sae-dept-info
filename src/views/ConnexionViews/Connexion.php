@@ -16,7 +16,7 @@ class Connexion
             <div class="container">
                 <div class="panel">
                     <h2>Connexion</h2>
-                    <form action="/login" method="post">
+                    <form action="/Menu" method="post">
                         <label for="login">Identifiant</label>
                         <input type="text" id="login" name="login" required>
                         <label for="password">Mot de passe</label>
