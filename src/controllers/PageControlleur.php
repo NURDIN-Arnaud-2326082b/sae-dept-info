@@ -18,8 +18,10 @@ class PageControlleur
 
     public function defaultMethod(): void
     {
-        (new Page($this->name))->show();
+        $connexionController = new ConnexionController();
+        (new Page($this->name, $connexionController))->show();
     }
+
 
     public function generer()
     {
