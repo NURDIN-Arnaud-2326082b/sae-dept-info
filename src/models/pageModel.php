@@ -13,8 +13,15 @@ class pageModel
      */
     public function __construct(private DatabaseConnection $connect)
     {
+
     }
 
+    /**
+     * Récupère les informations de la page demandée.
+     *
+     * @param string $name Nom de la page demandée.
+     * @return array Tableau contenant les informations de la page demandée.
+     */
     public function generer(string $name){
         $sql = 'SELECT title,content FROM pages WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
