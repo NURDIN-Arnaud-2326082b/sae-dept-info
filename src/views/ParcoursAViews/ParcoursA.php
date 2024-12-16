@@ -29,7 +29,7 @@ class ParcoursA
                         <h3>Objectifs du parcours</h3>
                         <p> Ce parcours forme des cadres intermédiaires capables de développer des applications complexes, c’est-à-dire recueillir
                             et analyser les besoins du client, développer ou adapter une application complexe de qualité, réaliser la maintenance
-                            ou le suivi de cette application ; <br>
+                            ou le suivi de cette application ;
                             de mettre en place des jeux de tests, c’est-à-dire construire des jeux d’essais,
                             automatiser leur exécution et assurer l’intégration continue.</p>
 

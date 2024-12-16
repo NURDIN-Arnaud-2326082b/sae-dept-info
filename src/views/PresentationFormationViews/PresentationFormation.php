@@ -84,7 +84,7 @@ class PresentationFormation
                             d’optimisation et de sécurisation. D’un point de vue pratique, une partie du cursus pourra être réalisé en alternance dès la 2ème année
                             (cf. <a href="https://iut.univ-amu.fr/sites/default/files/media-ressource/Alternance INFO Aix.pdf">calendrier d'alternance</a>);
                             une sortie diplômante à bac + 2 restera possible via l’obtention du D.U.T Informatique. Enfin, il sera en principe envisageable
-                            de suivre 1 ou 2 semestres à l’étranger, ou stage, pendant le cursus. <br> <br> </p>
+                            de suivre 1 ou 2 semestres à l’étranger, ou stage, pendant le cursus. </p>
                     </div>
                 </div>
 

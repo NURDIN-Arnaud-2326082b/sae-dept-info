@@ -31,25 +31,25 @@ class Alumni
                         </div>
                         <div class="feature">
                             <h3> Poursuites d’études </h3>
-                            <p> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, <br>
-                                licences générales, éventuellement écoles d’ingénieurs… <br>
+                            <p> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles,
+                                licences générales, éventuellement écoles d’ingénieurs…
                                 A l’issues des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs
-                                publiques (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger. </p> <br> <br>
+                                publiques (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger. </p>
                         </div>
                     </div>
                 <h2 id="parcoursB"> Parcours B :  Déploiement d’applications communicantes et sécurisées </h2>
                     <div class="features-grid">
                         <div class="feature">
                             <h3> Métiers </h3>
-                            <p> Sont notamment accessibles à l’issue de la formation les métiers de Concepteur-Développeur d'applications, Testeur, Tech Lead, Développeur <br>
+                            <p> Sont notamment accessibles à l’issue de la formation les métiers de Concepteur-Développeur d'applications, Testeur, Tech Lead, Développeur
                                 et Administrateur systèmes et réseaux, Développeur et intégrateur Web, Spécialiste bases de données… </p>
                         </div>
                         <div class="feature">
                             <h3> Poursuites d’études </h3>
-                            <ul> <li> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, licences générales, <br>
+                            <ul> <li> A l’issue des deux premières années et après obtention du D.U.T. réalisables vers des licences professionnelles, licences générales,
                                     éventuellement écoles d’ingénieurs… </li>
-                                <li> A l’issue des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs publiques <br>
-                                    (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger.</li> </ul> <br> <br>
+                                <li> A l’issue des trois années et après obtention du B.U.T., réalisables en Masters d’informatique, MIAGE, Écoles d'ingénieurs publiques
+                                    (ENSIMAG, UTC, INSA, POLYTECH…) ou privées, mais aussi par le biais de formations à l'étranger.</li> </ul>
                         </div>
                     </div>
                 <p> <a href="https://iut.univ-amu.fr/fr/formations/bachelor-universitaire-de-technologie/but-informatique/but-info-aix" class="btn-scroll"> En savoir plus </a> </p>
