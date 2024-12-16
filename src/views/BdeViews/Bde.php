@@ -19,7 +19,7 @@ class Bde
     {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/bde.css">
+        <link rel="stylesheet" href="/assets/styles/Bde.css">
         <main>
             <section class="hero-section">
                 <div class="hero-content">

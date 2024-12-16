@@ -22,8 +22,16 @@ class pageModel
      * @param string $name Nom de la page demandée.
      * @return array Tableau contenant les informations de la page demandée.
      */
-    public function generer(string $name){
-        $sql = 'SELECT title,content FROM pages WHERE name = :name';
+    public function genererTitre(string $name){
+        $sql = 'SELECT pagetitle FROM pages WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
+    public function genererContenu(string $name){
+        $sql = 'SELECT title,content,link,type FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->execute();
