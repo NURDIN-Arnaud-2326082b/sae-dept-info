@@ -31,6 +31,13 @@ class Page
     {
         ob_start();
 
+        $page = $this->pageControlleur->generer();
+        $content = $page[0]['content'];
+
+        //appelle le layout avec la navbar
+        $layout = new Layout($page[0]['title'], $content);
+        $layout->show();
+
         // Générer le contenu de la page via PageControlleur
         $page = $this->pageControlleur->generer();
         echo $page[0]['content'];

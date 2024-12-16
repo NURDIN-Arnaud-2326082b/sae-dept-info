@@ -1,5 +1,4 @@
 <?php
-
 namespace App\src\views\ConnexionViews;
 
 use App\src\views\LayoutViews\Layout;

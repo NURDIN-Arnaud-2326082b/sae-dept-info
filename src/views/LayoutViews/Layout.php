@@ -25,6 +25,7 @@ class Layout
     public function __construct(private readonly string $title, private readonly string $content) {
         $this->navbar = new NavbarController();
         $this->footer = new Footer();
+
     }
 
 

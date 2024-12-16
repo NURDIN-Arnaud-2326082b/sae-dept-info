@@ -24,9 +24,9 @@ class ConnexionController
             $user = $this->userModel->getUserByName($name);
 
             if ($user && $password === $user['password']) {
-                session_start();
                 $_SESSION = $user['id'];
                 $_SESSION = $user['name'];
+                //var_dump($_SESSION);
                 header("Location: /menu"); // Redirection vers la page menu
                 exit;
             } else {
