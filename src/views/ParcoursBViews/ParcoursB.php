@@ -22,6 +22,12 @@ class ParcoursB
 
             <section  class="department-content">
                 <h2 id="savoir"> Parcours B :  Déploiement d’applications communicantes et sécurisées </h2>
+                <div class="intro">
+                    <p>Ce parcours prépare les étudiants à la mise en place et à la sécurité des systèmes d'information
+                        et des applications. Il s’appuie sur un renforcement de la compétence "Administrer des systèmes
+                        informatiques communicants complexes".  forme aux métiers d'administrateur système/réseaux
+                        ou applicatifs, cybersécurité, DevOps, intégrateur d'application, ...</p>
+                </div>
                 <div class="features-grid">
                     <div class="feature">
                         <h3> Objectifs du parcours </h3>

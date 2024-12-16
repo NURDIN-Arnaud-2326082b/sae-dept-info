@@ -36,25 +36,6 @@ class PresentationFormation
                     <p id="parcours"> Le département informatique d'Aix-en-Provence propose deux parcours dès la deuxième année : <a href="/src/views/ParcoursAViews/ParcoursA.php"> Parcours A </a> et <a href="/src/views/ParcoursBViews/ParcoursB.php"> Parcours B </a> </p>
                 </div>
 
-                <div class="features-grid">
-                    <div class="feature">
-                        <img src="/assets/images/img.png" alt="Parcours A">
-                        <h3> Parcours A : Réalisation d'applications : développement, conception, validation </h3>
-                        <p> Ce parcours se concentre sur le cycle de vie du logiciel : de l'expression du besoin du client,
-                            à la conception, à la validation et à la maintenace de l'application. Il repose sur une consolidation de la compétence "Optimiser des
-                            solutions informatiques" et forme au métier de concepteur-développeur d'applications (mobile, web, Internet des objets), Testeur,
-                            Tech Lead, Développeur et Administrateur systèmes et réseaux, Développeur et intégrateur Web, Spécialiste bases de données… . </p>
-                    </div>
-                    <div class="feature">
-                        <img src="/assets/images/img.png" alt="Parcours B">
-                        <h3> Parcours B : Dépoiement d'appliations communicantes et sécurisées </h3>
-                        <p> Ce parcours prépare les étudiants à la mise en place et à la sécurité des systèmes d'information
-                            et des applications. Il s’appuie sur un renforcement de la compétence "Administrer des systèmes
-                            informatiques communicants complexes".  forme aux métiers d'administrateur système/réseaux
-                            ou applicatifs, cybersécurité, DevOps, intégrateur d'application, ... </p>
-                    </div>
-                </div>
-
                 <h2 id="organisation"> Organisation des études </h2>
 
                 <div class="features-grid">

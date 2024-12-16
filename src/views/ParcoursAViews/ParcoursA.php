@@ -23,6 +23,12 @@ class ParcoursA
 
             <section  class="department-content">
                 <h2 class="titre" id="savoir"> Parcours A : Réalisation d’applications : conception, développement, validation </h2>
+                <div class="intro">
+                    <p>Ce parcours se concentre sur le cycle de vie du logiciel : de l'expression du besoin du client,
+                    à la conception, à la validation et à la maintenace de l'application. Il repose sur une consolidation de la compétence "Optimiser des
+                    solutions informatiques" et forme au métier de concepteur-développeur d'applications (mobile, web, Internet des objets), Testeur,
+                    Tech Lead, Développeur et Administrateur systèmes et réseaux, Développeur et intégrateur Web, Spécialiste bases de données… .</p>
+                </div>
                 <div class="features-grid">
                     <div class="feature">
                         <img src="/assets/images/img.png" alt="Objectifs">
