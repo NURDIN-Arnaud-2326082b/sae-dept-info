@@ -19,7 +19,7 @@ class PresentationDept
     {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/presentationdept.css">
+        <link rel="stylesheet" href="/assets/styles/PresentationDept.css">
         <main>
             <section class="hero-section">
                 <div class="hero-content">

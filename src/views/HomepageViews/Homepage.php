@@ -16,7 +16,7 @@ class Homepage {
     public function show(): void {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/homepage.css">
+        <link rel="stylesheet" href="/assets/styles/Homepage.css">
         <main>
             <div class="marquee">
                 <h2>Journée Porte Ouvertes - Bonbon gratuits - Annonce importante n°3</h2>
