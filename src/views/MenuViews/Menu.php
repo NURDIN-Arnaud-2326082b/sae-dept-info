@@ -1,6 +1,6 @@
 <?php
 namespace App\src\views\MenuViews;
-
+session_start();
 use App\src\views\LayoutViews\Layout;
 
 /**
@@ -8,6 +8,7 @@ use App\src\views\LayoutViews\Layout;
  *
  * Provides methods to render the menu page.
  */
+
 class Menu {
 
     /**
@@ -21,7 +22,7 @@ class Menu {
             <div class="panel-container">
                 <!-- Panel pour la page principale -->
                 <div class="panel" onclick="window.location.href='Home.html';">
-                    <h2>🏠 Page principale</h2>
+                    <h2>Page principale</h2>
                 </div>
 
                 <!-- Panel pour le planning des cours -->
