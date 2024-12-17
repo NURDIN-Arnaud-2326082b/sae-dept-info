@@ -38,3 +38,40 @@
         width: 90%;
     }
 }
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 0.5fr));
+    gap: 2em;
+    justify-items: center;
+    align-items: start;
+}
+
+.feature {
+    background-color: white;
+    padding: 1.5em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.feature:hover {
+    transform: translateY(-20px);
+}
+
+.feature img {
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+.feature h3 {
+    margin-bottom: 0.75em;
+    font-size: 1.8em;
+}
+
+.feature p {
+    font-size: 1.1em;
+    color: #666;
+}
