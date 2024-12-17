@@ -22,14 +22,17 @@
                 <a href="http://localhost:8080">
                     <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
                 </a>
-                <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Invité' ?></h1> <!-- Gestion de 'Invité' si $user est null -->
+                <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Invité' ?></h1>
                 <div class="search-bar">
                     <?php
-                    $currentFile = basename($_SERVER['PHP_SELF']);
 
+                    $currentFile = basename($_SERVER['PHP_SELF']);
                     $isHomepage = ($currentFile === 'index.php');
 
-                    if (!$isHomepage): ?>
+
+                    if (isset($user['name'])): ?>
+                        <a href="/login">Se déconnecter</a>
+                  <?php  elseif (!$isHomepage): ?>
                         <label for="search"></label>
                         <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
                     <?php else: ?>
