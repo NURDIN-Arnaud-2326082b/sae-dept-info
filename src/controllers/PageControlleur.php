@@ -86,6 +86,7 @@ class PageControlleur
                     echo '</div>';
                 }
             }
+            echo '</div>';
         }
         else {
             echo '<section id="content" class="department-content">';
