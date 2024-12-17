@@ -24,18 +24,30 @@ class ConnexionController
             $user = $this->userModel->getUserByName($name);
 
             if ($user && $password === $user['password']) {
-                $_SESSION = $user['id'];
-                $_SESSION = $user['name'];
-                //var_dump($_SESSION);
+                $_SESSION['user_id'] = $user['id']; // Stocke l'ID utilisateur
+                $_SESSION['name'] = $user['name']; // Stocke le nom utilisateur
                 header("Location: /menu"); // Redirection vers la page menu
                 exit;
-            } else {
+            }
+            else {
                 return "Nom d'utilisateur ou mot de passe incorrect.";
             }
 
         } else {
             return "Tous les champs sont requis.";
         }
+    }
+
+    public function deconnecter(): void
+    {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        session_unset();
+        session_destroy();
+        header("Location: /login");
+        exit;
     }
 
     public function defaultMethod(): void
