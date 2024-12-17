@@ -38,7 +38,7 @@ class PageControlleur
         return $this->name;
     }
 
-    public function genererIntro()
+    public function genererIntro(): void
     {
         $content = $this->genererContenu();
         echo '<link rel="stylesheet" href="/assets/styles/'.$this->getName().'.css"><main>';
@@ -62,7 +62,7 @@ class PageControlleur
         }
     }
 
-    public function genererArticles()
+    public function genererArticles(): void
     {
         $content = $this->genererContenu();
         if ($this->getName() == 'Homepage') {
@@ -77,7 +77,18 @@ class PageControlleur
                 }
             }
             echo '</div>';
-        } else {
+        } elseif ($this->getName() == 'menu') {
+            echo '<div class="panel-container">';
+            foreach ($content as $ct) {
+                if ($ct['type'] == 'menu') {
+                    echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';">';
+                    echo '<h2>' . $ct['title'] . '</h2>';
+                    echo '</div>';
+                }
+            }
+            echo '</div>';
+        }
+        else {
             echo '<section id="content" class="department-content">';
             $cpt = 1;
             foreach ($content as $ct) {
