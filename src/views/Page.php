@@ -34,19 +34,5 @@ class Page
         $this->pageControlleur->genererArticles();
         (new Layout($page[0]['pagetitle'], ob_get_clean()))->show();
 
-
-        $page = $this->pageControlleur->generer();
-        $content = $page[0]['content'];
-
-        //appelle le layout avec la navbar
-        $layout = new Layout($page[0]['title'], $content);
-        $layout->show();
-
-        // Générer le contenu de la page via PageControlleur
-        $page = $this->pageControlleur->generer();
-        echo $page[0]['content'];
-
-        // Afficher le layout avec le titre et le contenu généré
-        (new Layout($page[0]['title'], ob_get_clean()))->show();
     }
 }

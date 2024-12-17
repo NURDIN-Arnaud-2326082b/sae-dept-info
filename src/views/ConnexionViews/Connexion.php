@@ -9,7 +9,7 @@ class Connexion
     {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/connexion.css">
+        <link rel="stylesheet" href="/assets/styles/Connexion.css">
 
         <main>
             <div class="container">
