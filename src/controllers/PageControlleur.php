@@ -47,14 +47,16 @@ class PageControlleur
                     case 'banderolle':
                         echo '<div class="marquee"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
-                        echo '<button type="submit">Enregistrer les modifications</button></form></div>';
+                        echo '<button type="submit">Enregistrer les modifications</button></form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form></div>";
                         break;
                     case 'intro':
                         echo ' <section class="hero-section"><div class="hero-content"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
-                        echo '<button type="submit">Enregistrer les modifications</button></form></section>';
+                        echo '<button type="submit">Enregistrer les modifications</button></form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form></section>";
                         break;
                     default:
                         break;
@@ -95,7 +97,9 @@ class PageControlleur
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
-                        echo ' <button type="submit">Enregistrer les modifications</button></form></div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image"></div>';
+                        echo ' <button type="submit">Enregistrer les modifications</button></form></div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image">';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                        echo '</div>';
                     }
                 }
                 echo '</div>';
@@ -105,7 +109,9 @@ class PageControlleur
                     if ($ct['type'] == 'menu') {
                         echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['title'] .'</textarea>';
-                        echo '<button type="submit">Enregistrer les modifications</button></form></div>';
+                        echo '<button type="submit">Enregistrer les modifications</button></form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                        echo '</div>';
                     }
                 }
                 echo '</div>';
@@ -118,7 +124,9 @@ class PageControlleur
                         echo '<div class="intro"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
-                        echo '<button type="submit">Enregistrer les modifications</button></form></div>';
+                        echo '<button type="submit">Enregistrer les modifications</button></form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                        echo '</div>';
                         break;
                     case 'list' . $cpt:
                         $cpt2 = 0;
@@ -129,7 +137,9 @@ class PageControlleur
                                 echo '<img src="/assets/images/img.png" alt="Innovation">';
                                 echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                                 echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
-                                echo '<button type="submit">Enregistrer les modifications</button></form></div>';
+                                echo '<button type="submit">Enregistrer les modifications</button></form>';
+                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                                echo '</div>';
                                 $cpt2++;
                             }
                         }
@@ -141,9 +151,12 @@ class PageControlleur
                         break;
                     case 'titre':
                         echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/><button type="submit">Enregistrer les modifications</button></form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
                         break;
                     case 'lien':
-                        echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="lien">'. $ct['link'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea><button type="submit">Enregistrer les modifications</button></form></div>';
+                        echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="lien">'. $ct['link'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea><button type="submit">Enregistrer les modifications</button></form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                        echo '</div>';
                         break;
                     default:
                         break;
@@ -225,7 +238,6 @@ class PageControlleur
         $titre = $_POST['titre'];
         $contenu = $_POST['contenu'];
         $lien = $_POST['lien'];
-        $nm = $_POST['name'];
         if($lien == null){
             $lien = '';
         }
@@ -236,6 +248,14 @@ class PageControlleur
             $titre = '';
         }
         $this->pageModel->updateArticleAction($id,$titre, $contenu,$lien);
-        header('Location: /'.$nm);
+        header('Location: /'.$_POST['name']);
+    }
+
+    public function deleteArticle(): void
+    {
+        $id = $_POST['delete'];
+        $this->pageModel->deleteArticleAction($id);
+        header('Location: /'.$_POST['name']);
     }
 }
+

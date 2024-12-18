@@ -56,7 +56,23 @@ class PageModel
             $stmt->bindValue(':link', $lien, PDO::PARAM_STR);
         }
         if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'insertion ou de la mise à jour de l\'article.');
+            throw new \Exception('Erreur lors de la mise à jour de l\'article.');
+        }
+    }
+
+    public function deleteArticleAction(int $id): void
+    {
+        $sql = 'DELETE FROM article WHERE id_article = :id';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de la suppression de l\'article.');
+        }
+        $sql = 'DELETE FROM articledanspage WHERE id_article = :id';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de la suppression de l\'article.');
         }
     }
 }
