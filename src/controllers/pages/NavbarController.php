@@ -33,9 +33,9 @@ class NavbarController
         $user = null;
 
         // Vérifiez si un utilisateur est connecté
-        if (isset($_SESSION['user_name'])) {
-            $userName = $_SESSION['user_name'];
-            $user = $this->userModel->getUserByName($userName); // Assurez-vous que cette méthode retourne bien un utilisateur ou null
+        if (isset($_SESSION['name'])) {
+            $userName = $_SESSION['name'];
+            $user = $this->userModel->getUserByName($userName);
         }
 
         // Appeler la vue Navbar et transmettre l'utilisateur

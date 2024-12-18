@@ -22,7 +22,6 @@ class PageControlleur
         (new Page($this->name, $connexionController))->show();
     }
 
-
     public function genererTitre()
     {
         return $this->pageModel->genererTitre($this->name);

@@ -2,30 +2,17 @@
 
 namespace App\src\views;
 
-use App\src\controllers\ConnexionController;
 use App\src\controllers\PageControlleur;
 use App\src\views\LayoutViews\Layout;
 
 class Page
 {
-    private PageControlleur $pageControlleur;
-    private ConnexionController $connexionController;
-
-    /**
-     * Constructeur de la classe Page.
-     *
-     * @param string $name Le nom de la page à afficher.
-     * @param ConnexionController $connexionController Instance du contrôleur de connexion.
-     */
-    public function __construct(string $name, ConnexionController $connexionController)
+    private pageControlleur $pageControlleur;
+    
+    public function __construct(string $name)
     {
         $this->pageControlleur = new PageControlleur($name);
-        $this->connexionController = $connexionController;
     }
-
-    /**
-     * Affiche la page.
-     */
     public function show(): void
     {
         ob_start();
