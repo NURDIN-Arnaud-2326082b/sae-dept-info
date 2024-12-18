@@ -143,7 +143,7 @@ class PageControlleur
                         echo '<form action="/updateArticle" method="post"><input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/><button type="submit">Enregistrer les modifications</button></form>';
                         break;
                     case 'lien':
-                        echo '<div><form action="/updateArticle" method="post"><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['link'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea><button type="submit">Enregistrer les modifications</button></form></div>';
+                        echo '<div><form action="/updateArticle" method="post"><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="lien">'. $ct['link'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea><button type="submit">Enregistrer les modifications</button></form></div>';
                         break;
                     default:
                         break;
@@ -214,6 +214,18 @@ class PageControlleur
                 }
             }
         }
+    }
 
+    /**
+     * @throws \Exception
+     */
+    public function updateArticleAction(): void
+    {
+        $id = $_POST['id'];
+        $titre = $_POST['titre'];
+        $contenu = $_POST['contenu'];
+        $lien = $_POST['lien'];
+        $model = new pageModel(DatabaseConnection::getInstance());
+        $model->updateArticleAction($id,$titre, $contenu,$lien);
     }
 }

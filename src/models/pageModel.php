@@ -37,4 +37,8 @@ class pageModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function updateArticleAction(mixed $id, mixed $titre, mixed $contenu, mixed $lien)
+    {
+    }
 }
