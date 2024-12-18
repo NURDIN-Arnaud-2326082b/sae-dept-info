@@ -29,9 +29,8 @@
                     $currentFile = basename($_SERVER['PHP_SELF']);
                     $isHomepage = ($currentFile === 'index.php');
 
-
                     if (isset($user['name'])): ?>
-                        <a href="/login">Se déconnecter</a>
+                        <a href="/logout">Se déconnecter</a>
                   <?php  elseif (!$isHomepage): ?>
                         <label for="search"></label>
                         <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
@@ -39,6 +38,18 @@
                         <a href="/login">Se connecter</a>
                     <?php endif; ?>
                 </div>
+
+                <!-- Ajout du bouton "Menu" -->
+                <div class="menu-button">
+                    <?php if (isset($user['name'])): ?>
+                        <a href="/menu" class="btn btn-menu">Menu</a>
+                    <?php endif; ?>
+                </div>
+
+
+
+
+
             </nav>
 
             <?php

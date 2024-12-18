@@ -26,6 +26,21 @@ $methodSegment = $segments[1] ?? 'defaultMethod';
 $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
+
+// Vérification pour la page /menu
+if ($controllerSegment === 'menu' && !isset($_SESSION['name'])) {
+    header("Location: /login"); // Ramene vers la page de connexion si non connecté
+    exit;
+}
+
+// Gestion déconnexion
+if ($controllerSegment === 'logout') {
+    $connexionController = new ConnexionController();
+    $connexionController->deconnecter();
+    exit();
+}
+
+
 // Gestion du routage
 if ($controllerSegment === 'login') {
     // Route pour la connexion
