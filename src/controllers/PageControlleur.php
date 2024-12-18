@@ -55,8 +55,7 @@ class PageControlleur
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
-                        echo '<button type="submit">Enregistrer les modifications</button></form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form></section>";
+                        echo '<button type="submit">Enregistrer les modifications</button></form></section>';
                         break;
                     default:
                         break;
@@ -102,6 +101,7 @@ class PageControlleur
                         echo '</div>';
                     }
                 }
+                echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->name."'/><input type='hidden' name='type' value='homepage'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
             } elseif ($this->getName() == 'menu') {
                 echo '<div class="panel-container">';
@@ -114,6 +114,7 @@ class PageControlleur
                         echo '</div>';
                     }
                 }
+                echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->name."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
             }
             echo '<section id="content" class="department-content">';
@@ -135,8 +136,8 @@ class PageControlleur
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                                 echo '<img src="/assets/images/img.png" alt="Innovation">';
-                                echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
-                                echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
+                                echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
+                                echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct2['content'] .'</textarea>';
                                 echo '<button type="submit">Enregistrer les modifications</button></form>';
                                 echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
                                 echo '</div>';
@@ -146,6 +147,8 @@ class PageControlleur
                         for ($i = 0; $i < $cpt2; $i++) {
                             array_shift($content);
                         }
+                        $type = $ct['type'];
+                        echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="type" value="'.$type.'"/><button type="submit" name="add">Ajouter un article</button></form>';
                         echo '</div>';
                         $cpt++;
                         break;
@@ -251,11 +254,38 @@ class PageControlleur
         header('Location: /'.$_POST['name']);
     }
 
-    public function deleteArticle(): void
+    public function deleteArticleAction(): void
     {
         $id = $_POST['delete'];
         $this->pageModel->deleteArticleAction($id);
         header('Location: /'.$_POST['name']);
+    }
+
+    public function ajouterArticleAction(): void
+    {
+        $type = $_POST['type'];
+        $this->pageModel->ajouterArticleAction($type,$_POST['name']);
+        header('Location: /'.$_POST['name']);
+    }
+
+    public function genererNewArticle(): void
+    {
+        $type = $this->pageModel->recupererType();
+        $cpt = 0 ;
+        foreach ($type as $t){
+            if(str_contains($t['type'],"list")){
+                $cpt++;
+            }
+        }
+       echo '<div><form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
+       echo '<h2>Ajouter un article</h2>';
+       echo '<select name="type">';
+         echo '<option value="texte">texte avec titre</option>';
+         echo "<option value='list".$cpt."'>liste d'article</option>";
+         echo "<option value='banderolle'>banderolle en haut de page</option>";
+            echo "<option value='lien'>lien</option>";
+            echo "<option value='titre'>titre</option>";
+         echo "</select><button type='submit' name='add'>Ajouter l'article</button></form></div>";
     }
 }
 
