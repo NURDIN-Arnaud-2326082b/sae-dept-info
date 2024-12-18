@@ -11,7 +11,7 @@ class Gestion
     {
         ob_start();
         ?>
-        <link rel="stylesheet" href="/assets/styles/Connexion.css">
+        <link rel="stylesheet" href="/assets/styles/gestion.css">
 
         <main>
             <div class="container">

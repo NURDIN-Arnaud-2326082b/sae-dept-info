@@ -24,5 +24,7 @@ class Page
         }
         (new Layout($page[0]['pagetitle'], ob_get_clean()))->show();
 
+
+
     }
 }

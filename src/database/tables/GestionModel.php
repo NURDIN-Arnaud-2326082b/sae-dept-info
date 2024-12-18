@@ -8,17 +8,28 @@ use PDO;
 class GestionModel extends Model
 {
 
-    public function addUser(): void
+    // Récupérer la liste des utilisateurs
+    public function getAllUsers(): array
     {
-        $name = $_POST['name'];
-        $password = $_POST['password'];
-        $password = password_hash($password, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO login (name, password) VALUES (:name, :password)';
-        $stmt = $this->db->prepare($sql);
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $password, PDO::PARAM_STR);
-        $stmt->execute();
-
+        $stmt = $this->db->query("SELECT id, name, email FROM login");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Ajouter un utilisateur
+    public function addUser(string $name, string $email, string $password): bool
+    {
+        $stmt = $this->db->prepare("INSERT INTO login (name, email, password) VALUES (:name, :email, :password)");
+        return $stmt->execute([
+            'name' => $name,
+            'email' => $email,
+            'password' => password_hash($password, PASSWORD_DEFAULT)
+        ]);
+    }
+
+    // Supprimer un utilisateur
+    public function deleteUser(int $userId): bool
+    {
+        $stmt = $this->db->prepare("DELETE FROM login WHERE id = :id");
+        return $stmt->execute(['id' => $userId]);
+    }
 }

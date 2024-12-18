@@ -43,15 +43,11 @@
                 <div class="menu-button">
                     <?php if (isset($user['name'])): ?>
                         <a href="/menu" class="btn btn-menu">Menu</a>
+                        <a href="/gestion" class="btn btn-menu">Gestion</a>
                     <?php endif; ?>
                 </div>
 
-
-
-
-
             </nav>
-
             <?php
         }
     }

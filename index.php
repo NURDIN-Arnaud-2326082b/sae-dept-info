@@ -11,10 +11,12 @@ require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
 use App\src\controllers\ConnexionController;
+use App\src\controllers\GestionController;
 use App\src\controllers\PageControlleur;
 use App\src\controllers\pages\Error404Controller;
 use App\src\database\DatabaseConnection;
 use App\src\database\tables\ConnexionModel;
+use App\src\database\tables\GestionModel;
 
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));
@@ -40,6 +42,16 @@ if ($controllerSegment === 'logout') {
     exit();
 }
 
+if ($controllerSegment === 'gestion') {
+    $gestionModel = new GestionModel($db);
+    $gestionController = new GestionController($gestionModel);
+    $gestionController->defaultMethod();
+}
+
+if ($controllerSegment === 'gestion' && !isset($_SESSION['admin'])) {
+    header("Location: /login"); // Ramene vers la page de connexion si non connecté
+    exit;
+}
 
 // Gestion du routage
 if ($controllerSegment === 'login') {
