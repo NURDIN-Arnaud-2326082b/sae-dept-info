@@ -41,22 +41,44 @@ class PageControlleur
     {
         $content = $this->genererContenu();
         echo '<link rel="stylesheet" href="/assets/styles/'.$this->getName().'.css"><main>';
-        foreach ($content as $ct) {
-            switch ($ct['type']) {
-                case 'banderolle':
-                    echo '<div class="marquee">';
-                    echo '<h2>' . $ct['title'] . '</h2>';
-                    echo '</div>';
-                    break;
-                case 'intro':
-                    echo ' <section class="hero-section"><div class="hero-content">';
-                    echo '<h1>' . $ct['title'] . '</h1>';
-                    echo '<p>' . $ct['content'] . '</p>';
-                    echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
-                    echo '</section>';
-                    break;
-                default:
+        if($_SESSION['name'] == 'admin'){
+            foreach ($content as $ct) {
+                switch ($ct['type']) {
+                    case 'banderolle':
+                        echo '<div class="marquee"><form action="/updateArticle" method="post">';
+                        echo '<textarea>' . $ct['title'] . '</textarea>';
+                        echo '</form></div>';
                         break;
+                    case 'intro':
+                        echo ' <section class="hero-section"><div class="hero-content"><form action="/updateArticle" method="post">';
+                        echo '<textarea>' . $ct['title'] . '</textarea>';
+                        echo '<textarea>' . $ct['content'] . '</textarea>';
+                        echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
+                        echo '</form></section>';
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        else {
+            foreach ($content as $ct) {
+                switch ($ct['type']) {
+                    case 'banderolle':
+                        echo '<div class="marquee">';
+                        echo '<h2>' . $ct['title'] . '</h2>';
+                        echo '</div>';
+                        break;
+                    case 'intro':
+                        echo ' <section class="hero-section"><div class="hero-content">';
+                        echo '<h1>' . $ct['title'] . '</h1>';
+                        echo '<p>' . $ct['content'] . '</p>';
+                        echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
+                        echo '</section>';
+                        break;
+                    default:
+                        break;
+                }
             }
         }
     }
@@ -64,67 +86,134 @@ class PageControlleur
     public function genererArticles(): void
     {
         $content = $this->genererContenu();
-        if ($this->getName() == 'Homepage') {
-            echo '  <div class="articles-grid">';
-            foreach ($content as $ct) {
-                if ($ct['type'] == 'homepage') {
-                    echo '<div class="article-preview"><div class="article-content">';
-                    echo '<h3>' . $ct['title'] . '</h3>';
-                    echo '<p>' . $ct['content'] . '</p>';
-                    echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
-                    echo '</div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image"></div>';
+        if ($_SESSION['name'] == 'admin') {
+            if ($this->getName() == 'Homepage') {
+                echo '  <div class="articles-grid">';
+                foreach ($content as $ct) {
+                    if ($ct['type'] == 'homepage') {
+                        echo '<div class="article-preview"><div class="article-content"><form action="/updateArticle" method="post">';
+                        echo '<textarea>' . $ct['title'] . '</textarea><br>';
+                        echo '<textarea>' . $ct['content'] . '</textarea>';
+                        echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
+                        echo '</form></div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image"></div>';
+                    }
                 }
-            }
-            echo '</div>';
-        } elseif ($this->getName() == 'menu') {
-            echo '<div class="panel-container">';
-            foreach ($content as $ct) {
-                if ($ct['type'] == 'menu') {
-                    echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';">';
-                    echo '<h2>' . $ct['title'] . '</h2>';
-                    echo '</div>';
+                echo '</div>';
+            } elseif ($this->getName() == 'menu') {
+                echo '<div class="panel-container">';
+                foreach ($content as $ct) {
+                    if ($ct['type'] == 'menu') {
+                        echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';"><form action="/updateArticle" method="post">';
+                        echo '<textarea>' . $ct['title'] . '</textarea>';
+                        echo '</form></div>';
+                    }
                 }
+                echo '</div>';
             }
-            echo '</div>';
-        }
-        echo '<section id="content" class="department-content">';
-        $cpt = 1;
-        foreach ($content as $ct) {
-            switch ($ct['type']) {
-                case 'texte':
-                    echo '<div class="intro">';
-                    echo '<h2>' . $ct['title'] . '</h2>';
-                    echo '<p>' . $ct['content'] . '</p>';
-                    echo '</div>';
-                    break;
-                case 'list' . $cpt:
-                    $cpt2 = 0;
-                    echo '<div class="features-grid">';
-                    foreach ($content as $ct2) {
-                        if ($ct2['type'] == 'list' . $cpt) {
-                            echo '<div class="feature">';
-                            echo '<img src="/assets/images/img.png" alt="Innovation">';
-                            echo '<h3>' . $ct2['title'] . '</h3>';
-                            echo '<p>' . $ct2['content'] . '</p>';
-                            echo '</div>';
-                            $cpt2++;
+            echo '<section id="content" class="department-content">';
+            $cpt = 1;
+            foreach ($content as $ct) {
+                switch ($ct['type']) {
+                    case 'texte':
+                        echo '<div class="intro"><form action="/updateArticle" method="post">';
+                        echo '<textarea>' . $ct['title'] . '</textarea><br>';
+                        echo '<textarea>' . $ct['content'] . '</textarea>';
+                        echo '</form></div>';
+                        break;
+                    case 'list' . $cpt:
+                        $cpt2 = 0;
+                        echo '<div class="features-grid">';
+                        foreach ($content as $ct2) {
+                            if ($ct2['type'] == 'list' . $cpt) {
+                                echo '<div class="feature"><form action="/updateArticle" method="post">';
+                                echo '<img src="/assets/images/img.png" alt="Innovation">';
+                                echo '<textarea>' . $ct2['title'] . '</textarea><br>';
+                                echo '<textarea>' . $ct2['content'] . '</textarea>';
+                                echo '</form></div>';
+                                $cpt2++;
+                            }
                         }
-                    }
-                    for ($i = 0; $i < $cpt2; $i++) {
-                        array_shift($content);
-                    }
-                    echo '</div>';
-                    $cpt++;
-                    break;
-                case 'titre':
-                    echo '<h2>' . $ct['title'] . '</h2>';
-                    break;
-                case 'lien':
-                    echo '<div><a href="' . $ct['link'] . '" >'.$ct['content'].'</a></div>';
-                    break;
-                default:
-                    break;
+                        for ($i = 0; $i < $cpt2; $i++) {
+                            array_shift($content);
+                        }
+                        echo '</div>';
+                        $cpt++;
+                        break;
+                    case 'titre':
+                        echo '<form action="/updateArticle" method="post"><textarea>' . $ct['title'] . '</textarea></form>';
+                        break;
+                    case 'lien':
+                        echo '<div><form action="/updateArticle" method="post"><textarea>'.$ct['link'].'</textarea><br><textarea>'.$ct['content'].'</textarea></form></div>';
+                        break;
+                    default:
+                        break;
+                }
             }
         }
+        else {
+            if ($this->getName() == 'Homepage') {
+                echo '  <div class="articles-grid">';
+                foreach ($content as $ct) {
+                    if ($ct['type'] == 'homepage') {
+                        echo '<div class="article-preview"><div class="article-content">';
+                        echo '<h3>' . $ct['title'] . '</h3>';
+                        echo '<p>' . $ct['content'] . '</p>';
+                        echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
+                        echo '</div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image"></div>';
+                    }
+                }
+                echo '</div>';
+            } elseif ($this->getName() == 'menu') {
+                echo '<div class="panel-container">';
+                foreach ($content as $ct) {
+                    if ($ct['type'] == 'menu') {
+                        echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';">';
+                        echo '<h2>' . $ct['title'] . '</h2>';
+                        echo '</div>';
+                    }
+                }
+                echo '</div>';
+            }
+            echo '<section id="content" class="department-content">';
+            $cpt = 1;
+            foreach ($content as $ct) {
+                switch ($ct['type']) {
+                    case 'texte':
+                        echo '<div class="intro">';
+                        echo '<h2>' . $ct['title'] . '</h2>';
+                        echo '<p>' . $ct['content'] . '</p>';
+                        echo '</div>';
+                        break;
+                    case 'list' . $cpt:
+                        $cpt2 = 0;
+                        echo '<div class="features-grid">';
+                        foreach ($content as $ct2) {
+                            if ($ct2['type'] == 'list' . $cpt) {
+                                echo '<div class="feature">';
+                                echo '<img src="/assets/images/img.png" alt="Innovation">';
+                                echo '<h3>' . $ct2['title'] . '</h3>';
+                                echo '<p>' . $ct2['content'] . '</p>';
+                                echo '</div>';
+                                $cpt2++;
+                            }
+                        }
+                        for ($i = 0; $i < $cpt2; $i++) {
+                            array_shift($content);
+                        }
+                        echo '</div>';
+                        $cpt++;
+                        break;
+                    case 'titre':
+                        echo '<h2>' . $ct['title'] . '</h2>';
+                        break;
+                    case 'lien':
+                        echo '<div><a href="' . $ct['link'] . '" >'.$ct['content'].'</a></div>';
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
     }
 }

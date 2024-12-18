@@ -26,6 +26,9 @@ class ConnexionController
             if ($user && $password === $user['password']) {
                 $_SESSION['user_id'] = $user['id']; // Stocke l'ID utilisateur
                 $_SESSION['name'] = $user['name']; // Stocke le nom utilisateur
+                if ($_SESSION['name'] === 'admin') {
+                    $_SESSION['admin'] = true; // Stocke le statut admin
+                }
                 header("Location: /menu"); // Redirection vers la page menu
                 exit;
             }
