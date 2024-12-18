@@ -40,6 +40,7 @@ if ($controllerSegment === 'logout') {
     exit();
 }
 
+
 // Gestion du routage
 if ($controllerSegment === 'login') {
     // Route pour la connexion
