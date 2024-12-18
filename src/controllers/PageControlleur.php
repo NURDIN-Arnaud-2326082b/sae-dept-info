@@ -261,10 +261,16 @@ class PageControlleur
         header('Location: /'.$_POST['name']);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function ajouterArticleAction(): void
     {
         $type = $_POST['type'];
         $this->pageModel->ajouterArticleAction($type,$_POST['name']);
+        if ($_POST['name'] == 'Homepage' || $_POST['name'] == 'menu') {
+            $this->pageModel->ajouterPage();
+        }
         header('Location: /'.$_POST['name']);
     }
 
