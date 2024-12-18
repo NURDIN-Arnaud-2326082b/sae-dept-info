@@ -2,18 +2,18 @@
 
 namespace App\src\controllers;
 use App\src\database\DatabaseConnection;
-use App\src\models\pageModel;
+use App\src\models\PageModel;
 use App\src\views\Page;
 
 class PageControlleur
 {
     private string $name;
-    private pageModel $pageModel;
+    private PageModel $pageModel;
 
     public function __construct(string $name)
     {
         $this->name = $name;
-        $this->pageModel = new pageModel(DatabaseConnection::getInstance());
+        $this->pageModel = new PageModel(DatabaseConnection::getInstance());
     }
 
     public function defaultMethod(): void
@@ -45,12 +45,12 @@ class PageControlleur
             foreach ($content as $ct) {
                 switch ($ct['type']) {
                     case 'banderolle':
-                        echo '<div class="marquee"><form action="/updateArticle" method="post">';
+                        echo '<div class="marquee"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<button type="submit">Enregistrer les modifications</button></form></div>';
                         break;
                     case 'intro':
-                        echo ' <section class="hero-section"><div class="hero-content"><form action="/updateArticle" method="post">';
+                        echo ' <section class="hero-section"><div class="hero-content"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
@@ -91,7 +91,7 @@ class PageControlleur
                 echo '  <div class="articles-grid">';
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'homepage') {
-                        echo '<div class="article-preview"><div class="article-content"><form action="/updateArticle" method="post">';
+                        echo '<div class="article-preview"><div class="article-content"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
@@ -103,7 +103,7 @@ class PageControlleur
                 echo '<div class="panel-container">';
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'menu') {
-                        echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';"><form action="/updateArticle" method="post"><input type="hidden" name="id" value="'.$ct['id_article'].'"/>';
+                        echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['title'] .'</textarea>';
                         echo '<button type="submit">Enregistrer les modifications</button></form></div>';
                     }
@@ -115,7 +115,7 @@ class PageControlleur
             foreach ($content as $ct) {
                 switch ($ct['type']) {
                     case 'texte':
-                        echo '<div class="intro"><form action="/updateArticle" method="post">';
+                        echo '<div class="intro"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<button type="submit">Enregistrer les modifications</button></form></div>';
@@ -125,7 +125,7 @@ class PageControlleur
                         echo '<div class="features-grid">';
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'list' . $cpt) {
-                                echo '<div class="feature"><form action="/updateArticle" method="post">';
+                                echo '<div class="feature"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                                 echo '<img src="/assets/images/img.png" alt="Innovation">';
                                 echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                                 echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
@@ -140,10 +140,10 @@ class PageControlleur
                         $cpt++;
                         break;
                     case 'titre':
-                        echo '<form action="/updateArticle" method="post"><input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/><button type="submit">Enregistrer les modifications</button></form>';
+                        echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/><button type="submit">Enregistrer les modifications</button></form>';
                         break;
                     case 'lien':
-                        echo '<div><form action="/updateArticle" method="post"><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="lien">'. $ct['link'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea><button type="submit">Enregistrer les modifications</button></form></div>';
+                        echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="lien">'. $ct['link'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea><button type="submit">Enregistrer les modifications</button></form></div>';
                         break;
                     default:
                         break;
@@ -225,7 +225,17 @@ class PageControlleur
         $titre = $_POST['titre'];
         $contenu = $_POST['contenu'];
         $lien = $_POST['lien'];
-        $model = new pageModel(DatabaseConnection::getInstance());
-        $model->updateArticleAction($id,$titre, $contenu,$lien);
+        $nm = $_POST['name'];
+        if($lien == null){
+            $lien = '';
+        }
+        if ($contenu == null){
+            $contenu = '';
+        }
+        if ($titre == null){
+            $titre = '';
+        }
+        $this->pageModel->updateArticleAction($id,$titre, $contenu,$lien);
+        header('Location: /'.$nm);
     }
 }

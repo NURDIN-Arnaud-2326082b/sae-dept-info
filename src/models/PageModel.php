@@ -5,7 +5,7 @@ namespace App\src\models;
 use App\src\database\DatabaseConnection;
 use PDO;
 
-class pageModel
+class PageModel
 {
     /**
      *
@@ -38,7 +38,25 @@ class pageModel
         return $stmt->fetchAll();
     }
 
-    public function updateArticleAction(mixed $id, mixed $titre, mixed $contenu, mixed $lien)
+    public function updateArticleAction(int $id ,string $titre, string $contenu, string $lien): void
     {
+        if ($lien == '') {
+            $sql = 'UPDATE article SET title = :title, content = :content WHERE id_article = :id';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':title', $titre, PDO::PARAM_STR);
+            $stmt->bindValue(':content', $contenu, PDO::PARAM_STR);
+        }
+        else {
+            $sql = 'UPDATE article SET title = :title, content = :content, link = :link WHERE id_article = :id';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            $stmt->bindValue(':title', $titre, PDO::PARAM_STR);
+            $stmt->bindValue(':content', $contenu, PDO::PARAM_STR);
+            $stmt->bindValue(':link', $lien, PDO::PARAM_STR);
+        }
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'insertion ou de la mise à jour de l\'article.');
+        }
     }
 }
