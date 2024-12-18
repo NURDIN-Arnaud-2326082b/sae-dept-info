@@ -86,7 +86,7 @@ class PageControlleur
     public function genererArticles(): void
     {
         $content = $this->genererContenu();
-        if ($_SESSION['admin']) {
+        if (isset($_SESSION['admin'])) {
             if ($this->getName() == 'Homepage') {
                 echo '  <div class="articles-grid">';
                 foreach ($content as $ct) {
