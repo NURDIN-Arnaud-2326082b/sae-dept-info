@@ -41,7 +41,7 @@ class PageControlleur
     {
         $content = $this->genererContenu();
         echo '<link rel="stylesheet" href="/assets/styles/'.$this->getName().'.css"><main>';
-        if($_SESSION['admin']){
+        if(isset($_SESSION['admin'])){
             foreach ($content as $ct) {
                 switch ($ct['type']) {
                     case 'banderolle':

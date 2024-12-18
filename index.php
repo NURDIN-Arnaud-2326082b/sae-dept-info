@@ -51,7 +51,7 @@ if ($controllerSegment === 'login') {
         // Appele la méthode de connexion
         $result = $connexionController->connecter($_POST);
         if ($result) {
-            echo $result; // Afficher un message d'erreur si nécessaire
+            echo $result; // Affiche un message d'erreur si nécessaire
         }
     } else {
         // Appeler la méthode par défaut pour afficher la page de connexion
