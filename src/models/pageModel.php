@@ -31,7 +31,7 @@ class pageModel
     }
 
     public function genererContenu(string $name){
-        $sql = 'SELECT title,content,link,type FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
+        $sql = 'SELECT * FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->execute();
