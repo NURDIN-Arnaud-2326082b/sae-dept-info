@@ -1,7 +1,7 @@
-nav {
+.navbar {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Aligne les éléments sur la largeur disponible */
+    align-items: center; /* Centre les éléments verticalement */
     padding: 1em 2em;
     background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -12,33 +12,67 @@ nav {
     z-index: 1000;
 }
 
-nav img {
-    width: 10em;
-    margin-left: 0.5em;
+.navbar h1 {
+    font-size: 1.5em;
+    margin: 0;
+    color: #333;
+    flex-shrink: 0;
 }
 
-.search-bar input[type="text"] {
+.navbar .search-bar {
+    flex-grow: 1; /* Occupe l'espace entre le titre et les actions */
+    margin: 0 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .search-bar input[type="text"] {
     padding: 6px;
-    margin-top: 8px;
     font-size: 17px;
     border: none;
+    margin-right: 8px;
+    width: 100%; /* Ajustez la largeur si nécessaire */
+    max-width: 300px; /* Limite la largeur maximale */
 }
 
-.search-bar input[type="text"]:focus {
+.navbar .search-bar input[type="text"]:focus {
     outline: none;
 }
 
-.search-bar a {
-    display: inline-block;
-    padding: 10px 20px;
+.navbar .actions {
+    display: flex;
+    align-items: center; /* Aligne les boutons verticalement */
+    gap: 0.01em; /* Espace entre les boutons */
+}
+
+.navbar .actions a {
+    padding: 10px 15px;
     font-size: 16px;
-    text-align: center;
     text-decoration: none;
     color: #fff;
-    background-color: #007bff;
     border-radius: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap; /* Évite que le texte soit coupé ou passe à la ligne */
     margin-right: 40px;
+}
+
+.navbar .actions .btn-logout {
+    order: 1; /* Positionne le bouton Se déconnecter en premier */
+    margin-right: 8px; /* Ajuste l'espace entre les boutons */
+}
+
+.navbar .actions .btn-menu {
+    order: 2; /* Positionne le bouton Menu en second */
+}
+
+.navbar .btn-login {
+    background-color: #007bff; /* Couleur du bouton Se connecter */
+}
+
+.navbar .btn-logout {
+    background-color: #dc3545; /* Couleur du bouton Se déconnecter */
+}
+
+.navbar .btn-menu {
+    background-color: #28a745; /* Couleur du bouton Menu */
 }
