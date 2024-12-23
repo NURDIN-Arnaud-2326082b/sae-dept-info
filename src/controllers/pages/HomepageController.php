@@ -1,7 +1,8 @@
 <?php
+
 namespace App\src\controllers\pages;
 
-use App\src\database\DatabaseConnection;
+use App\src\views\HomepageViews\Homepage;
 
 class HomepageController
 {
@@ -10,16 +11,14 @@ class HomepageController
      */
     public function __construct()
     {
-        $database = DatabaseConnection::getInstance();
-        $db = $database->getConnection();
+
     }
 
     /**
-     * Affiche la page d'accueil.
-     *
+     * Constructeur de la classe.
      */
     public function defaultMethod(): void
     {
-        (new \App\src\views\HomepageViews\Homepage())->show();
+        (new homepage())->show();
     }
 }

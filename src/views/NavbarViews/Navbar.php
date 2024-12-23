@@ -1,25 +1,57 @@
 <?php
-namespace App\src\views\NavbarViews;
+    namespace App\src\views\NavbarViews;
+    /**
+     * Navbar Class
+     *
+     * Provides methods to render the navbar of the application.
+     */
+    class Navbar
+    {
 
-class Navbar
-{
-    public function show(array $cssPaths, array $jsPaths): void {
-        foreach ($cssPaths as $cssPath) {
-            echo '<link rel="stylesheet" href="' . $cssPath . '">';
-        }
-        foreach ($jsPaths as $jsPath) {
-            echo '<script src="' . $jsPath . '"></script>';
-        }
-        ?>
-        <nav>
-            <img src="../../assets/images/logo-amu-noir.png" alt="Logo amu noir" class="logo">
+        /**
+         * Affiche la navbar.
+         */
+        public function show($user): void {
 
-            <!-- Search bar with keyboard shortcut -->
-            <div class="search-bar">
-                <label for="search"></label>
-                <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
-            </div>
-        </nav>
-        <?php
+
+            ?>
+            <link rel="stylesheet" href="/assets/styles/navbar.css">
+
+
+            <nav class="navbar">
+                <a href="http://localhost:8080">
+                    <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
+                </a>
+                <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Invité' ?></h1>
+                <div class="search-bar">
+                    <?php
+
+                    $currentFile = basename($_SERVER['PHP_SELF']);
+                    $isHomepage = ($currentFile === 'index.php');
+
+                    if (isset($user['name'])): ?>
+                        <a href="/logout">Se déconnecter</a>
+                  <?php  elseif (!$isHomepage): ?>
+                        <label for="search"></label>
+                        <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
+                    <?php else: ?>
+                        <a href="/login">Se connecter</a>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Ajout du bouton "Menu" -->
+                <div class="menu-button">
+                    <?php if (isset($user['name'])): ?>
+                        <a href="/menu" class="btn btn-menu">Menu</a>
+                    <?php endif; ?>
+                </div>
+
+
+
+
+
+            </nav>
+
+            <?php
+        }
     }
-}

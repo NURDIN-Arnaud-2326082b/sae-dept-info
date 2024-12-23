@@ -2,6 +2,7 @@
 
 namespace App\src\views\LayoutViews;
 
+use App\src\controllers\pages\NavbarController;
 use App\src\views\FooterViews\Footer;
 use App\src\views\NavbarViews\Navbar;
 
@@ -12,7 +13,7 @@ use App\src\views\NavbarViews\Navbar;
  */
 class Layout
 {
-    private Navbar $navbar;
+    private NavbarController $navbar;
     private Footer $footer;
 
     /**
@@ -22,8 +23,9 @@ class Layout
      * @param string $content The content of the page.
      */
     public function __construct(private readonly string $title, private readonly string $content) {
-        $this->navbar = new Navbar();
+        $this->navbar = new NavbarController();
         $this->footer = new Footer();
+
     }
 
 
@@ -43,17 +45,13 @@ class Layout
             <meta name="Description" content="" >
             <link rel="stylesheet" href="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="icon" type="image/png" href="" sizes="32x32" />
-            <link rel="icon" type="image/png" href="" sizes="192x192" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="32x32" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="192x192" />
         </head>
         <body>
             <header>
                 <?php
-
-                $cssPaths = ['/assets/styles/navbar.css', '/assets/styles/another.css'];
-                $jsPaths = ['/assets/js/searchbar.js', '/assets/js/another.js'];
-                $navbar = new Navbar();
-                $navbar->show($cssPaths, $jsPaths);
+                $this->navbar->defaultMethod();
                 ?>
             </header>
             <div id="content-page">
