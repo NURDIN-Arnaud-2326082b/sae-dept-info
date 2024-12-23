@@ -9,6 +9,7 @@ class UserModel extends Model
     protected string $table = 'login';
     protected string $primaryKey = 'id';
 
+
     public function findBylogin(string $email): ?object
     {
         try {
