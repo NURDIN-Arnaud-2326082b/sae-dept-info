@@ -1,0 +1,100 @@
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background: #f0f0f0;
+    color: #333;
+    white-space: nowrap;
+    margin-top: 100px;
+}
+
+.marquee h2 {
+    display: inline-block;
+    padding-left: 50%;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 20px;
+}
+
+.article-preview {
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden; /* Pour que l'image ne dépasse pas */
+    height: 350px; /* Hauteur définie pour chaque article */
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+}
+
+.article-preview:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.article-preview img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Assure que l'image couvre toute la boîte sans déformation */
+    z-index: 1; /* Image en arrière-plan */
+}
+
+.article-content {
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Ajustement pour le bouton */
+}
+
+.article-preview h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.article-preview p {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.article-preview .read-more {
+    align-self: flex-start;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px; /* Réduction du padding */
+    border-radius: 5px;
+    min-width: 120px; /* Largeur minimale du bouton */
+    text-align: center; /* Centrer le texte */
+    height: 40px; /* Ajustement pour la hauteur */
+    line-height: 30px; /* Centrer verticalement le texte */
+}
+
+.article-preview .read-more:hover {
+    text-decoration: underline;
+    background-color: rgba(255, 255, 255, 1);
+}
+

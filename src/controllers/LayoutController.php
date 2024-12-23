@@ -1,19 +1,27 @@
 <?php
 namespace App\src\controllers;
-session_start();
 
-require_once 'src/views/Homepage.php';
-require_once 'src/views/Layout.php';
+use App\src\views\LayoutViews\Layout;
+
+session_start();
 
 class LayoutController
 {
     /**
+     * Constructeur de la classe.
+     */
+    public function __construct()
+    {
+
+    }
+
+    /**
      * Exécute l'action par défaut du contrôleur.
      *
-     * Cette méthode affiche le layout principal du site (avec le titre "Tenrac Website") sans contenu spécifique.
+     * Cette méthode affiche le layout principal du site sans contenu spécifique.
      */
     public function execute(): void
     {
-        (new \App\src\views\LayoutViews\Layout('Tenrac Website', null))->show();
+        (new Layout('', null))->show();
     }
 }

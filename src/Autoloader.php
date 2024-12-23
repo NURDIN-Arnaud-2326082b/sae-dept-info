@@ -2,8 +2,16 @@
 
 namespace App\src;
 
+/**
+ * Autoloader Class
+ *
+ * Provides methods to autoload classes.
+ */
 class Autoloader
 {
+    /**
+     * Register the autoloader.
+     */
     static function register(): void
     {
         spl_autoload_register([
@@ -11,6 +19,12 @@ class Autoloader
             'autoload'
         ]);
     }
+
+    /**
+     * Autoload the class.
+     *
+     * @param string $class
+     */
     static function autoload($class): void
     {
         $class = str_replace(__NAMESPACE__ . '\\', '', $class);
