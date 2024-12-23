@@ -14,6 +14,21 @@ class MenuController
     }
 
     /**
+     * Vérifie si l'utilisateur est connecté.
+     *
+     */
+    function isLogged(): void
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header('Location: /login');
+            exit();
+        }
+    }
+
+
+
+
+    /**
      * Affiche la page d'accueil.
      *
      */

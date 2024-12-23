@@ -1,14 +1,3 @@
-.search-bar input[type="text"] {
-    padding: 6px;
-    margin-top: 8px;
-    font-size: 17px;
-    border: none;
-}
-
-.search-bar input[type="text"]:focus {
-    outline: none;
-}
-
 nav {
     display: flex;
     justify-content: space-between;
@@ -26,4 +15,30 @@ nav {
 nav img {
     width: 10em;
     margin-left: 0.5em;
+}
+
+.search-bar input[type="text"] {
+    padding: 6px;
+    margin-top: 8px;
+    font-size: 17px;
+    border: none;
+}
+
+.search-bar input[type="text"]:focus {
+    outline: none;
+}
+
+.search-bar a {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border-radius: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 40px;
 }

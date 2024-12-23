@@ -1,5 +1,4 @@
 <?php
-
 namespace App\src\database;
 
 use PDO;
@@ -13,7 +12,7 @@ abstract class Model
 
     /**
      * Model constructor.
-     */
+        */
     public function __construct()
     {
         $this->db = DatabaseConnection::getInstance()->getConnection();
