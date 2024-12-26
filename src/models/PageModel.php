@@ -86,7 +86,12 @@ class PageModel
     }
 
     public function ajouterArticleAction(string $type, string $page){
-        $sql = 'INSERT INTO article (title, content, img, link, type) VALUES ("title","body",null,null, :type)';
+        if($type == 'link'){
+            $sql = 'INSERT INTO article (title, content, img, link, type) VALUES ("title","body",null,"link", :type)';
+        }
+        else{
+            $sql = 'INSERT INTO article (title, content, img, link, type) VALUES ("title","body",null,null, :type)';
+        }
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':type', $type, PDO::PARAM_STR);
         if (!$stmt->execute()) {

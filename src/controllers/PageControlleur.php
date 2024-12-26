@@ -161,6 +161,14 @@ class PageControlleur
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
                         echo '</div>';
                         break;
+                    case 'paragraphe':
+                        echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea><button type="submit">Enregistrer les modifications</button></form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                        echo '</div>';
+                        break;
+                    case 'image':
+                        //a remplir
+                        break;
                     default:
                         break;
                 }
@@ -225,6 +233,13 @@ class PageControlleur
                     case 'lien':
                         echo '<div><a href="' . $ct['link'] . '" >'.$ct['content'].'</a></div>';
                         break;
+                    case 'paragraphe':
+                        echo '<div><p>' . $ct['content'] . '</p></div>';
+                        break;
+                    case 'image':
+                            echo '<div>'. $ct['img'] . '</div>';
+
+                            break;
                     default:
                         break;
                 }
@@ -291,6 +306,8 @@ class PageControlleur
          echo "<option value='banderolle'>banderolle en haut de page</option>";
             echo "<option value='lien'>lien</option>";
             echo "<option value='titre'>titre</option>";
+            echo "<option value='paragraphe'>paragraphe</option>";
+            echo "<option value='img'>image</option>";
          echo "</select><button type='submit' name='add'>Ajouter l'article</button></form></div>";
     }
 }
