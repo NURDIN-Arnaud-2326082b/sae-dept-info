@@ -14,10 +14,22 @@
 
 .navbar h1 {
     font-size: 1.5em;
-    margin: 0;
+    padding-left: 700px;
     color: #333;
     flex-shrink: 0;
 }
+
+/*.navbar img {*/
+/*    width: 133.23px;*/
+/*    height: 50.72px;*/
+/*}*/
+
+.navbar img {
+    width: 170px;
+    height: 70px;
+}
+
+
 
 .navbar .search-bar {
     flex-grow: 1; /* Occupe l'espace entre le titre et les actions */

@@ -28,11 +28,7 @@ class Navbar
                 <?php
                 $currentFile = basename($_SERVER['PHP_SELF']);
                 $isHomepage = ($currentFile === 'index.php');
-
-                if (!$isHomepage): ?>
-                    <label for="search"></label>
-                    <input type="text" id="search" placeholder="Recherche... (Ctrl + K)">
-                <?php endif; ?>
+                ?>
             </div>
 
             <!-- Actions -->
