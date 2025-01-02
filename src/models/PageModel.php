@@ -87,10 +87,10 @@ class PageModel
 
     public function ajouterArticleAction(string $type, string $page){
         if($type == 'link'){
-            $sql = 'INSERT INTO article (title, content, img, link, type) VALUES ("title","body",null,"link", :type)';
+            $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body","link", :type)';
         }
         else{
-            $sql = 'INSERT INTO article (title, content, img, link, type) VALUES ("title","body",null,null, :type)';
+            $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, :type)';
         }
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':type', $type, PDO::PARAM_STR);
@@ -100,7 +100,6 @@ class PageModel
         $tmp = $this->recupererDernierId();
         $id = $tmp[0][0];
         $tmp = $this->chercheIdPage($page);
-        var_dump($tmp);
         $id_page = $tmp[0]['id'];
         $sql = 'INSERT INTO articledanspage (id, id_article) VALUES (:id, :id_article)';
         $stmt = $this->connect->getConnection()->prepare($sql);
@@ -109,6 +108,8 @@ class PageModel
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
+        $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (type, image) VALUES (null,null)");
+        $stmt->execute();
     }
 
     public function recupererType(){
@@ -134,7 +135,7 @@ class PageModel
             throw new \Exception('Erreur lors de l\'ajout de la page.');
         }
         $this->cpt++;
-        $sql = 'INSERT INTO article (title, content, img, link, type) VALUES ("title","body",null,null, "intro")';
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null,null, "intro")';
         $stmt = $this->connect->getConnection()->prepare($sql);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
@@ -151,4 +152,50 @@ class PageModel
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
     }
+
+    public function getImageById(mixed $id)
+    {
+        $stmt = $this->connect->getConnection()->prepare("SELECT type, image FROM images WHERE id_image = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updateImageById($id, $type, $data): void
+    {
+        $stmt = $this->connect->getConnection()->prepare("UPDATE images SET type = :type, image = :data WHERE id_image = :id");
+        $stmt->execute([
+            'type' => $type,
+            'data' => $data,
+            'id'   => $id,
+        ]);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function ajouterImage($type, $data, $pageName): void
+    {
+        $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (type, image) VALUES (:type, :data)");
+        $stmt->execute([
+            'type' => $type,
+            'data' => $data,
+        ]);
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "img")';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        }
+        $tmp = $this->recupererDernierId();
+        $id = $tmp[0][0];
+        $tmp = $this->chercheIdPage($pageName);
+        $id_page = $tmp[0]['id'];
+        $sql = 'INSERT INTO articledanspage (id, id_article) VALUES (:id, :id_article)';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':id', $id_page, PDO::PARAM_INT);
+        $stmt->bindValue(':id_article', $id, PDO::PARAM_INT);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        }
+    }
+
 }

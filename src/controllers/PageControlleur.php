@@ -117,7 +117,9 @@ class PageControlleur
                 echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->name."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
             }
-            echo '<section id="content" class="department-content">';
+            if ($content[0] != null) {
+                echo '<section id="content" class="department-content">';
+            }
             $cpt = 1;
             foreach ($content as $ct) {
                 switch ($ct['type']) {
@@ -166,8 +168,17 @@ class PageControlleur
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
                         echo '</div>';
                         break;
-                    case 'image':
-                        //a remplir
+                    case 'img':
+                        echo '<div>';
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                        echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
+                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                        echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
+                        echo '</form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                        echo '</div>';
                         break;
                     default:
                         break;
@@ -183,7 +194,8 @@ class PageControlleur
                         echo '<h3>' . $ct['title'] . '</h3>';
                         echo '<p>' . $ct['content'] . '</p>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
-                        echo '</div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image"></div>';
+                        echo '</div>';
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'"></div>';
                     }
                 }
                 echo '</div>';
@@ -214,7 +226,7 @@ class PageControlleur
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature">';
-                                echo '<img src="/assets/images/img.png" alt="Innovation">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
                                 echo '<h3>' . $ct2['title'] . '</h3>';
                                 echo '<p>' . $ct2['content'] . '</p>';
                                 echo '</div>';
@@ -237,8 +249,9 @@ class PageControlleur
                         echo '<div><p>' . $ct['content'] . '</p></div>';
                         break;
                     case 'image':
-                            echo '<div>'. $ct['img'] . '</div>';
-
+                            echo '<div>';
+                            echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                            echo '</div>';
                             break;
                     default:
                         break;
@@ -282,12 +295,25 @@ class PageControlleur
     public function ajouterArticleAction(): void
     {
         $type = $_POST['type'];
-        $this->pageModel->ajouterArticleAction($type,$_POST['name']);
-        if ($_POST['name'] == 'Homepage' || $_POST['name'] == 'menu') {
+
+        if ($type === 'img' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $fileType = mime_content_type($_FILES['image']['tmp_name']);
+            $fileData = file_get_contents($_FILES['image']['tmp_name']);
+
+            // Ajoutez une méthode spécifique pour enregistrer l'image
+            $this->pageModel->ajouterImage($fileType, $fileData, $_POST['name']);
+        } else {
+            // Appel standard pour les autres types
+            $this->pageModel->ajouterArticleAction($type, $_POST['name']);
+        }
+
+        if ($_POST['name'] === 'Homepage' || $_POST['name'] === 'menu') {
             $this->pageModel->ajouterPage();
         }
+
         header('Location: /'.$_POST['name']);
     }
+
 
     public function genererNewArticle(): void
     {
@@ -298,9 +324,9 @@ class PageControlleur
                 $cpt++;
             }
         }
-       echo '<div><form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
+       echo '<section id="content" class="department-content"><div><form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
        echo '<h2>Ajouter un article</h2>';
-       echo '<select name="type">';
+       echo '<select name="type" id="article-type" onchange="toggleImageUpload(this.value)">';
          echo '<option value="texte">texte avec titre</option>';
          echo "<option value='list".$cpt."'>liste d'article</option>";
          echo "<option value='banderolle'>banderolle en haut de page</option>";
@@ -308,7 +334,43 @@ class PageControlleur
             echo "<option value='titre'>titre</option>";
             echo "<option value='paragraphe'>paragraphe</option>";
             echo "<option value='img'>image</option>";
-         echo "</select><button type='submit' name='add'>Ajouter l'article</button></form></div>";
+            echo '</select>';
+        echo '<div id="image-upload" style="display: none; margin-top: 10px;">';
+        echo '<label for="image">Choisir une image :</label>';
+        echo '<input type="file" name="image" id="image" accept="image/*">';
+        echo '</div>';
+         echo "<button type='submit' name='add'>Ajouter l'article</button></form></div></section>";
     }
+
+    public function getImage(): void
+    {
+        $id = $_GET['id'];
+        $imageData = $this->pageModel->getImageById($id);
+
+        if ($imageData) {
+            header("Content-Type: " . $imageData['type']);
+            echo $imageData['data'];
+        } else {
+            http_response_code(404);
+            echo "Image non trouvée.";
+        }
+    }
+
+    public function updateImage(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
+            $id = $_POST['id'];
+            $fileType = mime_content_type($_FILES['image']['tmp_name']);
+            $fileData = file_get_contents($_FILES['image']['tmp_name']);
+
+            // Mettez à jour l'image dans la base de données
+            $this->pageModel->updateImageById($id, $fileType, $fileData);
+
+            // Redirigez l'utilisateur après mise à jour
+            header('Location: /'.$_POST['name']);
+            exit;
+        }
+    }
+
 }
 
