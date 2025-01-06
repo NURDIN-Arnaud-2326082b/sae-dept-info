@@ -96,8 +96,7 @@ class PageControlleur
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
-                        echo ' <button type="submit">Enregistrer les modifications</button></form></div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image">';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                        echo "<button type='submit'>Enregistrer les modifications</button></form><form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form></div>' . '<img src='/assets/images/formation.png' alt='Illustration de léco-ambassadeur' class='article-image'>";
                         echo '</div>';
                     }
                 }
@@ -300,15 +299,17 @@ class PageControlleur
             $fileData = file_get_contents($_FILES['image']['tmp_name']);
             // Ajoutez une méthode spécifique pour enregistrer l'image
             $this->pageModel->ajouterImage($fileType, $fileData, $_POST['name']);
-        } else {
-            // Appel standard pour les autres types
-            $this->pageModel->ajouterArticleAction($type, $_POST['name']);
         }
-
-        if ($_POST['name'] === 'Homepage' || $_POST['name'] === 'menu') {
-            $this->pageModel->ajouterPage();
+        elseif ($type == 'menu'){
+            $this->pageModel->ajouterPage('Menu','menu');
         }
+        elseif ($type == 'homepage'){
+            $this->pageModel->ajouterPage('Homepage','homepage');
 
+        }
+        else {
+            $this->pageModel->ajouterArticleAction($type, $_POST['name'],null);
+        }
         header('Location: /'.$_POST['name']);
     }
 
