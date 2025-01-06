@@ -23,7 +23,8 @@ class PageModel
      * @param string $name Nom de la page demandée.
      * @return array Tableau contenant les informations de la page demandée.
      */
-    public function genererTitre(string $name){
+    public function genererTitre(string $name): array
+    {
         $sql = 'SELECT pagetitle FROM pages WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -31,7 +32,8 @@ class PageModel
         return $stmt->fetchAll();
     }
 
-    public function genererContenu(string $name){
+    public function genererContenu(string $name): bool|array
+    {
         $sql = 'SELECT * FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -77,7 +79,8 @@ class PageModel
         }
     }
 
-    public function chercheIdPage(string $name){
+    public function chercheIdPage(string $name): bool|array
+    {
         $sql = 'SELECT id FROM pages WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -85,7 +88,8 @@ class PageModel
         return $stmt->fetchAll();
     }
 
-    public function ajouterArticleAction(string $type, string $page){
+    public function ajouterArticleAction(string $type, string $page): void
+    {
         if($type == 'link'){
             $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body","link", :type)';
         }
@@ -112,21 +116,24 @@ class PageModel
         $stmt->execute();
     }
 
-    public function recupererType(){
+    public function recupererType(): bool|array
+    {
         $sql = 'SELECT DISTINCT type FROM article';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function recupererDernierId(){
+    public function recupererDernierId(): bool|array
+    {
         $sql = 'SELECT MAX(id_article) FROM article';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
-    public function ajouterPage(){
+    public function ajouterPage(): void
+    {
         $name = 'page'.$this->cpt;
         $sql = 'INSERT INTO pages (name, pagetitle) VALUES (:name, "title")';
         $stmt = $this->connect->getConnection()->prepare($sql);
