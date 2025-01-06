@@ -14,7 +14,7 @@ class Navbar
     public function show($user): void {
         ?>
         <link rel="stylesheet" href="/assets/styles/navbar.css">
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
         <nav class="navbar">
             <a href="http://localhost:8080">
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
@@ -38,10 +38,10 @@ class Navbar
             <!-- Actions -->
             <div class="actions">
                 <?php if (isset($user['name'])): ?>
-                    <a href="/logout" class="btn btn-logout">Se déconnecter</a>
-                    <a href="/menu" class="btn btn-menu">Menu</a>
+                    <a href="/logout" class="btn btn-logout">Se déconnecter <i class="fa-solid fa-right-from-bracket"></i></a>
+                    <a href="/menu" class="btn btn-menu"><i class="fa fa-home"></i> Menu</a>
                 <?php else: ?>
-                    <a href="/login" class="btn btn-login">Se connecter</a>
+                    <a href="/login" class="btn btn-login">Se connecter <i class="fa-solid fa-right-to-bracket"></i></a>
                 <?php endif; ?>
             </div>
         </nav>

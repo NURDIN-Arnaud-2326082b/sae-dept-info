@@ -95,7 +95,7 @@ class PageControlleur
                         echo '<div class="article-preview"><div class="article-content"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
-                        echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
+                        echo '<a href="' . $ct['link'] . '" class="read-more"> En savoir plus</a>';
                         echo ' <button type="submit">Enregistrer les modifications</button></form></div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image">';
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
                         echo '</div>';
@@ -174,7 +174,7 @@ class PageControlleur
                         echo '<div class="article-preview"><div class="article-content">';
                         echo '<h3>' . $ct['title'] . '</h3>';
                         echo '<p>' . $ct['content'] . '</p>';
-                        echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
+                        echo '<a href="' . $ct['link'] . '" class="read-more"><i class="fa-solid fa-circle-info"></i> En savoir plus</a>';
                         echo '</div>' . '<img src="/assets/images/formation.png" alt="Illustration de l\'éco-ambassadeur" class="article-image"></div>';
                     }
                 }
