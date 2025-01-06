@@ -15,35 +15,42 @@ main {
 .marquee {
     background: linear-gradient(90deg, #0056b3, #007bff);
     color: #fff;
-    padding: 50px 10px; /* Réduire le padding haut et gauche */
+    padding: 20px 10px; /* Réduire la hauteur */
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     border-radius: 8px;
-    margin-bottom: 20px;
-    width: 100%; /* Pour couvrir toute la largeur */
-    position: relative; /* Ajout pour contrôler le positionnement */
-    overflow: hidden; /* Empêche le défilement à l'extérieur */
-    white-space: nowrap; /* Empêche le texte de se chevaucher */
-    z-index: 10; /* Assurer que la banderole reste au-dessus de la navbar */
+    margin: 80px auto 20px; /* Centrer horizontalement et ajouter un espace en haut */
+    width: 100%; /* Réduire la largeur pour éviter qu'elle dépasse */
+    max-width: 2000px; /* Limiter la largeur maximale */
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 10;
+    box-sizing: border-box; /* Inclut les bordures et le padding dans la largeur */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Effet d'ombre */
+    border: 2px solid #004b93; /* Bordure subtile */
 }
+
+
+
 
 .marquee h2 {
     display: inline-block;
     animation: marquee 20s linear infinite;
-    width: 100%; /* Assure que le texte prenne toute la largeur */
-    box-sizing: border-box; /* Assure que le padding et le texte ne dépassent pas la largeur */
+    width: 100%;
+    line-height: 1.5; /* Meilleure lisibilité */
+    box-sizing: border-box;
 }
 
 @keyframes marquee {
     0% {
-        transform: translateX(0); /* Position normale à gauche */
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(-100%); /* Défilement complet à gauche */
+        transform: translateX(-100%);
     }
 }
-
 
 /* Hero Section */
 .hero-section {
@@ -127,8 +134,10 @@ main {
 
 .article-image {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
+    height: 150px; /* Taille uniforme */
+    object-fit: cover; /* Coupe pour éviter les déformations */
+    border-radius: 8px; /* Coins arrondis */
+    margin-bottom: 10px; /* Espace sous l'image */
 }
 
 /* Menu Panels */
