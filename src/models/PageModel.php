@@ -142,7 +142,7 @@ class PageModel
             throw new \Exception('Erreur lors de l\'ajout de la page.');
         }
         $this->cpt++;
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null,null, "intro")';
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "intro")';
         $stmt = $this->connect->getConnection()->prepare($sql);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
