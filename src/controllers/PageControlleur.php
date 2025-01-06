@@ -40,7 +40,7 @@ class PageControlleur
     public function genererIntro(): void
     {
         $content = $this->genererContenu();
-        echo '<link rel="stylesheet" href="/assets/styles/'.$this->getName().'.css"><main>';
+        echo '<link rel="stylesheet" href="/assets/styles/page.css"><main>';
         if (isset($_SESSION['admin']) && $_SESSION['admin']) {
             foreach ($content as $ct) {
                 switch ($ct['type']) {
