@@ -16,10 +16,11 @@ class Page
     public function show(): void
     {
         ob_start();
+        echo '<script src="/assets/js/page.js"></script>';
         $page = $this->pageControlleur->genererTitre();
         $this->pageControlleur->genererIntro();
         $this->pageControlleur->genererArticles();
-        if($_SESSION['admin']){
+        if (isset($_SESSION['admin']) && $_SESSION['admin']) {
             $this->pageControlleur->genererNewArticle();
         }
         (new Layout($page[0]['pagetitle'], ob_get_clean()))->show();

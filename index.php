@@ -71,7 +71,7 @@ if ($controllerSegment === 'login') {
     $actionName = $methodSegment . 'Action';
     $controller = new PageControlleur($controllerSegment);
     $cssPaths = ["/assets/styles/{$controllerSegment}.css"];
-    $jsPaths = ["/assets/js/{$controllerSegment}.js"];
+    $jsPaths = ["/assets/js/page.js"];
 
     if (method_exists($controller, $actionName)) {
         $controller->$actionName($cssPaths, $jsPaths);
