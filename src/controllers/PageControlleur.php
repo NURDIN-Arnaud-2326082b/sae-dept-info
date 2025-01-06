@@ -295,11 +295,9 @@ class PageControlleur
     public function ajouterArticleAction(): void
     {
         $type = $_POST['type'];
-
         if ($type === 'img' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $fileType = mime_content_type($_FILES['image']['tmp_name']);
             $fileData = file_get_contents($_FILES['image']['tmp_name']);
-
             // Ajoutez une méthode spécifique pour enregistrer l'image
             $this->pageModel->ajouterImage($fileType, $fileData, $_POST['name']);
         } else {
@@ -324,7 +322,7 @@ class PageControlleur
                 $cpt++;
             }
         }
-       echo '<section id="content" class="department-content"><div><form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
+       echo '<section id="content" class="department-content"><div><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->name.'"/>';
        echo '<h2>Ajouter un article</h2>';
        echo '<select name="type" id="article-type" onchange="toggleImageUpload(this.value)">';
          echo '<option value="texte">texte avec titre</option>';
@@ -349,26 +347,24 @@ class PageControlleur
 
         if ($imageData) {
             header("Content-Type: " . $imageData['type']);
-            echo $imageData['data'];
+            echo $imageData['image'];
         } else {
             http_response_code(404);
             echo "Image non trouvée.";
         }
     }
 
-    public function updateImage(): void
+    public function updateImageAction(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-            $id = $_POST['id'];
+            $id = $_POST['id'] ?? null;
+            $name = $_POST['name'] ?? null;
             $fileType = mime_content_type($_FILES['image']['tmp_name']);
             $fileData = file_get_contents($_FILES['image']['tmp_name']);
 
-            // Mettez à jour l'image dans la base de données
             $this->pageModel->updateImageById($id, $fileType, $fileData);
 
-            // Redirigez l'utilisateur après mise à jour
-            header('Location: /'.$_POST['name']);
-            exit;
+            header('Location: /' . $name);
         }
     }
 

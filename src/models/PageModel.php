@@ -163,11 +163,15 @@ class PageModel
     public function updateImageById($id, $type, $data): void
     {
         $stmt = $this->connect->getConnection()->prepare("UPDATE images SET type = :type, image = :data WHERE id_image = :id");
-        $stmt->execute([
-            'type' => $type,
-            'data' => $data,
-            'id'   => $id,
-        ]);
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            echo 'ok';
+        } else {
+            error_log("Erreur SQL : " . implode(' | ', $stmt->errorInfo()));
+        }
     }
 
     /**
@@ -175,11 +179,12 @@ class PageModel
      */
     public function ajouterImage($type, $data, $pageName): void
     {
+        error_log("Type d'image : $type");
+        error_log("Taille des données d'image : " . strlen($data));
         $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (type, image) VALUES (:type, :data)");
-        $stmt->execute([
-            'type' => $type,
-            'data' => $data,
-        ]);
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
+        $stmt->execute();
         $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "img")';
         $stmt = $this->connect->getConnection()->prepare($sql);
         if (!$stmt->execute()) {
