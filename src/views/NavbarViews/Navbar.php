@@ -19,7 +19,7 @@
 
 
             <nav class="navbar">
-                <a href="http://localhost:8080">
+                <a href="/">
                     <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
                 </a>
                 <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Invité' ?></h1>
