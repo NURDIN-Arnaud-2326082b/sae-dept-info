@@ -6,7 +6,7 @@
     padding: 1em 2em; /* Espacement confortable pour les grands écrans */
     background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: static;
     top: 0;
     left: 0;
     width: 100%;

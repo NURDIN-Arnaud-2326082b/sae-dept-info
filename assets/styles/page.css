@@ -20,7 +20,7 @@ main {
     font-size: 1.2rem;
     font-weight: bold;
     border-radius: 8px;
-    margin: 80px auto 20px; /* Centrer horizontalement et ajouter un espace en haut */
+    margin: 20px auto 20px; /* Centrer horizontalement et ajouter un espace en haut */
     width: 100%; /* Réduire la largeur pour éviter qu'elle dépasse */
     max-width: 2000px; /* Limiter la largeur maximale */
     position: relative;
@@ -31,9 +31,6 @@ main {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Effet d'ombre */
     border: 2px solid #004b93; /* Bordure subtile */
 }
-
-
-
 
 .marquee h2 {
     display: inline-block;
@@ -100,11 +97,27 @@ main {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Pour positionner l'image de fond */
 }
 
 .article-content {
     padding: 20px;
     text-align: center;
+    position: relative; /* Pour que le contenu reste au-dessus de l'image */
+    z-index: 1; /* S'assurer que le contenu soit au-dessus de l'image */
+}
+
+.article-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/formation.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.3; /* Rendre l'image semi-transparente */
+    z-index: 0; /* Envoyer l'image derrière le contenu */
 }
 
 .article-content h3 {
@@ -139,6 +152,7 @@ main {
     border-radius: 8px; /* Coins arrondis */
     margin-bottom: 10px; /* Espace sous l'image */
 }
+
 
 /* Menu Panels */
 .panel-container {
