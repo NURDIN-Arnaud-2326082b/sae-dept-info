@@ -158,14 +158,14 @@ main {
 .panel-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 10px; /* Réduit l'écart entre les panels */
 }
 
 .panel {
-    flex: 1 1 calc(33.333% - 20px);
+    flex: 1 1 calc(25% - 5px); /* Réduit la largeur des panels à 25% */
     background: #007bff;
     color: #fff;
-    padding: 20px;
+    padding: 8px; /* Réduit l'espacement intérieur des panels */
     text-align: center;
     border-radius: 8px;
     cursor: pointer;
@@ -175,6 +175,7 @@ main {
 .panel:hover {
     background: #0056b3;
 }
+
 
 /* Features Grid */
 .features-grid {
