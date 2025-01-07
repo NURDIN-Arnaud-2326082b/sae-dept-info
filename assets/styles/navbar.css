@@ -13,7 +13,7 @@
     z-index: 1000;
     box-sizing: border-box;
     flex-wrap: nowrap; /* Empêche les éléments de passer à la ligne */
-    overflow: hidden; /* Évite tout débordement */
+    overflow: hidden; /* Évite tout débordement !! */
 }
 
 /* Section Logo + Texte */
