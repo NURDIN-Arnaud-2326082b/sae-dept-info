@@ -1,90 +1,116 @@
+/* Navbar - Version de base pour ordinateur */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Aligne les éléments sur la largeur disponible */
-    align-items: center; /* Centre les éléments verticalement */
-    padding: 1em 2em;
+    justify-content: space-between; /* Aligne les éléments sur la même ligne */
+    align-items: center;
+    padding: 1em 2em; /* Espacement confortable pour les grands écrans */
     background-color: #f8f8f8;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    position: static;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
+    box-sizing: border-box;
+    flex-wrap: nowrap; /* Empêche les éléments de passer à la ligne */
+    overflow: hidden; /* Évite tout débordement !! */
 }
 
+/* Section Logo + Texte */
 .navbar h1 {
-    font-size: 1.5em;
-    padding-left: 500px;
+    font-size: 1.5em; /* Taille du texte */
     color: #333;
-    flex-shrink: 0;
+    margin: 0;
+    padding-left: 325px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centre le texte horizontalement */
+    gap: 20px; /* Espace entre le logo et le texte */
+    white-space: nowrap; /* Empêche le retour à la ligne */
+    flex-grow: 1; /* Permet au texte de se centrer dans l'espace disponible */
+    text-align: center;
 }
 
-/*.navbar img {*/
-/*    width: 133.23px;*/
-/*    height: 50.72px;*/
-/*}*/
-
+/* Ajuste les styles pour le logo */
 .navbar img {
-    width: 170px;
-    height: 70px;
+    width: 170px; /* Taille du logo */
+    height: auto;
+    margin-right: 20px; /* Espace à droite du logo */
+    flex-shrink: 0; /* Empêche le logo de se réduire */
 }
 
 
-
+/* Barre de recherche */
 .navbar .search-bar {
-    flex-grow: 1; /* Occupe l'espace entre le titre et les actions */
+    flex-grow: 1; /* Occupe l'espace entre les éléments */
     margin: 0 2em;
     display: flex;
     align-items: center;
     justify-content: center;
+    max-width: 300px; /* Limite la largeur */
 }
 
 .navbar .search-bar input[type="text"] {
     padding: 6px;
-    font-size: 17px;
-    border: none;
-    margin-right: 8px;
-    width: 100%; /* Ajustez la largeur si nécessaire */
-    max-width: 300px; /* Limite la largeur maximale */
+    font-size: 1rem; /* Taille normale */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
 }
 
 .navbar .search-bar input[type="text"]:focus {
     outline: none;
 }
 
+/* Boutons d'actions */
 .navbar .actions {
     display: flex;
-    align-items: center; /* Aligne les boutons verticalement */
-    gap: 0.01em; /* Espace entre les boutons */
+    align-items: center;
+    gap: 15px; /* Espace entre les boutons */
 }
 
 .navbar .actions a {
-    padding: 10px 15px;
-    font-size: 16px;
+    padding: 10px 15px; /* Taille normale des boutons */
+    font-size: 1rem; /* Texte standard */
     text-decoration: none;
     color: #fff;
     border-radius: 5px;
-    white-space: nowrap; /* Évite que le texte soit coupé ou passe à la ligne */
-    margin-right: 40px;
-}
-
-.navbar .actions .btn-logout {
-    order: 1; /* Positionne le bouton Se déconnecter en premier */
-    margin-right: 8px; /* Ajuste l'espace entre les boutons */
-}
-
-.navbar .actions .btn-menu {
-    order: 2; /* Positionne le bouton Menu en second */
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
 }
 
 .navbar .btn-login {
-    background-color: #007bff; /* Couleur du bouton Se connecter */
+    background-color: #007bff;
 }
 
 .navbar .btn-logout {
-    background-color: #dc3545; /* Couleur du bouton Se déconnecter */
+    background-color: #dc3545;
 }
 
 .navbar .btn-menu {
-    background-color: #28a745; /* Couleur du bouton Menu */
+    background-color: #28a745;
+}
+
+/* Styles pour les petits écrans */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.5em 1em; /* Réduction du padding pour mobile */
+    }
+
+    .navbar h1 {
+        font-size: 1.2em; /* Taille légèrement réduite pour mobile */
+        padding-left: 25px;
+    }
+
+    .navbar img {
+        width: 100px; /* Réduction de la taille du logo */
+    }
+
+    .navbar .search-bar {
+        margin: 0 0.5em; /* Réduction de l'espace latéral */
+    }
+
+    .navbar .actions a {
+        padding: 6px 10px; /* Taille plus petite des boutons */
+        font-size: 0.9rem; /* Réduction de la taille du texte */
+    }
 }

@@ -12,6 +12,7 @@ class DatabaseConnection
     /**
      * DatabaseConnection constructor.
      */
+
     private function __construct()
     {
         $host = $_ENV['DB_HOST'];
@@ -33,6 +34,7 @@ class DatabaseConnection
      *
      * @return DatabaseConnection|null
      */
+
     public static function getInstance(): ?DatabaseConnection
     {
         if (self::$instance == null) {
@@ -47,6 +49,7 @@ class DatabaseConnection
      *
      * @return PDO
      */
+
     public function getConnection(): PDO
     {
         return $this->conn;

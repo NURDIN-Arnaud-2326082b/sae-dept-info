@@ -40,7 +40,7 @@ class PageControlleur
     public function genererIntro(): void
     {
         $content = $this->genererContenu();
-        echo '<link rel="stylesheet" href="/assets/styles/'.$this->getName().'.css"><main>';
+        echo '<link rel="stylesheet" href="/assets/styles/page.css"><main>';
         if (isset($_SESSION['admin']) && $_SESSION['admin']) {
             foreach ($content as $ct) {
                 switch ($ct['type']) {
@@ -216,16 +216,19 @@ class PageControlleur
                 echo '  <div class="articles-grid">';
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'homepage') {
-                        echo '<div class="article-preview"><div class="article-content">';
+                        echo '<div class="article-preview">';
+                        echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . htmlspecialchars($ct['title'], ENT_QUOTES) . '" class="article-image">';
+                        echo '<div class="article-content">';
                         echo '<h3>' . $ct['title'] . '</h3>';
                         echo '<p>' . $ct['content'] . '</p>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
-                        echo '</div>';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'"></div>';
+                        echo '</div>'; // Fin de article-content
+                        echo '</div>'; // Fin de article-preview
                     }
                 }
-                echo '</div>';
-            } elseif ($this->getName() == 'menu') {
+                echo '</div>'; // Fin de articles-grid
+            }
+            elseif ($this->getName() == 'menu') {
                 echo '<div class="panel-container">';
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'menu') {

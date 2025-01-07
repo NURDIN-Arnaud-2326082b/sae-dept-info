@@ -16,7 +16,7 @@ class Navbar
         <link rel="stylesheet" href="/assets/styles/navbar.css">
 
         <nav class="navbar">
-            <a href="http://localhost:8080">
+            <a href="/">
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
 

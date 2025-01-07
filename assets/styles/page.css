@@ -1,0 +1,246 @@
+/* Styles généraux */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Marquee - Banderole */
+.marquee {
+    background: linear-gradient(90deg, #0056b3, #007bff);
+    color: #fff;
+    padding: 20px 10px; /* Réduire la hauteur */
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    margin: 20px auto 20px; /* Centrer horizontalement et ajouter un espace en haut */
+    width: 100%; /* Réduire la largeur pour éviter qu'elle dépasse */
+    max-width: 2000px; /* Limiter la largeur maximale */
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 10;
+    box-sizing: border-box; /* Inclut les bordures et le padding dans la largeur */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Effet d'ombre */
+    border: 2px solid #004b93; /* Bordure subtile */
+}
+
+.marquee h2 {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+    width: 100%;
+    line-height: 1.5; /* Meilleure lisibilité */
+    box-sizing: border-box;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('/assets/images/img.png') no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    text-align: center;
+    padding: 60px 20px;
+    border-radius: 8px;
+}
+
+.hero-section .hero-content h1 {
+    font-size: 3rem;
+    margin: 0 0 20px;
+}
+
+.hero-section .hero-content p {
+    font-size: 1.25rem;
+    margin: 0 0 20px;
+}
+
+.hero-section .btn-scroll {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.hero-section .btn-scroll:hover {
+    background: #0056b3;
+}
+
+/* Articles Grid */
+.articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.article-preview {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Pour positionner l'image de fond */
+}
+
+.article-content {
+    padding: 20px;
+    text-align: center;
+    position: relative; /* Pour que le contenu reste au-dessus de l'image */
+    z-index: 1; /* S'assurer que le contenu soit au-dessus de l'image */
+}
+
+.article-preview::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/images/') no-repeat center center;
+    background-size: cover;
+    opacity: 0.3; /* Rendre l'image semi-transparente */
+    z-index: 0; /* Envoyer l'image derrière le contenu */
+}
+
+.article-content h3 {
+    font-size: 1.5rem;
+    margin: 0 0 10px;
+}
+
+.article-content p {
+    font-size: 1rem;
+    margin: 0 0 20px;
+}
+
+.article-content .read-more {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.article-content .read-more:hover {
+    background: #0056b3;
+}
+
+.article-image {
+    width: 100%;
+    height: 150px; /* Taille uniforme */
+    object-fit: cover; /* Coupe pour éviter les déformations */
+    border-radius: 8px; /* Coins arrondis */
+    margin-bottom: 10px; /* Espace sous l'image */
+}
+
+
+/* Menu Panels */
+.panel-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Réduit l'écart entre les panels */
+}
+
+.panel {
+    flex: 1 1 calc(25% - 5px); /* Réduit la largeur des panels à 25% */
+    background: #007bff;
+    color: #fff;
+    padding: 8px; /* Réduit l'espacement intérieur des panels */
+    text-align: center;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.panel:hover {
+    background: #0056b3;
+}
+
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.feature {
+    text-align: center;
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.feature img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Boutons d'administration */
+button,
+form button {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+button:hover,
+form button:hover {
+    background: #0056b3;
+}
+
+/* Dropzone */
+.dropzone {
+    display: block;
+    padding: 10px;
+    background: #f1f1f1;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.dropzone:hover {
+    background: #e0e0e0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-section .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .articles-grid,
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
