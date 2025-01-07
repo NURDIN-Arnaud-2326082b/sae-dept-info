@@ -62,7 +62,7 @@ class PageModel
         }
     }
 
-    public function deleteArticleAction(int $id): void
+    public function deleteArticleAction(int $id, string $type): void
     {
         $sql = 'DELETE FROM article WHERE id_article = :id';
         $stmt = $this->connect->getConnection()->prepare($sql);
@@ -76,11 +76,14 @@ class PageModel
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de la suppression de l\'article.');
         }
-        $sql = 'DELETE FROM images WHERE id_article = :id';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de la suppression de l\'article.');
+        $motif = '/^list\d+$/';
+        if ($type == 'intro' || $type == 'img'  || preg_match($motif, $type) || $type = 'homepage'){
+            $sql = 'DELETE FROM images WHERE id_image = :id';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            if (!$stmt->execute()) {
+                throw new \Exception('Erreur lors de la suppression de l\'article.');
+            }
         }
     }
 
