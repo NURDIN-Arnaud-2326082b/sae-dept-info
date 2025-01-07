@@ -107,8 +107,14 @@ class PageModel
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
         $this->insererArticleDansPage($page);
-        $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (type, image) VALUES (null,null)");
-        $stmt->execute();
+        $motif = '/^list\d+$/';
+        if ($type == 'intro' || $type == 'img'  || preg_match($motif, $type)){
+            $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
+            $tmp = $this->recupererDernierId();
+            $id_img = $tmp[0][0];
+            $stmt->bindValue(':id',$id_img,PDO::PARAM_INT);
+            $stmt->execute();
+        }
     }
 
     public function recupererType(): bool|array
@@ -151,10 +157,14 @@ class PageModel
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
         $this->insererArticleDansPage($name);
-        $sql = 'INSERT INTO images (image,type) VALUES (,null, null)';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'image.');
+        if($type == 'homepage'){
+            $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
+            $tmp = $this->recupererDernierId();
+            $id_img = $tmp[0][0];
+            $stmt->bindValue(':id',$id_img,PDO::PARAM_INT);
+            if (!$stmt->execute()) {
+                throw new \Exception('Erreur lors de l\'ajout de l\'image.');
+            }
         }
     }
 
@@ -221,5 +231,10 @@ class PageModel
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
+    }
+
+    public function ajouterPDF(string $fileType, bool|string $fileData, mixed $name)
+    {
+
     }
 }

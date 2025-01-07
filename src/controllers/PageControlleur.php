@@ -52,6 +52,13 @@ class PageControlleur
                         break;
                     case 'intro':
                         echo ' <section class="hero-section"><div class="hero-content"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                        echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
+                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                        echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
+                        echo '</form>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
@@ -72,6 +79,13 @@ class PageControlleur
                         break;
                     case 'intro':
                         echo ' <section class="hero-section"><div class="hero-content">';
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                        echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
+                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                        echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
+                        echo '</form>';
                         echo '<h1>' . $ct['title'] . '</h1>';
                         echo '<p>' . $ct['content'] . '</p>';
                         echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
@@ -96,7 +110,14 @@ class PageControlleur
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
-                        echo "<button type='submit'>Enregistrer les modifications</button></form><form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form></div>' . '<img src='/assets/images/formation.png' alt='Illustration de léco-ambassadeur' class='article-image'>";
+                        echo "<button type='submit'>Enregistrer les modifications</button></form><form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form></div>";
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                        echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
+                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                        echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
+                        echo '</form>';
                         echo '</div>';
                     }
                 }
@@ -136,7 +157,13 @@ class PageControlleur
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
-                                echo '<img src="/assets/images/img.png" alt="Innovation">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                                echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                                echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
+                                echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                                echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                                echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
+                                echo '</form>';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                                 echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct2['content'] .'</textarea>';
                                 echo '<button type="submit">Enregistrer les modifications</button></form>';
@@ -300,7 +327,16 @@ class PageControlleur
             // Ajoutez une méthode spécifique pour enregistrer l'image
             $this->pageModel->ajouterImage($fileType, $fileData, $_POST['name']);
         }
-        elseif ($type == 'menu'){
+        elseif ($type === 'pdf' && isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+            $fileType = mime_content_type($_FILES['file']['tmp_name']);
+            $fileData = file_get_contents($_FILES['file']['tmp_name']);
+
+            if ($fileType !== 'application/pdf') {
+                throw new \Exception("Le fichier uploadé n'est pas un PDF valide.");
+            }
+
+            $this->pageModel->ajouterPDF($fileType, $fileData, $_POST['name']);
+        }elseif ($type == 'menu'){
             $this->pageModel->ajouterPage('Menu','menu');
         }
         elseif ($type == 'homepage'){
