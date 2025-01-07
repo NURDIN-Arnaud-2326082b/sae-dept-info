@@ -29,3 +29,4 @@ class Connexion
         (new Layout('Connexion', ob_get_clean()))->show();
     }
 }
+?>
