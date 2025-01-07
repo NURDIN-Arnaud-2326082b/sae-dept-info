@@ -7,14 +7,13 @@ use PDO;
 
 class PageModel
 {
-    private int $cpt = 1;
+    private static int $cpt = 1;
     /**
      *
      * @param DatabaseConnection $connect Instance de la classe DbConnect pour la connexion à la base de données.
      */
     public function __construct(private DatabaseConnection $connect)
     {
-
     }
 
     /**
@@ -77,6 +76,12 @@ class PageModel
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de la suppression de l\'article.');
         }
+        $sql = 'DELETE FROM images WHERE id_article = :id';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de la suppression de l\'article.');
+        }
     }
 
     public function chercheIdPage(string $name): bool|array
@@ -88,7 +93,7 @@ class PageModel
         return $stmt->fetchAll();
     }
 
-    public function ajouterArticleAction(string $type, string $page): void
+    public function ajouterArticleAction(string $type, string $page, mixed $link): void
     {
         if($type == 'link'){
             $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body","link", :type)';
@@ -101,17 +106,7 @@ class PageModel
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
-        $tmp = $this->recupererDernierId();
-        $id = $tmp[0][0];
-        $tmp = $this->chercheIdPage($page);
-        $id_page = $tmp[0]['id'];
-        $sql = 'INSERT INTO articledanspage (id, id_article) VALUES (:id, :id_article)';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        $stmt->bindValue(':id', $id_page, PDO::PARAM_INT);
-        $stmt->bindValue(':id_article', $id, PDO::PARAM_INT);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
-        }
+        $this->insererArticleDansPage($page);
         $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (type, image) VALUES (null,null)");
         $stmt->execute();
     }
@@ -132,31 +127,34 @@ class PageModel
         return $stmt->fetchAll();
     }
 
-    public function ajouterPage(): void
+    public function ajouterPage(string $page, string $type): void
     {
         $name = 'page'.$this->cpt;
+        ++$this->cpt;
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",:link, :type)';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':link', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        }
+        $this->insererArticleDansPage($page);
         $sql = 'INSERT INTO pages (name, pagetitle) VALUES (:name, "title")';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de la page.');
         }
-        $this->cpt++;
         $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "intro")';
         $stmt = $this->connect->getConnection()->prepare($sql);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
-        $sql = 'INSERT INTO articledanspage (id, id_article) VALUES (:id, :id_article)';
+        $this->insererArticleDansPage($name);
+        $sql = 'INSERT INTO images (image,type) VALUES (,null, null)';
         $stmt = $this->connect->getConnection()->prepare($sql);
-        $tmp = $this->recupererDernierId();
-        $id = $tmp[0][0];
-        $tmp = $this->chercheIdPage($name);
-        $id_page = $tmp[0]['id'];
-        $stmt->bindValue(':id', $id_page, PDO::PARAM_INT);
-        $stmt->bindValue(':id_article', $id, PDO::PARAM_INT);
         if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+            throw new \Exception('Erreur lors de l\'ajout de l\'image.');
         }
     }
 
@@ -210,4 +208,18 @@ class PageModel
         }
     }
 
+    public function insererArticleDansPage(mixed $page){
+        $tmp = $this->recupererDernierId();
+        $id = $tmp[0][0];
+        $tmp = $this->chercheIdPage($page);
+        $id_page = $tmp[0]['id'];
+        $sql = 'INSERT INTO articledanspage (id, id_article) VALUES (:id, :id_article)';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':id', $id_page, PDO::PARAM_INT);
+        $stmt->bindValue(':id_article', $id, PDO::PARAM_INT);
+
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        }
+    }
 }
