@@ -137,6 +137,7 @@ class PageControlleur
                 echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->name."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
             }
+
             if ($content[0] != null) {
                 echo '<section id="content" class="department-content">';
             }
