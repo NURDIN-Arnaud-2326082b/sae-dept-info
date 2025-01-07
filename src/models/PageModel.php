@@ -7,12 +7,11 @@ use PDO;
 
 class PageModel
 {
-    private static int $cpt = 1;
     /**
      *
      * @param DatabaseConnection $connect Instance de la classe DbConnect pour la connexion à la base de données.
      */
-    public function __construct(private DatabaseConnection $connect)
+    public function __construct(private readonly DatabaseConnection $connect)
     {
     }
 
@@ -96,7 +95,7 @@ class PageModel
         return $stmt->fetchAll();
     }
 
-    public function ajouterArticleAction(string $type, string $page, mixed $link): void
+    public function ajouterArticleAction(string $type, string $page): void
     {
         if($type == 'link'){
             $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body","link", :type)';
@@ -138,8 +137,10 @@ class PageModel
 
     public function ajouterPage(string $page, string $type): void
     {
-        $name = 'page'.$this->cpt;
-        ++$this->cpt;
+        $cpt = $this->recupererDernierePage();
+        $cpt = $cpt[0][0];
+        $cpt = $cpt + 1;
+        $name = 'page'.$cpt;
         $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",:link, :type)';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':link', $name, PDO::PARAM_STR);
@@ -239,5 +240,13 @@ class PageModel
     public function ajouterPDF(string $fileType, bool|string $fileData, mixed $name)
     {
 
+    }
+
+    public function recupererDernierePage(): bool|array
+    {
+        $sql = 'SELECT MAX(id) FROM pages';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }
