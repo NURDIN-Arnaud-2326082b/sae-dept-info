@@ -22,12 +22,12 @@ class PageControlleur
         (new Page($this->name, $connexionController))->show();
     }
 
-    public function genererTitre()
+    public function genererTitre(): array
     {
         return $this->pageModel->genererTitre($this->name);
     }
 
-    public function genererContenu()
+    public function genererContenu(): bool|array
     {
         return $this->pageModel->genererContenu($this->name);
     }
