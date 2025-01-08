@@ -34,18 +34,19 @@ main {
 
 .marquee h2 {
     display: inline-block;
-    animation: marquee 20s linear infinite;
-    width: 100%;
+    animation: marquee 15s linear infinite;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
     line-height: 1.5; /* Meilleure lisibilité */
     box-sizing: border-box;
 }
 
+/* Animation pour le texte défilant */
 @keyframes marquee {
     0% {
-        transform: translateX(0);
+        transform: translateX(130%); /* Démarrer complètement à droite */
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-140%); /* Terminer complètement à gauche */
     }
 }
 
