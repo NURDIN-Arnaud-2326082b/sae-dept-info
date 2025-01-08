@@ -32,6 +32,34 @@ main {
     border: 2px solid #004b93; /* Bordure subtile */
 }
 
+/* Empiler les éléments à l'intérieur du formulaire et s'assurer qu'ils sont centrés */
+.marquee form {
+    display: flex;
+    flex-direction: column; /* Empiler les éléments (boutons et texte) verticalement */
+    align-items: center; /* Centrer les éléments */
+    justify-content: center;
+    gap: 10px; /* Espacement entre les éléments */
+    margin: 0; /* Supprime tout écart externe */
+}
+
+/* Largeur des boutons pour qu'ils prennent toute la largeur du formulaire */
+.marquee button {
+    width: 100%; /* Assure que le bouton prend toute la largeur disponible */
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1rem;
+}
+
+/* Effet hover pour les boutons */
+.marquee button:hover {
+    background-color: #0056b3;
+}
+
 .marquee h2 {
     display: inline-block;
     animation: marquee 15s linear infinite;
