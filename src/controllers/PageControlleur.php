@@ -53,7 +53,7 @@ class PageControlleur
                         echo '<label for="titre-'.$ct['id_article'].'" style="display:block; font-weight:bold;">Titre de l\'article</label>';
                         echo '<input id="titre-'.$ct['id_article'].'" type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
 
-                        echo '<button type="submit">Enregistrer les modifications</button></form>';
+                        echo '<form> button type="submit">Enregistrer les modifications</formbutton></form>';
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'>";
                         echo '<input type="hidden" name="action" value="delete">';
                         echo '<input type="hidden" name="type" value="'.$ct['type'].'">';
@@ -64,7 +64,7 @@ class PageControlleur
 
                     case 'intro':
                         echo '<section class="hero-section"><div class="hero-content">';
-                       /* echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                        echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
 
                         // Label pour l'image
@@ -77,7 +77,7 @@ class PageControlleur
                         echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
 
                         echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
-                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" />';  */
+                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" />';
 
                         // Label pour le titre
                         echo '<label for="titre-'.$ct['id_article'].'" style="display:block; font-weight:bold;">Titre de l\'article</label>';
