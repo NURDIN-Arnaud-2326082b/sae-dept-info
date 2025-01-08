@@ -114,12 +114,7 @@ class PageModel
      */
     public function ajouterArticleAction(string $type, string $page): void
     {
-        if($type == 'link'){
-            $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body","link", :type)';
-        }
-        else{
-            $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, :type)';
-        }
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body","link", :type)';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':type', $type, PDO::PARAM_STR);
         if (!$stmt->execute()) {
@@ -136,10 +131,11 @@ class PageModel
         }
     }
 
-    public function recupererType(): bool|array
+    public function recupererType(string $name): bool|array
     {
-        $sql = 'SELECT DISTINCT type FROM article';
+        $sql = 'SELECT DISTINCT type FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetchAll();
     }
@@ -275,9 +271,12 @@ class PageModel
         $id = $tmp[0][0];
         $stmt = $this->connect->getConnection()->prepare("INSERT INTO pdf (id_pdf,type, data) VALUES (:id,:type, :data)");
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':type', $fileType);
         $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            error_log("Erreur lors de l'insertion du PDF : " . implode(' | ', $stmt->errorInfo()));
+            throw new \Exception('Erreur SQL lors de l\'ajout du PDF.');
+        }
         $this->insererArticleDansPage($name);
     }
 
@@ -303,9 +302,7 @@ class PageModel
         $stmt->bindParam(':data', $fileData, PDO::PARAM_LOB);
         $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
-        if ($stmt->execute()) {
-            echo 'ok';
-        } else {
+        if (!$stmt->execute()) {
             error_log("Erreur SQL : " . implode(' | ', $stmt->errorInfo()));
         }
     }

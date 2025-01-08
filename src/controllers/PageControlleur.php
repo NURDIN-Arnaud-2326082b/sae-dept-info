@@ -139,6 +139,7 @@ class PageControlleur
                 echo '<section id="content" class="department-content">';
             }
             $cpt = 1;
+            $cptlink = 1;
             foreach ($content as $ct) {
                 switch ($ct['type']) {
                     case 'texte':
@@ -164,9 +165,10 @@ class PageControlleur
                                 echo '</form>';
                                 echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
+                                var_dump($ct2['id_article']);
                                 echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct2['content'] .'</textarea>';
                                 echo '<button type="submit">Enregistrer les modifications</button></form>';
-                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct2['id_article'] . "'>Supprimer l'article'</button></form>";
                                 echo '</div>';
                                 $cpt2++;
                             }
@@ -205,11 +207,11 @@ class PageControlleur
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
                         echo '</div>';
                         break;
-                    case 'listlinked' . $cpt:
+                    case 'lstlinked' . $cptlink:
                         $cpt2 = 0;
                         echo '<div class="features-grid">';
                         foreach ($content as $ct2) {
-                            if ($ct2['type'] == 'listlinked' . $cpt) {
+                            if ($ct2['type'] == 'lstlinked' . $cptlink) {
                                 echo '<div class="feature">';
                                 echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'">';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
@@ -222,7 +224,7 @@ class PageControlleur
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                                 echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct2['content'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="lien">'. $ct['link'] .'</textarea>';
                                 echo '<button type="submit">Enregistrer les modifications</button></form>';
-                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct2['id_article'] . "'>Supprimer l'article'</button></form>";
                                 echo '</div>';
                                 $cpt2++;
                             }
@@ -233,7 +235,7 @@ class PageControlleur
                         $type = $ct['type'];
                         echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="type" value="'.$type.'"/><button type="submit" name="add">Ajouter un article</button></form>';
                         echo '</div>';
-                        $cpt++;
+                        $cptlink++;
                         break;
                     case 'pdf':
                         echo '<div>';
@@ -282,6 +284,7 @@ class PageControlleur
             }
             echo '<section id="content" class="department-content">';
             $cpt = 1;
+            $cptlink = 1;
             foreach ($content as $ct) {
                 switch ($ct['type']) {
                     case 'texte':
@@ -323,6 +326,26 @@ class PageControlleur
                             echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
                             echo '</div>';
                             break;
+                    case 'lstlinked' . $cptlink :
+                        $cpt2 = 0;
+                        echo '<div class="features-grid">';
+                        foreach ($content as $ct2) {
+                            if ($ct2['type'] == 'lstlinked' . $cptlink) {
+                                echo '<div class="feature">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'">';
+                                echo '<h3>' . $ct2['title'] . '</h3>';
+                                echo '<p>' . $ct2['content'] . '</p>';
+                                echo '<a href="' . $ct['link'] . '"  class="btn-scroll">En savoir plus</a>';
+                                echo '</div>';
+                                $cpt2++;
+                            }
+                        }
+                        for ($i = 0; $i < $cpt2; $i++) {
+                            array_shift($content);
+                        }
+                        echo '</div>';
+                        $cptlink++;
+                        break;
                     case 'pdf':
                         echo '<div>';
                         echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
@@ -405,7 +428,7 @@ class PageControlleur
 
     public function genererNewArticle(): void
     {
-        $type = $this->pageModel->recupererType();
+        $type = $this->pageModel->recupererType($this->name);
         $cpt = 0 ;
         foreach ($type as $t){
             if(str_contains($t['type'],"list")){
@@ -413,12 +436,20 @@ class PageControlleur
             }
         }
         ++$cpt;
+        $cpt2 = 0 ;
+        foreach ($type as $t){
+            if(str_contains($t['type'],"lstlinked")){
+                $cpt2++;
+            }
+        }
+        ++$cpt2;
        echo '<section id="content" class="department-content"><div><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->name.'"/>';
        echo '<h2>Ajouter un article</h2>';
        echo '<select name="type" id="article-type" onchange="toggleImageUpload(this.value)">';
          echo '<option value="texte">texte avec titre</option>';
          echo "<option value='list".$cpt."'>liste d'article</option>";
-         echo "<option value='banderolle'>banderolle en haut de page</option>";
+         echo "<option value='lstlinked".$cpt2."'>liste d'article avec lien</option>";
+        echo "<option value='banderolle'>banderolle en haut de page</option>";
             echo "<option value='lien'>lien</option>";
             echo "<option value='titre'>titre</option>";
             echo "<option value='paragraphe'>paragraphe</option>";
@@ -463,11 +494,13 @@ class PageControlleur
         $pdfdata = $this->pageModel->getImageById($id);
 
         if ($pdfdata) {
+            error_log("PDF trouvé, type : " . $pdfdata['type']);
             header("Content-Type: " . $pdfdata['type']);
-            echo $pdfdata['file'];
+            echo $pdfdata['data'];
         } else {
+            error_log("Aucun PDF trouvé pour ID : $id");
             http_response_code(404);
-            echo "pdf non trouvée.";
+            echo "PDF non trouvé.";
         }
     }
 
