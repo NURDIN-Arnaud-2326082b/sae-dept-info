@@ -122,7 +122,8 @@ class PageModel
         }
         $this->insererArticleDansPage($page);
         $motif = '/^list\d+$/';
-        if ($type == 'intro' || $type == 'img'  || preg_match($motif, $type)){
+        $motif2 = '/^lstlinked\d+$/';
+        if (preg_match($motif2, $type) || $type == 'img'  || preg_match($motif, $type)){
             $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
             $tmp = $this->recupererDernierId();
             $id_img = $tmp[0][0];

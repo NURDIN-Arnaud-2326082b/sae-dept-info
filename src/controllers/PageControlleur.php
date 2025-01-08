@@ -52,14 +52,7 @@ class PageControlleur
                         break;
                     case 'intro':
                         echo ' <section class="hero-section"><div class="hero-content">';
-                        echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
-                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
-                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
-                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
-                        echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
-                        echo '</form>';
                         echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
                         echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
