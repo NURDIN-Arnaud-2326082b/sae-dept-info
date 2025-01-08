@@ -203,6 +203,48 @@ class PageControlleur
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
                         echo '</div>';
                         break;
+                    case 'listlinked' . $cpt:
+                        $cpt2 = 0;
+                        echo '<div class="features-grid">';
+                        foreach ($content as $ct2) {
+                            if ($ct2['type'] == 'listlinked' . $cpt) {
+                                echo '<div class="feature">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'">';
+                                echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                                echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
+                                echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                                echo '<input type="file" id="file-'.$ct2['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                                echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
+                                echo '</form>';
+                                echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/>';
+                                echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="titre"/>';
+                                echo '<textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="contenu">'. $ct2['content'] .'</textarea><textarea rows="3" cols="50" style="font-size: 1.25rem; width: 100%; text-align: center; border: none; background: transparent;" name="lien">'. $ct['link'] .'</textarea>';
+                                echo '<button type="submit">Enregistrer les modifications</button></form>';
+                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                                echo '</div>';
+                                $cpt2++;
+                            }
+                        }
+                        for ($i = 0; $i < $cpt2; $i++) {
+                            array_shift($content);
+                        }
+                        $type = $ct['type'];
+                        echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->name.'"/><input type="hidden" name="type" value="'.$type.'"/><button type="submit" name="add">Ajouter un article</button></form>';
+                        echo '</div>';
+                        $cpt++;
+                        break;
+                    case 'pdf':
+                        echo '<div>';
+                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
+                        echo '<form action="/PageControlleur/updatePdf" method="post" enctype="multipart/form-data">';
+                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
+                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez un fichier PDF ou cliquez ici</label>';
+                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="file/pdf" onchange="this.form.submit()" style="display: none;">';
+                        echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
+                        echo '</form>';
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
+                        echo '</div>';
+                        break;
                     default:
                         break;
                 }
@@ -279,6 +321,11 @@ class PageControlleur
                             echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
                             echo '</div>';
                             break;
+                    case 'pdf':
+                        echo '<div>';
+                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
+                        echo '</div>';
+                        break;
                     default:
                         break;
                 }
@@ -308,6 +355,9 @@ class PageControlleur
         header('Location: /'.$_POST['name']);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function deleteArticleAction(): void
     {
         $id = $_POST['delete'];
@@ -371,7 +421,8 @@ class PageControlleur
             echo "<option value='titre'>titre</option>";
             echo "<option value='paragraphe'>paragraphe</option>";
             echo "<option value='img'>image</option>";
-            echo '</select>';
+            echo "<option value='pdf'>PDF</option>";
+         echo '</select>';
          echo "<button type='submit' name='add'>Ajouter l'article</button></form></div></section>";
     }
 
@@ -404,5 +455,33 @@ class PageControlleur
         }
     }
 
+    public function getPdf(): void
+    {
+        $id = $_GET['id'];
+        $pdfdata = $this->pageModel->getImageById($id);
+
+        if ($pdfdata) {
+            header("Content-Type: " . $pdfdata['type']);
+            echo $pdfdata['file'];
+        } else {
+            http_response_code(404);
+            echo "pdf non trouvée.";
+        }
+    }
+
+    public function updatePdfAction(): void
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+            $id = $_POST['id'] ?? null;
+            $name = $_POST['name'] ?? null;
+            $fileType = mime_content_type($_FILES['file']['tmp_name']);
+            $fileData = file_get_contents($_FILES['file']['tmp_name']);
+
+            $this->pageModel->updatPdfById($id, $fileType, $fileData);
+
+            header('Location: /' . $name);
+            exit();
+        }
+    }
 }
 
