@@ -38,7 +38,7 @@ if ($controllerSegment === 'menu' && !isset($_SESSION['name'])) {
     exit;
 }
 
-if ($controllerSegment === 'Bde' && (!isset($_SESSION['admin']) || !$_SESSION['admin'])) {
+if ($controllerSegment === 'Bde' && (!isset($_SESSION['name']) || !$_SESSION['name'])) {
     header("Location: /login"); // Ramene vers la page de connexion si non connecté
     exit;
 }
