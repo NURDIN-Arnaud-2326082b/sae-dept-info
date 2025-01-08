@@ -39,7 +39,10 @@ class PageModel
         return $stmt->fetchAll();
     }
 
-    public function updateArticleAction(int $id ,string $titre, string $contenu, string $lien): void
+    /**
+     * @throws \Exception
+     */
+    public function updateArticleAction(int $id , string $titre, string $contenu, string $lien): void
     {
         if ($lien == '') {
             $sql = 'UPDATE article SET title = :title, content = :content WHERE id_article = :id';
@@ -61,6 +64,9 @@ class PageModel
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function deleteArticleAction(int $id, string $type): void
     {
         $sql = 'DELETE FROM article WHERE id_article = :id';
@@ -84,6 +90,14 @@ class PageModel
                 throw new \Exception('Erreur lors de la suppression de l\'article.');
             }
         }
+        if ($type == 'pdf'){
+            $sql = 'DELETE FROM pdf WHERE id_pdf = :id';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+            if (!$stmt->execute()) {
+                throw new \Exception('Erreur lors de la suppression de l\'article.');
+            }
+        }
     }
 
     public function chercheIdPage(string $name): bool|array
@@ -95,6 +109,9 @@ class PageModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function ajouterArticleAction(string $type, string $page): void
     {
         if($type == 'link'){
@@ -135,6 +152,9 @@ class PageModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function ajouterPage(string $page, string $type): void
     {
         $cpt = $this->recupererDernierePage();
@@ -200,7 +220,15 @@ class PageModel
     {
         error_log("Type d'image : $type");
         error_log("Taille des données d'image : " . strlen($data));
-        $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (type, image) VALUES (:type, :data)");
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "img")';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        }
+        $tmp = $this->recupererDernierId();
+        $id = $tmp[0][0];
+        $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,:type, :data)");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
         $stmt->bindParam(':type', $type);
         $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
         $stmt->execute();
@@ -209,20 +237,14 @@ class PageModel
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
-        $tmp = $this->recupererDernierId();
-        $id = $tmp[0][0];
-        $tmp = $this->chercheIdPage($pageName);
-        $id_page = $tmp[0]['id'];
-        $sql = 'INSERT INTO articledanspage (id, id_article) VALUES (:id, :id_article)';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        $stmt->bindValue(':id', $id_page, PDO::PARAM_INT);
-        $stmt->bindValue(':id_article', $id, PDO::PARAM_INT);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
-        }
+        $this->insererArticleDansPage($pageName);
     }
 
-    public function insererArticleDansPage(mixed $page){
+    /**
+     * @throws \Exception
+     */
+    public function insererArticleDansPage(mixed $page): void
+    {
         $tmp = $this->recupererDernierId();
         $id = $tmp[0][0];
         $tmp = $this->chercheIdPage($page);
@@ -237,9 +259,26 @@ class PageModel
         }
     }
 
-    public function ajouterPDF(string $fileType, bool|string $fileData, mixed $name)
+    /**
+     * @throws \Exception
+     */
+    public function ajouterPDF(string $fileType, bool|string $fileData, mixed $name): void
     {
-
+        error_log("Type de pdf : $fileType");
+        error_log("Taille des données d'image : " . strlen($fileData));
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "pdf")';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        }
+        $tmp = $this->recupererDernierId();
+        $id = $tmp[0][0];
+        $stmt = $this->connect->getConnection()->prepare("INSERT INTO pdf (id_pdf,type, data) VALUES (:id,:type, :data)");
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+        $stmt->bindParam(':type', $type);
+        $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
+        $stmt->execute();
+        $this->insererArticleDansPage($name);
     }
 
     public function recupererDernierePage(): bool|array
@@ -248,5 +287,26 @@ class PageModel
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll();
+    }
+
+    public function getPdfById(mixed $id)
+    {
+        $stmt = $this->connect->getConnection()->prepare("SELECT type, data FROM pdf WHERE id_pdf = :id");
+        $stmt->execute(['id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function updatPdfById(mixed $id, bool|string $fileType, bool|string $fileData): void
+    {
+        $stmt = $this->connect->getConnection()->prepare("UPDATE pdf SET type = :type, data = :data WHERE id_pdf = :id");
+        $stmt->bindParam(':type', $fileType);
+        $stmt->bindParam(':data', $fileData, PDO::PARAM_LOB);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            echo 'ok';
+        } else {
+            error_log("Erreur SQL : " . implode(' | ', $stmt->errorInfo()));
+        }
     }
 }
