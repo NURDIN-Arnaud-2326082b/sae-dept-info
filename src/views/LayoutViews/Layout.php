@@ -37,19 +37,84 @@ class Layout
         ?>
         <!DOCTYPE html>
         <html lang="fr">
+    <!--
+    -\-
+    \-- \-
+     \  - -\
+      \      \\
+       \       \
+        \       \\
+         \        \\
+         \          \\
+         \           \\\
+          \            \\
+           \            \\
+           \. .          \\
+            \    .       \\
+             \      .    \\
+              \       .  \\
+              \         . \\
+              \            <=)
+              \            <==)
+              \            <=)
+               \           .\\                                           _-
+               \         .   \\                                        _-//
+               \       .     \\                                     _-_/ /
+               \ . . .        \\                                 _--_/ _/
+                \              \\                              _- _/ _/
+                \               \\                      ___-(O) _/ _/
+                \                \                  __--  __   /_ /      ***********************************
+                \                 \\          ____--__----  /    \_      Voici un PTÉRODACTYLE, Il EST GENTIL
+                 \                  \\       -------       /   \_  \_    CECI EST UN EASTER EGG, NE PAS TOUCHER
+                  \                   \                  //   // \__ \_   **********************************
+                   \                   \\              //   //      \_ \_
+                    \                   \\          ///   //          \__-
+                    \                -   \\/////////    //
+                    \            -         \_         //
+                    /        -                      //
+                   /     -                       ///
+                  /   -                       //
+             __--/                         ///
+  __________/                            // |
+//-_________      ___                ////  |
+        ____\__--/                /////    |
+   -----______    -/---________////        |
+     _______/  --/    \                   |
+   /_________-/       \                   |
+  //                  \                   /
+                       \.                 /
+                       \     .            /
+                        \       .        /
+                       \\           .    /
+                        \                /
+                        \              __|
+                        \              ==/
+                        /              //
+                        /          .  //
+                        /   .  .    //
+                       /.           /
+                      /            //
+                      /           /
+                     /          //
+                    /         //
+                 --/         /
+                /          //
+            ////         //
+         ///_________////
+
+-->
         <head>
             <title><?= $this->title ?></title>
             <meta charset="utf-8">
             <meta name="keywords" content="">
-            <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud, PORTELLI Angelo">
+            <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud">
             <meta name="Description" content="" >
-            <link rel="stylesheet" href="">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="32x32" />
             <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="192x192" />
         </head>
         <body>
-            <header>
+        <header>
                 <?php
                 $this->navbar->defaultMethod();
                 ?>
@@ -60,6 +125,7 @@ class Layout
             <footer>
                 <?php $this->footer->show(); ?>
             </footer>
+        <script src="/assets/js/egg.js"></script>
         </body>
         </html>
         <?php
