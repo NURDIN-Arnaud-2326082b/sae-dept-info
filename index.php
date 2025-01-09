@@ -13,6 +13,7 @@ $dotenv->load();
 
 
 require_once './src/Autoloader.php';
+use App\src\Autoloader;
 App\src\Autoloader::register();
 
 use App\src\controllers\ConnexionController;
