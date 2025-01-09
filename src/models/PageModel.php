@@ -313,4 +313,17 @@ class PageModel
             error_log("Erreur SQL : " . implode(' | ', $stmt->errorInfo()));
         }
     }
+
+    public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
+    {
+        $sql = 'INSERT INTO login (name, email, annee, groupe) VALUES (:name, :email, :annee, :groupe)';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':annee', $annee, PDO::PARAM_STR);
+        $stmt->bindValue(':groupe', $groupe, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'utilisateur.');
+        }
+    }
 }
