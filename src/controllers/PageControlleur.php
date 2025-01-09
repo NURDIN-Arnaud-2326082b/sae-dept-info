@@ -507,7 +507,7 @@ class PageControlleur
             $fileType = mime_content_type($_FILES['file']['tmp_name']);
             $fileData = file_get_contents($_FILES['file']['tmp_name']);
 
-            $this->pageModel->updatPdfById($id, $fileType, $fileData);
+            $this->pageModel->updatePdfById($id, $fileType, $fileData);
 
             header('Location: /' . $name);
             exit();

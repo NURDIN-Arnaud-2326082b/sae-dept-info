@@ -302,7 +302,7 @@ class PageModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function updatPdfById(mixed $id, bool|string $fileType, bool|string $fileData): void
+    public function updatePdfById(mixed $id, bool|string $fileType, bool|string $fileData): void
     {
         $stmt = $this->connect->getConnection()->prepare("UPDATE pdf SET type = :type, data = :data WHERE id_pdf = :id");
         $stmt->bindParam(':type', $fileType);
