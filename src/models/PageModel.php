@@ -69,6 +69,8 @@ class PageModel
      */
     public function deleteArticleAction(int $id, string $type): void
     {
+        error_log("Type de l'article : $type");
+        error_log("ID de l'article à supprimer : $id");
         $sql = 'DELETE FROM article WHERE id_article = :id';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -82,7 +84,7 @@ class PageModel
             throw new \Exception('Erreur lors de la suppression de l\'article.');
         }
         $motif = '/^list\d+$/';
-        if ($type == 'intro' || $type == 'img'  || preg_match($motif, $type) || $type = 'homepage'){
+        if ($type == 'intro' || $type == 'img'  || preg_match($motif, $type) || $type == 'homepage'){
             $sql = 'DELETE FROM images WHERE id_image = :id';
             $stmt = $this->connect->getConnection()->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -91,8 +93,10 @@ class PageModel
             }
         }
         if ($type == 'pdf'){
+            error_log("Suppression du PDF");
             $sql = 'DELETE FROM pdf WHERE id_pdf = :id';
             $stmt = $this->connect->getConnection()->prepare($sql);
+            error_log("ID du PDF à supprimer : $id");
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             if (!$stmt->execute()) {
                 throw new \Exception('Erreur lors de la suppression de l\'article.');
@@ -259,10 +263,8 @@ class PageModel
     /**
      * @throws \Exception
      */
-    public function ajouterPDF(string $fileType, bool|string $fileData, mixed $name): void
+    public function ajouterPDF(mixed $fileType, mixed $fileData, mixed $name): void
     {
-        error_log("Type de pdf : $fileType");
-        error_log("Taille des données d'image : " . strlen($fileData));
         $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "pdf")';
         $stmt = $this->connect->getConnection()->prepare($sql);
         if (!$stmt->execute()) {
@@ -270,10 +272,14 @@ class PageModel
         }
         $tmp = $this->recupererDernierId();
         $id = $tmp[0][0];
-        $stmt = $this->connect->getConnection()->prepare("INSERT INTO pdf (id_pdf,type, data) VALUES (:id,:type, :data)");
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':type', $fileType);
-        $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
+        if (empty($id)) {
+            error_log("Erreur : ID vide");
+            throw new \Exception("L'ID est requis pour l'insertion");
+        }
+        $stmt = $this->connect->getConnection()->prepare("INSERT INTO pdf (id_pdf,data,type) VALUES (:id,:data,:type)");
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':data', $fileData, PDO::PARAM_LOB);
+        $stmt->bindValue(':type', $fileType);
         if (!$stmt->execute()) {
             error_log("Erreur lors de l'insertion du PDF : " . implode(' | ', $stmt->errorInfo()));
             throw new \Exception('Erreur SQL lors de l\'ajout du PDF.');
