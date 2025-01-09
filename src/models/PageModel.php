@@ -316,14 +316,42 @@ class PageModel
 
     public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
     {
-        $sql = 'INSERT INTO login (name, email, annee, groupe) VALUES (:name, :email, :annee, :groupe)';
+        //Génére un mot de passe
+        $password = bin2hex(random_bytes(16)); // Génère un mot de passe aléatoire de 32 caractères hexadécimaux
+
+        //Hash le mot de passe
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+        $sql = 'INSERT INTO login (name, email, annee, groupe, password) VALUES (:name, :email, :annee, :groupe, :password)';
         $stmt = $this->connect->getConnection()->prepare($sql);
+
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         $stmt->bindValue(':annee', $annee, PDO::PARAM_STR);
         $stmt->bindValue(':groupe', $groupe, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'utilisateur.');
         }
+
+        $this->envoyerEmail($email, $password);
+
+    }
+
+    public function envoyerEmail(mixed $email, mixed $password): void
+    {
+        $subject = 'Création de compte';
+        $message = "Bonjour,\n\nUn compte a été créé pour vous. Votre mot de passe temporaire est : $password\n\n"
+            . "Veuillez cliquer sur le lien ci-dessous pour définir votre nouveau mot de passe :\n"
+            . "http://votre-site.com/changer-mot-de-passe?email=$email\n\n"
+            . "Cordialement, \nLa direction du BUT informatique.";
+
+
+        if (!mail($email, $subject, $message)) {
+            throw new \Exception('Erreur lors de l\'envoi de l\'email.');
+        }
+
+        mail($email, $subject, $message);
     }
 }
