@@ -208,10 +208,14 @@ main {
 
 /* Features Grid */
 .features-grid {
+    max-width: 1200px; /* Ajustez selon la taille de votre contenu */
+    margin: 0 auto; /* Assure le centrage horizontal */
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 20px;
 }
+
+
 
 .feature {
     text-align: center;
