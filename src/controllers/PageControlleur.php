@@ -236,7 +236,7 @@ class PageControlleur
                         echo '<form action="/PageControlleur/updatePdf" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
                         echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez un fichier PDF ou cliquez ici</label>';
-                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="file/pdf" onchange="this.form.submit()" style="display: none;">';
+                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="file" accept="file/pdf" onchange="this.form.submit()" style="display: none;">';
                         echo '<input type="hidden" name="name" value="'.$this->name.'"/>';
                         echo '</form>';
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
@@ -396,15 +396,8 @@ class PageControlleur
             // Ajoutez une méthode spécifique pour enregistrer l'image
             $this->pageModel->ajouterImage($fileType, $fileData, $_POST['name']);
         }
-        elseif ($type === 'pdf' && isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
-            $fileType = mime_content_type($_FILES['file']['tmp_name']);
-            $fileData = file_get_contents($_FILES['file']['tmp_name']);
-
-            if ($fileType !== 'application/pdf') {
-                throw new \Exception("Le fichier uploadé n'est pas un PDF valide.");
-            }
-
-            $this->pageModel->ajouterPDF($fileType, $fileData, $_POST['name']);
+        elseif ($type === 'pdf') {
+            $this->pageModel->ajouterPDF(null, null, $_POST['name']);
         }elseif ($type == 'menu'){
             $this->pageModel->ajouterPage('Menu','menu');
         }
@@ -438,7 +431,7 @@ class PageControlleur
         ++$cpt2;
        echo '<section id="content" class="department-content"><div><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->name.'"/>';
        echo '<h2>Ajouter un article</h2>';
-       echo '<select name="type" id="article-type" onchange="toggleImageUpload(this.value)">';
+       echo '<select name="type" id="article-type">';
          echo '<option value="texte">texte avec titre</option>';
          echo "<option value='list".$cpt."'>liste d'article</option>";
          echo "<option value='lstlinked".$cpt2."'>liste d'article avec lien</option>";
@@ -484,7 +477,7 @@ class PageControlleur
     public function getPdf(): void
     {
         $id = $_GET['id'];
-        $pdfdata = $this->pageModel->getImageById($id);
+        $pdfdata = $this->pageModel->getPdfById($id);
 
         if ($pdfdata) {
             error_log("PDF trouvé, type : " . $pdfdata['type']);

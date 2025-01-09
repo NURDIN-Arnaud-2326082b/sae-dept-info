@@ -12,7 +12,7 @@ class Autoloader
     /**
      * Register the autoloader.
      */
-    static function register(): void
+    public static function register(): void
     {
         spl_autoload_register([
             __CLASS__,
@@ -25,7 +25,7 @@ class Autoloader
      *
      * @param string $class
      */
-    static function autoload($class): void
+    public static function autoload($class): void
     {
         $class = str_replace(__NAMESPACE__ . '\\', '', $class);
         $class = str_replace('\\', '/', $class);

@@ -23,14 +23,6 @@ class Navbar
             <!-- Nom de l'utilisateur ou "Invité" -->
             <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Invité' ?></h1>
 
-            <!-- Barre de recherche -->
-            <div class="search-bar">
-                <?php
-                $currentFile = basename($_SERVER['PHP_SELF']);
-                $isHomepage = ($currentFile === 'index.php');
-                ?>
-            </div>
-
             <!-- Actions -->
             <div class="actions">
                 <?php if (isset($user['name'])): ?>
