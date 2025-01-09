@@ -37,7 +37,33 @@ class Layout
         ?>
         <!DOCTYPE html>
         <html lang="fr">
-    <!--
+
+        <head>
+            <title><?= $this->title ?></title>
+            <meta charset="utf-8">
+            <meta name="keywords" content="">
+            <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud">
+            <meta name="Description" content="" >
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="32x32" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="192x192" />
+        </head>
+        <body>
+        <header>
+                <?php
+                $this->navbar->defaultMethod();
+                ?>
+            </header>
+            <div id="content-page">
+                <?= $this->content; ?>
+            </div>
+            <footer>
+                <?php $this->footer->show(); ?>
+            </footer>
+        <script src="/assets/js/egg.js"></script>
+        </body>
+        </html>
+        <!--
     -\-
     \-- \-
      \  - -\
@@ -64,7 +90,7 @@ class Layout
                 \              \\                              _- _/ _/
                 \               \\                      ___-(O) _/ _/
                 \                \                  __--  __   /_ /      ***********************************
-                \                 \\          ____--__----  /    \_      Voici un PTÉRODACTYLE, Il EST GENTIL
+                \                 \\          ____--__----  /    \_      VOICI UN PTÉRODACTYLE, Il EST GENTIL
                  \                  \\       -------       /   \_  \_    CECI EST UN EASTER EGG, NE PAS TOUCHER
                   \                   \                  //   // \__ \_   **********************************
                    \                   \\              //   //      \_ \_
@@ -103,31 +129,6 @@ class Layout
          ///_________////
 
 -->
-        <head>
-            <title><?= $this->title ?></title>
-            <meta charset="utf-8">
-            <meta name="keywords" content="">
-            <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud">
-            <meta name="Description" content="" >
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="32x32" />
-            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="192x192" />
-        </head>
-        <body>
-        <header>
-                <?php
-                $this->navbar->defaultMethod();
-                ?>
-            </header>
-            <div id="content-page">
-                <?= $this->content; ?>
-            </div>
-            <footer>
-                <?php $this->footer->show(); ?>
-            </footer>
-        <script src="/assets/js/egg.js"></script>
-        </body>
-        </html>
         <?php
     }
 }
