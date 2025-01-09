@@ -242,6 +242,15 @@ class PageControlleur
                         echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->name."'/><button type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article'</button></form>";
                         echo '</div>';
                         break;
+                    case 'useraccess':
+                        echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';">';
+                        echo '<h2>' . $ct['title'] . '</h2>';
+                        echo '</div>';
+                        break ;
+                    case 'gestion' :
+                        echo '<div class="gestion"><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="'.$this->name.'"/><h2>email</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="email"/><h2>nom d\'utilisateur</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="name"/><h2>annee</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="annee"/><h2>groupe</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="groupe"/><button type="submit">Enregistrer les modifications</button></form>';
+                        echo '</div>';
+                        break;
                     default:
                         break;
                 }
@@ -503,6 +512,16 @@ class PageControlleur
             header('Location: /' . $name);
             exit();
         }
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function ajouterUserAction(): void
+    {
+        $name = $_POST['page'] ?? null;
+        $this->pageModel->ajouterUserAction($_POST['name'],$_POST['email'],$_POST['annee'],$_POST['groupe']);
+        header('Location: /' . $name);
     }
 }
 
