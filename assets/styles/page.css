@@ -46,7 +46,7 @@ main {
 /* Largeur des boutons pour qu'ils prennent toute la largeur du formulaire */
 .marquee button {
     width: 100%; /* Assure que le bouton prend toute la largeur disponible */
-    background-color: #007bff;
+   /* background-color: #007bff; */
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -237,7 +237,7 @@ main {
 /* Boutons d'administration */
 button,
 form button {
-    /*background: #007bff; */
+    background: #007bff;
     color: #fff;
     padding: 10px 15px;
     /*Aligner les boutons horziontalement*/
