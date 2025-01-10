@@ -340,7 +340,7 @@ class Page
     public function genererNewArticle(): void
     {
         $cpts = $this->pageControlleur->recupererListe();
-        echo '<section id="content" class="department-content"><div><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->name.'"/>';
+        echo '<section id="content" class="department-content"><div><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
         echo '<h2>Ajouter un article</h2>';
         echo '<select name="type" id="article-type">';
         echo '<option value="texte">texte avec titre</option>';

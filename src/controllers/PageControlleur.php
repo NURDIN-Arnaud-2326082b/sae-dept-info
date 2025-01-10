@@ -4,16 +4,22 @@ namespace App\src\controllers;
 use App\src\database\DatabaseConnection;
 use App\src\models\PageModel;
 use App\src\views\Page;
+use HTMLPurifier;
+use HTMLPurifier_Config;
 
 class PageControlleur
 {
     private string $name;
     private PageModel $pageModel;
+    private HTMLPurifier $purifier;
 
     public function __construct(string $name)
     {
         $this->name = $name;
         $this->pageModel = new PageModel(DatabaseConnection::getInstance());
+        $config = HTMLPurifier_Config::createDefault();
+        $config->set('HTML.Allowed', 'br,strong');
+        $this->purifier = new HTMLPurifier($config);
     }
 
     public function defaultMethod(): void
@@ -43,9 +49,9 @@ class PageControlleur
     public function updateArticleAction(): void
     {
         $id = $_POST['id'];
-        $titre = $_POST['titre'];
-        $contenu = $_POST['contenu'];
-        $lien = $_POST['lien'];
+        $titre = $_POST['titre'] ?? null ;
+        $contenu = $_POST['contenu'] ?? null ;
+        $lien = $_POST['lien']  ?? null ;
         if($lien == null){
             $lien = '';
         }
@@ -55,6 +61,10 @@ class PageControlleur
         if ($titre == null){
             $titre = '';
         }
+
+        $titre = $this->purifier->purify($contenu);
+        $contenu = $this->purifier->purify($contenu);
+        $lien = $this->purifier->purify($lien);
         $this->pageModel->updateArticleAction($id,$titre, $contenu,$lien);
         header('Location: /'.$_POST['name']);
     }
