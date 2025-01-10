@@ -317,7 +317,7 @@ class PageModel
     public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
     {
         //Génére un mot de passe
-        $password = bin2hex(random_bytes(16)); // Génère un mot de passe aléatoire de 32 caractères hexadécimaux
+        $password = bin2hex(random_bytes(16)); // Génère un mot de passe aléatoire
 
         //Hash le mot de passe
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
@@ -344,7 +344,7 @@ class PageModel
         $subject = 'Création de compte';
         $message = "Bonjour,\n\nUn compte a été créé pour vous. Votre mot de passe temporaire est : $password\n\n"
             . "Veuillez cliquer sur le lien ci-dessous pour définir votre nouveau mot de passe :\n"
-            . "http://votre-site.com/changer-mot-de-passe?email=$email\n\n"
+            . "https://votre-site.com/changer-mot-de-passe?email=$email\n\n"
             . "Cordialement, \nLa direction du BUT informatique.";
 
 
@@ -353,5 +353,21 @@ class PageModel
         }
 
         mail($email, $subject, $message);
+    }
+
+
+    public function changePassword(mixed $email, mixed $password): void
+    {
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
+
+        $sql = 'UPDATE login SET password = :password WHERE email = :email';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
+        }
     }
 }
