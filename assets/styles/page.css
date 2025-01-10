@@ -134,10 +134,15 @@ main {
 .article-content {
     padding: 20px;
     text-align: center;
-    position: relative; /* Pour que le contenu reste au-dessus de l'image */
-    z-index: 1; /* S'assurer que le contenu soit au-dessus de l'image */
+    border-bottom: 2px solid #007bff;  /* Ajoute une ligne bleue sous le texte */
+    margin-bottom: 50px;
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
 }
 
+
+/* Image de fond pour les articles */
 .article-preview::before {
     content: '';
     position: absolute;
@@ -210,7 +215,7 @@ main {
 
 /* Features Grid */
 .features-grid {
-    max-width: 1200px;
+    max-width: 2000px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
@@ -218,10 +223,10 @@ main {
 }
 
 
-
 .feature {
     text-align: center;
     padding: 20px;
+    margin-bottom: 2px solid #007bff;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -240,14 +245,12 @@ form button {
     background: #007bff;
     color: #fff;
     padding: 10px 15px;
-    /*Aligner les boutons horziontalement*/
-    display: inline-block;
+    justify-content: center;
     margin: 10px;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     font-size: 1rem;
-    transition: background 0.3s ease;
 }
 
 .btn-save {
@@ -258,10 +261,6 @@ form button {
     background: #dc3545;
 }
 
-button:hover,
-form button:hover {
-    background: #0056b3;
-}
 
 /* Dropzone */
 .dropzone {
