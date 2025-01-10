@@ -89,7 +89,7 @@ class Layout
                 \               \\                      ___-(O) _/ _/
                 \                \                  __--  __   /_ /      ***********************************
                 \                 \\          ____--__----  /    \_      VOICI UN PTÉRODACTYLE, Il EST GENTIL
-                 \                  \\       -------       /   \_  \_    CECI EST UN EASTER EGG, NE PAS TOUCHER
+                 \                  \\       -------       /   \_  \_  IL VEUT JUSTE TE SOUHAITER UNE BONNE JOURNÉE
                   \                   \                  //   // \__ \_   **********************************
                    \                   \\              //   //      \_ \_
                     \                   \\          ///   //          \__-
