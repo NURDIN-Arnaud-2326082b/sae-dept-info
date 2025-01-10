@@ -2,20 +2,21 @@
 
 namespace App\src\controllers\pages;
 
-use App\src\database\tables\ConnexionModel;
-use App\src\views\NavbarViews\Navbar;
+use App\src\database\DatabaseConnection;
+use App\src\models\UserModel;
+use App\src\views\pages\Navbar;
 
 class NavbarController
 {
 
-    private ConnexionModel $userModel;
+    private UserModel $userModel;
 
     /**
      * Constructeur de la classe.
      */
     public function __construct()
     {
-        $this->userModel = new ConnexionModel();
+        $this->userModel = new UserModel(DatabaseConnection::getInstance());
     }
 
 

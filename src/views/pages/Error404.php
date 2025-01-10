@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\views\Error404Views;
+namespace App\src\views\pages;
 
 /**
  * Error404 Class

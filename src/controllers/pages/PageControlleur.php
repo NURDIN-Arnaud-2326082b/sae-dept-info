@@ -1,9 +1,10 @@
 <?php
 
-namespace App\src\controllers;
+namespace App\src\controllers\pages;
 use App\src\database\DatabaseConnection;
 use App\src\models\PageModel;
-use App\src\views\Page;
+use App\src\models\UserModel;
+use App\src\views\pages\Page;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
@@ -12,6 +13,7 @@ class PageControlleur
     private string $name;
     private PageModel $pageModel;
     private HTMLPurifier $purifier;
+    private UserModel $userModel;
 
     public function __construct(string $name)
     {
@@ -20,11 +22,12 @@ class PageControlleur
         $config = HTMLPurifier_Config::createDefault();
         $config->set('HTML.Allowed', 'br,strong');
         $this->purifier = new HTMLPurifier($config);
+        $this->userModel = new UserModel(DatabaseConnection::getInstance());
     }
 
     public function defaultMethod(): void
     {
-        $connexionController = new ConnexionController();
+        $connexionController = new UserController();
         (new Page($this->name, $connexionController))->show();
     }
 
@@ -194,7 +197,17 @@ class PageControlleur
     public function ajouterUserAction(): void
     {
         $name = $_POST['page'] ?? null;
-        $this->pageModel->ajouterUserAction($_POST['name'],$_POST['email'],$_POST['annee'],$_POST['groupe']);
+        $this->userModel->ajouterUserAction($_POST['name'],$_POST['email'],$_POST['annee'],$_POST['groupe']);
+        header('Location: /' . $name);
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function supprimerUserAction(): void
+    {
+        $name = $_POST['page'] ?? null;
+        $this->userModel->supprimerUserAction($_POST['email']);
         header('Location: /' . $name);
     }
 }

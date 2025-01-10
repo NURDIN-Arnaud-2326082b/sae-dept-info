@@ -1,5 +1,5 @@
 <?php
-namespace App\src\views\NavbarViews;
+namespace App\src\views\pages;
 
 /**
  * Navbar Class
@@ -26,8 +26,15 @@ class Navbar
             <!-- Actions -->
             <div class="actions">
                 <?php if (isset($user['name'])): ?>
+                    <!-- Popup -->
+                    <div class="popup" id="popup">
+                        <p>Changer de mot de passe</p>
+                        <button onclick="closePopup()">Fermer</button>
+                    </div>
+
                     <a href="/logout" class="btn btn-logout">Se déconnecter</a>
                     <a href="/menu" class="btn btn-menu">Menu</a>
+                    <button onclick="openPopup()" class="btn btn-menu">Afficher la popup</button>
                 <?php else: ?>
                     <a href="/login" class="btn btn-login">Se connecter</a>
                 <?php endif; ?>

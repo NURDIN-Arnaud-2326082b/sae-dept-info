@@ -114,3 +114,67 @@
         font-size: 0.9rem; /* Réduction de la taille du texte */
     }
 }
+
+.menu {
+    position: relative;
+    display: inline-block;
+}
+.menu a {
+    text-decoration: none;
+    color: black;
+    padding: 10px 15px;
+    display: block;
+}
+.menu > a {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+.dropdown {
+    display: none; /* Caché par défaut */
+    position: absolute;
+    background-color: #ffffff;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 5000;
+    min-width: 150px;
+}
+.dropdown a {
+    padding: 10px 15px;
+    border-bottom: 1px solid #f0f0f0;
+    z-index: 5000;
+
+
+}
+.dropdown a:hover {
+    background-color: #f7f7f7;
+    z-index: 5000;
+}
+.menu:hover .dropdown {
+    display: block; /* Affiché au survol */
+}
+
+.popup {
+    display: none; /* Par défaut, cachée */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    z-index: 1000;
+}
+.overlay {
+    display: none; /* Par défaut, cachée */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+.popup button {
+    margin-top: 10px;
+}

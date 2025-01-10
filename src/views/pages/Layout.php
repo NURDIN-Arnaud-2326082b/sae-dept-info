@@ -1,10 +1,8 @@
 <?php
 
-namespace App\src\views\LayoutViews;
+namespace App\src\views\pages;
 
 use App\src\controllers\pages\NavbarController;
-use App\src\views\FooterViews\Footer;
-use App\src\views\NavbarViews\Navbar;
 
 /**
  * LayoutController Class
