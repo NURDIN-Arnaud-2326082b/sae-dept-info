@@ -1,9 +1,8 @@
 <?php
 
-namespace App\src\views;
+namespace App\src\views\pages;
 
-use App\src\controllers\PageControlleur;
-use App\src\views\LayoutViews\Layout;
+use App\src\controllers\pages\PageControlleur;
 
 class Page
 {
@@ -226,6 +225,8 @@ class Page
                         break ;
                     case 'gestion' :
                         echo '<div class="gestion"><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="email"/><h2>nom d\'utilisateur</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="name"/><h2>annee</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="annee"/><h2>groupe</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                        echo '</div>';
+                        echo '<div class="gestion"><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="email"/><button class="btn-save" type="submit">Supprimer l\'utilisateur</button></form>';
                         echo '</div>';
                         break;
                     default:

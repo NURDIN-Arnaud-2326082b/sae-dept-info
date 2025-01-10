@@ -1,17 +1,18 @@
 <?php
 
-namespace App\src\controllers;
+namespace App\src\controllers\pages;
 
-use App\src\database\tables\ConnexionModel;
-use App\src\views\ConnexionViews\Connexion;
+use App\src\database\DatabaseConnection;
+use App\src\models\UserModel;
+use App\src\views\pages\Connexion;
 
-class ConnexionController
+class UserController
 {
-    private ConnexionModel $userModel;
+    private UserModel $userModel;
 
     public function __construct()
     {
-        $this->userModel = new ConnexionModel();
+        $this->userModel = new UserModel(DatabaseConnection::getInstance());
     }
 
     public function connecter(array $postData): string
@@ -20,16 +21,15 @@ class ConnexionController
             $name = htmlspecialchars($postData['name']);
             $password = htmlspecialchars($postData['password']);
 
-            // Récupérer l'utilisateur dans la base de données
             $user = $this->userModel->getUserByName($name);
 
             if ($user && $password === $user['password']) {
-                $_SESSION['user_id'] = $user['id']; // Stocke l'ID utilisateur
-                $_SESSION['name'] = $user['name']; // Stocke le nom utilisateur
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['name'] = $user['name'];
                 if ($_SESSION['name'] === 'admin') {
-                    $_SESSION['admin'] = true; // Stocke le statut admin
+                    $_SESSION['admin'] = true;
                 }
-                header("Location: /menu"); // Redirection vers la page menu
+                header("Location: /menu");
                 exit;
             }
             else {

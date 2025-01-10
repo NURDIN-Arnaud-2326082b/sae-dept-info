@@ -2,7 +2,7 @@
 
 namespace App\src\controllers\pages;
 
-use App\src\views\Error404Views\Error404;
+use App\src\views\pages\Error404;
 
 class Error404Controller
 {

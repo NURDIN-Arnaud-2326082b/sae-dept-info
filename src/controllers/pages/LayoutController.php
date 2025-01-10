@@ -1,7 +1,7 @@
 <?php
-namespace App\src\controllers;
+namespace App\src\controllers\pages;
 
-use App\src\views\LayoutViews\Layout;
+use App\src\views\pages\Layout;
 
 session_start();
 

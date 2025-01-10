@@ -176,13 +176,8 @@ class PageModel
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de la page.');
         }
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "intro")';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
-        }
-        $this->insererArticleDansPage($name);
         if($type == 'homepage'){
+            error_log("Ajout de la page d'accueil");
             $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
             $tmp = $this->recupererDernierId();
             $id_img = $tmp[0][0];
@@ -191,6 +186,12 @@ class PageModel
                 throw new \Exception('Erreur lors de l\'ajout de l\'image.');
             }
         }
+        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "intro")';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        }
+        $this->insererArticleDansPage($name);
     }
 
     public function getImageById(mixed $id)
@@ -311,63 +312,6 @@ class PageModel
 
         if (!$stmt->execute()) {
             error_log("Erreur SQL : " . implode(' | ', $stmt->errorInfo()));
-        }
-    }
-
-    public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
-    {
-        //Génére un mot de passe
-        $password = bin2hex(random_bytes(16)); // Génère un mot de passe aléatoire
-
-        //Hash le mot de passe
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-
-        $sql = 'INSERT INTO login (name, email, annee, groupe, password) VALUES (:name, :email, :annee, :groupe, :password)';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':annee', $annee, PDO::PARAM_STR);
-        $stmt->bindValue(':groupe', $groupe, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
-
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'utilisateur.');
-        }
-
-        $this->envoyerEmail($email, $password);
-
-    }
-
-    public function envoyerEmail(mixed $email, mixed $password): void
-    {
-        $subject = 'Création de compte';
-        $message = "Bonjour,\n\nUn compte a été créé pour vous. Votre mot de passe temporaire est : $password\n\n"
-            . "Veuillez cliquer sur le lien ci-dessous pour définir votre nouveau mot de passe :\n"
-            . "https://votre-site.com/changer-mot-de-passe?email=$email\n\n"
-            . "Cordialement, \nLa direction du BUT informatique.";
-
-
-        if (!mail($email, $subject, $message)) {
-            throw new \Exception('Erreur lors de l\'envoi de l\'email.');
-        }
-
-        mail($email, $subject, $message);
-    }
-
-
-    public function changePassword(mixed $email, mixed $password): void
-    {
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-
-        $sql = 'UPDATE login SET password = :password WHERE email = :email';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
-
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
         }
     }
 }

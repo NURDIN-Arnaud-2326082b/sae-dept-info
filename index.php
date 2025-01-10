@@ -15,11 +15,11 @@ $dotenv->load();
 require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
-use App\src\controllers\ConnexionController;
-use App\src\controllers\PageControlleur;
 use App\src\controllers\pages\Error404Controller;
+use App\src\controllers\pages\PageControlleur;
+use App\src\controllers\pages\UserController;
 use App\src\database\DatabaseConnection;
-use App\src\database\tables\ConnexionModel;
+use App\src\models\UserModel;
 
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));
@@ -46,7 +46,7 @@ if ($controllerSegment === 'Bde' && (!isset($_SESSION['name']) || !$_SESSION['na
 
 // Gestion déconnexion
 if ($controllerSegment === 'logout') {
-    $connexionController = new ConnexionController();
+    $connexionController = new UserController();
     $connexionController->deconnecter();
     exit();
 }
@@ -55,11 +55,11 @@ if ($controllerSegment === 'logout') {
 // Gestion du routage
 if ($controllerSegment === 'login') {
     // Route pour la connexion
-    $connexionModel = new ConnexionModel();
-    $connexionController = new ConnexionController($connexionModel);
+    $connexionModel = new UserModel(DatabaseConnection::getInstance());
+    $connexionController = new UserController();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Appele la méthode de connexion
+        // Appelle la méthode de connexion
         $result = $connexionController->connecter($_POST);
         if ($result) {
             echo $result; // Afficher un message d'erreur si nécessaire
@@ -85,6 +85,6 @@ if ($controllerSegment === 'login') {
         $controller->$methodSegment($cssPaths, $jsPaths);
     } else {
         $errorController = new Error404Controller();
-        $errorController->defaultMethod("/assets/styles/error404.css", "/assets/js/error404.js");
+        $errorController->defaultMethod();
     }
 }
