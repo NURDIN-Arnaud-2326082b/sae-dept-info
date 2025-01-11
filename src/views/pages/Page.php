@@ -49,7 +49,6 @@ class Page
                         break;
                     case 'intro':
                         echo ' <section class="hero-section"><div class="hero-content">';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
                         echo '<h1>' . $ct['title'] . '</h1>';
                         echo '<p>' . $ct['content'] . '</p>';
                         echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
@@ -71,7 +70,7 @@ class Page
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'homepage') {
                         echo '<div class="article-preview"><div class="article-content">';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
                         echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
                         echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -125,7 +124,7 @@ class Page
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'onerror="this.style.display=\'none\';"">';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
                                 echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -165,7 +164,7 @@ class Page
                         break;
                     case 'img':
                         echo '<div>';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
                         echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
                         echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -181,7 +180,7 @@ class Page
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'lstlinked' . $cptlink) {
                                 echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
                                 echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -239,7 +238,7 @@ class Page
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'homepage') {
                         echo '<div class="article-preview">';
-                        echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . htmlspecialchars($ct['title'], ENT_QUOTES) . '" class="article-image">';
+                        echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . htmlspecialchars($ct['title'], ENT_QUOTES) . '" class="article-image" onerror="this.style.display=\'none\';">';
                         echo '<div class="article-content">';
                         echo '<h3>' . $ct['title'] . '</h3>';
                         echo '<p>' . $ct['content'] . '</p>';
@@ -278,7 +277,7 @@ class Page
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
                                 echo '<h3>' . $ct2['title'] . '</h3>';
                                 echo '<p>' . $ct2['content'] . '</p>';
                                 echo '</div>';
@@ -302,7 +301,7 @@ class Page
                         break;
                     case 'image':
                         echo '<div>';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'">';
+                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
                         echo '</div>';
                         break;
                     case 'lstlinked' . $cptlink :
@@ -311,7 +310,7 @@ class Page
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'lstlinked' . $cptlink) {
                                 echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
                                 echo '<h3>' . $ct2['title'] . '</h3>';
                                 echo '<p>' . $ct2['content'] . '</p>';
                                 echo '<a href="' . $ct['link'] . '"  class="btn-scroll">En savoir plus</a>';
