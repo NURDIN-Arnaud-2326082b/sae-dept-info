@@ -4,6 +4,7 @@ namespace App\src\models;
 
 use App\src\database\DatabaseConnection;
 use PDO;
+use Random\RandomException;
 
 class UserModel
 {
@@ -23,6 +24,9 @@ class UserModel
         return $query->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
+    /**
+     * @throws RandomException
+     */
     public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
     {
         //Génére un mot de passe

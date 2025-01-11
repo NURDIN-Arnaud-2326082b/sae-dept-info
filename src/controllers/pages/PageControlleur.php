@@ -211,6 +211,9 @@ class PageControlleur
         header('Location: /' . $name);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function mettreAjourMdpAction(): void
     {
         $this->userModel->mettreAjourMdpAction($_POST['name'],$_POST['mdp']);

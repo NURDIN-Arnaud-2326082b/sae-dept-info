@@ -1,60 +1,59 @@
 /* Navbar - Version de base pour ordinateur */
 .navbar {
     display: flex;
-    justify-content: space-between; /* Aligne les éléments sur la même ligne */
+    justify-content: space-between;
     align-items: center;
-    padding: 1em 2em; /* Espacement confortable pour les grands écrans */
+    padding: 1rem 2rem;
     background-color: #f8f8f8;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
     position: static;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
     box-sizing: border-box;
-    flex-wrap: nowrap; /* Empêche les éléments de passer à la ligne */
-    overflow: hidden; /* Évite tout débordement !! */
+    flex-wrap: nowrap;
+    overflow: hidden;
 }
 
 /* Section Logo + Texte */
 .navbar h1 {
-    font-size: 1.5em; /* Taille du texte */
+    font-size: 1.5rem;
     color: #333;
     margin: 0;
-    padding-left: 325px;
+    padding-left: 20.3125rem;
     display: flex;
     align-items: center;
-    justify-content: center; /* Centre le texte horizontalement */
-    gap: 20px; /* Espace entre le logo et le texte */
-    white-space: nowrap; /* Empêche le retour à la ligne */
-    flex-grow: 1; /* Permet au texte de se centrer dans l'espace disponible */
+    justify-content: center;
+    gap: 1.25rem;
+    white-space: nowrap;
+    flex-grow: 1;
     text-align: center;
 }
 
 /* Ajuste les styles pour le logo */
 .navbar img {
-    width: 170px; /* Taille du logo */
+    width: 10.625rem;
     height: auto;
-    margin-right: 20px; /* Espace à droite du logo */
-    flex-shrink: 0; /* Empêche le logo de se réduire */
+    margin-right: 1.25rem;
+    flex-shrink: 0;
 }
-
 
 /* Barre de recherche */
 .navbar .search-bar {
-    flex-grow: 1; /* Occupe l'espace entre les éléments */
-    margin: 0 2em;
+    flex-grow: 1;
+    margin: 0 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    max-width: 300px; /* Limite la largeur */
+    max-width: 18.75rem;
 }
 
 .navbar .search-bar input[type="text"] {
-    padding: 6px;
-    font-size: 1rem; /* Taille normale */
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 0.375rem;
+    font-size: 1rem;
+    border: 0.0625rem solid #ddd;
+    border-radius: 0.25rem;
     width: 100%;
 }
 
@@ -66,16 +65,17 @@
 .navbar .actions {
     display: flex;
     align-items: center;
-    gap: 15px; /* Espace entre les boutons */
+    gap: 0.9375rem;
+    flex-wrap: nowrap; /* Empêche les boutons de passer à la ligne */
 }
 
 .navbar .actions a {
-    padding: 10px 15px; /* Taille normale des boutons */
-    font-size: 1rem; /* Texte standard */
+    padding: 0.625rem 0.9375rem;
+    font-size: 1rem;
     text-decoration: none;
     color: #fff;
-    border-radius: 5px;
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    border-radius: 0.3125rem;
+    white-space: nowrap;
 }
 
 .navbar .btn-login {
@@ -90,45 +90,105 @@
     background-color: #28a745;
 }
 
-/* Styles pour les petits écrans */
-@media (max-width: 768px) {
+/* Styles pour les écrans de taille tablette (jusqu'à 1024px) */
+@media (max-width: 64rem) {
     .navbar {
-        padding: 0.5em 1em; /* Réduction du padding pour mobile */
+        padding: 1rem 1.5rem;
     }
 
     .navbar h1 {
-        font-size: 1.2em; /* Taille légèrement réduite pour mobile */
-        padding-left: 25px;
+        font-size: 1.3rem;
+        padding-left: 1.25rem;
     }
 
     .navbar img {
-        width: 100px; /* Réduction de la taille du logo */
+        width: 9.375rem;
     }
 
     .navbar .search-bar {
-        margin: 0 0.5em; /* Réduction de l'espace latéral */
+        margin: 0 1rem;
     }
 
     .navbar .actions a {
-        padding: 6px 10px; /* Taille plus petite des boutons */
-        font-size: 0.9rem; /* Réduction de la taille du texte */
+        padding: 0.5rem 0.75rem;
+        font-size: 0.95rem;
     }
 }
 
+/* Styles pour les petits écrans (mobiles jusqu'à 768px) */
+@media (max-width: 48rem) {
+    .navbar {
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar h1 {
+        font-size: 1.2rem;
+        padding-left: 0.9375rem;
+    }
+
+    .navbar img {
+        width: 7.5rem;
+    }
+
+    .navbar .search-bar {
+        margin: 0 0.3125rem;
+    }
+
+    .navbar .actions a {
+        padding: 0.20rem 0.3rem; /* Réduction de la taille des boutons */
+        font-size: 0.4rem; /* Réduction de la taille du texte */
+    }
+}
+
+/* Styles pour les très petits écrans (mobiles très petits) */
+@media (max-width: 30rem) {
+    .navbar {
+        flex-direction: row; /* Reste en ligne */
+        padding: 0.5rem;
+    }
+
+    .navbar h1 {
+        font-size: 1.1rem;
+        padding-left: 0;
+    }
+
+    .navbar img {
+        width: 6.25rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .navbar .search-bar {
+        max-width: 80%;
+        margin: 0.5rem 0;
+    }
+
+    .navbar .actions {
+        gap: 0.2rem; /* Espace plus petit entre les boutons */
+    }
+
+    .navbar .actions a {
+        width: auto; /* Laisser les boutons prendre leur taille naturelle */
+        padding: 0.25rem 0.375rem; /* Boutons encore plus petits */
+        font-size: 0.75rem; /* Taille de texte réduite pour les petits écrans */
+    }
+}
+
+/* Popup */
 .popup {
-    display: none; /* Par défaut, cachée */
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #fff;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 20px;
+    border: 0.0625rem solid #ccc;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.2);
+    padding: 1.25rem;
     z-index: 1000;
 }
+
 .overlay {
-    display: none; /* Par défaut, cachée */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -137,6 +197,4 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
-.popup button {
-    margin-top: 10px;
-}
+

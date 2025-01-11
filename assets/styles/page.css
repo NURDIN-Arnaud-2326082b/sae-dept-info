@@ -11,60 +11,60 @@ body {
 }
 
 h2 {
-    color: white;
+    color: black;
     font-size: 2rem;
-    margin: 0 0 20px;
+    margin: 0 0 2rem;
 }
 
 main {
-    padding: 20px;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 1rem;
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 /* Marquee - Banderole */
 .marquee {
     background: linear-gradient(90deg, #0056b3, #007bff);
     color: #fff;
-    padding: 20px 10px; /* Réduire la hauteur */
+    padding: 2rem 1rem;
     text-align: center;
     font-size: 1.2rem;
     font-weight: bold;
-    border-radius: 8px;
-    margin: 20px auto 20px; /* Centrer horizontalement et ajouter un espace en haut */
-    width: 100%; /* Réduire la largeur pour éviter qu'elle dépasse */
-    max-width: 2000px; /* Limiter la largeur maximale */
+    border-radius: 0.8rem;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 125rem;
     position: relative;
     overflow: hidden;
     white-space: nowrap;
     z-index: 10;
-    box-sizing: border-box; /* Inclut les bordures et le padding dans la largeur */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Effet d'ombre */
-    border: 2px solid #004b93; /* Bordure subtile */
+    box-sizing: border-box;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+    border: 0.2rem solid #004b93;
 }
 
-/* Empiler les éléments à l'intérieur du formulaire et s'assurer qu'ils sont centrés */
 .marquee form {
     display: flex;
-    flex-direction: column; /* Empiler les éléments (boutons et texte) verticalement */
-    align-items: center; /* Centrer les éléments */
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 10px; /* Espacement entre les éléments */
-    margin: 0; /* Supprime tout écart externe */
+    gap: 1rem;
+    margin: 0;
 }
 
-/* Largeur des boutons pour qu'ils prennent toute la largeur du formulaire */
 .marquee button {
-    width: 100%; /* Assure que le bouton prend toute la largeur disponible */
-   /* background-color: #007bff; */
+    width: 100%;
     color: #fff;
-    padding: 10px 20px;
+    padding: 1rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.5rem;
     cursor: pointer;
     transition: background 0.3s ease;
     font-size: 1rem;
 }
 
-/* Effet hover pour les boutons */
 .marquee button:hover {
     background-color: #0056b3;
 }
@@ -72,46 +72,47 @@ main {
 .marquee h2 {
     display: inline-block;
     animation: marquee 15s linear infinite;
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-    line-height: 1.5; /* Meilleure lisibilité */
+    white-space: nowrap;
+    line-height: 1.5;
     box-sizing: border-box;
+    color: white;
 }
 
-/* Animation pour le texte défilant */
 @keyframes marquee {
     0% {
-        transform: translateX(130%); /* Démarrer complètement à droite */
+        transform: translateX(130%);
     }
     100% {
-        transform: translateX(-140%); /* Terminer complètement à gauche */
+        transform: translateX(-140%);
     }
 }
 
 /* Hero Section */
 .hero-section {
-    color: #fff;
+    color: ghostwhite;
     text-align: center;
-    padding: 60px 20px;
-    border-radius: 8px;
+    padding: 6rem 2rem;
+    border-radius: 0.8rem;
 }
 
 .hero-section .hero-content h1 {
     font-size: 3rem;
-    margin: 0 0 20px;
+    margin: 0 0 2rem;
+    color: black;
 }
 
 .hero-section .hero-content p {
     font-size: 1.25rem;
-    margin: 0 0 20px;
+    margin: 0 0 2rem;
+    color: black;
 }
 
-/* Bouton "en savoir plus" */
 .hero-section .btn-scroll {
     background: #007bff;
-    color: #fff;
-    padding: 10px 20px;
+    color: ghostwhite;
+    padding: 1rem 2rem;
     border: none;
-    border-radius: 20px;
+    border-radius: 2rem;
     text-decoration: none;
     font-size: 1rem;
     transition: background 0.3s ease;
@@ -124,140 +125,100 @@ main {
 /* Articles Grid */
 .articles-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    gap: 2rem;
 }
 
 .article-preview {
-    background: #fff;
+    background: ghostwhite;
     color: #333;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 1;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation douce */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .article-preview:hover {
-    transform: scale(1.05); /* Agrandit légèrement le panneau */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Accentue l'ombre */
-}
-
-
-.article-content {
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 50px;
-    border-radius: 8px;
-    position: relative;
-    z-index: 1;
-}
-
-
-/* Image de fond pour les articles */
-.article-preview::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-size: cover;
-    opacity: 0.3; /* Rendre l'image semi-transparente */
-    z-index: 0; /* Envoyer l'image derrière le contenu */
-}
-
-.article-content h3 {
-    font-size: 1.5rem;
-    margin: 0 0 10px;
-}
-
-.article-content p {
-    font-size: 1rem;
-    margin: 0 0 20px;
-}
-
-.article-content .read-more {
-    background: #007bff;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 1rem;
-    transition: background 0.3s ease;
-}
-
-.article-content .read-more:hover {
-    background: #0056b3;
+    transform: scale(1.05);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
 }
 
 .article-image {
     width: 100%;
-    height: 150px; /* Taille uniforme */
-    object-fit: cover; /* Coupe pour éviter les déformations */
-    border-radius: 8px; /* Coins arrondis */
-    margin-bottom: 10px; /* Espace sous l'image */
+    height: auto;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
 }
 
+.article-content h3 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+}
+
+.article-content p {
+    font-size: 1rem;
+    margin: 0 0 2rem;
+}
 
 /* Menu Panels */
 .panel-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px; /* Réduit l'écart entre les panels */
+    gap: 1rem;
+}
+
+.panel-container h2 {
+    color: white;
 }
 
 .panel {
-    flex: 1 1 calc(25% - 5px); /* Réduit la largeur des panels à 25% */
+    flex: 1 1 calc(25% - 0.5rem);
     background: #007bff;
-    color: #fff;
-    padding: 8px; /* Réduit l'espacement intérieur des panels */
+    color: ghostwhite;
+    padding: 0.8rem;
     text-align: center;
-    border-radius: 8px;
+    border-radius: 0.8rem;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
-
 .panel:hover {
     background: #0056b3;
-    transform: scale(1.02); /* Agrandit légèrement le panneau */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Accentue l'ombre */
+    transform: scale(1.02);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
 }
-
 
 /* Features Grid */
 .features-grid {
-    max-width: 2000px;
+    max-width: 125rem;
     margin: 0 auto;
-    display: flex;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40rem, 1fr));
+    gap: 2rem;
 }
-
 
 .feature {
     text-align: center;
-    padding: 20px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation douce */
-
+    padding: 2rem;
+    background: ghostwhite;
+    border: 0.1rem solid #ddd;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .feature:hover {
-    transform: scale(1.05); /* Agrandit légèrement le panneau */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Accentue l'ombre */
+    transform: scale(1.05);
+    box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
 }
 
 .feature img {
     max-width: 100%;
     height: auto;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 
 /* Boutons d'administration */
@@ -265,11 +226,11 @@ button,
 form button {
     background: #007bff;
     color: #fff;
-    padding: 10px 15px;
+    padding: 1rem 1.5rem;
     justify-content: center;
-    margin: 10px;
+    margin: 1rem;
     border: none;
-    border-radius: 20px;
+    border-radius: 2rem;
     cursor: pointer;
     font-size: 1rem;
 }
@@ -282,21 +243,20 @@ form button {
     background: #dc3545;
 }
 
-
 /* Dropzone */
 .dropzone {
     display: block;
-    padding: 10px;
-    background: #f1f1f1;
-    border: 2px dashed #007bff;
-    border-radius: 8px;
+    padding: 1rem;
+    background: ghostwhite;
+    border: 0.2rem dashed #007bff;
+    border-radius: 0.8rem;
     text-align: center;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .dropzone:hover {
-    background: #e0e0e0;
+    background: ghostwhite;
 }
 
 /* Responsive */
@@ -307,6 +267,72 @@ form button {
 
     .articles-grid,
     .features-grid {
-        grid-template-columns: 4fr;
+        grid-template-columns: 1fr;
     }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 3rem 1rem;
+    }
+
+    .hero-section .hero-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .marquee {
+        padding: 1rem 0.5rem;
+        font-size: 1rem;
+    }
+}
+
+a {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.gestion {
+    background-color: ghostwhite;
+    padding: 2rem;
+    max-width: 20%;
+    margin: auto;
+    border-radius: 0.8rem;
+}
+
+textarea {
+    font-size: 1.25rem;
+    width: 100%;
+    text-align: center;
+    border-color: black;
+    border-radius: 0.8rem;
+    padding-bottom: 1rem;
+}
+
+input {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-color: black;
+    border-radius: 0.8rem;
+}
+
+.departement-content {
+    background-color: ghostwhite;
+    padding-bottom: 2rem;
+    max-width: 20%;
+    margin: auto;
+    border-radius: 0.8rem;
+}
+
+.link {
+    font-size: 2rem;
+    background-color: ghostwhite;
+    border-radius: 0.8rem;
+    padding: 0.375rem;
+}
+
+.contour {
+    padding: 1.5rem;
 }
