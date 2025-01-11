@@ -20,11 +20,10 @@ class UserController
     {
         if (!empty($postData['name']) && !empty($postData['password'])) {
             $name = htmlspecialchars($postData['name']);
-            $password = htmlspecialchars($postData['password']);
-
+            $password = $postData['password'];
             $user = $this->userModel->getUserByName($name);
-
-            if ($user && $password === $user['password']) {
+            error_log($user['password']);
+            if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['name'] = $user['name'];
                 if ($_SESSION['name'] === 'admin') {
