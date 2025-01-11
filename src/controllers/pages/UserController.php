@@ -5,6 +5,7 @@ namespace App\src\controllers\pages;
 use App\src\database\DatabaseConnection;
 use App\src\models\UserModel;
 use App\src\views\pages\Connexion;
+use JetBrains\PhpStorm\NoReturn;
 
 class UserController
 {
@@ -41,7 +42,7 @@ class UserController
         }
     }
 
-    public function deconnecter(): void
+    #[NoReturn] public function deconnecter(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();

@@ -25,6 +25,10 @@ class UserModel
     }
 
     /**
+     * @param mixed $name
+     * @param mixed $email
+     * @param mixed $annee
+     * @param mixed $groupe
      * @throws RandomException
      */
     public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
