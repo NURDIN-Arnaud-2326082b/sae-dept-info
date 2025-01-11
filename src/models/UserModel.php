@@ -34,7 +34,15 @@ class UserModel
     public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
     {
         //Génére un mot de passe
-        $password = bin2hex(random_bytes(16)); // Génère un mot de passe aléatoire
+        $caracteres = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $tailleMax = strlen($caracteres) - 1;
+        $chaineAleatoire = '';
+
+        for ($i = 0; $i < $tailleMax; $i++) {
+            $chaineAleatoire .= $caracteres[random_int(0, $tailleMax)];
+        }
+
+        $password = $chaineAleatoire;
 
         //Hash le mot de passe
         $passwordHash = password_hash($password, PASSWORD_BCRYPT);
