@@ -4,7 +4,7 @@ namespace App\src\views\pages;
 
 use App\src\controllers\pages\PageControlleur;
 
-class Page
+class Show
 {
     private pageControlleur $pageControlleur;
     

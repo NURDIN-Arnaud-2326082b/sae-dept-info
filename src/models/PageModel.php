@@ -170,9 +170,16 @@ class PageModel
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
         $this->insererArticleDansPage($page);
-        $sql = 'INSERT INTO pages (name, pagetitle) VALUES (:name, "title")';
+        if ($type == 'homepage'){
+            $connecte = 'oui';
+        }
+        else {
+            $connecte = 'non';
+        }
+        $sql = 'INSERT INTO pages (name, pagetitle,connecte) VALUES (:name, "title",:connecte)';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':connecte', $connecte, PDO::PARAM_STR);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de la page.');
         }
@@ -313,5 +320,14 @@ class PageModel
         if (!$stmt->execute()) {
             error_log("Erreur SQL : " . implode(' | ', $stmt->errorInfo()));
         }
+    }
+
+    public function estConnecte(mixed $name): bool|array
+    {
+        $sql = 'SELECT connecte FROM pages WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
     }
 }

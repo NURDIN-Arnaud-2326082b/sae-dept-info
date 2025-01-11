@@ -4,7 +4,7 @@ namespace App\src\controllers\pages;
 use App\src\database\DatabaseConnection;
 use App\src\models\PageModel;
 use App\src\models\UserModel;
-use App\src\views\pages\Page;
+use App\src\views\pages\Show;
 use HTMLPurifier;
 use HTMLPurifier_Config;
 
@@ -28,7 +28,7 @@ class PageControlleur
     public function defaultMethod(): void
     {
         $connexionController = new UserController();
-        (new Page($this->name, $connexionController))->show();
+        (new Show($this->name, $connexionController))->show();
     }
 
     public function genererTitre()
@@ -218,6 +218,11 @@ class PageControlleur
     {
         $this->userModel->mettreAjourMdpAction($_POST['name'],$_POST['mdp']);
         header('Location: /Menu');
+    }
+
+    public function estConnecte(mixed $name)
+    {
+        return $this->pageModel->estConnecte($name);
     }
 }
 

@@ -32,16 +32,7 @@ $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
 
-// Vérification pour la page /menu
-if ($controllerSegment === 'menu' && !isset($_SESSION['name'])) {
-    header("Location: /login"); // Ramene vers la page de connexion si non connecté
-    exit;
-}
 
-if ($controllerSegment === 'Bde' && (!isset($_SESSION['name']) || !$_SESSION['name'])) {
-    header("Location: /login"); // Ramene vers la page de connexion si non connecté
-    exit;
-}
 
 
 // Gestion déconnexion
@@ -76,8 +67,13 @@ if ($controllerSegment === 'login') {
 
     $actionName = $methodSegment . 'Action';
     $controller = new PageControlleur($controllerSegment);
-    $cssPaths = ["/assets/styles/{$controllerSegment}.css"];
+    $cssPaths = ["/assets/styles/page.css"];
     $jsPaths = ["/assets/js/page.js"];
+    // Vérification pour la page /menu
+    if ($controller->estConnecte($controllerSegment)[0]['connecte'] == 'oui' && !isset($_SESSION['name'])) {
+        header("Location: /login");
+        exit();
+    }
 
     if (method_exists($controller, $actionName)) {
         $controller->$actionName($cssPaths, $jsPaths);
