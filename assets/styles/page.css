@@ -1,11 +1,13 @@
 /* Styles généraux */
 body {
+    background: url('/assets/images/départment.jpg') no-repeat center center;
+    background-size: cover;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
     color: #333;
     text-align: center;
+    position: relative;
 }
 
 main {
@@ -81,8 +83,6 @@ main {
 
 /* Hero Section */
 .hero-section {
-    background: url('/assets/images/img.png') no-repeat center center;
-    background-size: cover;
     color: #fff;
     text-align: center;
     padding: 60px 20px;
@@ -150,7 +150,7 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/assets/images/') no-repeat center center;
+    background: url('/assets/images/img.png') no-repeat center center;
     background-size: cover;
     opacity: 0.3; /* Rendre l'image semi-transparente */
     z-index: 0; /* Envoyer l'image derrière le contenu */
