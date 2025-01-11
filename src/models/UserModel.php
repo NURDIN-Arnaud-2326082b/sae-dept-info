@@ -52,7 +52,7 @@ class UserModel
     {
         $subject = 'Création de compte';
         $message = "Bonjour,\n\nUn compte a été créé pour vous. Votre mot de passe temporaire est : $password\n\n"
-            . "Veuillez cliquer sur le lien ci-dessous pour définir votre nouveau mot de passe :\n"
+            . "Veuillez vous connecter sur le site via le lien ci-dessous pour définir votre nouveau mot de passe :\n"
             . "https://votre-site.com/changer-mot-de-passe?email=$email\n\n"
             . "Cordialement, \nLa direction du BUT informatique.";
 
@@ -86,6 +86,20 @@ class UserModel
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de la suppression de l\'utilisateur.');
+        }
+    }
+
+    public function mettreAjourMdpAction(mixed $name, mixed $mdp)
+    {
+        $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);
+
+        $sql = 'UPDATE user SET password = :password WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
         }
     }
 }

@@ -210,5 +210,11 @@ class PageControlleur
         $this->userModel->supprimerUserAction($_POST['email']);
         header('Location: /' . $name);
     }
+
+    public function mettreAjourMdpAction(): void
+    {
+        $this->userModel->mettreAjourMdpAction($_POST['name'],$_POST['mdp']);
+        header('Location: /Menu');
+    }
 }
 
