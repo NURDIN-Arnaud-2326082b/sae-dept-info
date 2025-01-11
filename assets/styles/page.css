@@ -1,11 +1,13 @@
 /* Styles généraux */
 body {
+    background: url('/assets/images/départment.jpg') no-repeat center center;
+    background-size: cover;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
     color: #333;
     text-align: center;
+    position: relative;
 }
 
 main {
@@ -81,8 +83,6 @@ main {
 
 /* Hero Section */
 .hero-section {
-    background: url('/assets/images/img.png') no-repeat center center;
-    background-size: cover;
     color: #fff;
     text-align: center;
     padding: 60px 20px;
@@ -129,36 +129,32 @@ main {
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative; /* Pour positionner l'image de fond */
-    width: 300px; /* Largeur augmentée */
-    height: 400px; /* Hauteur augmentée */
-    margin: 20px; /* Ajouter un espacement entre les articles */
-    padding: 16px; /* Espacement interne */
 }
 
-
-/*.article-content {
+.article-content {
     padding: 20px;
     text-align: center;
-    border-bottom: 2px solid #007bff;   Ajoute une ligne bleue sous le texte
+    border-bottom: 2px solid #007bff;  /* Ajoute une ligne bleue sous le texte */
     margin-bottom: 50px;
     border-radius: 8px;
     position: relative;
     z-index: 1;
 }
-*/
+
 
 /* Image de fond pour les articles */
-/*.article-preview::before {
+.article-preview::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    background: url('/assets/images/img.png') no-repeat center center;
     background-size: cover;
-    opacity: 0.3;  Rendre l'image semi-transparente
-    z-index: 0;*/
-
+    opacity: 0.3; /* Rendre l'image semi-transparente */
+    z-index: 0; /* Envoyer l'image derrière le contenu */
+}
 
 .article-content h3 {
     font-size: 1.5rem;

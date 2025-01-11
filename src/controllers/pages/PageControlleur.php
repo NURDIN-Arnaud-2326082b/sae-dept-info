@@ -65,7 +65,7 @@ class PageControlleur
             $titre = '';
         }
 
-        $titre = $this->purifier->purify($contenu);
+        $titre = $this->purifier->purify($titre);
         $contenu = $this->purifier->purify($contenu);
         $lien = $this->purifier->purify($lien);
         $this->pageModel->updateArticleAction($id,$titre, $contenu,$lien);
