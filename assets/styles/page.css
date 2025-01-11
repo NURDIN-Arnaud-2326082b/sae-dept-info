@@ -10,6 +10,12 @@ body {
     position: relative;
 }
 
+h2 {
+    color: white;
+    font-size: 2rem;
+    margin: 0 0 20px;
+}
+
 main {
     padding: 20px;
 }
@@ -124,17 +130,24 @@ main {
 
 .article-preview {
     background: #fff;
-    border: 1px solid #ddd;
+    color: #333;
+    padding: 20px;
     border-radius: 8px;
-    overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative; /* Pour positionner l'image de fond */
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation douce */
 }
+
+.article-preview:hover {
+    transform: scale(1.05); /* Agrandit légèrement le panneau */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Accentue l'ombre */
+}
+
 
 .article-content {
     padding: 20px;
     text-align: center;
-    border-bottom: 2px solid #007bff;  /* Ajoute une ligne bleue sous le texte */
     margin-bottom: 50px;
     border-radius: 8px;
     position: relative;
@@ -150,7 +163,6 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/assets/images/img.png') no-repeat center center;
     background-size: cover;
     opacity: 0.3; /* Rendre l'image semi-transparente */
     z-index: 0; /* Envoyer l'image derrière le contenu */
@@ -208,8 +220,11 @@ main {
     transition: background 0.3s ease;
 }
 
+
 .panel:hover {
     background: #0056b3;
+    transform: scale(1.02); /* Agrandit légèrement le panneau */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Accentue l'ombre */
 }
 
 
@@ -217,7 +232,7 @@ main {
 .features-grid {
     max-width: 2000px;
     margin: 0 auto;
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 20px;
 }
@@ -226,11 +241,17 @@ main {
 .feature {
     text-align: center;
     padding: 20px;
-    margin-bottom: 2px solid #007bff;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation douce */
+
+}
+
+.feature:hover {
+    transform: scale(1.05); /* Agrandit légèrement le panneau */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Accentue l'ombre */
 }
 
 .feature img {
