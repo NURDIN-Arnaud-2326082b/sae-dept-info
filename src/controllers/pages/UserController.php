@@ -22,7 +22,6 @@ class UserController
             $name = htmlspecialchars($postData['name']);
             $password = $postData['password'];
             $user = $this->userModel->getUserByName($name);
-            error_log($user['password']);
             if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['name'] = $user['name'];

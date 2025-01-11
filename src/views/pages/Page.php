@@ -124,7 +124,7 @@ class Page
                         foreach ($content as $ct2) {
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'onerror="this.style.display=\'none\';"">';
+                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';"">';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
                                 echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -189,7 +189,7 @@ class Page
                                 echo '</form>';
                                 echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" name="titre"/>';
-                                echo '<textarea rows="3" cols="50" name="contenu">'. $ct2['content'] .'</textarea><textarea rows="3" cols="50" name="lien">'. $ct['link'] .'</textarea>';
+                                echo '<textarea rows="3" cols="50" name="contenu">'. $ct2['content'] .'</textarea><textarea rows="3" cols="50" name="lien">'. $ct2['link'] .'</textarea>';
                                 echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                                 echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct2['id_article'] . "'>Supprimer l'article</button></form>";
                                 echo '</div>';
