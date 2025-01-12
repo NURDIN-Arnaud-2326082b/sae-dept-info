@@ -99,7 +99,7 @@ class UserModel
         $subject = 'Création de compte';
         $message = "Bonjour,\n\nUn compte a été créé pour vous. Votre mot de passe temporaire est : $password\n\n"
             . "Veuillez vous connecter sur le site via le lien ci-dessous pour définir votre nouveau mot de passe :\n"
-            . "https://votre-site.com/changer-mot-de-passe?email=$email\n\n"
+            . "https://departementinfoaix.alwaysdata.net/login\n\n"
             . "Cordialement, \nLa direction du BUT informatique.";
 
 
