@@ -359,6 +359,14 @@ class Show
         echo "<button type='submit' name='add'>Ajouter l'article</button></form></div></section>";
     }
 
+    public function genererPopUp(string $contenu): void
+    {
+        echo '<div class="popup" id="popup">';
+        echo '<p>'.$contenu.'</p>';
+        echo'<button class="btn-save" type="submit" onclick="closePopup()">Fermer</button>';
+
+    }
+
     public function show(): void
     {
         ob_start();

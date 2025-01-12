@@ -24,6 +24,14 @@ class UserModel
         return $query->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
+    public function getUserByMail(string $email): ?array
+    {
+        $query = $this->connect->getConnection()->prepare("SELECT * FROM user WHERE email = :email");
+        $query->bindParam(':name', $email);
+        $query->execute();
+        return $query->fetch(PDO::FETCH_ASSOC) ?: null;
+    }
+
     /**
      * @param mixed $name
      * @param mixed $email

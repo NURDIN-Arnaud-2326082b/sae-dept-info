@@ -14,6 +14,7 @@ class PageControlleur
     private PageModel $pageModel;
     private HTMLPurifier $purifier;
     private UserModel $userModel;
+    private Show $show;
 
     public function __construct(string $name)
     {
@@ -23,6 +24,7 @@ class PageControlleur
         $config->set('HTML.Allowed', 'br,strong');
         $this->purifier = new HTMLPurifier($config);
         $this->userModel = new UserModel(DatabaseConnection::getInstance());
+        $this->show = new Show($this->name);
     }
 
     public function defaultMethod(): void
@@ -197,8 +199,15 @@ class PageControlleur
     public function ajouterUserAction(): void
     {
         $name = $_POST['page'] ?? null;
-        $this->userModel->ajouterUserAction($_POST['name'],$_POST['email'],$_POST['annee'],$_POST['groupe']);
-        header('Location: /' . $name);
+        if ($this->userModel->getUserByMail($_POST['email']) !== null || $this->userModel->getUserByName($_POST['name'])) {
+            $this->show->genererPopUp('L\'adresse mail ou le nom d\'utilisateur est déjà utilisé');
+        }
+        else
+        {
+            $this->userModel->ajouterUserAction($_POST['name'],$_POST['email'],$_POST['annee'],$_POST['groupe']);
+            header('Location: /' . $name);
+        }
+
     }
 
     /**
