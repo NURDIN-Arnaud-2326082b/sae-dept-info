@@ -76,7 +76,7 @@ class PageModel
      * Méthode pour supprimer un article de la base de données.
      * @throws \Exception Si une erreur survient lors de la suppression de l'article.
      */
-    public function deleteArticleAction(int $id, string $type, string $link): void
+    public function deleteArticleAction(int $id, string $type, mixed $link): void
     {
         error_log("Type de l'article : $type");
         error_log("ID de l'article à supprimer : $id");
