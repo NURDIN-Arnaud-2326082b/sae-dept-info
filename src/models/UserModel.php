@@ -6,6 +6,9 @@ use App\src\database\DatabaseConnection;
 use PDO;
 use Random\RandomException;
 
+/**
+ * Modèle de l'utilisateur.
+ */
 class UserModel
 {
     /**
@@ -16,6 +19,12 @@ class UserModel
     {
     }
 
+    /**
+     * Récupère un utilisateur par son nom.
+     *
+     * @param string $name Nom de l'utilisateur.
+     * @return array|null Tableau associatif contenant les informations de l'utilisateur ou null si l'utilisateur n'existe pas.
+     */
     public function getUserByName(string $name): ?array
     {
         $query = $this->connect->getConnection()->prepare("SELECT * FROM user WHERE name = :name");
@@ -72,6 +81,12 @@ class UserModel
 
     }
 
+    /**
+     * Envoie un email à l'utilisateur.
+     * @param mixed $email
+     * @param mixed $password
+     * @throws RandomException
+     */
     public function envoyerEmail(mixed $email, mixed $password): void
     {
         $subject = 'Création de compte';
@@ -89,21 +104,12 @@ class UserModel
     }
 
 
-    public function changePassword(mixed $email, mixed $password): void
-    {
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT);
-
-        $sql = 'UPDATE user SET password = :password WHERE email = :email';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-
-        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
-
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
-        }
-    }
-
+    /**
+     * Supprime un utilisateur.
+     *
+     * @param string $email Email de l'utilisateur.
+     * @throws \Exception
+     */
     public function supprimerUserAction(mixed $email){
         $sql = 'DELETE FROM user WHERE email = :email';
         $stmt = $this->connect->getConnection()->prepare($sql);
@@ -113,6 +119,13 @@ class UserModel
         }
     }
 
+    /**
+     * Met à jour le mot de passe d'un utilisateur.
+     *
+     * @param string $name Nom de l'utilisateur.
+     * @param string $mdp Nouveau mot de passe.
+     * @throws \Exception
+     */
     public function mettreAjourMdpAction(mixed $name, mixed $mdp)
     {
         $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);

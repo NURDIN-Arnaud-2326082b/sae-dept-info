@@ -30,6 +30,13 @@ class PageModel
         return $stmt->fetchAll();
     }
 
+
+    /**
+     * Récupère les informations de la page demandée.
+     *
+     * @param string $name Nom de la page demandée.
+     * @return array Tableau contenant les informations de la page demandée.
+     */
     public function genererContenu(string $name): bool|array
     {
         $sql = 'SELECT * FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
@@ -104,6 +111,9 @@ class PageModel
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function chercheIdPage(string $name): bool|array
     {
         $sql = 'SELECT id FROM pages WHERE name = :name';
@@ -135,7 +145,9 @@ class PageModel
             $stmt->execute();
         }
     }
-
+    /**
+     * @throws \Exception
+     */
     public function recupererType(string $name): bool|array
     {
         $sql = 'SELECT DISTINCT type FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
@@ -145,6 +157,9 @@ class PageModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function recupererDernierId(): bool|array
     {
         $sql = 'SELECT MAX(id_article) FROM article';
@@ -201,6 +216,9 @@ class PageModel
         $this->insererArticleDansPage($name);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function getImageById(mixed $id)
     {
         $stmt = $this->connect->getConnection()->prepare("SELECT type, image FROM images WHERE id_image = :id");
@@ -208,6 +226,9 @@ class PageModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function updateImageById($id, $type, $data): void
     {
         $stmt = $this->connect->getConnection()->prepare("UPDATE images SET type = :type, image = :data WHERE id_image = :id");
@@ -295,6 +316,9 @@ class PageModel
         $this->insererArticleDansPage($name);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function recupererDernierePage(): bool|array
     {
         $sql = 'SELECT MAX(id) FROM pages';
@@ -303,6 +327,9 @@ class PageModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function getPdfById(mixed $id)
     {
         $stmt = $this->connect->getConnection()->prepare("SELECT type, data FROM pdf WHERE id_pdf = :id");
@@ -310,6 +337,9 @@ class PageModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function updatePdfById(mixed $id, bool|string $fileType, bool|string $fileData): void
     {
         $stmt = $this->connect->getConnection()->prepare("UPDATE pdf SET type = :type, data = :data WHERE id_pdf = :id");
@@ -322,6 +352,9 @@ class PageModel
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function estConnecte(mixed $name): bool|array
     {
         $sql = 'SELECT connecte FROM pages WHERE name = :name';
@@ -331,6 +364,9 @@ class PageModel
         return $stmt->fetchAll();
     }
 
+    /**
+     * @throws \Exception
+     */
     public function deleteImageAction(mixed $id)
     {
         $stmt = $this->connect->getConnection()->prepare("UPDATE images SET type = null, image = null WHERE id_image = :id");

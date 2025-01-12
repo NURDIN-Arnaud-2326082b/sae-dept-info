@@ -145,6 +145,9 @@ class PageControlleur
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function updateImageAction(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
@@ -159,7 +162,9 @@ class PageControlleur
             exit();
         }
     }
-
+    /**
+     * @throws \Exception
+     */
     public function getPdf(): void
     {
         $id = $_GET['id'];
@@ -176,6 +181,9 @@ class PageControlleur
         }
     }
 
+    /**
+     * @throws \Exception
+     */
     public function updatePdfAction(): void
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
@@ -228,11 +236,17 @@ class PageControlleur
         header('Location: /Menu');
     }
 
+    /**
+     * @throws \Exception
+     */
     public function estConnecte(mixed $name)
     {
         return $this->pageModel->estConnecte($name);
     }
 
+    /**
+     * @throws \Exception
+     */
     public function deleteImageAction(): void
     {
         $id = $_POST['delete'];

@@ -7,15 +7,25 @@ use App\src\models\UserModel;
 use App\src\views\pages\Connexion;
 use JetBrains\PhpStorm\NoReturn;
 
+/**
+ * Contrôleur de la page de connexion.
+ */
 class UserController
 {
     private UserModel $userModel;
 
+    /**
+     * Constructeur de la classe.
+     */
     public function __construct()
     {
         $this->userModel = new UserModel(DatabaseConnection::getInstance());
     }
 
+    /**
+     * Affiche la page de connexion.
+     * @return void
+     */
     public function connecter(array $postData): string
     {
         if (!empty($postData['name']) && !empty($postData['password'])) {
@@ -32,7 +42,7 @@ class UserController
                 exit;
             }
             else {
-                return "Nom d'utilisateur ou mot de passe incorrect.";
+                header("Location: /login");
             }
 
         } else {
@@ -40,6 +50,10 @@ class UserController
         }
     }
 
+    /**
+     * Déconnecte l'utilisateur et le redirige vers la page de connexion.
+     * @return void
+     */
     #[NoReturn] public function deconnecter(): void
     {
         if (session_status() === PHP_SESSION_NONE) {
