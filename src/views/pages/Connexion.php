@@ -6,7 +6,7 @@ class Connexion
     /**
      * Affiche la page de connexion.
      */
-    public function show(): void
+    public function show(): string
     {
         ob_start();
         ?>
@@ -27,7 +27,9 @@ class Connexion
             </div>
         </main>
         <?php
-        (new Layout('Connexion', ob_get_clean()))->show();
+        $output = ob_get_clean();
+        (new Layout('Connexion', $output))->show();
+        return $output;
     }
 }
 ?>
