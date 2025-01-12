@@ -10,7 +10,6 @@ img {
     height: auto;
 }
 
-
 /* Pour le placer toujours en bas si la page est plus petite que la fenêtre */
 html, body {
     height: 100%;
@@ -19,5 +18,3 @@ html, body {
     display: flex;
     flex-direction: column;
 }
-
-

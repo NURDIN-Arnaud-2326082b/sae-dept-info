@@ -15,13 +15,13 @@ class DatabaseConnection
 
     private function __construct()
     {
-        $host = $_ENV['DB_HOST'];
+        $host = $_ENV['DB_HOST'] ?? '127.0.0.1';
         $db_name = $_ENV['DB_NAME'];
         $username = $_ENV['DB_USER'];
         $password = $_ENV['DB_PASS'];
 
         try {
-            $this->conn = new PDO('mysql:host=' . $host . ';dbname=' . $db_name, $username, $password);
+            $this->conn = new PDO('mysql:host=' . $host . ';port=3306;dbname=' . $db_name, $username, $password);
             $this->conn->exec('set names utf8');
         } catch (PDOException $exception) {
             echo 'Connection Error: ' . $exception->getMessage();

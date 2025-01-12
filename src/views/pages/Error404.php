@@ -1,6 +1,6 @@
 <?php
 
-namespace App\src\views\Error404Views;
+namespace App\src\views\pages;
 
 /**
  * Error404 Class
@@ -16,8 +16,7 @@ class Error404
     public function show(): void {
     ?>
         <!DOCTYPE html>
-        <html lang="en">
-
+        <html lang="fr">
         <head>
         <meta charset="utf-8">
         <meta name="keywords" content="raclette">
