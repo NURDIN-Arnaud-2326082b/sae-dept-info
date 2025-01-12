@@ -77,9 +77,10 @@ class PageControlleur
      */
     public function deleteArticleAction(): void
     {
-        $id = $_POST['delete'];
-        $type = $_POST['type'];
-        $this->pageModel->deleteArticleAction($id,$type);
+        $id = $_POST['delete'] ?? null;
+        $type = $_POST['type'] ?? null;
+        $link = $_POST['link'] ?? null;
+        $this->pageModel->deleteArticleAction($id,$type,$link);
         header('Location: /'.$_POST['name']);
     }
 
@@ -207,7 +208,10 @@ class PageControlleur
         $name = $_POST['page'] ?? null;
         if ($this->userModel->getUserByMail($_POST['email']) == null || $this->userModel->getUserByName($_POST['name']) == null) {
             $this->userModel->ajouterUserAction($_POST['name'],$_POST['email'],$_POST['annee'],$_POST['groupe']);
-            header('Location: /' . $name);        }
+            header('Location: /' . $name);
+        } else {
+            header('Location: /' . $name);
+        }
     }
 
     /**

@@ -74,7 +74,7 @@ class PageModel
     /**
      * @throws \Exception
      */
-    public function deleteArticleAction(int $id, string $type): void
+    public function deleteArticleAction(int $id, string $type, string $link): void
     {
         error_log("Type de l'article : $type");
         error_log("ID de l'article à supprimer : $id");
@@ -91,7 +91,8 @@ class PageModel
             throw new \Exception('Erreur lors de la suppression de l\'article.');
         }
         $motif = '/^list\d+$/';
-        if ($type == 'intro' || $type == 'img'  || preg_match($motif, $type) || $type == 'homepage'){
+        $motif2 = '/^lstlinked\d+$/';
+        if ($type == 'img'  || preg_match($motif, $type) || $type == 'homepage' || preg_match($motif2, $type)){
             $sql = 'DELETE FROM images WHERE id_image = :id';
             $stmt = $this->connect->getConnection()->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
@@ -108,6 +109,10 @@ class PageModel
             if (!$stmt->execute()) {
                 throw new \Exception('Erreur lors de la suppression de l\'article.');
             }
+        }
+
+        if($type == 'homepage' || $type == 'menu'){
+            $this->deletePage($link);
         }
     }
 
@@ -372,4 +377,36 @@ class PageModel
         $stmt = $this->connect->getConnection()->prepare("UPDATE images SET type = null, image = null WHERE id_image = :id");
         $stmt->execute(['id' => $id]);
     }
+
+    public function deletePage(mixed $name): void
+    {
+        $idpge = $this->chercheIdPage($name)[0]['id'];
+        $articles = $this->genererContenu($name);
+        foreach ($articles as $article) {
+            $motif = '/^list\d+$/';
+            $motif2 = '/^lstlinked\d+$/';
+            if ($article['type'] == 'img'  || preg_match($motif, $article['type']) || $article['type'] == 'homepage' || preg_match($motif2, $article['type'])){
+                $sql = 'DELETE FROM images WHERE id_image = :id';
+                $stmt = $this->connect->getConnection()->prepare($sql);
+                $stmt->bindValue(':id', $article['id_article'], PDO::PARAM_INT);
+                if (!$stmt->execute()) {
+                    throw new \Exception('Erreur lors de la suppression de l\'article.');
+                }
+            }
+            $sql = 'DELETE FROM article WHERE id_article = :id';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':id', $article['id_article'], PDO::PARAM_INT);
+            $stmt->execute();
+        }
+        $sql = 'DELETE FROM pages WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        $sql = 'DELETE FROM articledanspage WHERE id = :id';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':id', $idpge, PDO::PARAM_INT);
+        $stmt->execute();
+
+    }
+
 }
