@@ -16,4 +16,4 @@ Pour ce qui est de l'IDE installez de préférence **PHPStorm** pour éviter tou
 
 ## Accéder à notre site web
 
-Vous pourrez retrouver notre site à l'adresses suivante : [https://departementinfoaix.alwaysdata.net/].
+Vous pourrez retrouver notre site à l'adresses suivante : https://departementinfoaix.alwaysdata.net/.
