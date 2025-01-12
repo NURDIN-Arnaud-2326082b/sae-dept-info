@@ -14,7 +14,6 @@ class PageControlleur
     private PageModel $pageModel;
     private HTMLPurifier $purifier;
     private UserModel $userModel;
-    private Show $show;
 
     public function __construct(string $name)
     {
@@ -24,7 +23,6 @@ class PageControlleur
         $config->set('HTML.Allowed', 'br,strong');
         $this->purifier = new HTMLPurifier($config);
         $this->userModel = new UserModel(DatabaseConnection::getInstance());
-        $this->show = new Show($this->name);
     }
 
     public function defaultMethod(): void
@@ -199,8 +197,9 @@ class PageControlleur
     public function ajouterUserAction(): void
     {
         $name = $_POST['page'] ?? null;
-        if ($this->userModel->getUserByMail($_POST['email']) !== null || $this->userModel->getUserByName($_POST['name'])) {
-            $this->show->genererPopUp('L\'adresse mail ou le nom d\'utilisateur est déjà utilisé');
+        if ($this->userModel->getUserByMail($_POST['email']) !== null || $this->userModel->getUserByName($_POST['name']) != null) {
+            $this->genererPopUp('L\'adresse mail ou le nom d\'utilisateur est déjà utilisé');
+            header('Location: /' . $name);
         }
         else
         {
@@ -239,6 +238,11 @@ class PageControlleur
         $id = $_POST['delete'];
         $this->pageModel->deleteImageAction($id);
         header('Location: /'.$_POST['name']);
+    }
+
+    public function genererPopUp(string $message): void
+    {
+        (new Show($this->name, new UserController()))->genererPopUp($message);
     }
 }
 
