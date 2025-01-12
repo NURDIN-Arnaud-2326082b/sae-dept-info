@@ -191,10 +191,10 @@ class PageModel
         }
         $this->insererArticleDansPage($page);
         if ($type == 'homepage'){
-            $connecte = 'oui';
+            $connecte = 'non';
         }
         else {
-            $connecte = 'non';
+            $connecte = 'oui';
         }
         $sql = 'INSERT INTO pages (name, pagetitle,connecte) VALUES (:name, "title",:connecte)';
         $stmt = $this->connect->getConnection()->prepare($sql);
