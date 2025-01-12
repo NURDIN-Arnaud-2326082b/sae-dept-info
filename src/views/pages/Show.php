@@ -6,8 +6,16 @@ use App\src\controllers\pages\PageControlleur;
 
 class Show
 {
+    /**
+     * PageControlleur
+     * @var PageControlleur controlleur gérant les pages
+     */
     private pageControlleur $pageControlleur;
-    
+
+    /**
+     * Constructeur de la classe Show
+     * @param string $name nom de la page
+     */
     public function __construct(string $name)
     {
         $this->pageControlleur = new PageControlleur($name);
@@ -66,7 +74,7 @@ class Show
     }
 
     /**
-     * Génère les articles de la page.
+     * Génère les articles de la page en fonction des templates existantes.
      */
     public function genererArticles(): void
     {

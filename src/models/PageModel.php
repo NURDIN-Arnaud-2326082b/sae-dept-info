@@ -8,7 +8,7 @@ use PDO;
 class PageModel
 {
     /**
-     *
+     *Constructeur de la classe PageModel.
      * @param DatabaseConnection $connect Instance de la classe DbConnect pour la connexion à la base de données.
      */
     public function __construct(private readonly DatabaseConnection $connect)
@@ -35,7 +35,7 @@ class PageModel
      * Récupère les informations de la page demandée.
      *
      * @param string $name Nom de la page demandée.
-     * @return array Tableau contenant les informations de la page demandée.
+     * @return bool|array Tableau contenant les informations de la page demandée.
      */
     public function genererContenu(string $name): bool|array
     {
@@ -47,7 +47,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode de mise à jour d'un article dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la mise à jour de l'article.
      */
     public function updateArticleAction(int $id , string $titre, string $contenu, string $lien): void
     {
@@ -72,7 +73,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour supprimer un article de la base de données.
+     * @throws \Exception Si une erreur survient lors de la suppression de l'article.
      */
     public function deleteArticleAction(int $id, string $type, string $link): void
     {
@@ -117,7 +119,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthosz pour récupérer l'id d'une page sachant son nom dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la récupération de l'id de la page.
      */
     public function chercheIdPage(string $name): bool|array
     {
@@ -129,7 +132,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour ajouter un article dans la base de données.
+     * @throws \Exception Si une erreur survient lors de l'ajout de l'article.
      */
     public function ajouterArticleAction(string $type, string $page): void
     {
@@ -151,7 +155,8 @@ class PageModel
         }
     }
     /**
-     * @throws \Exception
+     * Méthode pour récupérer le type d'un article sachant son nom dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la récupération du type de l'article.
      */
     public function recupererType(string $name): bool|array
     {
@@ -163,7 +168,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour récupérer le plus grand id d'article existant dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la récupération du dernier id d'article.
      */
     public function recupererDernierId(): bool|array
     {
@@ -174,7 +180,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour ajouter une page dans la base de données.
+     * @throws \Exception Si une erreur survient lors de l'ajout de la page.
      */
     public function ajouterPage(string $page, string $type): void
     {
@@ -222,7 +229,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour récupérer le contenu d'un article sachant son id dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la récupération du contenu de l'article.
      */
     public function getImageById(mixed $id)
     {
@@ -232,7 +240,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour mettre à jour une image dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la mise à jour de l'image.
      */
     public function updateImageById($id, $type, $data): void
     {
@@ -249,7 +258,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour ajouter une image dans la base de données.
+     * @throws \Exception Si une erreur survient lors de l'ajout de l'image.
      */
     public function ajouterImage($type, $data, $pageName): void
     {
@@ -276,7 +286,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour insérer un article dans une page dans la base de données.
+     * @throws \Exception Si une erreur survient lors de l'insertion de l'article dans la page.
      */
     public function insererArticleDansPage(mixed $page): void
     {
@@ -295,7 +306,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour ajouter un PDF dans la base de données.
+     * @throws \Exception Si une erreur survient lors de l'ajout du PDF.
      */
     public function ajouterPDF(mixed $fileType, mixed $fileData, mixed $name): void
     {
@@ -322,7 +334,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour récupérer la dernière page créée de la base de données.
+     * @throws \Exception Si une erreur survient lors de la récupération de la dernière page.
      */
     public function recupererDernierePage(): bool|array
     {
@@ -333,7 +346,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour récupérer un PDF sachant son id dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la récupération du PDF.
      */
     public function getPdfById(mixed $id)
     {
@@ -343,7 +357,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour mettre à jour un PDF dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la mise à jour du PDF.
      */
     public function updatePdfById(mixed $id, bool|string $fileType, bool|string $fileData): void
     {
@@ -358,7 +373,8 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour récupérer le statut de connexion d'une page sachant son nom dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la récupération du statut de connexion de la page.
      */
     public function estConnecte(mixed $name): bool|array
     {
@@ -370,14 +386,19 @@ class PageModel
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour mettre à jour le statut de connexion d'une page dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la mise à jour du statut de connexion de la page.
      */
-    public function deleteImageAction(mixed $id)
+    public function deleteImageAction(mixed $id): void
     {
         $stmt = $this->connect->getConnection()->prepare("UPDATE images SET type = null, image = null WHERE id_image = :id");
         $stmt->execute(['id' => $id]);
     }
 
+    /**
+     * Méthode pour supprimer une page de la base de données.
+     * @throws \Exception Si une erreur survient lors de la suppression de la page.
+     */
     public function deletePage(mixed $name): void
     {
         $idpge = $this->chercheIdPage($name)[0]['id'];

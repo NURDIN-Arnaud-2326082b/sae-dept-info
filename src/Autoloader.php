@@ -5,12 +5,12 @@ namespace App\src;
 /**
  * Autoloader Class
  *
- * Provides methods to autoload classes.
+ * Contient les méthodes pour l'autoload des classes.
  */
 class Autoloader
 {
     /**
-     * Register the autoloader.
+     * S'enregistre en tant qu'autoload.
      */
     public static function register(): void
     {
@@ -21,9 +21,9 @@ class Autoloader
     }
 
     /**
-     * Autoload the class.
+     * Autoload les classes.
      *
-     * @param string $class
+     * @param string $class La classe a autoloader.
      */
     public static function autoload($class): void
     {

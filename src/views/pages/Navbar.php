@@ -1,11 +1,6 @@
 <?php
 namespace App\src\views\pages;
 
-/**
- * Navbar Class
- *
- * Provides methods to render the navbar of the application.
- */
 class Navbar
 {
     /**

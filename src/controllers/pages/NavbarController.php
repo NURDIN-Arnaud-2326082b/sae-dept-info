@@ -26,6 +26,7 @@ class NavbarController
 
 
     /**
+     * Affiche la barre de navigation.
      * @return void
      */
     public function defaultMethod(): void

@@ -12,7 +12,7 @@ use Random\RandomException;
 class UserModel
 {
     /**
-     *
+     *Constructeur de la classe UserModel.
      * @param DatabaseConnection $connect Instance de la classe DbConnect pour la connexion à la base de données.
      */
     public function __construct(private readonly DatabaseConnection $connect)
@@ -33,6 +33,12 @@ class UserModel
         return $query->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
+    /**
+     * Récupère un utilisateur par son email.
+     *
+     * @param string $email Email de l'utilisateur.
+     * @return array|null Tableau associatif contenant les informations de l'utilisateur ou null si l'utilisateur n'existe pas.
+     */
     public function getUserByMail(string $email): ?array
     {
         $query = $this->connect->getConnection()->prepare("SELECT * FROM user WHERE email = :email");
@@ -42,11 +48,12 @@ class UserModel
     }
 
     /**
-     * @param mixed $name
-     * @param mixed $email
-     * @param mixed $annee
-     * @param mixed $groupe
-     * @throws RandomException
+     * Méthode pour ajouter un utilisateur.
+     * @param mixed $name Nom de l'utilisateur.
+     * @param mixed $email Email de l'utilisateur.
+     * @param mixed $annee Année de l'utilisateur.
+     * @param mixed $groupe Groupe de l'utilisateur.
+     * @throws RandomException Erreur lors de l'ajout de l'utilisateur.
      */
     public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
     {
@@ -83,9 +90,9 @@ class UserModel
 
     /**
      * Envoie un email à l'utilisateur.
-     * @param mixed $email
-     * @param mixed $password
-     * @throws RandomException
+     * @param mixed $email Email de l'utilisateur.
+     * @param mixed $password Mot de passe de l'utilisateur.
+     * @throws RandomException Erreur lors de l'envoi de l'email.
      */
     public function envoyerEmail(mixed $email, mixed $password): void
     {
@@ -108,7 +115,7 @@ class UserModel
      * Supprime un utilisateur.
      *
      * @param string $email Email de l'utilisateur.
-     * @throws \Exception
+     * @throws \Exception Erreur lors de la suppression de l'utilisateur.
      */
     public function supprimerUserAction(mixed $email){
         $sql = 'DELETE FROM user WHERE email = :email';
@@ -124,7 +131,7 @@ class UserModel
      *
      * @param string $name Nom de l'utilisateur.
      * @param string $mdp Nouveau mot de passe.
-     * @throws \Exception
+     * @throws \Exception Erreur lors de la mise à jour du mot de passe.
      */
     public function mettreAjourMdpAction(mixed $name, mixed $mdp)
     {
