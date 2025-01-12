@@ -232,7 +232,7 @@ class PageControlleur
     /**
      * @throws \Exception
      */
-    public function estConnecte(mixed $name)
+    public function estConnecte(mixed $name): bool|array
     {
         return $this->pageModel->estConnecte($name);
     }
