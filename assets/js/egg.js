@@ -46,7 +46,7 @@ function createBlinkingImages() {
 
     // Ajouter la deuxième image
     const img2 = document.createElement('img');
-    img2.src = '/assets/images/egg/baby_egg.png';
+    img2.src = '/assets/images/egg/baby_egg2.jpg';
     img2.style.width = '500px';
     img2.style.animation = 'blink 0.1s infinite';
     container.appendChild(img2);
