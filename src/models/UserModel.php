@@ -33,6 +33,12 @@ class UserModel
         return $query->fetch(PDO::FETCH_ASSOC) ?: null;
     }
 
+    /**
+     * Récupère un utilisateur par son email.
+     *
+     * @param string $email Email de l'utilisateur.
+     * @return array|null Tableau associatif contenant les informations de l'utilisateur ou null si l'utilisateur n'existe pas.
+     */
     public function getUserByMail(string $email): ?array
     {
         $query = $this->connect->getConnection()->prepare("SELECT * FROM user WHERE email = :email");
@@ -42,6 +48,8 @@ class UserModel
     }
 
     /**
+     * Récupère tous les utilisateurs.
+     *
      * @param mixed $name
      * @param mixed $email
      * @param mixed $annee
@@ -83,6 +91,7 @@ class UserModel
 
     /**
      * Envoie un email à l'utilisateur.
+     *
      * @param mixed $email
      * @param mixed $password
      * @throws RandomException
