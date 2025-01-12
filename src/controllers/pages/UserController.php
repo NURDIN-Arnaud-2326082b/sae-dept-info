@@ -12,7 +12,7 @@ use JetBrains\PhpStorm\NoReturn;
  */
 class UserController
 {
-    private UserModel $userModel;
+    public UserModel $userModel;
 
     /**
      * Constructeur de la classe.

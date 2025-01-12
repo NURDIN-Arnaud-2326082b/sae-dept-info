@@ -11,9 +11,9 @@ use HTMLPurifier_Config;
 class PageControlleur
 {
     private string $name;
-    private PageModel $pageModel;
-    private HTMLPurifier $purifier;
-    private UserModel $userModel;
+    public PageModel $pageModel;
+    public HTMLPurifier $purifier;
+    public UserModel $userModel;
 
     public function __construct(string $name)
     {
@@ -205,16 +205,9 @@ class PageControlleur
     public function ajouterUserAction(): void
     {
         $name = $_POST['page'] ?? null;
-        if ($this->userModel->getUserByMail($_POST['email']) !== null || $this->userModel->getUserByName($_POST['name']) != null) {
-            $this->genererPopUp('L\'adresse mail ou le nom d\'utilisateur est déjà utilisé');
-            header('Location: /' . $name);
-        }
-        else
-        {
+        if ($this->userModel->getUserByMail($_POST['email']) == null || $this->userModel->getUserByName($_POST['name']) == null) {
             $this->userModel->ajouterUserAction($_POST['name'],$_POST['email'],$_POST['annee'],$_POST['groupe']);
-            header('Location: /' . $name);
-        }
-
+            header('Location: /' . $name);        }
     }
 
     /**
@@ -252,11 +245,6 @@ class PageControlleur
         $id = $_POST['delete'];
         $this->pageModel->deleteImageAction($id);
         header('Location: /'.$_POST['name']);
-    }
-
-    public function genererPopUp(string $message): void
-    {
-        (new Show($this->name, new UserController()))->genererPopUp($message);
     }
 }
 

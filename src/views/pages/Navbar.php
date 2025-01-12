@@ -32,7 +32,7 @@ class Navbar
                         <?php
                        echo '<form action="/PageControlleur/mettreAjourMdp" method="post"><input type="hidden" name="name" value="'. $user['name'].'">';
                        ?><label>
-                               <input type="text" value="" style="font-size: 2.5rem; font-weight: bold; text-align: center; width: 100%; border: none; background: transparent;" name="mdp"/>
+                               <input type="text" value="" name="mdp"/>
                                 </label>
                            <button class="btn-save" type="submit" onclick="closePopup()">enregistrer les modifications</button></form>
                         <button onclick="closePopup()">Fermer</button>

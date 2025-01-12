@@ -210,3 +210,12 @@
     flex-grow: 1;
     text-align: center;
 }
+
+input {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-color: black;
+    border-radius: 0.8rem;
+}
