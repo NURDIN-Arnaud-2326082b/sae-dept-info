@@ -19,10 +19,10 @@ class Navbar
             <a href="/">
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
-
+            <div class="name">
             <!-- Nom de l'utilisateur ou "Invité" -->
             <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : 'Invité' ?></h1>
-
+            </div>
             <!-- Actions -->
             <div class="actions">
                 <?php if (isset($user['name'])): ?>

@@ -69,8 +69,8 @@ if ($controllerSegment === 'login') {
     $controller = new PageControlleur($controllerSegment);
     $cssPaths = ["/assets/styles/page.css"];
     $jsPaths = ["/assets/js/page.js"];
-    // Vérification pour la page /menu
-    if ($controller->estConnecte($controllerSegment)[0]['connecte'] == 'oui' && !isset($_SESSION['name'])) {
+    $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
+    if ($verif == 'oui' && !isset($_SESSION['name'])) {
         header("Location: /login");
         exit();
     }
