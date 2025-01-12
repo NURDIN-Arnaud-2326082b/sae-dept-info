@@ -1,11 +1,12 @@
 <?php
-namespace App\src\views\ConnexionViews;
-
-use App\src\views\LayoutViews\Layout;
+namespace App\src\views\pages;
 
 class Connexion
 {
-    public function show(): void
+    /**
+     * Affiche la page de connexion.
+     */
+    public function show(): string
     {
         ob_start();
         ?>
@@ -26,6 +27,9 @@ class Connexion
             </div>
         </main>
         <?php
-        (new Layout('Connexion', ob_get_clean()))->show();
+        $output = ob_get_clean();
+        (new Layout('Connexion', $output))->show();
+        return $output;
     }
 }
+?>

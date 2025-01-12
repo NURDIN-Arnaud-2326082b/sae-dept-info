@@ -1,4 +1,9 @@
 <?php
+require_once './vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 session_start();
 require_once './vendor/autoload.php';
 
@@ -10,12 +15,13 @@ $dotenv->load();
 require_once './src/Autoloader.php';
 App\src\Autoloader::register();
 
-use App\src\controllers\ConnexionController;
-use App\src\controllers\PageControlleur;
 use App\src\controllers\pages\Error404Controller;
+use App\src\controllers\pages\PageControlleur;
+use App\src\controllers\pages\UserController;
 use App\src\database\DatabaseConnection;
-use App\src\database\tables\ConnexionModel;
+use App\src\models\UserModel;
 
+// Récupérer le chemin de l'URL
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));
 $routePath = implode('/', $segments);
@@ -27,15 +33,12 @@ $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
 
-// Vérification pour la page /menu
-if ($controllerSegment === 'menu' && !isset($_SESSION['name'])) {
-    header("Location: /login"); // Ramene vers la page de connexion si non connecté
-    exit;
-}
+
+
 
 // Gestion déconnexion
 if ($controllerSegment === 'logout') {
-    $connexionController = new ConnexionController();
+    $connexionController = new UserController();
     $connexionController->deconnecter();
     exit();
 }
@@ -44,11 +47,11 @@ if ($controllerSegment === 'logout') {
 // Gestion du routage
 if ($controllerSegment === 'login') {
     // Route pour la connexion
-    $connexionModel = new ConnexionModel();
-    $connexionController = new ConnexionController($connexionModel);
+    $connexionModel = new UserModel(DatabaseConnection::getInstance());
+    $connexionController = new UserController();
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Appele la méthode de connexion
+        // Appelle la méthode de connexion
         $result = $connexionController->connecter($_POST);
         if ($result) {
             echo $result; // Afficher un message d'erreur si nécessaire
@@ -65,8 +68,13 @@ if ($controllerSegment === 'login') {
 
     $actionName = $methodSegment . 'Action';
     $controller = new PageControlleur($controllerSegment);
-    $cssPaths = ["/assets/styles/{$controllerSegment}.css"];
-    $jsPaths = ["/assets/js/{$controllerSegment}.js"];
+    $cssPaths = ["/assets/styles/page.css"];
+    $jsPaths = ["/assets/js/page.js"];
+    $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
+    if ($verif == 'oui' && !isset($_SESSION['name'])) {
+        header("Location: /login");
+        exit();
+    }
 
     if (method_exists($controller, $actionName)) {
         $controller->$actionName($cssPaths, $jsPaths);
@@ -74,6 +82,6 @@ if ($controllerSegment === 'login') {
         $controller->$methodSegment($cssPaths, $jsPaths);
     } else {
         $errorController = new Error404Controller();
-        $errorController->defaultMethod("/assets/styles/error404.css", "/assets/js/error404.js");
+        $errorController->defaultMethod();
     }
 }

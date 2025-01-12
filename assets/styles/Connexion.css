@@ -1,48 +1,94 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    flex: 1; /* Permet au body de prendre toute la hauteur disponible */
-    display: flex;
-    flex-direction: column; /* Disposition en colonne */
-    justify-content: center; /* Centre le contenu verticalement */
-    margin: 0; /* Supprime les marges par défaut */
-    padding: 0; /* Supprime le padding par défaut */
-}
-
+/* Conteneur principal du formulaire */
 .container {
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px; /* Largeur du formulaire */
-    margin: auto; /* Centre le conteneur horizontalement */
+    width: 100%;
+    max-width: 400px; /* Limite la largeur du formulaire */
+    padding: 30px;
+    background-color: #ffffff; /* Fond blanc pour le formulaire */
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    text-align: center; /* Centre le contenu du formulaire */
+    margin: 0 auto; /* Centre horizontalement */
 }
 
-h1 {
-    font-size: 24px;
+/* Pour centrer le formulaire verticalement */
+main {
+    display: flex;
+    justify-content: center; /* Centre le formulaire horizontalement */
+    align-items: center; /* Centre le formulaire verticalement */
+    height: 60vh; /* Utilise toute la hauteur de la fenêtre */
+    margin: 0; /* Enlève les marges par défaut */
+}
+
+
+/* Titre du formulaire */
+h2 {
+    font-size: 28px;
     margin-bottom: 20px;
-    text-align: center; /* Centre le texte du titre */
+    color: #333; /* Couleur sombre pour le titre */
+    font-weight: 600;
 }
 
+/* Formulaire et ses champs */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels des champs de formulaire */
+label {
+    text-align: left;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #666;
+}
+.footer {
+    margin-top: 60px;
+}
+
+
+/* Champs de saisie */
 input[type="text"],
 input[type="password"] {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd; /* Bordure claire */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    transition: border-color 0.3s; /* Transition au focus */
 }
 
+/* Focus sur les champs de saisie */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #4CAF50; /* Couleur verte au focus */
+    outline: none; /* Enlève le contour par défaut */
+}
+
+/* Bouton de soumission */
 input[type="submit"] {
-    background-color: #4CAF50; /* Couleur verte */
+    background-color: #4CAF50; /* Couleur verte moderne */
     color: white;
-    padding: 10px;
+    padding: 12px;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease; /* Transition douce au survol */
+    margin-top: 20px;
 }
 
 input[type="submit"]:hover {
     background-color: #45a049; /* Couleur au survol */
+}
+
+/* Message d'erreur ou de succès (optionnel) */
+.alert {
+    background-color: #ffcccc;
+    color: #d8000c;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 14px;
 }
