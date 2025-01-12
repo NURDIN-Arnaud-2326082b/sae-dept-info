@@ -71,6 +71,7 @@ class Show
                     if ($ct['type'] == 'homepage') {
                         echo '<div class="article-preview"><div class="article-content">';
                         echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
+                        echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
                         echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
                         echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -125,6 +126,7 @@ class Show
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature">';
                                 echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';"">';
+                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
                                 echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -165,6 +167,7 @@ class Show
                     case 'img':
                         echo '<div>';
                         echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
+                        echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
                         echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
                         echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -181,6 +184,7 @@ class Show
                             if ($ct2['type'] == 'lstlinked' . $cptlink) {
                                 echo '<div class="feature">';
                                 echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
+                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
                                 echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';

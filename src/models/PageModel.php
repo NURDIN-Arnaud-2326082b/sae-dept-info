@@ -330,4 +330,10 @@ class PageModel
         $stmt->execute();
         return $stmt->fetchAll();
     }
+
+    public function deleteImageAction(mixed $id)
+    {
+        $stmt = $this->connect->getConnection()->prepare("UPDATE images SET type = null, image = null WHERE id_image = :id");
+        $stmt->execute(['id' => $id]);
+    }
 }

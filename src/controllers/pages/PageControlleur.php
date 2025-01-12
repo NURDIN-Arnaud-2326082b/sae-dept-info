@@ -224,5 +224,12 @@ class PageControlleur
     {
         return $this->pageModel->estConnecte($name);
     }
+
+    public function deleteImageAction(): void
+    {
+        $id = $_POST['delete'];
+        $this->pageModel->deleteImageAction($id);
+        header('Location: /'.$_POST['name']);
+    }
 }
 
