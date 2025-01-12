@@ -3,6 +3,9 @@ namespace App\src\views\pages;
 
 class Connexion
 {
+    /**
+     * Affiche la page de connexion.
+     */
     public function show(): void
     {
         ob_start();

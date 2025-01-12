@@ -13,6 +13,10 @@ class Show
         $this->pageControlleur = new PageControlleur($name);
     }
 
+
+    /**
+     * Génère l'introduction de la page.
+     */
     public function genererIntro(): void
     {
         $content = $this->pageControlleur->genererContenu();
@@ -61,6 +65,9 @@ class Show
         }
     }
 
+    /**
+     * Génère les articles de la page.
+     */
     public function genererArticles(): void
     {
         $content = $this->pageControlleur->genererContenu();
@@ -340,6 +347,9 @@ class Show
         }
     }
 
+    /**
+     * Génère un formulaire pour ajouter un article.
+     */
     public function genererNewArticle(): void
     {
         $cpts = $this->pageControlleur->recupererListe();
@@ -367,6 +377,10 @@ class Show
 
     }
 
+
+    /**
+     * Affiche la page.
+     */
     public function show(): void
     {
         ob_start();

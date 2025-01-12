@@ -2,12 +2,17 @@
 
 namespace App\src\controllers\pages;
 
+use App\src\controllers\pages\PageControlleur;
 use App\src\database\DatabaseConnection;
 use App\src\models\UserModel;
 use App\src\views\pages\Navbar;
 
+/**
+ * Contrôleur de la barre de navigation.
+ */
 class NavbarController
 {
+
 
     private UserModel $userModel;
 
@@ -23,7 +28,6 @@ class NavbarController
     /**
      * @return void
      */
-
     public function defaultMethod(): void
     {
         // Démarrer la session si elle n'est pas déjà active

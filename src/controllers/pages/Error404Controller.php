@@ -4,6 +4,9 @@ namespace App\src\controllers\pages;
 
 use App\src\views\pages\Error404;
 
+/**
+ * Contrôleur de la page d'erreur 404.
+ */
 class Error404Controller
 {
     /**

@@ -21,6 +21,7 @@ use App\src\controllers\pages\UserController;
 use App\src\database\DatabaseConnection;
 use App\src\models\UserModel;
 
+// Récupérer le chemin de l'URL
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));
 $routePath = implode('/', $segments);

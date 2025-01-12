@@ -28,7 +28,7 @@ class Layout
 
 
     /**
-     * Renders the layout of the page.
+     * Displays the layout.
      */
     public function show(): void
     {
