@@ -12,7 +12,7 @@ Notre site web est totalement générique et toutes les données sont stockées 
 ## Configuration php
 Afin de pouvoir réutiliser notre code source, vous devrez utiliser tout d'abord un serveur apache2. Vous devrez ensuite installer la version 8.2 de PHP avec les extensions **pdo_mysql**,**libmysqlclient-dev** et **sendmail** .
 Une fois cela fait, activez les dans le fichier **php.ini** (généralement trouvable dans **/etc/php/PHP8.2/cli/**) et passez les tailles max d'upload à 20 mo.
-Pour ce qui est de l'IDE installez de préférence **PHPStorm** pour éviter toutes erreurs lors de l'importation du projet. Une fois celui-ci importé, pensez bien à mettre à jour composer afin d'être sûr de pouvoir utiliser toutes les fonctionnalités de celui-ci%.
+Pour ce qui est de l'IDE installez de préférence **PHPStorm** pour éviter toutes erreurs lors de l'importation du projet. Une fois celui-ci importé, pensez bien à installer ou mettre à jour composer afin d'être sûr de pouvoir utiliser toutes les fonctionnalités de celui-ci car il nécessite le dossier vendor pour fonctionner en localhost.
 
 ## Documentation du code
 
