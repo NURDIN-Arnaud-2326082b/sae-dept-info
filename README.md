@@ -14,6 +14,9 @@ Afin de pouvoir réutiliser notre code source, vous devrez utiliser tout d'abord
 Une fois cela fait, activez les dans le fichier **php.ini** (généralement trouvable dans **/etc/php/PHP8.2/cli/**) et passez les tailles max d'upload à 20 mo.
 Pour ce qui est de l'IDE installez de préférence **PHPStorm** pour éviter toutes erreurs lors de l'importation du projet. Une fois celui-ci importé, pensez bien à mettre à jour composer afin d'être sûr de pouvoir utiliser toutes les fonctionnalités de celui-ci%.
 
+## Documentation du code
+
+Afin de mieux comprendre notre code pour pouvoir le réutiliser vous pouvez accéder à la **documentation** de celui-ci dans le dossier **docs** à la racine du projet. Il vous suffit juste de visualiser le fichier **index.hmtl** sur votre navigateur.
 ## Accéder à notre site web
 
 Vous pourrez retrouver notre site à l'adresses suivante : https://departementinfoaix.alwaysdata.net/.
