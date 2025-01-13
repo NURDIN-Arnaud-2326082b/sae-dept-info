@@ -84,7 +84,7 @@ class UserModel
             throw new \Exception('Erreur lors de l\'ajout de l\'utilisateur.');
         }
 
-        $this->envoyerEmail($email, $password);
+        $this->envoyerEmail($name,$email, $password);
 
     }
 
@@ -94,10 +94,12 @@ class UserModel
      * @param mixed $password Mot de passe de l'utilisateur.
      * @throws RandomException Erreur lors de l'envoi de l'email.
      */
-    public function envoyerEmail(mixed $email, mixed $password): void
+    public function envoyerEmail(mixed $name,mixed $email, mixed $password): void
     {
         $subject = 'Création de compte';
-        $message = "Bonjour,\n\nUn compte a été créé pour vous. Votre mot de passe temporaire est : $password\n\n"
+        $message = "Bonjour,\n\nUn compte a été créé pour vous."
+            . "Voici votre identifiant : $name\n"
+            . "Votre mot de passe temporaire est : $password\n\n"
             . "Veuillez vous connecter sur le site via le lien ci-dessous pour définir votre nouveau mot de passe :\n"
             . "https://departementinfoaix.alwaysdata.net/login\n\n"
             . "Cordialement, \nLa direction du BUT informatique.";
