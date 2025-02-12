@@ -133,17 +133,37 @@ class UserModel
      * @param string $mdp Nouveau mot de passe.
      * @throws \Exception Erreur lors de la mise à jour du mot de passe.
      */
-    public function mettreAjourMdpAction(mixed $name, mixed $mdp)
+    public function mettreAjourMdpAction(mixed $name, mixed $mdpActuel, mixed $nouveauMdp): void
     {
-        $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);
+        // Vérification des champs
+        if (empty($mdpActuel) || empty($nouveauMdp)) {
+            throw new \Exception('Les mots de passe ne peuvent pas être vides.');
+        }
 
+        // Récupére mot de passe actuel
+        $sql = 'SELECT password FROM user WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user || !password_verify($mdpActuel, $user['password'])) {
+            throw new \Exception('Mot de passe actuel incorrect.');
+        }
+
+        // Hache le nouveau mdp
+        $passwordHash = password_hash($nouveauMdp, PASSWORD_BCRYPT);
+
+        // Update le mdp
         $sql = 'UPDATE user SET password = :password WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
-
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
         }
     }
+
+
 }

@@ -21,17 +21,37 @@ class Navbar
             <!-- Actions -->
             <div class="actions">
                 <?php if (isset($user['name'])): ?>
+
                     <!-- Popup -->
                     <div class="popup" id="popup">
-                        <p>Changer de mot de passe</p>
-                        <?php
-                       echo '<form action="/PageControlleur/mettreAjourMdp" method="post"><input type="hidden" name="name" value="'. $user['name'].'">';
-                       ?><label>
-                               <input type="text" value="" name="mdp"/>
-                                </label>
-                           <button class="btn-save" type="submit" onclick="closePopup()">enregistrer les modifications</button></form>
+                        <div id="message-container">
+                            <!-- Message d'erreur -->
+                            <p id="error-message" style="color: red; display: none;"></p>
+
+                            <!-- Message de succès -->
+                            <p id="success-message" style="color: green; display: none;"></p>
+                        </div>
+
+                        <form id="password-form" action="/PageControlleur/mettreAjourMdpAction" method="post">
+                            <input type="hidden" name="name" value="<?= htmlspecialchars($user['name']) ?>">
+
+                            <label>Mot de passe actuel :</label>
+                            <label>
+                                <input type="password" name="mdpActuel">
+                            </label>
+
+                            <label>Nouveau mot de passe :</label>
+                            <label>
+                                <input type="password" name="nouveauMdp">
+                            </label>
+
+                            <button class="btn-save" type="submit">Enregistrer les modifications</button>
+                        </form>
+
                         <button onclick="closePopup()">Fermer</button>
                     </div>
+
+
 
                     <a href="/logout" class="btn btn-logout">Se déconnecter</a>
                     <a href="/menu" class="btn btn-menu">Menu</a>
