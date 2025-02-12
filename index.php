@@ -70,7 +70,11 @@ if ($controllerSegment === 'login') {
     $controller = new PageControlleur($controllerSegment);
     $cssPaths = ["/assets/styles/page.css"];
     $jsPaths = ["/assets/js/page.js"];
-    $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
+    try {
+        $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
+    } catch (Exception $e) {
+        \PHPUnit\Framework\throwException($e);
+    }
     if ($verif == 'oui' && !isset($_SESSION['name'])) {
         header("Location: /login");
         exit();
@@ -81,7 +85,7 @@ if ($controllerSegment === 'login') {
     } elseif (method_exists($controller, $methodSegment)) {
         $controller->$methodSegment($cssPaths, $jsPaths);
     } else {
-        $errorController = new Error404Controller();
+        $errorController = new Error404Controller((new \App\src\views\pages\Error404()));
         $errorController->defaultMethod();
     }
 }

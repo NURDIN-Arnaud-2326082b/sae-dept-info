@@ -23,7 +23,7 @@ class UserController
     }
 
     /**
-     * Affiche la page de connexion.
+     * Permet de connecter un utilisateur.
      */
     public function connecter(array $postData): string
     {
