@@ -135,9 +135,13 @@ class UserModel
      * @param string $mdp Nouveau mot de passe.
      * @throws \Exception
      */
-    public function mettreAjourMdpAction(mixed $name, mixed $mdp)
+    public function mettreAjourMdpAction(mixed $name, mixed $mdp, mixed $confirmerMdp)
     {
-        if(str_contains($mdp, 'a-z') && str_contains($mdp, 'A-Z') && str_contains($mdp, '0-9') && preg_match($mdp, '[^A-Za-z0-9]') && $mdp.ob_get_length()>8) {
+        $query = $this->connect->getConnection()->prepare("SELECT password FROM user WHERE name = :name");
+        $query->bindParam(':email', $email);
+        $query->execute();
+        $ancienMdp = $query->fetch(PDO::FETCH_ASSOC);
+        if(str_contains($mdp, 'a-z') && str_contains($mdp, 'A-Z') && str_contains($mdp, '0-9') && preg_match($mdp, '[^A-Za-z0-9]') && $mdp.ob_get_length()>8 && strcmp($ancienMdp,$confirmerMdp)) {
                 $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);
 
                 $sql = 'UPDATE user SET password = :password WHERE name = :name';
