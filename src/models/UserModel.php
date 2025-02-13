@@ -90,6 +90,20 @@ class UserModel
     }
 
     /**
+     * Ajoute de nombreux utilisateurs avec un fichier CSV
+     *
+     * @param $stream
+     * @return void
+     * @throws RandomException
+     */
+    public function ajouterUsersCSVAction($stream): void
+    {
+        while($tab=fgetcsv($stream)){
+            $this-> ajouterUserAction($tab[0], $tab[1], $tab[2], $tab[3]);
+        }
+    }
+
+    /**
      * Envoie un email à l'utilisateur.
      *
      * @param mixed $email
