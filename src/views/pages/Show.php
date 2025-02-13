@@ -238,6 +238,13 @@ class Show
                         echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit">Supprimer l\'utilisateur</button></form>';
                         echo '</div>';
                         break;
+                    case 'csv' :
+                        echo '<div>';
+                        echo '<form action="/PageControlleur/ajouterUsersCSVAction" method="post">';
+                        echo '<input type="file" name="fichier"/>';
+                        echo '</form>';
+                        echo '</div>';
+                        break;
                     default:
                         break;
                 }

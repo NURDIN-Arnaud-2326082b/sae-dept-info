@@ -214,6 +214,11 @@ class PageControlleur
         }
     }
 
+    public function ajouterUsersCSVAction(): void
+    {
+        $this->userModel->ajouterUsersCSVAction($_POST['fichier']);
+    }
+
     /**
      * @throws \Exception
      */
