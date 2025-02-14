@@ -96,8 +96,9 @@ class UserModel
      * @return void
      * @throws RandomException
      */
-    public function ajouterUsersCSVAction($stream): void
+    public function ajouterUsersCSVAction($file): void
     {
+        $stream = fopen($file, 'r');
         while($tab=fgetcsv($stream)){
             $this-> ajouterUserAction($tab[0], $tab[1], $tab[2], $tab[3]);
         }
