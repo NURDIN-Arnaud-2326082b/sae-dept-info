@@ -64,8 +64,8 @@ if ($controllerSegment === 'login') {
 
     $actionName = $methodSegment . 'Action';
     $controller = new PageControlleur($controllerSegment);
-    $cssPaths = ["/public/assets/styles/page.css"];
-    $jsPaths = ["/public/assets/js/page.js"];
+    $cssPaths = ["/assets/styles/page.css"];
+    $jsPaths = ["/assets/js/page.js"];
     try {
         $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
     } catch (Exception $e) {
