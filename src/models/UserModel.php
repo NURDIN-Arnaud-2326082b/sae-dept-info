@@ -132,7 +132,8 @@ class UserModel
      * Met à jour le mot de passe d'un utilisateur.
      *
      * @param string $name Nom de l'utilisateur.
-     * @param string $mdp Nouveau mot de passe.
+     * @param string $mdpActuel Ancien mot de passe.
+     * @param string $nouveauMdp Nouveau mot de passe.
      * @throws \Exception Erreur lors de la mise à jour du mot de passe.
      */
     public function mettreAjourMdpAction(mixed $name, mixed $mdpActuel, mixed $nouveauMdp): void
