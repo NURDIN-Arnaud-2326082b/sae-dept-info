@@ -24,7 +24,7 @@ class Error404
         <meta name="Description" content="raclette" >
         <link rel="stylesheet" href="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="" sizes="32x32" />
+        <link rel="icon" type="image/png" href="assets/images/favicon/favicon_amu.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="" sizes="16x16" />
             <title>Error 404</title>
         </head>
@@ -35,7 +35,7 @@ class Error404
             <div class="container">
                 <div class="copy-container center-xy">
                     <p>
-                        404, page not found.
+                        404, page non trouvée.
                     </p>
                 </div>
             </div>
