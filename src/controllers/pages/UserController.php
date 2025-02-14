@@ -23,8 +23,7 @@ class UserController
     }
 
     /**
-     * Affiche la page de connexion.
-     * @return void
+     * Permet de connecter un utilisateur.
      */
     public function connecter(array $postData): string
     {
@@ -48,11 +47,11 @@ class UserController
         } else {
             return "Tous les champs sont requis.";
         }
+        return "Nom d'utilisateur ou mot de passe incorrect.";
     }
 
     /**
      * Déconnecte l'utilisateur et le redirige vers la page de connexion.
-     * @return void
      */
     #[NoReturn] public function deconnecter(): void
     {
@@ -66,6 +65,9 @@ class UserController
         exit;
     }
 
+    /**
+     * Affiche la page de connexion.
+     */
     public function defaultMethod(): void
     {
         (new Connexion())->show();

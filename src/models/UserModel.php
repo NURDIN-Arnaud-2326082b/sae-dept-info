@@ -12,7 +12,7 @@ use Random\RandomException;
 class UserModel
 {
     /**
-     *
+     *Constructeur de la classe UserModel.
      * @param DatabaseConnection $connect Instance de la classe DbConnect pour la connexion à la base de données.
      */
     public function __construct(private readonly DatabaseConnection $connect)
@@ -48,13 +48,12 @@ class UserModel
     }
 
     /**
-     * Récupère tous les utilisateurs.
-     *
-     * @param mixed $name
-     * @param mixed $email
-     * @param mixed $annee
-     * @param mixed $groupe
-     * @throws RandomException
+     * Méthode pour ajouter un utilisateur.
+     * @param mixed $name Nom de l'utilisateur.
+     * @param mixed $email Email de l'utilisateur.
+     * @param mixed $annee Année de l'utilisateur.
+     * @param mixed $groupe Groupe de l'utilisateur.
+     * @throws RandomException Erreur lors de l'ajout de l'utilisateur.
      */
     public function ajouterUserAction(mixed $name, mixed $email, mixed $annee, mixed $groupe): void
     {
@@ -85,23 +84,24 @@ class UserModel
             throw new \Exception('Erreur lors de l\'ajout de l\'utilisateur.');
         }
 
-        $this->envoyerEmail($email, $password);
+        $this->envoyerEmail($name,$email, $password);
 
     }
 
     /**
      * Envoie un email à l'utilisateur.
-     *
-     * @param mixed $email
-     * @param mixed $password
-     * @throws RandomException
+     * @param mixed $email Email de l'utilisateur.
+     * @param mixed $password Mot de passe de l'utilisateur.
+     * @throws RandomException Erreur lors de l'envoi de l'email.
      */
-    public function envoyerEmail(mixed $email, mixed $password): void
+    public function envoyerEmail(mixed $name,mixed $email, mixed $password): void
     {
         $subject = 'Création de compte';
-        $message = "Bonjour,\n\nUn compte a été créé pour vous. Votre mot de passe temporaire est : $password\n\n"
+        $message = "Bonjour,\n\nUn compte a été créé pour vous."
+            . "Voici votre identifiant : $name\n"
+            . "Votre mot de passe temporaire est : $password\n\n"
             . "Veuillez vous connecter sur le site via le lien ci-dessous pour définir votre nouveau mot de passe :\n"
-            . "https://votre-site.com/changer-mot-de-passe?email=$email\n\n"
+            . "https://departementinfoaix.alwaysdata.net/login\n\n"
             . "Cordialement, \nLa direction du BUT informatique.";
 
 
@@ -117,7 +117,7 @@ class UserModel
      * Supprime un utilisateur.
      *
      * @param string $email Email de l'utilisateur.
-     * @throws \Exception
+     * @throws \Exception Erreur lors de la suppression de l'utilisateur.
      */
     public function supprimerUserAction(mixed $email){
         $sql = 'DELETE FROM user WHERE email = :email';
@@ -133,19 +133,39 @@ class UserModel
      *
      * @param string $name Nom de l'utilisateur.
      * @param string $mdp Nouveau mot de passe.
-     * @throws \Exception
+     * @throws \Exception Erreur lors de la mise à jour du mot de passe.
      */
-    public function mettreAjourMdpAction(mixed $name, mixed $mdp)
+    public function mettreAjourMdpAction(mixed $name, mixed $mdpActuel, mixed $nouveauMdp): void
     {
-        $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);
+        // Vérification des champs
+        if (empty($mdpActuel) || empty($nouveauMdp)) {
+            throw new \Exception('Les mots de passe ne peuvent pas être vides.');
+        }
 
+        // Récupére mot de passe actuel
+        $sql = 'SELECT password FROM user WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$user || !password_verify($mdpActuel, $user['password'])) {
+            throw new \Exception('Mot de passe actuel incorrect.');
+        }
+
+        // Hache le nouveau mdp
+        $passwordHash = password_hash($nouveauMdp, PASSWORD_BCRYPT);
+
+        // Update le mdp
         $sql = 'UPDATE user SET password = :password WHERE name = :name';
         $stmt = $this->connect->getConnection()->prepare($sql);
-
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
         }
     }
+
+
 }

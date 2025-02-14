@@ -7,14 +7,35 @@ use App\src\models\UserModel;
 use App\src\views\pages\Show;
 use HTMLPurifier;
 use HTMLPurifier_Config;
+use mysql_xdevapi\Exception;
 
 class PageControlleur
 {
+    /**
+     * Nom de la page
+     * @var string
+     */
     private string $name;
+    /**
+     * Modèle pour page (pour les données)
+     * @var PageModel
+     */
     public PageModel $pageModel;
+    /**
+     * Purificateur HTML
+     * @var HTMLPurifier
+     */
     public HTMLPurifier $purifier;
+    /**
+     * Modèle pour utilisateur
+     * @var UserModel
+     */
     public UserModel $userModel;
 
+    /**
+     * PageControlleur constructor.
+     * @param string $name Nom de la page
+     */
     public function __construct(string $name)
     {
         $this->name = $name;
@@ -25,29 +46,43 @@ class PageControlleur
         $this->userModel = new UserModel(DatabaseConnection::getInstance());
     }
 
+    /**
+     * Affiche la page par défaut
+     */
     public function defaultMethod(): void
     {
         $connexionController = new UserController();
         (new Show($this->name, $connexionController))->show();
     }
 
+    /**
+     * Méthode pour générer le titre de la page
+     */
     public function genererTitre()
     {
         return $this->pageModel->genererTitre($this->name);
     }
 
+    /**
+     * Méthode pour générer le contenu de la page
+     */
     public function genererContenu()
     {
         return $this->pageModel->genererContenu($this->name);
     }
 
+    /**
+     * Getter pour le nom de la page
+     * @return string Nom de la page
+     */
     public function getName(): string
     {
         return $this->name;
     }
 
     /**
-     * @throws \Exception
+     * méthode pour mettre à jour un article
+     * @throws \Exception exception en cas d'erreur de mise à jour dans le modèle
      */
     public function updateArticleAction(): void
     {
@@ -73,7 +108,8 @@ class PageControlleur
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour supprimer un article
+     * @throws \Exception exception en cas d'erreur de suppression dans le modèle
      */
     public function deleteArticleAction(): void
     {
@@ -85,7 +121,8 @@ class PageControlleur
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour ajouter un article
+     * @throws \Exception exception en cas d'erreur d'ajout dans le modèle
      */
     public function ajouterArticleAction(): void
     {
@@ -112,6 +149,10 @@ class PageControlleur
     }
 
 
+    /**
+     * Méthode pour récupérer l'ensemble des templates existantes
+     * @throws \Exception exception en cas d'erreur de récupération dans le modèle
+     */
     public function recupererListe(): array
     {
         $type = $this->pageModel->recupererType($this->name);
@@ -132,6 +173,10 @@ class PageControlleur
         return array('cpt' => $cpt, 'cpt2' => $cpt2);
     }
 
+    /**
+     * Méthode pour récupérer une image en fonction de son id
+     * @throws \Exception exception en cas d'erreur de récupération dans le modèle
+     */
     public function getImage(): void
     {
         $id = $_GET['id'];
@@ -147,7 +192,8 @@ class PageControlleur
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour mettre à jour une image
+     * @throws \Exception exception en cas d'erreur de mise à jour dans le modèle
      */
     public function updateImageAction(): void
     {
@@ -164,7 +210,8 @@ class PageControlleur
         }
     }
     /**
-     * @throws \Exception
+     * Méthode pour récupérer un pdf en fonction de son id
+     * @throws \Exception exception en cas d'erreur de récupération dans le modèle
      */
     public function getPdf(): void
     {
@@ -183,7 +230,8 @@ class PageControlleur
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour mettre à jour un pdf
+     * @throws \Exception exception en cas d'erreur de mise à jour dans le modèle
      */
     public function updatePdfAction(): void
     {
@@ -201,7 +249,8 @@ class PageControlleur
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour ajouter un utilisateur
+     * @throws \Exception Exception en cas d'erreur d'ajout dans le modèle
      */
     public function ajouterUserAction(): void
     {
@@ -215,7 +264,8 @@ class PageControlleur
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour supprimer un utilisateur
+     * @throws \Exception Exception en cas d'erreur de suppression dans le modèle
      */
     public function supprimerUserAction(): void
     {
@@ -225,16 +275,32 @@ class PageControlleur
     }
 
     /**
+     * Méthode pour mettre à jour le mot de passe d'un utilisateur
      * @throws \Exception
      */
+
     public function mettreAjourMdpAction(): void
     {
-        $this->userModel->mettreAjourMdpAction($_POST['name'],$_POST['mdp']);
-        header('Location: /Menu');
+        // Vérification des champs
+        if (!isset($_POST['name'], $_POST['mdpActuel'], $_POST['nouveauMdp'])) {
+            echo json_encode(['error' => 'Tous les champs sont requis.']);
+            exit;
+        }
+
+        try {
+            // Appel à la méthode du modèle pour mettre à jour le mot de passe
+            $this->userModel->mettreAjourMdpAction($_POST['name'], $_POST['mdpActuel'], $_POST['nouveauMdp']);
+            echo json_encode(['success' => 'Mot de passe mis à jour avec succès.']);
+        } catch (\Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+
+        exit;
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour vérifier si une page nécessite d'être connecté pour être vue
+     * @throws \Exception exception en cas d'erreur de récupération dans le modèle
      */
     public function estConnecte(mixed $name): bool|array
     {
@@ -242,7 +308,8 @@ class PageControlleur
     }
 
     /**
-     * @throws \Exception
+     * Méthode pour suppimer une image
+     * @throws \Exception exception en cas d'erreur de suppression dans le modèle
      */
     public function deleteImageAction(): void
     {

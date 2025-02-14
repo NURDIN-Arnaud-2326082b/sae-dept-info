@@ -6,8 +6,16 @@ use App\src\controllers\pages\PageControlleur;
 
 class Show
 {
+    /**
+     * PageControlleur
+     * @var PageControlleur controlleur gérant les pages
+     */
     private pageControlleur $pageControlleur;
-    
+
+    /**
+     * Constructeur de la classe Show
+     * @param string $name nom de la page
+     */
     public function __construct(string $name)
     {
         $this->pageControlleur = new PageControlleur($name);
@@ -66,7 +74,7 @@ class Show
     }
 
     /**
-     * Génère les articles de la page.
+     * Génère les articles de la page en fonction des templates existantes.
      */
     public function genererArticles(): void
     {
@@ -133,7 +141,7 @@ class Show
                             if ($ct2['type'] == 'list' . $cpt) {
                                 echo '<div class="feature">';
                                 echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';"">';
-                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
+                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct2['id_article'] . '">Supprimer l\'image</button></form>';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
                                 echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -191,7 +199,7 @@ class Show
                             if ($ct2['type'] == 'lstlinked' . $cptlink) {
                                 echo '<div class="feature">';
                                 echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
-                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
+                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct2['id_article'] . '">Supprimer l\'image</button></form>';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
                                 echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -340,6 +348,9 @@ class Show
                         echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
                         echo '</div>';
                         break;
+                    case 'youtube':
+                        echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                            break;
                     default:
                         break;
                 }

@@ -32,7 +32,7 @@ class DatabaseConnection
     /**
      * Get the instance of the DatabaseConnection
      *
-     * @return DatabaseConnection|null
+     * @return DatabaseConnection|null Instance of the DatabaseConnection
      */
 
     public static function getInstance(): ?DatabaseConnection
@@ -47,7 +47,7 @@ class DatabaseConnection
     /**
      * Get the connection
      *
-     * @return PDO
+     * @return PDO Connection à la base de données
      */
 
     public function getConnection(): PDO

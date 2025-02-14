@@ -28,7 +28,7 @@ class Layout
 
 
     /**
-     * Displays the layout.
+     * Affiche le layout.
      */
     public function show(): void
     {
