@@ -43,8 +43,8 @@ class Layout
             <meta name="author" lang="fr" content="FABRE Alexandre, LOEB Dorian, DURNIN Arnaud">
             <meta name="Description" content="" >
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <link rel="icon" type="image/png" href="/public/assets/images/favicon/favicon_amu.png" sizes="32x32" />
-            <link rel="icon" type="image/png" href="/public/assets/images/favicon/favicon_amu.png" sizes="192x192" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="32x32" />
+            <link rel="icon" type="image/png" href="/assets/images/favicon/favicon_amu.png" sizes="192x192" />
         </head>
         <body>
         <header>
@@ -58,7 +58,7 @@ class Layout
             <footer>
                 <?php $this->footer->show(); ?>
             </footer>
-        <script src="/public/assets/js/egg.js"></script>
+        <script src="/assets/js/egg.js"></script>
         </body>
         </html>
         <!--

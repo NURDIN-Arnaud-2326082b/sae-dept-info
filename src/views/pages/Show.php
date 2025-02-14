@@ -28,7 +28,7 @@ class Show
     public function genererIntro(): void
     {
         $content = $this->pageControlleur->genererContenu();
-        echo '<link rel="stylesheet" href="/public/assets/styles/page.css"><main>';
+        echo '<link rel="stylesheet" href="/assets/styles/page.css"><main>';
         if (isset($_SESSION['admin']) && $_SESSION['admin']) {
             foreach ($content as $ct) {
                 switch ($ct['type']) {
