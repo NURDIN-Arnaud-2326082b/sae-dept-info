@@ -19,7 +19,7 @@ class FooterTest extends TestCase
         // Vérifiez que le contenu généré contient certains éléments spécifiques
         $this->assertStringContainsString('<footer class="footer">', $output);
         $this->assertStringContainsString('<a href="/">', $output);
-        $this->assertStringContainsString('<img src="/assets/images/logo_amu.png" alt="logo iut">', $output);
+        $this->assertStringContainsString('<img src="/public/images/logo_amu.png" alt="logo iut">', $output);
         $this->assertStringContainsString('© 2024 Département Informatique - IUT d\'Aix-Marseille', $output);
     }
 

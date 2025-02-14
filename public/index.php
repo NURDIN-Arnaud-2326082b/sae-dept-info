@@ -1,18 +1,14 @@
 <?php
-require_once './vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 session_start();
-require_once './vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 
 
-require_once './src/Autoloader.php';
+require_once '../src/Autoloader.php';
 App\src\Autoloader::register();
 
 use App\src\controllers\pages\Error404Controller;
@@ -68,8 +64,8 @@ if ($controllerSegment === 'login') {
 
     $actionName = $methodSegment . 'Action';
     $controller = new PageControlleur($controllerSegment);
-    $cssPaths = ["/assets/styles/page.css"];
-    $jsPaths = ["/assets/js/page.js"];
+    $cssPaths = ["/public/assets/styles/page.css"];
+    $jsPaths = ["/public/assets/js/page.js"];
     try {
         $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
     } catch (Exception $e) {

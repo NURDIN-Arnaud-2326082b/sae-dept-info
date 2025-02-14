@@ -8,11 +8,11 @@ class Navbar
      */
     public function show($user): void {
         ?>
-        <link rel="stylesheet" href="/assets/styles/navbar.css">
+        <link rel="stylesheet" href="/public/styles/navbar.css">
 
         <nav class="navbar">
             <a href="/">
-                <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
+                <img src="/public/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
             <div class="name">
             <!-- Nom de l'utilisateur ou "Invité" -->

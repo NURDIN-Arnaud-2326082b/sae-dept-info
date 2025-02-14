@@ -28,7 +28,7 @@ class Show
     public function genererIntro(): void
     {
         $content = $this->pageControlleur->genererContenu();
-        echo '<link rel="stylesheet" href="/assets/styles/page.css"><main>';
+        echo '<link rel="stylesheet" href="/public/styles/page.css"><main>';
         if (isset($_SESSION['admin']) && $_SESSION['admin']) {
             foreach ($content as $ct) {
                 switch ($ct['type']) {
@@ -387,7 +387,7 @@ class Show
     public function show(): void
     {
         ob_start();
-        echo '<script src="/assets/js/page.js"></script>';
+        echo '<script src="/public/js/page.js"></script>';
         $page = $this->pageControlleur->genererTitre();
 
         $this->genererIntro();
