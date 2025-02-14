@@ -53,11 +53,11 @@ class Navbar
 
 
 
-                    <a href="/logout" class="btn btn-logout">Se déconnecter</a>
+                    <a href="/logout" class="btn btn-logout"> <i class="fa-solid fa-right-from-bracket"></i> Se déconnecter</a>
                     <a href="/menu" class="btn btn-menu">Menu</a>
                     <a href="#" onclick="openPopup(); return false;" class="btn btn-menu">Changer de<br> mot de passe</a>
                 <?php else: ?>
-                    <a href="/login" class="btn btn-login">Se connecter</a>
+                    <a href="/login" class="btn btn-login"><i class="fa-solid fa-right-to-bracket"></i> Se connecter</a>
                 <?php endif; ?>
                 <?php if (isset($user['admin'])): ?>
                     <a href="/gestion" class="btn btn-login">Gestion</a>
