@@ -1,18 +1,14 @@
 <?php
-require_once './vendor/autoload.php';
+require_once '../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
 $dotenv->load();
 
 session_start();
-require_once './vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
 
 
 
-require_once './src/Autoloader.php';
+require_once '../src/Autoloader.php';
 App\src\Autoloader::register();
 
 use App\src\controllers\pages\Error404Controller;
