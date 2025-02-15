@@ -2,3 +2,10 @@ RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ index.php [QSA,L]
+
+
+# Redirige toutes les requêtes vers index.php avec le paramètre 'page' qui sera utilisé pour identifier la page
+RewriteRule ^([^/]+)/?$ /index.php?page=$1 [QSA,L]
+
+# Redirige vers une page d'erreur personnalisée en cas de 404
+ErrorDocument 404 /404.php

@@ -317,5 +317,6 @@ class PageControlleur
         $this->pageModel->deleteImageAction($id);
         header('Location: /'.$_POST['name']);
     }
+
 }
 

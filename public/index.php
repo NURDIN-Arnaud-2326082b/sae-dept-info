@@ -6,8 +6,6 @@ $dotenv->load();
 
 session_start();
 
-
-
 require_once '../src/Autoloader.php';
 App\src\Autoloader::register();
 
@@ -15,6 +13,7 @@ use App\src\controllers\pages\Error404Controller;
 use App\src\controllers\pages\PageControlleur;
 use App\src\controllers\pages\UserController;
 use App\src\database\DatabaseConnection;
+use App\src\models\PageModel;
 use App\src\models\UserModel;
 
 // Récupérer le chemin de l'URL
@@ -28,17 +27,11 @@ $methodSegment = $segments[1] ?? 'defaultMethod';
 $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
-
-
-
-
 // Gestion déconnexion
 if ($controllerSegment === 'logout') {
     $connexionController = new UserController();
     $connexionController->deconnecter();
-    exit();
 }
-
 
 // Gestion du routage
 if ($controllerSegment === 'login') {
@@ -58,7 +51,7 @@ if ($controllerSegment === 'login') {
     }
 } else {
     // Routage pour d'autres contrôleurs
-    if ($controllerSegment === '') {
+    if ($controllerSegment === '' || $controllerSegment === 'homepage') {
         $controllerSegment = 'Homepage';
     }
 
@@ -66,22 +59,38 @@ if ($controllerSegment === 'login') {
     $controller = new PageControlleur($controllerSegment);
     $cssPaths = ["/assets/styles/page.css"];
     $jsPaths = ["/assets/js/page.js"];
-    try {
-        $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
-    } catch (Exception $e) {
-        \PHPUnit\Framework\throwException($e);
-    }
-    if ($verif == 'oui' && !isset($_SESSION['name'])) {
-        header("Location: /login");
-        exit();
-    }
 
-    if (method_exists($controller, $actionName)) {
-        $controller->$actionName($cssPaths, $jsPaths);
-    } elseif (method_exists($controller, $methodSegment)) {
-        $controller->$methodSegment($cssPaths, $jsPaths);
-    } else {
+    // Liste des routes qui ne sont pas des pages(actions)
+$actionRoutes = [
+    'ajouterArticle',
+    'updateArticle',
+    'deleteArticle',
+    // on ajoute ici les autres routes d'action
+];
+
+// Vérifier si la route demandée est une action
+$isActionRoute = in_array($methodSegment, $actionRoutes);
+
+// Si ce n'est pas une action, vérifier si la page existe
+if (!$isActionRoute) {
+    $pageModel = new PageModel(DatabaseConnection::getInstance());
+    $pageExists = $pageModel->pageExistsInDatabase($controllerSegment);
+
+    if (!$pageExists) {
+        // Si la page n'existe pas, rediriger vers la page 404
         $errorController = new Error404Controller((new \App\src\views\pages\Error404()));
         $errorController->defaultMethod();
+        exit();
     }
+}
+
+// Gestion du routage pour les actions et les pages
+if (method_exists($controller, $actionName)) {
+    $controller->$actionName($cssPaths, $jsPaths);
+} elseif (method_exists($controller, $methodSegment)) {
+    $controller->$methodSegment($cssPaths, $jsPaths);
+} else {
+    $errorController = new Error404Controller((new \App\src\views\pages\Error404()));
+    $errorController->defaultMethod();
+}
 }
