@@ -261,12 +261,13 @@ class PageModel
      * Méthode pour ajouter une image dans la base de données.
      * @throws \Exception Si une erreur survient lors de l'ajout de l'image.
      */
-    public function ajouterImage($type, $data, $pageName): void
+    public function ajouterImage($type, $data, $pageName, $placement): void
     {
         error_log("Type d'image : $type");
         error_log("Taille des données d'image : " . strlen($data));
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "img")';
+        $sql = 'INSERT INTO article (title, content, link, type , placement) VALUES ("title","body",null, "img" , :placement)';
         $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindParam(':placement', $placement, PDO::PARAM_STR);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
@@ -277,11 +278,6 @@ class PageModel
         $stmt->bindParam(':type', $type);
         $stmt->bindParam(':data', $data, PDO::PARAM_LOB);
         $stmt->execute();
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "img")';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
-        }
         $this->insererArticleDansPage($pageName);
     }
 
@@ -309,10 +305,11 @@ class PageModel
      * Méthode pour ajouter un PDF dans la base de données.
      * @throws \Exception Si une erreur survient lors de l'ajout du PDF.
      */
-    public function ajouterPDF(mixed $fileType, mixed $fileData, mixed $name): void
+    public function ajouterPDF(mixed $fileType, mixed $fileData, mixed $name, mixed $placement): void
     {
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "pdf")';
+        $sql = 'INSERT INTO article (title, content, link, type , placement) VALUES ("title","body",null, "pdf" , :placement)';
         $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindParam(':placement', $placement, PDO::PARAM_INT);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
