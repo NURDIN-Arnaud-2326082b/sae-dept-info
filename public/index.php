@@ -60,7 +60,6 @@ if ($controllerSegment === 'login') {
     $cssPaths = ["/assets/styles/page.css"];
     $jsPaths = ["/assets/js/page.js"];
 
-    // ... (votre code existant)
 
 // Liste des routes qui ne sont pas des pages (actions et ressources)
     $excludedRoutes = [
