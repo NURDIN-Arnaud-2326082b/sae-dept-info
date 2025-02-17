@@ -7,7 +7,6 @@ use App\src\models\UserModel;
 use App\src\views\pages\Show;
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use mysql_xdevapi\Exception;
 
 class PageControlleur
 {
@@ -126,7 +125,8 @@ class PageControlleur
      */
     public function ajouterArticleAction(): void
     {
-        $type = $_POST['type'];
+        $type = $_POST['type'] ?? null;
+        $placement = $_POST['placement'] ?? null;
         if ($type === 'img' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $fileType = mime_content_type($_FILES['image']['tmp_name']);
             $fileData = file_get_contents($_FILES['image']['tmp_name']);
@@ -143,7 +143,10 @@ class PageControlleur
 
         }
         else {
-            $this->pageModel->ajouterArticleAction($type, $_POST['name'],null);
+            $this->pageModel->ajouterArticleAction($type, $_POST['name'],$placement);
+            error_log('ok');
+           $this->mettreAjourPlacement($placement);
+            error_log('ok3');
         }
         header('Location: /'.$_POST['name']);
     }
@@ -316,6 +319,19 @@ class PageControlleur
         $id = $_POST['delete'];
         $this->pageModel->deleteImageAction($id);
         header('Location: /'.$_POST['name']);
+    }
+
+    public function mettreAjourPlacement($placement) : void
+    {
+        $content = $this->pageModel->genererContenu($this->name);
+        error_log('ok1');
+        foreach ($content as $ct) {
+            if($ct['placement'] >= $placement){
+                $pl = $ct['placement'];
+                $pl++;
+                $this->pageModel->updatePlacement($ct['id_article'],$pl);
+            }
+        }
     }
 }
 

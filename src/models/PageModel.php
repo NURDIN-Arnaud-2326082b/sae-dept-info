@@ -39,7 +39,7 @@ class PageModel
      */
     public function genererContenu(string $name): bool|array
     {
-        $sql = 'SELECT * FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
+        $sql = 'SELECT * FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name ORDER BY placement ASC';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->execute();
@@ -135,11 +135,12 @@ class PageModel
      * Méthode pour ajouter un article dans la base de données.
      * @throws \Exception Si une erreur survient lors de l'ajout de l'article.
      */
-    public function ajouterArticleAction(string $type, string $page): void
+    public function ajouterArticleAction(string $type, string $page, int $placement): void
     {
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body","link", :type)';
+        $sql = 'INSERT INTO article (title, content, link, type, placement) VALUES ("title","body","link", :type, :placement)';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+        $stmt->bindValue(':placement', $placement, PDO::PARAM_INT);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }
@@ -211,7 +212,6 @@ class PageModel
             throw new \Exception('Erreur lors de l\'ajout de la page.');
         }
         if($type == 'homepage'){
-            error_log("Ajout de la page d'accueil");
             $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
             $tmp = $this->recupererDernierId();
             $id_img = $tmp[0][0];
@@ -430,4 +430,12 @@ class PageModel
 
     }
 
+    public function updatePlacement(int $id, int $placement): void
+    {
+        $sql = 'UPDATE article SET placement = :placement WHERE id_article = :id';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':placement', $placement, PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }
