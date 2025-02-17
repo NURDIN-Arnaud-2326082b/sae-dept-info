@@ -3,7 +3,7 @@
 
 /* Styles généraux */
 body {
-    background: url('/public/assets/images/images/départment.jpg') no-repeat center center;
+    background: url('/assets/images/départment.jpg') no-repeat center center;
     background-size: cover;
     font-family: 'Titillium Web', sans-serif;
     margin: 0;
@@ -383,4 +383,98 @@ iframe {
     height: 50%;
     border: none; /* Supprime la bordure */
     border-radius: 1.5rem; /* Bords arrondis pour l'iframe */
+}
+
+/* Mode Sombre */
+.dark-mode {
+    background: #121212;
+    color: #f1f1f1;
+}
+
+.dark-mode body {
+    background: #121212;
+    color: #f1f1f1;
+}
+
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h1,
+.dark-mode p {
+    color: #ffffff;
+}
+
+.dark-mode main {
+    background-color: rgba(40, 40, 40, 0.9);
+    color: #ffffff;
+}
+
+.dark-mode .marquee {
+    background: linear-gradient(90deg, #002d62, #0056b3);
+    border-color: #004b93;
+}
+
+.dark-mode .hero-section {
+    background: rgba(20, 20, 20, 0.9);
+}
+
+.dark-mode .hero-section .hero-content h1,
+.dark-mode .hero-section .hero-content p {
+    color: white;
+}
+
+.dark-mode .article-preview {
+    background: #1e1e1e;
+    color: #ffffff;
+}
+
+.dark-mode .panel {
+    background: #004b93;
+    color: #ffffff;
+}
+
+.dark-mode .panel:hover {
+    background: #002d62;
+}
+
+.dark-mode .feature {
+    background: #1e1e1e;
+    border-color: #333;
+}
+
+.dark-mode .gestion,
+.dark-mode .departement-content {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode .link {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode button,
+.dark-mode .btn-save,
+.dark-mode .btn-delete {
+    background: #0056b3;
+    color: #ffffff;
+}
+
+.dark-mode .dropzone {
+    background: #1e1e1e;
+    border-color: #0056b3;
+    color: white;
+}
+
+.dark-mode a {
+    color: #1e90ff;
+}
+
+.dark-mode .popup {
+    background: #333;
+    border-color: #555;
+    color: #ffffff;
+}
+
+.dark-mode .overlay {
+    background-color: rgba(0, 0, 0, 0.8);
 }

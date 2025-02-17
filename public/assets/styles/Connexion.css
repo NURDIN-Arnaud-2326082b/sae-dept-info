@@ -92,3 +92,49 @@ input[type="submit"]:hover {
     border-radius: 8px;
     font-size: 14px;
 }
+
+/* Mode sombre */
+.dark-mode {
+    background-color: #121212 !important;
+    color: #ffffff !important;
+}
+
+.dark-mode .container {
+    background-color: #1e1e1e !important;
+    box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-mode h2 {
+    color: #ffffff !important;
+}
+
+.dark-mode label {
+    color: #bbbbbb !important;
+}
+
+.dark-mode input[type="text"],
+.dark-mode input[type="password"] {
+    background-color: #2a2a2a !important;
+    border: 2px solid #444444 !important; /* Bordure plus sombre */
+    color: #ffffff !important;
+}
+
+.dark-mode input[type="text"]:focus,
+.dark-mode input[type="password"]:focus {
+    border-color: #66bb6a !important; /* Vert clair au focus */
+    outline: none;
+}
+
+.dark-mode input[type="submit"] {
+    background-color: #66bb6a !important; /* Vert clair */
+    color: #ffffff !important;
+}
+
+.dark-mode input[type="submit"]:hover {
+    background-color: #4caf50 !important; /* Survol en vert plus foncé */
+}
+
+.dark-mode .alert {
+    background-color: #ff6666 !important;
+    color: #d8000c !important;
+}
