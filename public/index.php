@@ -67,8 +67,9 @@ if ($controllerSegment === 'login') {
         'ajouterArticle', // Exemple d'action
         'updateArticleAction', // Exemple d'action
         'deleteArticleAction', // Exemple d'action
-        'image', // Exemple de route pour les images
-        // Ajoutez ici toutes les autres routes à exclure
+        'getImage',
+        'updateImage',
+        'deleteImage',
     ];
 
 // Vérifier si la route demandée est une route exclue
