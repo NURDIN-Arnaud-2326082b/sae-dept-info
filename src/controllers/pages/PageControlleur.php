@@ -143,10 +143,8 @@ class PageControlleur
 
         }
         else {
+            $this->mettreAjourPlacement($placement, $_POST['name']);
             $this->pageModel->ajouterArticleAction($type, $_POST['name'],$placement);
-            error_log('ok');
-           $this->mettreAjourPlacement($placement);
-            error_log('ok3');
         }
         header('Location: /'.$_POST['name']);
     }
@@ -321,10 +319,13 @@ class PageControlleur
         header('Location: /'.$_POST['name']);
     }
 
-    public function mettreAjourPlacement($placement) : void
+    public function mettreAjourPlacement(mixed $placement, mixed $name) : void
     {
-        $content = $this->pageModel->genererContenu($this->name);
+        $content = $this->pageModel->genererContenu($name);
         error_log('ok1');
+        if ($content == null){
+            error_log('ERORRRRRRRRRRRRRRRRRRRRRRRRRR');
+        }
         foreach ($content as $ct) {
             if($ct['placement'] >= $placement){
                 $pl = $ct['placement'];
