@@ -60,37 +60,40 @@ if ($controllerSegment === 'login') {
     $cssPaths = ["/assets/styles/page.css"];
     $jsPaths = ["/assets/js/page.js"];
 
-    // Liste des routes qui ne sont pas des pages(actions)
-$actionRoutes = [
-    'ajouterArticle',
-    'updateArticle',
-    'deleteArticle',
-    // on ajoute ici les autres routes d'action
-];
+    // ... (votre code existant)
 
-// Vérifier si la route demandée est une action
-$isActionRoute = in_array($methodSegment, $actionRoutes);
+// Liste des routes qui ne sont pas des pages (actions et ressources)
+    $excludedRoutes = [
+        'ajouterArticle', // Exemple d'action
+        'updateArticleAction', // Exemple d'action
+        'deleteArticleAction', // Exemple d'action
+        'image', // Exemple de route pour les images
+        // Ajoutez ici toutes les autres routes à exclure
+    ];
 
-// Si ce n'est pas une action, vérifier si la page existe
-if (!$isActionRoute) {
-    $pageModel = new PageModel(DatabaseConnection::getInstance());
-    $pageExists = $pageModel->pageExistsInDatabase($controllerSegment);
+// Vérifier si la route demandée est une route exclue
+    $isExcludedRoute = in_array($methodSegment, $excludedRoutes);
 
-    if (!$pageExists) {
-        // Si la page n'existe pas, rediriger vers la page 404
+// Si ce n'est pas une route exclue, vérifier si la page existe
+    if (!$isExcludedRoute) {
+        $pageModel = new PageModel(DatabaseConnection::getInstance());
+        $pageExists = $pageModel->pageExistsInDatabase($controllerSegment);
+
+        if (!$pageExists) {
+            // Si la page n'existe pas, rediriger vers la page 404
+            $errorController = new Error404Controller((new \App\src\views\pages\Error404()));
+            $errorController->defaultMethod();
+            exit();
+        }
+    }
+
+// Gestion du routage pour les actions, les ressources et les pages
+    if (method_exists($controller, $actionName)) {
+        $controller->$actionName($cssPaths, $jsPaths);
+    } elseif (method_exists($controller, $methodSegment)) {
+        $controller->$methodSegment($cssPaths, $jsPaths);
+    } else {
         $errorController = new Error404Controller((new \App\src\views\pages\Error404()));
         $errorController->defaultMethod();
-        exit();
     }
-}
-
-// Gestion du routage pour les actions et les pages
-if (method_exists($controller, $actionName)) {
-    $controller->$actionName($cssPaths, $jsPaths);
-} elseif (method_exists($controller, $methodSegment)) {
-    $controller->$methodSegment($cssPaths, $jsPaths);
-} else {
-    $errorController = new Error404Controller((new \App\src\views\pages\Error404()));
-    $errorController->defaultMethod();
-}
 }
