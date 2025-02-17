@@ -6,8 +6,6 @@ $dotenv->load();
 
 session_start();
 
-
-
 require_once '../src/Autoloader.php';
 App\src\Autoloader::register();
 
@@ -15,6 +13,7 @@ use App\src\controllers\pages\Error404Controller;
 use App\src\controllers\pages\PageControlleur;
 use App\src\controllers\pages\UserController;
 use App\src\database\DatabaseConnection;
+use App\src\models\PageModel;
 use App\src\models\UserModel;
 
 // Récupérer le chemin de l'URL
@@ -28,17 +27,11 @@ $methodSegment = $segments[1] ?? 'defaultMethod';
 $database = DatabaseConnection::getInstance();
 $db = $database->getConnection();
 
-
-
-
-
 // Gestion déconnexion
 if ($controllerSegment === 'logout') {
     $connexionController = new UserController();
     $connexionController->deconnecter();
-    exit();
 }
-
 
 // Gestion du routage
 if ($controllerSegment === 'login') {
@@ -58,7 +51,7 @@ if ($controllerSegment === 'login') {
     }
 } else {
     // Routage pour d'autres contrôleurs
-    if ($controllerSegment === '') {
+    if ($controllerSegment === '' || $controllerSegment === 'homepage') {
         $controllerSegment = 'Homepage';
     }
 
@@ -66,16 +59,36 @@ if ($controllerSegment === 'login') {
     $controller = new PageControlleur($controllerSegment);
     $cssPaths = ["/assets/styles/page.css"];
     $jsPaths = ["/assets/js/page.js"];
-    try {
-        $verif = $controller->estConnecte($controllerSegment)[0]['connecte'] ?? 'non';
-    } catch (Exception $e) {
-        \PHPUnit\Framework\throwException($e);
-    }
-    if ($verif == 'oui' && !isset($_SESSION['name'])) {
-        header("Location: /login");
-        exit();
+
+    // ... (votre code existant)
+
+// Liste des routes qui ne sont pas des pages (actions et ressources)
+    $excludedRoutes = [
+        'ajouterArticle', // Exemple d'action
+        'updateArticleAction', // Exemple d'action
+        'deleteArticleAction', // Exemple d'action
+        'getImage',
+        'updateImage',
+        'deleteImage',
+    ];
+
+// Vérifier si la route demandée est une route exclue
+    $isExcludedRoute = in_array($methodSegment, $excludedRoutes);
+
+// Si ce n'est pas une route exclue, vérifier si la page existe
+    if (!$isExcludedRoute) {
+        $pageModel = new PageModel(DatabaseConnection::getInstance());
+        $pageExists = $pageModel->pageExistsInDatabase($controllerSegment);
+
+        if (!$pageExists) {
+            // Si la page n'existe pas, rediriger vers la page 404
+            $errorController = new Error404Controller((new \App\src\views\pages\Error404()));
+            $errorController->defaultMethod();
+            exit();
+        }
     }
 
+// Gestion du routage pour les actions, les ressources et les pages
     if (method_exists($controller, $actionName)) {
         $controller->$actionName($cssPaths, $jsPaths);
     } elseif (method_exists($controller, $methodSegment)) {
