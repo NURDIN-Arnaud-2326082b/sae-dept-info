@@ -34,11 +34,6 @@ class Navbar
                        ?><label>
                                <input type="text" value="" name="mdp"/>
                                 </label>
-                        <label>
-                            <input type="text" value="" name="confirmerMdp"/>
-                        </label>
-                        <p> Le mot de passe doit contenir une majuscule, une minuscule, un chiffre, un symbole qui n'est ni un chiffre ni une lettre et avoir plus de 8 caractères
-                        </p>
                            <button class="btn-save" type="submit" onclick="closePopup()">enregistrer les modifications</button></form>
                         <button onclick="closePopup()">Fermer</button>
                     </div>

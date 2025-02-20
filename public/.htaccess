@@ -1,0 +1,13 @@
+RewriteEngine On
+
+# Exclure les fichiers images, CSS et JS de la redirection
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.(png|jpe?g|gif|webp|svg|css|js|woff2?|ttf|otf|eot|mp4|pdf)$ [NC]
+RewriteRule ^ index.php [QSA,L]
+
+# Redirige les requêtes vers index.php avec le paramètre 'page'
+RewriteRule ^([^/]+)/?$ index.php?page=$1 [QSA,L]
+
+# Redirige vers une page d'erreur personnalisée en cas de 404
+ErrorDocument 404 /404.php

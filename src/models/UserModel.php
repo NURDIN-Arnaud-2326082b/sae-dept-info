@@ -135,23 +135,17 @@ class UserModel
      * @param string $mdp Nouveau mot de passe.
      * @throws \Exception
      */
-    public function mettreAjourMdpAction(mixed $name, mixed $mdp, mixed $confirmerMdp)
+    public function mettreAjourMdpAction(mixed $name, mixed $mdp)
     {
-        $query = $this->connect->getConnection()->prepare("SELECT password FROM user WHERE name = :name");
-        $query->bindParam(':email', $email);
-        $query->execute();
-        $ancienMdp = $query->fetch(PDO::FETCH_ASSOC);
-        if(str_contains($mdp, 'a-z') && str_contains($mdp, 'A-Z') && str_contains($mdp, '0-9') && preg_match($mdp, '[^A-Za-z0-9]') && $mdp.ob_get_length()>8 && strcmp($ancienMdp,$confirmerMdp)) {
-                $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);
+        $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);
 
-                $sql = 'UPDATE user SET password = :password WHERE name = :name';
-                $stmt = $this->connect->getConnection()->prepare($sql);
+        $sql = 'UPDATE user SET password = :password WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
 
-                $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-                $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
-                if (!$stmt->execute()) {
-                    throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
-            }
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
         }
     }
 }

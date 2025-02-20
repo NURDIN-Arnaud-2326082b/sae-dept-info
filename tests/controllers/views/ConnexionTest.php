@@ -18,7 +18,7 @@ class ConnexionTest extends TestCase
         $htmlOutput = $connexionPage->show();
 
         // Vérifier si le lien vers la feuille de style 'Connexion.css' est présent
-        $this->assertStringContainsString('<link rel="stylesheet" href="/assets/styles/Connexion.css">', $htmlOutput);
+        $this->assertStringContainsString('<link rel="stylesheet" href="/public/assets/styles/Connexion.css">', $htmlOutput);
 
         // Vérifier si la structure principale de la page de connexion est présente
         $this->assertStringContainsString('<main>', $htmlOutput);

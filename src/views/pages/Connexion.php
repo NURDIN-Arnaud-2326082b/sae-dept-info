@@ -11,7 +11,7 @@ class Connexion
         ob_start();
         ?>
         <link rel="stylesheet" href="/assets/styles/Connexion.css">
-
+        <script src="/assets/js/page.js"></script>
         <main>
             <div class="container">
                 <div class="panel">
