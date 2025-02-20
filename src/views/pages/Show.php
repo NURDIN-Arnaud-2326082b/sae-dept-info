@@ -84,9 +84,11 @@ class Show
         if (isset($_SESSION['admin'])) {
             if ($this->pageControlleur->getName() == 'Homepage') {
                 echo '  <div class="articles-grid">';
+                $pl = 0;
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'homepage') {
-                        echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
+                        $pl = $ct['placement'];
+                        echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='placement' value='".$pl."'/><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='homepage'/><button type='submit' name='add'>Ajouter un article</button></form>";
                         echo '<div class="article-preview"><div class="article-content">';
                         echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
                         echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
@@ -104,13 +106,16 @@ class Show
                         echo '</div>';
                     }
                 }
-                echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='homepage'/><button type='submit' name='add'>Ajouter un article</button></form>";
+                $pl++;
+                echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='placement' value='".$pl."'/><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='homepage'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
             } elseif ($this->pageControlleur->getName()== 'menu') {
                 echo '<div class="panel-container">';
+                $pl = 0;
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'menu') {
-                        echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
+                        $pl = $ct['placement'];
+                        echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='placement' value='".$pl."'/><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
                         echo '<div class="feature"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/>';
                         echo '<textarea rows="3" cols="50" name="titre">'. $ct['title'] .'</textarea>';
                         echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
@@ -119,7 +124,8 @@ class Show
                         echo '</div>';
                     }
                 }
-                echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
+                $pl++;
+                echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='placement' value='".$pl."'/><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
             }
 

@@ -184,16 +184,17 @@ class PageModel
      * Méthode pour ajouter une page dans la base de données.
      * @throws \Exception Si une erreur survient lors de l'ajout de la page.
      */
-    public function ajouterPage(string $page, string $type): void
+    public function ajouterPage(string $page, string $type, int $placement): void
     {
         $cpt = $this->recupererDernierePage();
         $cpt = $cpt[0][0];
         $cpt = $cpt + 1;
         $name = 'page'.$cpt;
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",:link, :type)';
+        $sql = 'INSERT INTO article (title, content, link, type,placement) VALUES ("title","body",:link, :type,:placement)';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':link', $name, PDO::PARAM_STR);
         $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+        $stmt->bindValue(':placement', $placement, PDO::PARAM_INT);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de l\'ajout de l\'article.');
         }

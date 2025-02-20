@@ -137,10 +137,12 @@ class PageControlleur
             $this->mettreAjourPlacement($placement, $_POST['name']);
             $this->pageModel->ajouterPDF(null, null, $_POST['name'],$placement);
         }elseif ($type == 'menu'){
-            $this->pageModel->ajouterPage('Menu','menu');
+            $this->mettreAjourPlacement($placement, $_POST['name']);
+            $this->pageModel->ajouterPage('Menu','menu',$placement);
         }
         elseif ($type == 'homepage'){
-            $this->pageModel->ajouterPage('Homepage','homepage');
+            $this->mettreAjourPlacement($placement, $_POST['name']);
+            $this->pageModel->ajouterPage('Homepage','homepage',$placement);
 
         }
         else {
