@@ -458,4 +458,21 @@ class PageModel
         $stmt->bindValue(':placement', $placement, PDO::PARAM_INT);
         $stmt->execute();
     }
+
+    /**
+     * Vérifie si une page existe dans la base de données.
+     *
+     * @param string $name Le nom de la page à vérifier.
+     * @return bool Retourne true si la page existe, sinon false.
+     */
+    public function pageExistsInDatabase(string $name): bool
+    {
+        $sql = 'SELECT COUNT(*) as count FROM pages WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $result['count'] > 0;
+    }
 }
