@@ -7,7 +7,6 @@ use App\src\models\UserModel;
 use App\src\views\pages\Show;
 use HTMLPurifier;
 use HTMLPurifier_Config;
-use mysql_xdevapi\Exception;
 
 class PageControlleur
 {
@@ -126,24 +125,30 @@ class PageControlleur
      */
     public function ajouterArticleAction(): void
     {
-        $type = $_POST['type'];
+        $type = $_POST['type'] ?? null;
+        $placement = $_POST['placement'] ?? null;
+        $link = $_POST['link'] ?? null;
         if ($type === 'img' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $fileType = mime_content_type($_FILES['image']['tmp_name']);
             $fileData = file_get_contents($_FILES['image']['tmp_name']);
-            // Ajoutez une méthode spécifique pour enregistrer l'image
-            $this->pageModel->ajouterImage($fileType, $fileData, $_POST['name']);
+            $this->mettreAjourPlacement($placement, $_POST['name']);
+            $this->pageModel->ajouterImage($fileType, $fileData, $_POST['name'], $placement);
         }
         elseif ($type === 'pdf') {
-            $this->pageModel->ajouterPDF(null, null, $_POST['name']);
+            $this->mettreAjourPlacement($placement, $_POST['name']);
+            $this->pageModel->ajouterPDF(null, null, $_POST['name'],$placement);
         }elseif ($type == 'menu'){
-            $this->pageModel->ajouterPage('Menu','menu');
+            $this->mettreAjourPlacement($placement, $_POST['name']);
+            $this->pageModel->ajouterPage('Menu','menu',$placement, $_POST['choix'],$link);
         }
         elseif ($type == 'homepage'){
-            $this->pageModel->ajouterPage('Homepage','homepage');
+            $this->mettreAjourPlacement($placement, $_POST['name']);
+            $this->pageModel->ajouterPage('Homepage','homepage',$placement, $_POST['choix'],$link);
 
         }
         else {
-            $this->pageModel->ajouterArticleAction($type, $_POST['name'],null);
+            $this->mettreAjourPlacement($placement, $_POST['name']);
+            $this->pageModel->ajouterArticleAction($type, $_POST['name'],$placement);
         }
         header('Location: /'.$_POST['name']);
     }
@@ -318,5 +323,20 @@ class PageControlleur
         header('Location: /'.$_POST['name']);
     }
 
+    public function mettreAjourPlacement(mixed $placement, mixed $name) : void
+    {
+        $content = $this->pageModel->genererContenu($name);
+        error_log('ok1');
+        if ($content == null){
+            error_log('ERORRRRRRRRRRRRRRRRRRRRRRRRRR');
+        }
+        foreach ($content as $ct) {
+            if($ct['placement'] >= $placement){
+                $pl = $ct['placement'];
+                $pl++;
+                $this->pageModel->updatePlacement($ct['id_article'],$pl);
+            }
+        }
+    }
 }
 

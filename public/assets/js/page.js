@@ -41,3 +41,44 @@ document.getElementById("password-form").addEventListener("submit", function(eve
             console.error('Error:', error);
         });
 });
+
+// Fonction pour basculer entre le mode sombre et clair
+function toggleDarkMode() {
+    // Récupère l'élément body ou l'élément global du site
+    const body = document.body;
+
+    // Vérifie si le mode sombre est déjà activé
+    if (body.classList.contains('dark-mode')) {
+        // Désactive le mode sombre
+        body.classList.remove('dark-mode');
+        // Enregistre la préférence comme étant le mode clair
+        localStorage.setItem('darkMode', 'false');
+        document.getElementById("dark-mode-toggle").textContent = "Mode Sombre";
+    } else {
+        // Active le mode sombre
+        body.classList.add('dark-mode');
+        // Enregistre la préférence comme étant le mode sombre
+        localStorage.setItem('darkMode', 'true');
+        document.getElementById("dark-mode-toggle").textContent = "Mode Clair";
+    }
+}
+
+// Fonction pour appliquer le mode sombre en fonction du stockage local
+function applyDarkMode() {
+    // Vérifie si le mode sombre est activé dans localStorage
+    const darkMode = localStorage.getItem('darkMode');
+    const body = document.body;
+
+    // Si la préférence est stockée et vaut 'true', active le mode sombre
+    if (darkMode === 'true') {
+        body.classList.add('dark-mode');
+        document.getElementById("dark-mode-toggle").textContent = "Mode Clair";
+    } else {
+        body.classList.remove('dark-mode');
+        document.getElementById("dark-mode-toggle").textContent = "Mode Sombre";
+    }
+}
+
+// Applique le mode sombre dès que la page est chargée
+window.onload = applyDarkMode;
+
