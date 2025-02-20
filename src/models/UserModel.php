@@ -155,15 +155,12 @@ class UserModel
         if (strlen($nouveauMdp) < 12) {
             throw new \Exception("Le mot de passe doit contenir au moins 12 caractères.");
         }
-        // Vérifie la présence d'une lettre
         if (!preg_match('/[a-zA-Z]/', $nouveauMdp)) {
             throw new \Exception("Le mot de passe doit contenir au moins une lettre.");
         }
-        // Vérifie la présence d'un chiffre
         if (!preg_match('/\d/', $nouveauMdp)) {
             throw new \Exception("Le mot de passe doit contenir au moins un chiffre.");
         }
-        // Vérifie la présence d'un caractère spécial
         if (!preg_match('/[\W_]/', $nouveauMdp)) {
             throw new \Exception("Le mot de passe doit contenir au moins un caractère spécial.");
         }
