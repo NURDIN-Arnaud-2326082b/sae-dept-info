@@ -2,7 +2,7 @@
 
 namespace App\src\models;
 
-use App\src\database\DatabaseConnection;
+use App\src\core\DatabaseConnection;
 use PDO;
 use Random\RandomException;
 

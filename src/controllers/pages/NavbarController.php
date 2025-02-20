@@ -2,8 +2,7 @@
 
 namespace App\src\controllers\pages;
 
-use App\src\controllers\pages\PageControlleur;
-use App\src\database\DatabaseConnection;
+use App\src\core\DatabaseConnection;
 use App\src\models\UserModel;
 use App\src\views\pages\Navbar;
 

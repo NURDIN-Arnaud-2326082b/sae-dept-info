@@ -1,7 +1,7 @@
 <?php
 
 namespace App\src\controllers\pages;
-use App\src\database\DatabaseConnection;
+use App\src\core\DatabaseConnection;
 use App\src\models\PageModel;
 use App\src\models\UserModel;
 use App\src\views\pages\Show;
