@@ -76,6 +76,7 @@ class Show
 
     /**
      * Génère les articles de la page en fonction des templates existantes.
+     * @throws Exception
      */
     public function genererArticles(): void
     {
@@ -125,158 +126,169 @@ class Show
             if ($content[0] != null) {
                 echo '<section id="content" class="department-content">';
             }
-            $cpt = 1;
             $cptlink = 1;
+            $tmp = '';
             foreach ($content as $ct) {
-                switch ($ct['type']) {
-                    case 'texte':
-                        echo '<div class="intro"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
-                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" name="titre"/>';
-                        echo '<textarea rows="3" cols="50" name="contenu">'. $ct['content'] .'</textarea>';
-                        echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                        echo '</div>';
-                        $pl = $ct['placement'];
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'list' . $cpt:
-                        $cpt2 = 0;
-                        $pl = 0 ;
-                        echo '<div class="features-grid">';
-                        foreach ($content as $ct2) {
-                            if ($ct2['type'] == 'list' . $cpt) {
-                                echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';"">';
-                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct2['id_article'] . '">Supprimer l\'image</button></form>';
-                                echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
-                                echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
-                                echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
-                                echo '<input type="file" id="file-'.$ct2['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
-                                echo '<input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
-                                echo '</form>';
-                                echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
-                                echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" name="titre"/>';
-                                echo '<textarea rows="3" cols="50" name="contenu">'. $ct2['content'] .'</textarea>';
-                                echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct2['id_article'] . "'>Supprimer l'article</button></form>";
-                                echo '</div>';
-                                $cpt2++;
-                                $pl = $ct2['placement'];
+                if (preg_match('/^list(\d+)$/', $ct['type'])) {
+                    if ($ct['type'] == $tmp) {
+                        continue;
+                    }
+                    $tmp = $ct['type'];
+                    $cpt2 = 0;
+                    $pl = 0;
+                    echo '<div class="features-grid">';
+                    foreach ($content as $ct2) {
+                        if ($ct2['type'] == $ct['type']) {
+                            $pl = $ct2['placement'];
+                            echo '<div class="feature">';
+                            echo '<img src="/PageControlleur/getImage?id=' . $ct2['id_article'] . '" alt="' . $ct2['title'] . '" onerror="this.style.display=\'none\';"">';
+                            echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '">Supprimer l\'image</button></form>';
+                            echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                            echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '">';
+                            echo '<label for="file-' . $ct2['id_article'] . '" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                            echo '<input type="file" id="file-' . $ct2['id_article'] . '" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                            echo '<input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
+                            echo '</form>';
+                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
+                            echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '"/><input type="text" value="' . $ct2['title'] . '" name="titre"/>';
+                            echo '<textarea rows="3" cols="50" name="contenu">' . $ct2['content'] . '</textarea>';
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct2['id_article'] . "'>Supprimer l'article</button></form>";
+                            echo '</div>';
+                            $cpt2++;
+                                }
                             }
-                        }
-                        for ($i = 0; $i < $cpt2; $i++) {
-                            array_shift($content);
-                        }
-                        $type = $ct['type'];
-                        echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="type" value="'.$type.'"/><button type="submit" name="add">Ajouter un article</button></form>';
-                        echo '</div>';
-                        $cpt++;
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'titre':
-                        echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" value="'.$ct['title'].'" name="titre"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                        $pl = $ct['placement'];
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'lien':
-                        echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" name="lien">'. $ct['link'] .'</textarea><textarea rows="3" cols="50" name="contenu">'. $ct['content'] .'</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                        echo '</div>';
-                        $pl = $ct['placement'];
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'paragraphe':
-                        echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/><textarea rows="3" cols="50" name="contenu">'. $ct['content'] .'</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                        echo '</div>';
-                        $pl = $ct['placement'];
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'img':
-                        echo '<div>';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
-                        echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
-                        echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
-                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
-                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
-                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
-                        echo '<input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
-                        echo '</form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                        echo '</div>';
-                        $pl = $ct['placement'];
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'lstlinked' . $cptlink:
-                        $cpt2 = 0;
-                        echo '<div class="features-grid">';
-                        $pl = 0 ;
-                        foreach ($content as $ct2) {
-                            if ($ct2['type'] == 'lstlinked' . $cptlink) {
-                                echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
-                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct2['id_article'] . '">Supprimer l\'image</button></form>';
-                                echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
-                                echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
-                                echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
-                                echo '<input type="file" id="file-'.$ct2['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
-                                echo '<input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
-                                echo '</form>';
-                                echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
-                                echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" name="titre"/>';
-                                echo '<textarea rows="3" cols="50" name="contenu">'. $ct2['content'] .'</textarea><textarea rows="3" cols="50" name="lien">'. $ct2['link'] .'</textarea>';
-                                echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                                echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct2['id_article'] . "'>Supprimer l'article</button></form>";
-                                echo '</div>';
-                                $cpt2++;
-                                $pl = $ct2['placement'];
+                            for ($i = 0; $i < $cpt2; $i++) {
+                                array_shift($content);
                             }
+                            $type = $ct['type'];
+                            $pl++;
+                    echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="placement" value="'.$pl.'"/><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="type" value="' . $type . '"/><button type="submit" name="add">Ajouter un article</button></form>';
+                            echo '</div>';
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                }
+                else if (preg_match('/^lstlinked(\d+)$/', $ct['type'])) {
+                    if ($ct['type'] == $tmp) {
+                        continue;
+                    }
+                    $tmp = $ct['type'];
+                    $pl = 0;
+                    $cpt2 = 0;
+                    echo '<div class="features-grid">';
+                    foreach ($content as $ct2) {
+                        if ($ct2['type'] == 'lstlinked' . $cptlink) {
+                            echo '<div class="feature">';
+                            echo '<img src="/PageControlleur/getImage?id=' . $ct2['id_article'] . '" alt="' . $ct2['title'] . '" onerror="this.style.display=\'none\';">';
+                            echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '">Supprimer l\'image</button></form>';
+                            echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                            echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '">';
+                            echo '<label for="file-' . $ct2['id_article'] . '" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                            echo '<input type="file" id="file-' . $ct2['id_article'] . '" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                            echo '<input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
+                            echo '</form>';
+                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
+                            echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '"/><input type="text" value="' . $ct2['title'] . '" name="titre"/>';
+                            echo '<textarea rows="3" cols="50" name="contenu">' . $ct2['content'] . '</textarea><textarea rows="3" cols="50" name="lien">' . $ct2['link'] . '</textarea>';
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct2['id_article'] . "'>Supprimer l'article</button></form>";
+                            echo '</div>';
+                            $cpt2++;
+                            $pl = $ct2['placement'];
                         }
-                        for ($i = 0; $i < $cpt2; $i++) {
-                            array_shift($content);
-                        }
-                        $type = $ct['type'];
-                        echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="type" value="'.$type.'"/><button type="submit" name="add">Ajouter un article</button></form>';
-                        echo '</div>';
-                        $cptlink++;
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'pdf':
-                        echo '<div>';
-                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
-                        echo '<form action="/PageControlleur/updatePdf" method="post" enctype="multipart/form-data">';
-                        echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
-                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez un fichier PDF ou cliquez ici</label>';
-                        echo '<input type="file" id="file-'.$ct['id_article'].'" name="file" accept="file/pdf" onchange="this.form.submit()" style="display: none;">';
-                        echo '<input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
-                        echo '</form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                        echo '</div>';
-                        $pl = $ct['placement'];
-                        $pl++;
-                        $this->genererNewArticle($pl);
-                        break;
-                    case 'useraccess':
-                        echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';">';
-                        echo '<h2>' . $ct['title'] . '</h2>';
-                        echo '</div>';
-                        break ;
-                    case 'gestion' :
-                        echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                        echo '</div>';
-                        echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit">Supprimer l\'utilisateur</button></form>';
-                        echo '</div>';
-                        break;
-                    default:
-                        break;
+                    }
+                    for ($i = 0; $i < $cpt2; $i++) {
+                        array_shift($content);
+                    }
+                    $type = $ct['type'];
+                    $pl++;
+                    echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="placement" value="'.$pl.'"/><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="type" value="' . $type . '"/><button type="submit" name="add">Ajouter un article</button></form>';
+                    echo '</div>';
+                    $cptlink++;
+                    $pl++;
+                    $this->genererNewArticle($pl);
+                }
+                else {
+                    switch ($ct['type']) {
+                        case 'texte':
+                            echo '<div class="intro"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
+                            echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '" /><input type="text" value="' . $ct['title'] . '" name="titre"/>';
+                            echo '<textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                            echo '</div>';
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                            break;
+                        case 'titre':
+                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" value="' . $ct['title'] . '" name="titre"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                            break;
+                        case 'lien':
+                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                            echo '</div>';
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                            break;
+                        case 'paragraphe':
+                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                            echo '</div>';
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                            break;
+                        case 'img':
+                            echo '<div>';
+                            echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . $ct['title'] . '" onerror="this.style.display=\'none\';">';
+                            echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct['id_article'] . '">Supprimer l\'image</button></form>';
+                            echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
+                            echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '">';
+                            echo '<label for="file-' . $ct['id_article'] . '" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                            echo '<input type="file" id="file-' . $ct['id_article'] . '" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
+                            echo '<input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
+                            echo '</form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                            echo '</div>';
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                            break;
+                        case 'pdf':
+                            echo '<div>';
+                            echo '<a href="/PageControlleur/getPdf?id=' . $ct['id_article'] . '" download="fichier.pdf">Télécharger le PDF</a>';
+                            echo '<form action="/PageControlleur/updatePdf" method="post" enctype="multipart/form-data">';
+                            echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '">';
+                            echo '<label for="file-' . $ct['id_article'] . '" class="dropzone">Glissez & déposez un fichier PDF ou cliquez ici</label>';
+                            echo '<input type="file" id="file-' . $ct['id_article'] . '" name="file" accept="file/pdf" onchange="this.form.submit()" style="display: none;">';
+                            echo '<input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
+                            echo '</form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                            echo '</div>';
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                            break;
+                        case 'useraccess':
+                            echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';">';
+                            echo '<h2>' . $ct['title'] . '</h2>';
+                            echo '</div>';
+                            break;
+                        case 'gestion' :
+                            echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo '</div>';
+                            echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit">Supprimer l\'utilisateur</button></form>';
+                            echo '</div>';
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
