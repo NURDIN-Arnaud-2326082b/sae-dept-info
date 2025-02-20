@@ -119,7 +119,8 @@ class UserModel
      * @param string $email Email de l'utilisateur.
      * @throws \Exception
      */
-    public function supprimerUserAction(mixed $email){
+    public function supprimerUserAction(mixed $email): void
+    {
         $sql = 'DELETE FROM user WHERE email = :email';
         $stmt = $this->connect->getConnection()->prepare($sql);
         $stmt->bindValue(':email', $email, PDO::PARAM_STR);
@@ -135,17 +136,44 @@ class UserModel
      * @param string $mdp Nouveau mot de passe.
      * @throws \Exception
      */
-    public function mettreAjourMdpAction(mixed $name, mixed $mdp)
+    public function mettreAjourMdpAction(mixed $name, mixed $mdp, mixed $confirmerMdp): void
     {
+        if (!$this->validerMotDePasse($mdp)) {
+            throw new \Exception('Le mot de passe ne respecte pas les critères de sécurité.');
+        }
+
+        $query = $this->connect->getConnection()->prepare("SELECT password FROM user WHERE name = :name");
+        $query->bindParam(':name', $name, PDO::PARAM_STR);
+        $query->execute();
+        $ancienMdp = $query->fetch(PDO::FETCH_ASSOC);
+
+        if (!$ancienMdp || !password_verify($confirmerMdp, $ancienMdp['password'])) {
+            throw new \Exception('L\'ancien mot de passe est incorrect.');
+        }
+
         $passwordHash = password_hash($mdp, PASSWORD_BCRYPT);
+        $stmt = $this->connect->getConnection()->prepare("UPDATE user SET password = :password WHERE name = :name");
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $passwordHash, PDO::PARAM_STR);
 
-        $sql = 'UPDATE user SET password = :password WHERE name = :name';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
         }
     }
+
+    /**
+     * Valide un mot de passe.
+     *
+     * @param string $mdp Mot de passe à valider.
+     * @return bool True si le mot de passe est valide, false sinon.
+     */
+    private function validerMotDePasse(string $mdp): bool
+    {
+        return strlen($mdp) > 8 &&
+            preg_match('/[a-z]/', $mdp) &&
+            preg_match('/[A-Z]/', $mdp) &&
+            preg_match('/\d/', $mdp) &&
+            preg_match('/[^A-Za-z0-9]/', $mdp);
+    }
+
 }

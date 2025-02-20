@@ -229,7 +229,7 @@ class PageControlleur
      */
     public function mettreAjourMdpAction(): void
     {
-        $this->userModel->mettreAjourMdpAction($_POST['name'],$_POST['mdp']);
+        $this->userModel->mettreAjourMdpAction($_POST['name'],$_POST['mdp'], $_POST['confirmerMdp']);
         header('Location: /Menu');
     }
 
