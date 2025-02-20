@@ -114,6 +114,8 @@ class Show
                 $pl++;
                 echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='placement' value='".$pl."'/><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='homepage'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
+                $pl++;
+                $this->genererNewArticle($pl);
             } elseif ($this->pageControlleur->getName()== 'menu') {
                 echo '<div class="panel-container">';
                 $pl = 0;
@@ -137,6 +139,8 @@ class Show
                 $pl++;
                 echo "<form action='/PageControlleur/ajouterArticle' method='post'><input type='hidden' name='placement' value='".$pl."'/><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><input type='hidden' name='type' value='menu'/><button type='submit' name='add'>Ajouter un article</button></form>";
                 echo '</div>';
+                $pl++;
+                $this->genererNewArticle($pl);
             }
 
             if ($content[0] != null) {
