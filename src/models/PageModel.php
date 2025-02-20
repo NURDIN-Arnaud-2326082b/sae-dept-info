@@ -184,49 +184,71 @@ class PageModel
      * Méthode pour ajouter une page dans la base de données.
      * @throws \Exception Si une erreur survient lors de l'ajout de la page.
      */
-    public function ajouterPage(string $page, string $type, int $placement): void
+    public function ajouterPage(string $page, string $type, int $placement, string $choix, mixed $link): void
     {
-        $cpt = $this->recupererDernierePage();
-        $cpt = $cpt[0][0];
-        $cpt = $cpt + 1;
-        $name = 'page'.$cpt;
-        $sql = 'INSERT INTO article (title, content, link, type,placement) VALUES ("title","body",:link, :type,:placement)';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        $stmt->bindValue(':link', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':type', $type, PDO::PARAM_STR);
-        $stmt->bindValue(':placement', $placement, PDO::PARAM_INT);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
-        }
-        $this->insererArticleDansPage($page);
-        if ($type == 'homepage'){
-            $connecte = 'non';
-        }
-        else {
-            $connecte = 'oui';
-        }
-        $sql = 'INSERT INTO pages (name, pagetitle,connecte) VALUES (:name, "title",:connecte)';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-        $stmt->bindValue(':connecte', $connecte, PDO::PARAM_STR);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de la page.');
-        }
-        if($type == 'homepage'){
-            $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
-            $tmp = $this->recupererDernierId();
-            $id_img = $tmp[0][0];
-            $stmt->bindValue(':id',$id_img,PDO::PARAM_INT);
+        if ($choix == 'linked'){
+            $sql = 'INSERT INTO article (title, content, link, type,placement) VALUES ("title","body",:link, :type,:placement)';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':link', $link, PDO::PARAM_STR);
+            $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+            $stmt->bindValue(':placement', $placement, PDO::PARAM_INT);
             if (!$stmt->execute()) {
-                throw new \Exception('Erreur lors de l\'ajout de l\'image.');
+                throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+            }
+            $this->insererArticleDansPage($page);
+
+            if ($type == 'homepage') {
+                $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
+                $tmp = $this->recupererDernierId();
+                $id_img = $tmp[0][0];
+                $stmt->bindValue(':id', $id_img, PDO::PARAM_INT);
+                if (!$stmt->execute()) {
+                    throw new \Exception('Erreur lors de l\'ajout de l\'image.');
+                }
             }
         }
-        $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "intro")';
-        $stmt = $this->connect->getConnection()->prepare($sql);
-        if (!$stmt->execute()) {
-            throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+        else {
+            $cpt = $this->recupererDernierePage();
+            $cpt = $cpt[0][0];
+            $cpt = $cpt + 1;
+            $name = 'page' . $cpt;
+            $sql = 'INSERT INTO article (title, content, link, type,placement) VALUES ("title","body",:link, :type,:placement)';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':link', $name, PDO::PARAM_STR);
+            $stmt->bindValue(':type', $type, PDO::PARAM_STR);
+            $stmt->bindValue(':placement', $placement, PDO::PARAM_INT);
+            if (!$stmt->execute()) {
+                throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+            }
+            $this->insererArticleDansPage($page);
+            if ($type == 'homepage') {
+                $connecte = 'non';
+            } else {
+                $connecte = 'oui';
+            }
+            $sql = 'INSERT INTO pages (name, pagetitle,connecte) VALUES (:name, "title",:connecte)';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+            $stmt->bindValue(':connecte', $connecte, PDO::PARAM_STR);
+            if (!$stmt->execute()) {
+                throw new \Exception('Erreur lors de l\'ajout de la page.');
+            }
+            if ($type == 'homepage') {
+                $stmt = $this->connect->getConnection()->prepare("INSERT INTO images (id_image,type, image) VALUES (:id,null,null)");
+                $tmp = $this->recupererDernierId();
+                $id_img = $tmp[0][0];
+                $stmt->bindValue(':id', $id_img, PDO::PARAM_INT);
+                if (!$stmt->execute()) {
+                    throw new \Exception('Erreur lors de l\'ajout de l\'image.');
+                }
+            }
+            $sql = 'INSERT INTO article (title, content, link, type) VALUES ("title","body",null, "intro")';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            if (!$stmt->execute()) {
+                throw new \Exception('Erreur lors de l\'ajout de l\'article.');
+            }
+            $this->insererArticleDansPage($name);
         }
-        $this->insererArticleDansPage($name);
     }
 
     /**

@@ -127,6 +127,7 @@ class PageControlleur
     {
         $type = $_POST['type'] ?? null;
         $placement = $_POST['placement'] ?? null;
+        $link = $_POST['link'] ?? null;
         if ($type === 'img' && isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             $fileType = mime_content_type($_FILES['image']['tmp_name']);
             $fileData = file_get_contents($_FILES['image']['tmp_name']);
@@ -138,11 +139,11 @@ class PageControlleur
             $this->pageModel->ajouterPDF(null, null, $_POST['name'],$placement);
         }elseif ($type == 'menu'){
             $this->mettreAjourPlacement($placement, $_POST['name']);
-            $this->pageModel->ajouterPage('Menu','menu',$placement);
+            $this->pageModel->ajouterPage('Menu','menu',$placement, $_POST['choix'],$link);
         }
         elseif ($type == 'homepage'){
             $this->mettreAjourPlacement($placement, $_POST['name']);
-            $this->pageModel->ajouterPage('Homepage','homepage',$placement);
+            $this->pageModel->ajouterPage('Homepage','homepage',$placement, $_POST['choix'],$link);
 
         }
         else {
