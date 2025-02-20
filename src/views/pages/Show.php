@@ -302,6 +302,9 @@ class Show
                             echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit">Supprimer l\'utilisateur</button></form>';
                             echo '</div>';
                             break;
+                        case 'youtube':
+                            echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                            break;
                         default:
                             break;
                     }
