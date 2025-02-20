@@ -152,7 +152,21 @@ class UserModel
         if (!$user || !password_verify($mdpActuel, $user['password'])) {
             throw new \Exception('Mot de passe actuel incorrect.');
         }
-
+        if (strlen($nouveauMdp) < 12) {
+            throw new \Exception("Le mot de passe doit contenir au moins 12 caractères.");
+        }
+        // Vérifie la présence d'une lettre
+        if (!preg_match('/[a-zA-Z]/', $nouveauMdp)) {
+            throw new \Exception("Le mot de passe doit contenir au moins une lettre.");
+        }
+        // Vérifie la présence d'un chiffre
+        if (!preg_match('/\d/', $nouveauMdp)) {
+            throw new \Exception("Le mot de passe doit contenir au moins un chiffre.");
+        }
+        // Vérifie la présence d'un caractère spécial
+        if (!preg_match('/[\W_]/', $nouveauMdp)) {
+            throw new \Exception("Le mot de passe doit contenir au moins un caractère spécial.");
+        }
         // Hache le nouveau mdp
         $passwordHash = password_hash($nouveauMdp, PASSWORD_BCRYPT);
 
