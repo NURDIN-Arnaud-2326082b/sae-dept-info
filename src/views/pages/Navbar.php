@@ -15,7 +15,6 @@ class Navbar
             <a href="/">
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
-            <button id="dark-mode-toggle" onclick="toggleDarkMode()">Mode Sombre</button>
             <div class="name">
             <!-- Nom de l'utilisateur ou "Invité" -->
             <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : '' ?></h1>
