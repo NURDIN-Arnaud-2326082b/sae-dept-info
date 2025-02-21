@@ -18,6 +18,7 @@ jobs:
         with:
           host: "ssh-departementinfoaix.alwaysdata.net"
           username: "departementinfoaix"
+          password: "@departementoff13!"
           key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
           source: "."  # Fichiers à envoyer (".": tout envoyer)
           target: "/home/departementinfoaix/www/"  # Dossier cible sur AlwaysData
@@ -27,6 +28,7 @@ jobs:
         with:
           host: "ssh-departementinfoaix.alwaysdata.net"
           username: "departementinfoaix"
+          password: "@departementoff13!"
           key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
           script: |
             cd /home/departementinfoaix/www/
