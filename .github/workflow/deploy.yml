@@ -20,7 +20,7 @@ jobs:
           username: "departementinfoaix"
           key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
           source: "."  # Fichiers à envoyer (".": tout envoyer)
-          target: "/home/ton-utilisateur-alwaysdata/www/"  # Dossier cible sur AlwaysData
+          target: "/home/departementinfoaix/www/"  # Dossier cible sur AlwaysData
 
       - name: Exécuter des commandes sur AlwaysData (si besoin)
         uses: appleboy/ssh-action@master
