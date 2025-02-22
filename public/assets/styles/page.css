@@ -453,6 +453,10 @@ iframe {
     color: #ffffff;
 }
 
+.dark-mode .read-more {
+    background: #333;
+}
+
 .dark-mode .panel {
     background: #004b93;
     color: #ffffff;
