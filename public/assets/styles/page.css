@@ -5,6 +5,7 @@
 body {
     background: url('/assets/images/départment.jpg') no-repeat center center;
     background-size: cover;
+    background-attachment: fixed; /* Fixe l'image de fond */
     font-family: 'Titillium Web', sans-serif;
     margin: 0;
     padding: 0;
@@ -13,6 +14,7 @@ body {
     position: relative;
     overflow-x: hidden;
 }
+
 
 h2 {
     color: black;
@@ -23,7 +25,7 @@ h2 {
 main {
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 1rem;
+   /* border-radius: 1rem;*/
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
     text-align: center;
 }
@@ -142,6 +144,10 @@ main {
     position: relative;
     z-index: 1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    display: flex;
+    flex-direction: column; /* Organisation verticale */
+    min-height: 50%; /* Hauteur uniforme pour toutes les cartes */
 }
 
 .article-preview:hover {
@@ -149,12 +155,32 @@ main {
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
 }
 
+/* Images uniformes */
 .article-image {
-    width: 100%;
-    height: auto;
+    width: 100%;  /* Ajustement responsive */
+    max-width: 365px;
+    height: 300px; /* Hauteur fixe */
     object-fit: cover;
     border-radius: 0.8rem;
     margin-bottom: 1rem;
+    align-self: center; /* Centrer l'image */
+}
+
+.article-content {
+    flex-grow: 1; /* Prend tout l'espace disponible */
+}
+
+
+/* Bouton "En savoir plus" */
+.read-more {
+    background: #007bff;
+    color: ghostwhite;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: auto; /* Force le bouton à rester en bas */
 }
 
 .article-content h3 {

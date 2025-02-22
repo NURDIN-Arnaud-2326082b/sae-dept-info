@@ -44,7 +44,7 @@ class Show
                         echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" name="titre"/>';
                         echo '<textarea rows="3" cols="50" name="contenu">'. $ct['content'] .'</textarea>';
-                        echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
+                        echo '<a href="#content" class="read-more">En savoir plus</a>';
                         echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form></section>';
                         break;
                     default:
@@ -64,7 +64,7 @@ class Show
                         echo ' <section class="hero-section"><div class="hero-content">';
                         echo '<h1>' . $ct['title'] . '</h1>';
                         echo '<p>' . $ct['content'] . '</p>';
-                        echo '<a href="#content" class="btn-scroll">En savoir plus</a>';
+                        echo '<a href="#content" class="read-more">En savoir plus</a>';
                         echo '</section>';
                         break;
                     default:
@@ -396,7 +396,7 @@ class Show
                                 echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
                                 echo '<h3>' . $ct2['title'] . '</h3>';
                                 echo '<p>' . $ct2['content'] . '</p>';
-                                echo '<a href="' . $ct['link'] . '"  class="btn-scroll">En savoir plus</a>';
+                                echo '<a href="' . $ct['link'] . '"  class="read-more">En savoir plus</a>';
                                 echo '</div>';
                                 $cpt2++;
                             }
