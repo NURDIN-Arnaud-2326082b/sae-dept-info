@@ -60,13 +60,13 @@ class controller
             $cssPaths = ["/assets/styles/page.css"];
             $jsPaths = ["/assets/js/page.js"];
 
-            // ... (votre code existant)
-
 // Liste des routes qui ne sont pas des pages (actions et ressources)
             $excludedRoutes = [
-                'ajouterArticle', // Exemple d'action
-                'updateArticleAction', // Exemple d'action
-                'deleteArticleAction', // Exemple d'action
+                'ajouterArticle',
+                'updateArticleAction',
+                'updateArticle',
+                'deleteArticleAction',
+                'deleteArticle',
                 'getImage',
                 'updateImage',
                 'deleteImage',
