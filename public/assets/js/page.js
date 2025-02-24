@@ -143,6 +143,56 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Script chargé !");
+
+    const toggleButtons = document.querySelectorAll(".toggle-password");
+
+    toggleButtons.forEach(button => {
+        // Vérifiez si l'événement est déjà attaché
+        if (button.getAttribute("data-listener-attached") !== "true") {
+            console.log("Bouton détecté :", button);
+
+            button.addEventListener("click", function (event) {
+                event.preventDefault(); // Empêche un éventuel rechargement ou comportement inattendu
+                event.stopPropagation(); // Stoppe la propagation de l'événement
+
+                const targetId = this.getAttribute("data-target");
+                console.log("Cible du bouton :", targetId);
+
+                const passwordInput = document.getElementById(targetId);
+                if (!passwordInput) {
+                    console.error("Erreur : Impossible de trouver le champ de mot de passe avec l'ID :", targetId);
+                    return;
+                }
+
+                console.log("Type de l'input avant changement :", passwordInput.type);
+
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    this.textContent = "🙈";
+                    console.log("Mot de passe affiché !");
+                } else {
+                    passwordInput.type = "password";
+                    this.textContent = "👁️";
+                    console.log("Mot de passe caché !");
+                }
+
+                console.log("Type de l'input après changement :", passwordInput.type);
+            });
+
+            // Marquez le bouton comme ayant déjà un écouteur d'événement
+            button.setAttribute("data-listener-attached", "true");
+        }
+    });
+});
+
+
+
+
+
+
+
 // Fonction pour basculer entre le mode sombre et clair
 function toggleDarkMode() {
     // Récupère l'élément body ou l'élément global du site

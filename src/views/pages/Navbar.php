@@ -38,24 +38,26 @@ class Navbar
                             <input type="hidden" name="name" value="<?= htmlspecialchars($user['name']) ?>">
 
                             <label>Mot de passe actuel :</label>
-                            <label>
-                                <input type="password" name="mdpActuel" required>
-                            </label>
+                            <div class="password-container">
+                                <input type="password" id="mdpActuel" name="mdpActuel" required>
+                                <button type="button" class="toggle-password" data-target="mdpActuel">👁️</button>
+                            </div>
 
                             <label>Nouveau mot de passe :</label>
-
-                            <label>
-                                <input type="password" name="nouveauMdp1" required>
-                            </label>
+                            <div class="password-container">
+                                <input type="password" id="nouveauMdp1" name="nouveauMdp1" required>
+                                <button type="button" class="toggle-password" data-target="nouveauMdp1">👁️</button>
+                            </div>
 
                             <label>Confirmer le nouveau mot de passe :</label>
-
-                            <label>
-                                <input type="password" name="nouveauMdp2" required>
-                            </label>
+                            <div class="password-container">
+                                <input type="password" id="nouveauMdp2" name="nouveauMdp2" required>
+                                <button type="button" class="toggle-password" data-target="nouveauMdp2">👁️</button>
+                            </div>
 
                             <button class="btn-save" type="submit">Enregistrer les modifications</button>
                         </form>
+
 
                         <button onclick="closePopup()">Fermer</button>
                     </div>
