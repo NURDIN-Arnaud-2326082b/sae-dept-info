@@ -135,11 +135,11 @@ class UserModel
      * @param string $mdp Nouveau mot de passe.
      * @throws \Exception Erreur lors de la mise à jour du mot de passe.
      */
-    public function mettreAjourMdpAction(mixed $name, mixed $mdpActuel, mixed $nouveauMdp): void
+    public function mettreAjourMdpAction(mixed $name, mixed $mdpActuel, mixed $nouveauMdp1, mixed $nouveauMdp2): void
     {
         // Vérification des champs
-        if (empty($mdpActuel) || empty($nouveauMdp)) {
-            throw new \Exception('Les mots de passe ne peuvent pas être vides.');
+        if (empty($mdpActuel) || empty($nouveauMdp1) || empty($nouveauMdp2)) {
+            throw new \Exception('Les champs de mot de passe ne peuvent pas être vides.');
         }
 
         // Récupére mot de passe actuel
@@ -152,20 +152,26 @@ class UserModel
         if (!$user || !password_verify($mdpActuel, $user['password'])) {
             throw new \Exception('Mot de passe actuel incorrect.');
         }
-        if (strlen($nouveauMdp) < 12) {
+        if (strlen($nouveauMdp1) < 12) {
             throw new \Exception("Le mot de passe doit contenir au moins 12 caractères.");
         }
-        if (!preg_match('/[a-zA-Z]/', $nouveauMdp)) {
+        if (!preg_match('/[a-zA-Z]/', $nouveauMdp1)) {
             throw new \Exception("Le mot de passe doit contenir au moins une lettre.");
         }
-        if (!preg_match('/\d/', $nouveauMdp)) {
+        if (!preg_match('/\d/', $nouveauMdp1)) {
             throw new \Exception("Le mot de passe doit contenir au moins un chiffre.");
         }
-        if (!preg_match('/[\W_]/', $nouveauMdp)) {
+        if (!preg_match('/[\W_]/', $nouveauMdp1)) {
             throw new \Exception("Le mot de passe doit contenir au moins un caractère spécial.");
         }
+
+        // Vérifie que les deux nouveaux mdp sont identiques
+        if ($nouveauMdp1 !== $nouveauMdp2) {
+            throw new \Exception('Les deux nouveaux mots de passe ne correspondent pas.');
+        }
+
         // Hache le nouveau mdp
-        $passwordHash = password_hash($nouveauMdp, PASSWORD_BCRYPT);
+        $passwordHash = password_hash($nouveauMdp1, PASSWORD_BCRYPT);
 
         // Update le mdp
         $sql = 'UPDATE user SET password = :password WHERE name = :name';
