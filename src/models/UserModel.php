@@ -170,8 +170,13 @@ class UserModel
             throw new \Exception('Les deux nouveaux mots de passe ne correspondent pas.');
         }
 
+        // Vérifie que le nouveau mdp est différent de l'ancien
+        if ($mdpActuel === $nouveauMdp1) {
+            throw new \Exception('Le nouveau mot de passe doit être différent de l\'ancien.');
+        }
+
         // Hache le nouveau mdp
-        $passwordHash = password_hash($nouveauMdp1, PASSWORD_BCRYPT);
+        $passwordHash = password_hash($nouveauMdp2, PASSWORD_BCRYPT);
 
         // Update le mdp
         $sql = 'UPDATE user SET password = :password WHERE name = :name';

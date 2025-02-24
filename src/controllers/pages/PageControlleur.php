@@ -286,22 +286,25 @@ class PageControlleur
 
     public function mettreAjourMdpAction(): void
     {
-        // Vérification des champs
-        if (!isset($_POST['name'], $_POST['mdpActuel'], $_POST['nouveauMdp'])) {
+        // Forcer la réponse en JSON
+        header('Content-Type: application/json');
+
+        // Vérifier que toutes les données sont bien reçues
+        if (!isset($_POST['name'], $_POST['mdpActuel'], $_POST['nouveauMdp1'], $_POST['nouveauMdp2'])) {
             echo json_encode(['error' => 'Tous les champs sont requis.']);
             exit;
         }
 
         try {
             // Appel à la méthode du modèle pour mettre à jour le mot de passe
-            $this->userModel->mettreAjourMdpAction($_POST['name'], $_POST['mdpActuel'], $_POST['nouveauMdp']);
+            $this->userModel->mettreAjourMdpAction($_POST['name'], $_POST['mdpActuel'], $_POST['nouveauMdp1'], $_POST['nouveauMdp2']);
             echo json_encode(['success' => 'Mot de passe mis à jour avec succès.']);
         } catch (\Exception $e) {
             echo json_encode(['error' => $e->getMessage()]);
         }
-
         exit;
     }
+
 
     /**
      * Méthode pour vérifier si une page nécessite d'être connecté pour être vue

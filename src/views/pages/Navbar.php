@@ -39,17 +39,18 @@ class Navbar
 
                             <label>Mot de passe actuel :</label>
                             <label>
-                                <input type="password" name="mdpActuel">
+                                <input type="password" name="mdpActuel" required>
                             </label>
 
                             <label>Nouveau mot de passe :</label>
                             <label>
-                                <input type="password" name="nouveauMdp1">
+                                <input type="password" name="nouveauMdp1" required>
                             </label>
+
                             <label>Confirmer le nouveau mot de passe :</label>
 
                             <label>
-                                <input type="password" name="nouveauMdp2">
+                                <input type="password" name="nouveauMdp2" required>
                             </label>
 
                             <button class="btn-save" type="submit">Enregistrer les modifications</button>

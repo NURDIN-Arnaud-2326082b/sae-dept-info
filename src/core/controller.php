@@ -70,6 +70,7 @@ class controller
                 'getImage',
                 'updateImage',
                 'deleteImage',
+                'mettreAjourMdpAction',
             ];
 
 // Vérifier si la route demandée est une route exclue
