@@ -228,49 +228,9 @@ class Show
                 }
                 else {
                     switch ($ct['type']) {
-                        case 'texte':
-                            echo '<div class="intro"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
-                            echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '" /><input type="text" value="' . $ct['title'] . '" name="titre"/>';
-                            echo '<textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
-                            echo "<select name='centrage' id='article-type'>";
-                            switch ($ct['centrage']) {
-                                case 'center':
-                                    echo "<option value='center' selected>centré</option>
-                                          <option value='justify'>justifié</option>
-                                          <option value='left'>aligné à gauche</option>
-                                          <option value='right'>aligné à droite</option>";
-                                    break;
-                                case 'justify':
-                                    echo "<option value='center'>centré</option>
-                                          <option value='justify' selected>justifié</option>
-                                          <option value='left'>aligné à gauche</option>
-                                          <option value='right'>aligné à droite</option>";
-                                    break;
-                                case 'left':
-                                    echo "<option value='center'>centré</option>
-                                          <option value='justify'>justifié</option>
-                                          <option value='left' selected>aligné à gauche</option>
-                                          <option value='right'>aligné à droite</option>";
-                                    break;
-                                case 'right':
-                                    echo "<option value='center'>centré</option>
-                                          <option value='justify'>justifié</option>
-                                          <option value='left'>aligné à gauche</option>
-                                          <option value='right' selected>aligné à droite</option>";
-                                    break;
-                                default:
-                                    break;
-                            }
-                            echo "</select>";
-                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                            echo '</div>';
-                            $pl = $ct['placement'];
-                            $pl++;
-                            $this->genererNewArticle($pl);
-                            break;
                         case 'titre':
                             echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" value="' . $ct['title'] . '" name="titre"/>';
+                            echo "<select name='centrage' id='article-type'>";
                             switch ($ct['centrage']) {
                                 case 'center':
                                     echo "<option value='center' selected>centré</option>
@@ -308,6 +268,7 @@ class Show
                             break;
                         case 'lien':
                             echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                            echo "<select name='centrage' id='article-type'>";
                             switch ($ct['centrage']) {
                                 case 'center':
                                     echo "<option value='center' selected>centré</option>
@@ -346,7 +307,8 @@ class Show
                             break;
                         case 'paragraphe':
                             echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
-                               switch ($ct['centrage']) {
+                            echo "<select name='centrage' id='article-type'>";
+                            switch ($ct['centrage']) {
                                 case 'center':
                                     echo "<option value='center' selected>centré</option>
                                           <option value='justify'>justifié</option>
@@ -511,12 +473,6 @@ class Show
                 }
                 else {
                     switch ($ct['type']) {
-                        case 'texte':
-                            echo '<div class="intro">';
-                            echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
-                            echo '<p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p>';
-                            echo '</div>';
-                            break;
                         case 'titre':
                             echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
                             break;
