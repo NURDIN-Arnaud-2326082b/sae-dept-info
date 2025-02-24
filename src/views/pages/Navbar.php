@@ -56,10 +56,10 @@ class Navbar
                             </div>
 
                             <button class="btn-save" type="submit">Enregistrer les modifications</button>
+                            <button class="btn-close" onclick="closePopup()">Fermer</button>
                         </form>
 
 
-                        <button onclick="closePopup()">Fermer</button>
                     </div>
 
 
