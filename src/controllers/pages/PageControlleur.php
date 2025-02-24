@@ -312,7 +312,7 @@ class PageControlleur
  */
     public function reinitialiserMdpAction(): void
     {
-        header('Content-Type: application/json charset=utf-8');
+        header('Content-Type: application/json; charset=utf-8');
 
         if (!isset($_POST['name'], $_POST['email'])) {
             echo json_encode(['error' => 'Tous les champs sont requis.']);

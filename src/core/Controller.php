@@ -70,6 +70,8 @@ class Controller
                 'deleteImage',
                 'mettreAjourMdpAction',
                 'reinitialiserMdpAction',
+                'reinitialiserMdp',
+                'ajouterUser'
             ];
 
 // Vérifier si la route demandée est une route exclue

@@ -5,6 +5,7 @@ namespace App\src\models;
 use App\src\core\DatabaseConnection;
 use PDO;
 use Random\RandomException;
+use function PHPUnit\Framework\exactly;
 
 /**
  * Modèle de l'utilisateur.
@@ -240,16 +241,13 @@ class UserModel
 
             if (!mail($to, $subject, $message, $headers)) {
                 throw new \Exception('Échec de l\'envoi de l\'email.');
+            } else {
+                echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
+                exit;
             }
-
-            echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
-            exit;
         } catch (\Exception $e) {
             echo json_encode(['error' => $e->getMessage()]);
             exit;
         }
     }
-
-
-
 }
