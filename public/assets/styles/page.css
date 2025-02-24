@@ -3,7 +3,7 @@
 
 /* Styles généraux */
 body {
-    background: url('/assets/images/départment.jpg') no-repeat center center;
+    background: url('/public/assets/images/départment.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed; /* Fixe l'image de fond */
     font-family: 'Titillium Web', sans-serif;
@@ -25,7 +25,6 @@ h2 {
 main {
     padding: 1rem;
     background-color: rgba(255, 255, 255, 0.8);
-   /* border-radius: 1rem;*/
     box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
     text-align: center;
 }

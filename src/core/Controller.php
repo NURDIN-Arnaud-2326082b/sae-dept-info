@@ -9,10 +9,10 @@ use App\src\core\DatabaseConnection;
 use App\src\models\PageModel;
 use App\src\models\UserModel;
 
-class controller
+class Controller
 {
-    protected $database;
-    protected $db;
+    protected ?\App\src\core\DatabaseConnection $database;
+    protected \PDO $db;
     public function __construct()
     {
         $this->database = DatabaseConnection::getInstance();

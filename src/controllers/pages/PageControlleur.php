@@ -47,6 +47,7 @@ class PageControlleur
 
     /**
      * Affiche la page par défaut
+     * @throws \Exception
      */
     public function defaultMethod(): void
     {
@@ -57,7 +58,7 @@ class PageControlleur
     /**
      * Méthode pour générer le titre de la page
      */
-    public function genererTitre()
+    public function genererTitre(): array
     {
         return $this->pageModel->genererTitre($this->name);
     }
@@ -65,7 +66,7 @@ class PageControlleur
     /**
      * Méthode pour générer le contenu de la page
      */
-    public function genererContenu()
+    public function genererContenu(): bool|array
     {
         return $this->pageModel->genererContenu($this->name);
     }
