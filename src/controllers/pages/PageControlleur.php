@@ -90,6 +90,7 @@ class PageControlleur
         $titre = $_POST['titre'] ?? null ;
         $contenu = $_POST['contenu'] ?? null ;
         $lien = $_POST['lien']  ?? null ;
+        $centrage = $_POST['centrage'] ?? null;
         if($lien == null){
             $lien = '';
         }
@@ -99,11 +100,14 @@ class PageControlleur
         if ($titre == null){
             $titre = '';
         }
+        if ($centrage == null){
+            $centrage = 'center';
+        }
 
         $titre = $this->purifier->purify($titre);
         $contenu = $this->purifier->purify($contenu);
         $lien = $this->purifier->purify($lien);
-        $this->pageModel->updateArticleAction($id,$titre, $contenu,$lien);
+        $this->pageModel->updateArticleAction($id,$titre, $contenu,$lien, $centrage);
         header('Location: /'.$_POST['name']);
     }
 

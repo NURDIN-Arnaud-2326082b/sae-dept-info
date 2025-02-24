@@ -1,6 +1,6 @@
 <?php
 
-use App\src\core\controller;
+use App\src\core\Controller;
 
 require_once '../vendor/autoload.php';
 
@@ -17,5 +17,5 @@ require_once '../src/core/Autoloader.php';
 // Récupérer le chemin de l'URL
 $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $segments = explode('/', trim($urlPath, '/'));
-$controller = new controller();
+$controller = new Controller();
 $controller->root($segments);

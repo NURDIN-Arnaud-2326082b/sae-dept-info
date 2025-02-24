@@ -232,12 +232,36 @@ class Show
                             echo '<div class="intro"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
                             echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '" /><input type="text" value="' . $ct['title'] . '" name="titre"/>';
                             echo '<textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
-                            echo "<select name='choix' id='article-type'>
-                                <option value='center'>centré</option>
-                                <option value='justify'>justifié</option>
-                                <option value='left'>aligné à gauche</option>
-                                <option value='right'>aligné à droite</option>
-                            </select>";
+                            echo "<select name='centrage' id='article-type'>";
+                            switch ($ct['centrage']) {
+                                case 'center':
+                                    echo "<option value='center' selected>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'justify':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify' selected>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'left':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left' selected>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'right':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right' selected>aligné à droite</option>";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "</select>";
                             echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
                             echo '</div>';
@@ -246,14 +270,74 @@ class Show
                             $this->genererNewArticle($pl);
                             break;
                         case 'titre':
-                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" value="' . $ct['title'] . '" name="titre"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" value="' . $ct['title'] . '" name="titre"/>';
+                            switch ($ct['centrage']) {
+                                case 'center':
+                                    echo "<option value='center' selected>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'justify':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify' selected>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'left':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left' selected>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'right':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right' selected>aligné à droite</option>";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "</select>";
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
                             $pl = $ct['placement'];
                             $pl++;
                             $this->genererNewArticle($pl);
                             break;
                         case 'lien':
-                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                            switch ($ct['centrage']) {
+                                case 'center':
+                                    echo "<option value='center' selected>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'justify':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify' selected>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'left':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left' selected>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'right':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right' selected>aligné à droite</option>";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "</select>";
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
                             echo '</div>';
                             $pl = $ct['placement'];
@@ -261,7 +345,37 @@ class Show
                             $this->genererNewArticle($pl);
                             break;
                         case 'paragraphe':
-                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                               switch ($ct['centrage']) {
+                                case 'center':
+                                    echo "<option value='center' selected>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'justify':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify' selected>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'left':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left' selected>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'right':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right' selected>aligné à droite</option>";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "</select>";
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
                             echo '</div>';
                             $pl = $ct['placement'];
@@ -395,37 +509,39 @@ class Show
                     }
                     echo '</div>';
                 }
-                switch ($ct['type']) {
-                    case 'texte':
-                        echo '<div class="intro">';
-                        echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
-                        echo '<p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p>';
-                        echo '</div>';
-                        break;
-                    case 'titre':
-                        echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
-                        break;
-                    case 'lien':
-                        echo '<div class="contour" ><a class="link" href="' . $ct['link'] . '" style="text-align:' . $ct['centrage'] . '">'.$ct['content'].'</a></div>';
-                        break;
-                    case 'paragraphe':
-                        echo '<div><p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p></div>';
-                        break;
-                    case 'image':
-                        echo '<div>';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
-                        echo '</div>';
-                        break;
-                    case 'pdf':
-                        echo '<div>';
-                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
-                        echo '</div>';
-                        break;
-                    case 'youtube':
-                        echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                else {
+                    switch ($ct['type']) {
+                        case 'texte':
+                            echo '<div class="intro">';
+                            echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
+                            echo '<p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p>';
+                            echo '</div>';
                             break;
-                    default:
-                        break;
+                        case 'titre':
+                            echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
+                            break;
+                        case 'lien':
+                            echo '<div class="contour" ><a class="link" href="' . $ct['link'] . '" style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</a></div>';
+                            break;
+                        case 'paragraphe':
+                            echo '<div><p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p></div>';
+                            break;
+                        case 'image':
+                            echo '<div>';
+                            echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . $ct['title'] . '" onerror="this.style.display=\'none\';">';
+                            echo '</div>';
+                            break;
+                        case 'pdf':
+                            echo '<div>';
+                            echo '<a href="/PageControlleur/getPdf?id=' . $ct['id_article'] . '" download="fichier.pdf">Télécharger le PDF</a>';
+                            echo '</div>';
+                            break;
+                        case 'youtube':
+                            echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }
