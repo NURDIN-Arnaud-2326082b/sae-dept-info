@@ -3,7 +3,7 @@
 
 /* Styles généraux */
 body {
-    background: url('/public/assets/images/départment.jpg') no-repeat center center;
+    background: url('/assets/images/départment.jpg') no-repeat center center;
     background-size: cover;
     background-attachment: fixed; /* Fixe l'image de fond */
     font-family: 'Titillium Web', sans-serif;
