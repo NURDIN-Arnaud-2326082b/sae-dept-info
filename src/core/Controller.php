@@ -5,7 +5,6 @@ namespace App\src\core;
 use App\src\controllers\pages\Error404Controller;
 use App\src\controllers\pages\PageControlleur;
 use App\src\controllers\pages\UserController;
-use App\src\core\DatabaseConnection;
 use App\src\models\PageModel;
 use App\src\models\UserModel;
 
@@ -36,7 +35,6 @@ class Controller
 // Gestion du routage
         if ($controllerSegment === 'login') {
             // Route pour la connexion
-            $connexionModel = new UserModel(DatabaseConnection::getInstance());
             $connexionController = new UserController();
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
