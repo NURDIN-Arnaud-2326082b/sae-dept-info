@@ -50,14 +50,15 @@ class PageModel
      * Méthode de mise à jour d'un article dans la base de données.
      * @throws \Exception Si une erreur survient lors de la mise à jour de l'article.
      */
-    public function updateArticleAction(int $id , string $titre, string $contenu, string $lien): void
+    public function updateArticleAction(int $id , string $titre, string $contenu, string $lien, string $centrage): void
     {
         if ($lien == '') {
-            $sql = 'UPDATE article SET title = :title, content = :content WHERE id_article = :id';
+            $sql = 'UPDATE article SET title = :title, content = :content, centrage = :centrage WHERE id_article = :id';
             $stmt = $this->connect->getConnection()->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':title', $titre, PDO::PARAM_STR);
             $stmt->bindValue(':content', $contenu, PDO::PARAM_STR);
+            $stmt->bindValue(':centrage', $centrage, PDO::PARAM_STR);
         }
         else {
             $sql = 'UPDATE article SET title = :title, content = :content, link = :link WHERE id_article = :id';
@@ -66,6 +67,7 @@ class PageModel
             $stmt->bindValue(':title', $titre, PDO::PARAM_STR);
             $stmt->bindValue(':content', $contenu, PDO::PARAM_STR);
             $stmt->bindValue(':link', $lien, PDO::PARAM_STR);
+            $stmt->bindValue(':centrage', $centrage, PDO::PARAM_STR);
         }
         if (!$stmt->execute()) {
             throw new \Exception('Erreur lors de la mise à jour de l\'article.');
