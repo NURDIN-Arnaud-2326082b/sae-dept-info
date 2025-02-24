@@ -43,11 +43,8 @@ class UserController
             else {
                 header("Location: /login");
             }
-
-        } else {
-            return "Tous les champs sont requis.";
         }
-        return "Nom d'utilisateur ou mot de passe incorrect.";
+        return '';
     }
 
     /**

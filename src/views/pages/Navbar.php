@@ -43,6 +43,7 @@ class Navbar
                             </label>
 
                             <label>Nouveau mot de passe :</label>
+
                             <label>
                                 <input type="password" name="nouveauMdp1" required>
                             </label>

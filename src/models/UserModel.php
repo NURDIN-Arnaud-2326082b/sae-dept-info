@@ -190,4 +190,66 @@ class UserModel
     }
 
 
+    /**
+     * Réinitialise le mot de passe d'un utilisateur.
+     */
+    public function reinitialiserMdp(): void
+    {
+        header('Content-Type: application/json');
+
+        try {
+            $name = $_POST['name'] ?? '';
+            $email = $_POST['email'] ?? '';
+
+            if (empty($name) || empty($email)) {
+                throw new \Exception('Veuillez remplir tous les champs.');
+            }
+
+            // Vérifier si l'utilisateur existe
+            $sql = 'SELECT email FROM user WHERE name = :name AND email = :email';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+            $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$user) {
+                throw new \Exception('Aucun compte trouvé avec ces informations.');
+            }
+
+            // Générer un mot de passe aléatoire et le hacher
+            $nouveauMdp = bin2hex(random_bytes(6)); // Exemple : "4f3d9a1b"
+            $passwordHash = password_hash($nouveauMdp, PASSWORD_BCRYPT);
+
+            // Mettre à jour le mot de passe
+            $sql = 'UPDATE user SET password = :password WHERE name = :name';
+            $stmt = $this->connect->getConnection()->prepare($sql);
+            $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+            $stmt->bindValue(':password', $passwordHash, PDO::PARAM_STR);
+
+            if (!$stmt->execute()) {
+                throw new \Exception('Erreur lors de la mise à jour du mot de passe.');
+            }
+
+            // Envoyer l'email avec le nouveau mot de passe
+            $to = $email;
+            $subject = "Réinitialisation de votre mot de passe";
+            $message = "Bonjour $name,\n\nVotre nouveau mot de passe est : $nouveauMdp\n\nVeuillez le modifier après connexion.";
+            $headers = "From: departementinfoaix@alwaysdata.net\n";
+            $headers .= "Reply-To: departementinfoaix@alwaysdata.net";
+
+            if (!mail($to, $subject, $message, $headers)) {
+                throw new \Exception('Échec de l\'envoi de l\'email.');
+            }
+
+            echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
+            exit;
+        } catch (\Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+            exit;
+        }
+    }
+
+
+
 }

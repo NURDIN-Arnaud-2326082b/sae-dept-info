@@ -286,9 +286,6 @@ class PageControlleur
 
     public function mettreAjourMdpAction(): void
     {
-        // Forcer la réponse en JSON
-        header('Content-Type: application/json');
-
         // Vérifier que toutes les données sont bien reçues
         if (!isset($_POST['name'], $_POST['mdpActuel'], $_POST['nouveauMdp1'], $_POST['nouveauMdp2'])) {
             echo json_encode(['error' => 'Tous les champs sont requis.']);
@@ -305,6 +302,25 @@ class PageControlleur
         exit;
     }
 
+/*
+ * @throws \Exception
+ */
+    public function reinitialiserMdpAction(): void
+    {
+        header('Content-Type: application/json charset=utf-8');
+
+        if (!isset($_POST['name'], $_POST['email'])) {
+            echo json_encode(['error' => 'Tous les champs sont requis.']);
+            exit;
+        }
+
+        try {
+            $this->userModel->reinitialiserMdp($_POST['name'], $_POST['email']);
+        } catch (\Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
+        exit;
+    }
 
     /**
      * Méthode pour vérifier si une page nécessite d'être connecté pour être vue

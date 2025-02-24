@@ -138,3 +138,43 @@ input[type="submit"]:hover {
     background-color: #ff6666 !important;
     color: #d8000c !important;
 }
+
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border-radius: 8px;
+}
+.popup-content {
+    text-align: center;
+}
+.popup input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+.popup button {
+    padding: 10px;
+    width: 100%;
+    background: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.popup button:hover {
+    background: #0056b3;
+}
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
