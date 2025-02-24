@@ -185,7 +185,7 @@ class Show
                         echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '">Supprimer l\'image</button></form>';
                         echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
-                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone"><i class="fa-solid fa-upload"></i>Glissez & déposez une image ou cliquez ici</label>';
                         echo '<input type="file" id="file-'.$ct['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
                         echo '<input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
                         echo '</form>';
@@ -199,17 +199,17 @@ class Show
                             if ($ct2['type'] == 'lstlinked' . $cptlink) {
                                 echo '<div class="feature">';
                                 echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
-                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct2['id_article'] . '">Supprimer l\'image</button></form>';
+                                echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct2['id_article'] . '"><i class="fa-solid fa-trash-can"></i>Supprimer l\'image</button></form>';
                                 echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'">';
-                                echo '<label for="file-'.$ct2['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
+                                echo '<label for="file-'.$ct2['id_article'].'" class="dropzone"><i class="fa-solid fa-upload"></i>Glissez & déposez une image ou cliquez ici</label>';
                                 echo '<input type="file" id="file-'.$ct2['id_article'].'" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
                                 echo '<input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
                                 echo '</form>';
                                 echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
                                 echo '<input type="hidden" name="id" value="'.$ct2['id_article'].'"/><input type="text" value="'.$ct2['title'].'" name="titre"/>';
                                 echo '<textarea rows="3" cols="50" name="contenu">'. $ct2['content'] .'</textarea><textarea rows="3" cols="50" name="lien">'. $ct2['link'] .'</textarea>';
-                                echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                                echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i>Enregistrer les modifications</button></form>';
                                 echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct2['id_article'] . "'> <i class='fa-solid fa-trash-can'> Supprimer l'article</button></form>";
                                 echo '</div>';
                                 $cpt2++;
@@ -219,16 +219,16 @@ class Show
                             array_shift($content);
                         }
                         $type = $ct['type'];
-                        echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="type" value="'.$type.'"/><button type="submit" name="add">Ajouter un article</button></form>';
+                        echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="type" value="'.$type.'"/><button type="submit" name="add"><i class="fa-solid fa-plus"></i>Ajouter un article</button></form>';
                         echo '</div>';
                         $cptlink++;
                         break;
                     case 'pdf':
                         echo '<div>';
-                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
+                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf"><i class="fa-solid fa-download"></i>Télécharger le PDF</a>';
                         echo '<form action="/PageControlleur/updatePdf" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
-                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez un fichier PDF ou cliquez ici</label>';
+                        echo '<label for="file-'.$ct['id_article'].'" class="dropzone"><i class="fa-solid fa-upload"></i>Glissez & déposez un fichier PDF ou cliquez ici</label>';
                         echo '<input type="file" id="file-'.$ct['id_article'].'" name="file" accept="file/pdf" onchange="this.form.submit()" style="display: none;">';
                         echo '<input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
                         echo '</form>';
@@ -241,9 +241,9 @@ class Show
                         echo '</div>';
                         break ;
                     case 'gestion' :
-                        echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                        echo '<div class="gestion"><h1> <i class="fa-solid fa-user-plus"></i>Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i>Enregistrer les modifications</button></form>';
                         echo '</div>';
-                        echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit"> <i class="fa-solid fa-user-minus"></i> Supprimer l\'utilisateur</button></form>';
+                        echo '<div class="gestion"><h1> <i class="fa-solid fa-user-minus"></i>Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="'.$this->pageControlleur->getName().'"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit"> <i class="fa-solid fa-user-minus"></i><i class="fa-solid fa-user-minus"></i> Supprimer l\'utilisateur</button></form>';
                         echo '</div>';
                         break;
                     default:
@@ -345,7 +345,7 @@ class Show
                         break;
                     case 'pdf':
                         echo '<div>';
-                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
+                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf"><i class="fa-solid fa-download"></i>Télécharger le PDF</a>';
                         echo '</div>';
                         break;
                     case 'youtube':
