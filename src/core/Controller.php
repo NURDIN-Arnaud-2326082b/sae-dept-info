@@ -71,7 +71,8 @@ class Controller
                 'mettreAjourMdpAction',
                 'reinitialiserMdpAction',
                 'reinitialiserMdp',
-                'ajouterUser'
+                'ajouterUser',
+                'ajouterUserAction'
             ];
 
 // Vérifier si la route demandée est une route exclue
