@@ -146,7 +146,6 @@ class Show
             if ($content[0] != null) {
                 echo '<section id="content" class="department-content">';
             }
-            $cptlink = 1;
             $tmp = '';
             foreach ($content as $ct) {
                 if (preg_match('/^list(\d+)$/', $ct['type'])) {
@@ -188,7 +187,7 @@ class Show
                             $pl++;
                             $this->genererNewArticle($pl);
                 }
-                else if (preg_match('/^lstlinked(\d+)$/', $ct['type'])) {
+                elseif (preg_match('/^lstlinked(\d+)$/', $ct['type'])) {
                     if ($ct['type'] == $tmp) {
                         continue;
                     }
@@ -197,7 +196,7 @@ class Show
                     $cpt2 = 0;
                     echo '<div class="features-grid">';
                     foreach ($content as $ct2) {
-                        if ($ct2['type'] == 'lstlinked' . $cptlink) {
+                        if ($ct2['type'] == $ct['type']) {
                             echo '<div class="feature">';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct2['id_article'] . '" alt="' . $ct2['title'] . '" onerror="this.style.display=\'none\';">';
                             echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '">Supprimer l\'image</button></form>';
@@ -224,16 +223,81 @@ class Show
                     $pl++;
                     echo '<form action="/PageControlleur/ajouterArticle" method="post"><input type="hidden" name="placement" value="'.$pl.'"/><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="type" value="' . $type . '"/><button type="submit" name="add">Ajouter un article</button></form>';
                     echo '</div>';
-                    $cptlink++;
                     $pl++;
                     $this->genererNewArticle($pl);
                 }
                 else {
                     switch ($ct['type']) {
-                        case 'texte':
-                            echo '<div class="intro"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
-                            echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '" /><input type="text" value="' . $ct['title'] . '" name="titre"/>';
-                            echo '<textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                        case 'titre':
+                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" value="' . $ct['title'] . '" name="titre"/>';
+                            echo "<select name='centrage' id='article-type'>";
+                            switch ($ct['centrage']) {
+                                case 'center':
+                                    echo "<option value='center' selected>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'justify':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify' selected>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'left':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left' selected>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'right':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right' selected>aligné à droite</option>";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "</select>";
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
+                            break;
+                        case 'lien':
+                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                            echo "<select name='centrage' id='article-type'>";
+                            switch ($ct['centrage']) {
+                                case 'center':
+                                    echo "<option value='center' selected>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'justify':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify' selected>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'left':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left' selected>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'right':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right' selected>aligné à droite</option>";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "</select>";
                             echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
                             echo '</div>';
@@ -241,23 +305,39 @@ class Show
                             $pl++;
                             $this->genererNewArticle($pl);
                             break;
-                        case 'titre':
-                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" value="' . $ct['title'] . '" name="titre"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                            $pl = $ct['placement'];
-                            $pl++;
-                            $this->genererNewArticle($pl);
-                            break;
-                        case 'lien':
-                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
-                            echo '</div>';
-                            $pl = $ct['placement'];
-                            $pl++;
-                            $this->genererNewArticle($pl);
-                            break;
                         case 'paragraphe':
-                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                            echo "<select name='centrage' id='article-type'>";
+                            switch ($ct['centrage']) {
+                                case 'center':
+                                    echo "<option value='center' selected>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'justify':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify' selected>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'left':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left' selected>aligné à gauche</option>
+                                          <option value='right'>aligné à droite</option>";
+                                    break;
+                                case 'right':
+                                    echo "<option value='center'>centré</option>
+                                          <option value='justify'>justifié</option>
+                                          <option value='left'>aligné à gauche</option>
+                                          <option value='right' selected>aligné à droite</option>";
+                                    break;
+                                default:
+                                    break;
+                            }
+                            echo "</select>";
+                            echo '<button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'>Supprimer l'article</button></form>";
                             echo '</div>';
                             $pl = $ct['placement'];
@@ -323,8 +403,8 @@ class Show
                         echo '<div class="article-preview">';
                         echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . htmlspecialchars($ct['title'], ENT_QUOTES) . '" class="article-image" onerror="this.style.display=\'none\';">';
                         echo '<div class="article-content">';
-                        echo '<h3>' . $ct['title'] . '</h3>';
-                        echo '<p>' . $ct['content'] . '</p>';
+                        echo '<h3 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h3>';
+                        echo '<p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a>';
                         echo '</div>';
                         echo '</div>';
@@ -337,86 +417,87 @@ class Show
                 foreach ($content as $ct) {
                     if ($ct['type'] == 'menu') {
                         echo '<div class="panel" onclick="window.location.href=\'' . $ct['link'] . '\';">';
-                        echo '<h2>' . $ct['title'] . '</h2>';
+                        echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
                         echo '</div>';
                     }
                 }
                 echo '</div>';
             }
             echo '<section id="content" class="department-content">';
-            $cpt = 1;
-            $cptlink = 1;
+            $tmp = '';
             foreach ($content as $ct) {
-                switch ($ct['type']) {
-                    case 'texte':
-                        echo '<div class="intro">';
-                        echo '<h2>' . $ct['title'] . '</h2>';
-                        echo '<p>' . $ct['content'] . '</p>';
-                        echo '</div>';
-                        break;
-                    case 'list' . $cpt:
-                        $cpt2 = 0;
-                        echo '<div class="features-grid">';
-                        foreach ($content as $ct2) {
-                            if ($ct2['type'] == 'list' . $cpt) {
-                                echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
-                                echo '<h3>' . $ct2['title'] . '</h3>';
-                                echo '<p>' . $ct2['content'] . '</p>';
-                                echo '</div>';
-                                $cpt2++;
-                            }
+                if (preg_match('/^list(\d+)$/', $ct['type'])) {
+                    if ($ct['type'] == $tmp) {
+                        continue;
+                    }
+                    $tmp = $ct['type'];
+                    $cpt2 = 0;
+                    echo '<div class="features-grid">';
+                    foreach ($content as $ct2) {
+                        if ($ct2['type'] == $ct['type']) {
+                            echo '<div class="feature">';
+                            echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
+                            echo '<h3 style="text-align:' . $ct['centrage'] . '">' . $ct2['title'] . '</h3>';
+                            echo '<p style="text-align:' . $ct['centrage'] . '">' . $ct2['content'] . '</p>';
+                            echo '</div>';
+                            $cpt2++;
                         }
-                        for ($i = 0; $i < $cpt2; $i++) {
-                            array_shift($content);
+                    }
+                    for ($i = 0; $i < $cpt2; $i++) {
+                        array_shift($content);
+                    }
+                    echo '</div>';
+                }
+                elseif (preg_match('/^lstlinked(\d+)$/', $ct['type'])) {
+                    if ($ct['type'] == $tmp) {
+                        continue;
+                    }
+                    $tmp = $ct['type'];
+                    $cpt2 = 0;
+                    echo '<div class="features-grid">';
+                    foreach ($content as $ct2) {
+                        if ($ct2['type'] == $ct['type']) {
+                            echo '<div class="feature">';
+                            echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
+                            echo '<h3 style="text-align:' . $ct['centrage'] . '">' . $ct2['title'] . '</h3>';
+                            echo '<p style="text-align:' . $ct['centrage'] . '">' . $ct2['content'] . '</p>';
+                            echo '<a href="' . $ct['link'] . '"  class="read-more" style="text-align:' . $ct['centrage'] . '">En savoir plus</a>';
+                            echo '</div>';
+                            $cpt2++;
                         }
-                        echo '</div>';
-                        $cpt++;
-                        break;
-                    case 'titre':
-                        echo '<h2>' . $ct['title'] . '</h2>';
-                        break;
-                    case 'lien':
-                        echo '<div class="contour" ><a class="link" href="' . $ct['link'] . '" >'.$ct['content'].'</a></div>';
-                        break;
-                    case 'paragraphe':
-                        echo '<div><p>' . $ct['content'] . '</p></div>';
-                        break;
-                    case 'image':
-                        echo '<div>';
-                        echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
-                        echo '</div>';
-                        break;
-                    case 'lstlinked' . $cptlink :
-                        $cpt2 = 0;
-                        echo '<div class="features-grid">';
-                        foreach ($content as $ct2) {
-                            if ($ct2['type'] == 'lstlinked' . $cptlink) {
-                                echo '<div class="feature">';
-                                echo '<img src="/PageControlleur/getImage?id='.$ct2['id_article'].'" alt="'.$ct2['title'].'" onerror="this.style.display=\'none\';">';
-                                echo '<h3>' . $ct2['title'] . '</h3>';
-                                echo '<p>' . $ct2['content'] . '</p>';
-                                echo '<a href="' . $ct['link'] . '"  class="read-more">En savoir plus</a>';
-                                echo '</div>';
-                                $cpt2++;
-                            }
-                        }
-                        for ($i = 0; $i < $cpt2; $i++) {
-                            array_shift($content);
-                        }
-                        echo '</div>';
-                        $cptlink++;
-                        break;
-                    case 'pdf':
-                        echo '<div>';
-                        echo '<a href="/PageControlleur/getPdf?id='.$ct['id_article'].'" download="fichier.pdf">Télécharger le PDF</a>';
-                        echo '</div>';
-                        break;
-                    case 'youtube':
-                        echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                    }
+                    for ($i = 0; $i < $cpt2; $i++) {
+                        array_shift($content);
+                    }
+                    echo '</div>';
+                }
+                else {
+                    switch ($ct['type']) {
+                        case 'titre':
+                            echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
                             break;
-                    default:
-                        break;
+                        case 'lien':
+                            echo '<div class="contour" ><a class="link" href="' . $ct['link'] . '" style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</a></div>';
+                            break;
+                        case 'paragraphe':
+                            echo '<div><p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p></div>';
+                            break;
+                        case 'image':
+                            echo '<div>';
+                            echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . $ct['title'] . '" onerror="this.style.display=\'none\';">';
+                            echo '</div>';
+                            break;
+                        case 'pdf':
+                            echo '<div>';
+                            echo '<a href="/PageControlleur/getPdf?id=' . $ct['id_article'] . '" download="fichier.pdf">Télécharger le PDF</a>';
+                            echo '</div>';
+                            break;
+                        case 'youtube':
+                            echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         }

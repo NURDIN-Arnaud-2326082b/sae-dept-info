@@ -25,7 +25,7 @@ class Autoloader
      *
      * @param string $class La classe a autoloader.
      */
-    public static function autoload($class): void
+    public static function autoload(string $class): void
     {
         $class = str_replace(__NAMESPACE__ . '\\', '', $class);
         $class = str_replace('\\', '/', $class);
