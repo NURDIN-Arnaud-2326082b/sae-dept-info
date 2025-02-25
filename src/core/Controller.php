@@ -75,6 +75,8 @@ class Controller
                 'updatePdf',
                 'deletePdf',
                 'updatePdfAction',
+                'ajouterCsvAction',
+                'ajouterCsv'
             ];
 
 // Vérifier si la route demandée est une route exclue
