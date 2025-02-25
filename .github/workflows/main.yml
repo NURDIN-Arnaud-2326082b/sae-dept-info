@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.ALWAYSDATA_USER }}
           password: ${{ secrets.ALWAYSDATA_MDP }}
           key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
-          source: "./src/ ./public/ ./vendor/ ./env ./composer.json ./composer.lock"
+          source: "./src/ ./public/ ./vendor/"
           target: ${{ secrets.ALWAYSDATA_PATH }}
           strip_components: 1
 
