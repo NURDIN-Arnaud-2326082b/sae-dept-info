@@ -72,7 +72,9 @@ class Controller
                 'reinitialiserMdpAction',
                 'reinitialiserMdp',
                 'ajouterUser',
-                'ajouterUserAction'
+                'updatePdf',
+                'deletePdf',
+                'updatePdfAction',
             ];
 
 // Vérifier si la route demandée est une route exclue
