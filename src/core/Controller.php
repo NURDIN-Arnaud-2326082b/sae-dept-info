@@ -84,6 +84,7 @@ class Controller
                 'recupererListe',
                 'mettreAjourPlacement'
 
+
             ];
 
 // Vérifier si la route demandée est une route exclue
