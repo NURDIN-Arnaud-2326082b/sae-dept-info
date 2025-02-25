@@ -7,6 +7,7 @@ use App\src\models\UserModel;
 use App\src\views\pages\Show;
 use HTMLPurifier;
 use HTMLPurifier_Config;
+use Random\RandomException;
 
 class PageControlleur
 {
@@ -351,9 +352,6 @@ class PageControlleur
     {
         $content = $this->pageModel->genererContenu($name);
         error_log('ok1');
-        if ($content == null){
-            error_log('ERORRRRRRRRRRRRRRRRRRRRRRRRRR');
-        }
         foreach ($content as $ct) {
             if($ct['placement'] >= $placement){
                 $pl = $ct['placement'];
@@ -361,6 +359,23 @@ class PageControlleur
                 $this->pageModel->updatePlacement($ct['id_article'],$pl);
             }
         }
+    }
+
+    /**
+     * @throws RandomException
+     */
+    public function ajouterCsvAction(): void
+    {
+        $name = $_POST['name'] ?? null;
+        $chemin_temporaire = $_FILES["file"]["tmp_name"];
+        if (($fichier = fopen($chemin_temporaire, "r")) !== false) {
+            while (($ligne = fgetcsv($fichier, 1000, ",")) !== false) {
+                $this->userModel->ajouterUserAction($ligne[0],$ligne[1],$ligne[2],$ligne[3]);
+            }
+            fclose($fichier);
+        }
+        header('Location: /' . $name);
+
     }
 }
 
