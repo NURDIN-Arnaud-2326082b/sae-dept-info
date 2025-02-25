@@ -78,6 +78,7 @@ class Controller
                 'getPdf',
                 'deletePdf',
                 'updatePdfAction',
+                'updatePdf',
                 'recupererListe',
                 'mettreAjourPlacement'
 
