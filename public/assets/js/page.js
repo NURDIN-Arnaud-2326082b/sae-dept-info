@@ -112,6 +112,10 @@ document.addEventListener("DOMContentLoaded", function () {
         forgotPasswordForm.addEventListener("submit", function (event) {
             event.preventDefault(); // Empêche le rechargement de la page
 
+            // Désactiver le bouton de soumission
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+
             let formData = new FormData(this);
 
             fetch("/PageControlleur/reinitialiserMdpAction", {
@@ -130,9 +134,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         successMessage.textContent = data.success;
                         successMessage.style.display = 'block';
                     }
+
+                    // Réactiver le bouton de soumission après la réponse
+                    submitButton.disabled = false;
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
+                    // Réactiver le bouton de soumission en cas d'erreur
+                    submitButton.disabled = false;
                 });
         });
     }
@@ -143,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// afficher ou masquer le mot de passe
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Script chargé !");
 
