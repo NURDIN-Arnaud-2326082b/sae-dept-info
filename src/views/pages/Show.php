@@ -486,9 +486,9 @@ class Show
                         case 'paragraphe':
                             echo '<div><p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p></div>';
                             break;
-                        case 'image':
+                        case 'img':
                             echo '<div>';
-                            echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . $ct['title'] . '" onerror="this.style.display=\'none\';">';
+                            echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
                             echo '</div>';
                             break;
                         case 'pdf':
