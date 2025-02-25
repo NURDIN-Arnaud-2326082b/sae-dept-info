@@ -263,11 +263,19 @@ form button {
 }
 
 .btn-save {
-    background: #28a745;
+    background: #2d6a4f;
+}
+
+.btn-save:hover {
+    background: #1b4332;
 }
 
 .btn-delete {
-    background: #dc3545;
+    background: #a04a44;
+}
+
+.btn-delete:hover {
+    background: #6a312d;
 }
 
 /* Dropzone */
@@ -484,6 +492,12 @@ iframe {
 .dark-mode .btn-delete {
     background: #0056b3;
     color: #ffffff;
+    box-shadow: 0 0.2rem 0.4rem rgba(255, 255, 255, 0.2);
+}
+
+.dark-mode button:hover {
+    background: #004080;
+    box-shadow: 0 0.4rem 0.8rem rgba(255, 255, 255, 0.3);
 }
 
 .dark-mode .dropzone {

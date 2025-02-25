@@ -62,13 +62,13 @@ input[type="password"] {
 /* Focus sur les champs de saisie */
 input[type="text"]:focus,
 input[type="password"]:focus {
-    border-color: #4CAF50; /* Couleur verte au focus */
+    border-color: #2d6a4f; /* Couleur verte au focus */
     outline: none; /* Enlève le contour par défaut */
 }
 
 /* Bouton de soumission */
 input[type="submit"] {
-    background-color: #4CAF50; /* Couleur verte moderne */
+    background-color: #2d6a4f; /* Couleur verte moderne */
     color: white;
     padding: 12px;
     border: none;
@@ -80,13 +80,13 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #45a049; /* Couleur au survol */
+    background-color: #2d6a4f; /* Couleur au survol */
 }
 
 /* Message d'erreur ou de succès (optionnel) */
 .alert {
     background-color: #ffcccc;
-    color: #d8000c;
+    color: #a04a44;
     padding: 10px;
     margin-top: 10px;
     border-radius: 8px;

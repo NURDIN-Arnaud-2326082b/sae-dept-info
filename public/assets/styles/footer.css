@@ -3,6 +3,20 @@
     color: white;
     text-align: center;
     padding: 20px;
+    margin-top: auto; /* Pousse le footer vers le bas si nécessaire */
+    width: 100%;
+}
+
+.footer:hover {
+    background-color: #00457a; /* Bleu un peu plus foncé */
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+.dark-mode .footer {
+    background-color: #222;
+    box-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
+    text-shadow: 0 0 5px #0ff, 0 0 10px #0ff;
 }
 
 img {
