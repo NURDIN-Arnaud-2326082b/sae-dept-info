@@ -350,7 +350,7 @@ class PageControlleur
     public function mettreAjourPlacement(mixed $placement, mixed $name) : void
     {
         $content = $this->pageModel->genererContenu($name);
-        error_log('ok1');
+        error_log('ok');
         if ($content == null){
             error_log('ERORRRRRRRRRRRRRRRRRRRRRRRRRR');
         }

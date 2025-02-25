@@ -60,6 +60,7 @@ class Controller
 
 // Liste des routes qui ne sont pas des pages (actions et ressources)
             $excludedRoutes = [
+                'ajouterArticleAction',
                 'ajouterArticle',
                 'updateArticleAction',
                 'updateArticle',
@@ -67,14 +68,19 @@ class Controller
                 'deleteArticle',
                 'getImage',
                 'updateImageAction',
+                'updateImage',
+                'deleteImageAction',
                 'deleteImage',
                 'mettreAjourMdpAction',
                 'reinitialiserMdpAction',
-                'reinitialiserMdp',
-                'ajouterUser',
-                'updatePdf',
+                'ajouterUserAction',
+                'supprimerUserAction',
+                'getPdf',
                 'deletePdf',
                 'updatePdfAction',
+                'recupererListe',
+                'mettreAjourPlacement'
+
             ];
 
 // Vérifier si la route demandée est une route exclue
