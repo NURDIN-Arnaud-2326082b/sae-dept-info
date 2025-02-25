@@ -16,6 +16,12 @@ class Connexion
             <div class="container">
                 <div class="panel">
                     <h2>Connexion</h2>
+
+                    <!-- Message d'erreur -->
+                    <?php if (!empty($errorMessage)): ?>
+                        <p class="error"><?= htmlspecialchars($errorMessage) ?></p>
+                    <?php endif; ?>
+
                     <form action="/login" method="post">
                         <label for="name">Identifiant</label>
                         <input type="text" id="name" name="name" required>

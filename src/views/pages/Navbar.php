@@ -43,13 +43,11 @@ class Navbar
                             </label>
 
                             <label>Nouveau mot de passe :</label>
-
                             <label>
                                 <input type="password" name="nouveauMdp1" required>
                             </label>
 
                             <label>Confirmer le nouveau mot de passe :</label>
-
                             <label>
                                 <input type="password" name="nouveauMdp2" required>
                             </label>
@@ -59,8 +57,6 @@ class Navbar
 
                         <button onclick="closePopup()">Fermer</button>
                     </div>
-
-
 
                     <a href="/logout" class="btn btn-logout">Se déconnecter</a>
                     <a href="/menu" class="btn btn-menu">Menu</a>

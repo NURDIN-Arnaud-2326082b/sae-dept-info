@@ -25,27 +25,35 @@ class UserController
     /**
      * Permet de connecter un utilisateur.
      */
+    /**
+     * Permet de connecter un utilisateur.
+     */
     public function connecter(array $postData): string
     {
-        if (!empty($postData['name']) && !empty($postData['password'])) {
-            $name = htmlspecialchars($postData['name']);
-            $password = $postData['password'];
-            $user = $this->userModel->getUserByName($name);
-            if ($user && password_verify($password, $user['password'])) {
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['name'] = $user['name'];
-                if ($_SESSION['name'] === 'admin') {
-                    $_SESSION['admin'] = true;
-                }
-                header("Location: /menu");
-                exit;
-            }
-            else {
-                header("Location: /login");
-            }
+        $name = htmlspecialchars($postData['name']);
+        $password = $postData['password'];
+        $user = $this->userModel->getUserByName($name);
+
+        if (!$user) {
+            return 'Utilisateur introuvable.';
         }
-        return '';
+
+        if (!password_verify($password, $user['password'])) {
+            return 'Mot de passe incorrect.';
+        }
+
+        // Connexion réussie
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['name'] = $user['name'];
+
+        if ($_SESSION['name'] === 'admin') {
+            $_SESSION['admin'] = true;
+        }
+
+        header("Location: /menu");
+        exit;
     }
+
 
     /**
      * Déconnecte l'utilisateur et le redirige vers la page de connexion.
