@@ -66,7 +66,7 @@ class Controller
                 'deleteArticleAction',
                 'deleteArticle',
                 'getImage',
-                'updateImage',
+                'updateImageAction',
                 'deleteImage',
                 'mettreAjourMdpAction',
                 'reinitialiserMdpAction',
