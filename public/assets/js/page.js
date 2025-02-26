@@ -107,9 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-
-
     // Vérifier si le formulaire de réinitialisation du mot de passe est sur la page
     if (forgotPasswordForm) {
 
