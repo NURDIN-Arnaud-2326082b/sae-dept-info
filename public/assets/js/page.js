@@ -112,7 +112,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Vérifier si le formulaire de réinitialisation du mot de passe est sur la page
     if (forgotPasswordForm) {
+
+        let isSubmitting = false;
+
         forgotPasswordForm.addEventListener("submit", function (event) {
+            if (isSubmitting) {
+                event.preventDefault();
+                return;
+            }
+
+            isSubmitting = true;
             event.preventDefault(); // Empêche le rechargement de la page
 
             // Désactiver le bouton de soumission
@@ -123,10 +132,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             fetch("/PageControlleur/reinitialiserMdp", {
                 method: "POST",
-                body: formData,
-                headers: {
-                    'cache-control': 'no-cache'
-                }
+                body: formData
             })
                 .then(response => response.json())
                 .then(data => {
@@ -143,11 +149,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     // Réactiver le bouton de soumission après la réponse
                     submitButton.disabled = false;
+                    isSubmitting = false;
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
                     // Réactiver le bouton de soumission en cas d'erreur
                     submitButton.disabled = false;
+                    isSubmitting = false;
                 });
         });
     }
