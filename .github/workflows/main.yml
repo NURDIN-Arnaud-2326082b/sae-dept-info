@@ -17,9 +17,7 @@ jobs:
         run: |
           ls -R ./src
           ls -R ./public
-          ls -R ./vendor
           cat ./composer.json
-          cat ./composer.lock
 
       - name: Déployer via SFTP
         uses: appleboy/scp-action@master
@@ -28,7 +26,7 @@ jobs:
           username: ${{ secrets.ALWAYSDATA_USER }}
           password: ${{ secrets.ALWAYSDATA_MDP }}
           key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
-          source: "src/*, public/*, composer.json, composer.lock"
+          source: "src/*, public/*, composer.json"
           target: ${{ secrets.ALWAYSDATA_PATH }}
 
       - name: Exécuter des commandes sur AlwaysData (si besoin)
