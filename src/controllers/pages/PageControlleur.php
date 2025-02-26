@@ -308,9 +308,9 @@ class PageControlleur
         exit;
     }
 
-    /**
-     * Méthode pour réinitialiser le mot de passe d'un utilisateur
-     */
+/*
+ * @throws \Exception
+ */
     public function reinitialiserMdpAction(): void
     {
         header('Content-Type: application/json; charset=utf-8');
@@ -319,7 +319,12 @@ class PageControlleur
             echo json_encode(['error' => 'Tous les champs sont requis.']);
             exit;
         }
-        $this->userModel->reinitialiserMdp($_POST['name'], $_POST['email']);
+
+        try {
+            $this->userModel->reinitialiserMdp($_POST['name'], $_POST['email']);
+        } catch (\Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+        }
         exit;
     }
 

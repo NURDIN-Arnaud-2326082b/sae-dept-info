@@ -105,6 +105,7 @@ class UserModel
             . "https://departementinfoaix.alwaysdata.net/login\n\n"
             . "Cordialement, \nLa direction du BUT informatique.";
 
+
         if (!mail($email, $subject, $message)) {
             throw new \Exception('Erreur lors de l\'envoi de l\'email.');
         }
@@ -194,6 +195,8 @@ class UserModel
     public function reinitialiserMdp(): void
     {
         header('Content-Type: application/json');
+
+        try {
             $name = $_POST['name'] ?? '';
             $email = $_POST['email'] ?? '';
 
@@ -234,9 +237,20 @@ class UserModel
             $headers = "From: departementinfoaix@alwaysdata.net\n";
             $headers .= "Reply-To: departementinfoaix@alwaysdata.net";
 
-            if (mail($to, $subject, $message, $headers)) {
+
+            error_log("Envoi d'email à: " . $email);
+
+            if (!mail($to, $subject, $message, $headers)) {
+                throw new \Exception('Échec de l\'envoi de l\'email.');
+            } else {
+                error_log("Email envoyé avec succès à: " . $email);
                 echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
                 exit;
             }
+
+        } catch (\Exception $e) {
+            echo json_encode(['error' => $e->getMessage()]);
+            exit;
+        }
     }
 }

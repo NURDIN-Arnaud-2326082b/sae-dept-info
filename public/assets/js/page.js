@@ -107,56 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Vérifier si le formulaire de réinitialisation du mot de passe est sur la page
-    if (forgotPasswordForm) {
-
-        let isSubmitting = false;
-
-        forgotPasswordForm.addEventListener("submit", function (event) {
-            if (isSubmitting) {
-                event.preventDefault();
-                return;
-            }
-
-            isSubmitting = true;
-            event.preventDefault(); // Empêche le rechargement de la page
-
-            // Désactiver le bouton de soumission
-            const submitButton = this.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-
-            let formData = new FormData(this);
-
-            fetch("/PageControlleur/reinitialiserMdp", {
-                method: "POST",
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    errorMessage.style.display = 'none';
-                    successMessage.style.display = 'none';
-
-                    if (data.error) {
-                        errorMessage.textContent = data.error;
-                        errorMessage.style.display = 'block';
-                    } else if (data.success) {
-                        successMessage.textContent = data.success;
-                        successMessage.style.display = 'block';
-                    }
-
-                    // Réactiver le bouton de soumission après la réponse
-                    submitButton.disabled = false;
-                    isSubmitting = false;
-                })
-                .catch(error => {
-                    console.error('Erreur:', error);
-                    // Réactiver le bouton de soumission en cas d'erreur
-                    submitButton.disabled = false;
-                    isSubmitting = false;
-                });
-        });
-    }
-
 
     // Rendre openPopup accessible globalement pour être appelée depuis un bouton
     window.openPopup = openPopup;
