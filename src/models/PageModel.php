@@ -61,7 +61,7 @@ class PageModel
             $stmt->bindValue(':centrage', $centrage, PDO::PARAM_STR);
         }
         else {
-            $sql = 'UPDATE article SET title = :title, content = :content, link = :link WHERE id_article = :id';
+            $sql = 'UPDATE article SET title = :title, content = :content, link = :link, centrage = :centrage WHERE id_article = :id';
             $stmt = $this->connect->getConnection()->prepare($sql);
             $stmt->bindValue(':id', $id, PDO::PARAM_INT);
             $stmt->bindValue(':title', $titre, PDO::PARAM_STR);

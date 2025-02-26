@@ -281,3 +281,66 @@ input {
 .dark-mode .btn-menu {
     background-color: #1c7c32 !important;
 }
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px; /* Espace pour l'icône */
+}
+
+.password-container button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+/* Style de base pour les boutons */
+.btn-save, .btn-close {
+    padding: 10px 20px; /* Espacement intérieur */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer; /* Curseur en forme de main */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animation au survol */
+    margin: 10px 5px; /* Marge entre les boutons */
+}
+
+/* Style spécifique pour le bouton "Enregistrer" */
+.btn-save {
+    background-color: #4CAF50; /* Vert */
+    color: white; /* Texte blanc */
+}
+
+/* Style au survol pour le bouton "Enregistrer" */
+.btn-save:hover {
+    background-color: #45a049; /* Vert plus foncé */
+    transform: scale(1.05); /* Légère augmentation de la taille */
+}
+
+/* Style spécifique pour le bouton "Fermer" */
+.btn-close {
+    background-color: #f44336; /* Rouge */
+    color: white; /* Texte blanc */
+}
+
+/* Style au survol pour le bouton "Fermer" */
+.btn-close:hover {
+    background-color: #d32f2f; /* Rouge plus foncé */
+    transform: scale(1.05); /* Légère augmentation de la taille */
+}
+
+/* Style pour les boutons lorsqu'ils sont désactivés */
+.btn-save:disabled, .btn-close:disabled {
+    background-color: #cccccc; /* Gris */
+    cursor: not-allowed; /* Curseur "non autorisé" */
+    transform: none; /* Pas d'effet de zoom */
+}
