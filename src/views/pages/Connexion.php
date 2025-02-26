@@ -14,7 +14,7 @@ class Connexion
         <main>
             <div class="container">
                 <div class="panel">
-                    <h2>Connexion</h2>
+                    <h2>Se connecter</h2>
 
                     <!-- Message d'erreur -->
                     <?php if (!empty($errorMessage)): ?>
@@ -24,8 +24,13 @@ class Connexion
                     <form action="/login" method="post">
                         <label for="name">Identifiant</label>
                         <input type="text" id="name" name="name" required>
+
                         <label for="password">Mot de passe</label>
-                        <input type="password" id="password" name="password" required>
+                        <div class="password-container">
+                            <input type="password" id="password" name="password" required>
+                            <button type="button" class="toggle-password" data-target="password">👁️</button>
+                        </div>
+
                         <input type="submit" value="Se connecter">
                     </form>
 

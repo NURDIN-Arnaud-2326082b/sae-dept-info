@@ -178,3 +178,26 @@ input[type="submit"]:hover {
     cursor: pointer;
     font-size: 20px;
 }
+
+
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input[type="password"],
+.password-container input[type="text"] {
+    flex-grow: 1;
+    padding-right: 40px; /* Espace pour le bouton */
+}
+
+.password-container .toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 11px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+}
