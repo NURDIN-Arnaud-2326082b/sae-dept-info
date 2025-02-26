@@ -194,8 +194,6 @@ class UserModel
     public function reinitialiserMdp(): void
     {
         header('Content-Type: application/json');
-
-        try {
             $name = $_POST['name'] ?? '';
             $email = $_POST['email'] ?? '';
 
@@ -236,17 +234,9 @@ class UserModel
             $headers = "From: departementinfoaix@alwaysdata.net\n";
             $headers .= "Reply-To: departementinfoaix@alwaysdata.net";
 
-
-            error_log("Envoi d'email à: " . $email);
-
             if (mail($to, $subject, $message, $headers)) {
-                error_log("Email envoyé avec succès à: " . $email);
                 echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
                 exit;
-                }
-        } catch (\Exception $e) {
-            echo json_encode(['error' => $e->getMessage()]);
-            exit;
-        }
+            }
     }
 }
