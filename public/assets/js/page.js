@@ -107,6 +107,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+
+
+
     // Vérifier si le formulaire de réinitialisation du mot de passe est sur la page
     if (forgotPasswordForm) {
         forgotPasswordForm.addEventListener("submit", function (event) {
@@ -120,7 +123,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             fetch("/PageControlleur/reinitialiserMdp", {
                 method: "POST",
-                body: formData
+                body: formData,
+                headers: {
+                    'cache-control': 'no-cache'
+                }
             })
                 .then(response => response.json())
                 .then(data => {
@@ -145,6 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     }
+
 
     // Rendre openPopup accessible globalement pour être appelée depuis un bouton
     window.openPopup = openPopup;
