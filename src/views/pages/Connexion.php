@@ -37,7 +37,7 @@ class Connexion
                             <p id="success-message" style="color: green; display: none;"></p>
                         </div>
 
-                        <form id="forgot-password-form" action="/PageControlleur/reinitialiserMdp" method="post">
+                        <form id="forgot-password-form" <!--action="/PageControlleur/reinitialiserMdp" method="post" --> >
                             <label for="forgot-name">Nom :</label>
                             <input type="text" name="name" id="forgot-name" required>
 

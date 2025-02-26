@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let formData = new FormData(this);
 
-            fetch("/PageControlleur/reinitialiserMdpAction", {
+            fetch("/PageControlleur/reinitialiserMdp", {
                 method: "POST",
                 body: formData
             })
