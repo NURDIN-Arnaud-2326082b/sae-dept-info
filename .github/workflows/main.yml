@@ -39,6 +39,7 @@ jobs:
           script: |
             cd ${{ secrets.ALWAYSDATA_PATH }}
             composer update
+            rm -f /*.tar.gz
 
 
       - name: Afficher les fichiers après déploiement
