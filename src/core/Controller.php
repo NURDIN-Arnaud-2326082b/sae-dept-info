@@ -69,7 +69,7 @@ class Controller
                 'updateImageAction',
                 'deleteImage',
                 'mettreAjourMdpAction',
-//                'reinitialiserMdpAction',
+                'reinitialiserMdpAction',
                 'reinitialiserMdp',
                 'ajouterUser',
                 'updatePdf',

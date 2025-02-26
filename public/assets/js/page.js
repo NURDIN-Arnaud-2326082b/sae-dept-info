@@ -112,6 +112,11 @@ document.addEventListener("DOMContentLoaded", function () {
         forgotPasswordForm.addEventListener("submit", function (event) {
             event.preventDefault(); // Empêche le rechargement de la page
 
+            let submitButton = this.querySelector("button[type='submit']");
+            if (submitButton) {
+                submitButton.disabled = true; // Désactive le bouton après soumission
+            }
+
             let formData = new FormData(this);
 
             fetch("/PageControlleur/reinitialiserMdpAction", {
@@ -133,9 +138,17 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
+                })
+                .finally(() => {
+                    if (submitButton) {
+                        setTimeout(() => {
+                            submitButton.disabled = false; // Réactive le bouton après 3 secondes
+                        }, 3000);
+                    }
                 });
         });
     }
+
 
     // Rendre openPopup accessible globalement pour être appelée depuis un bouton
     window.openPopup = openPopup;
