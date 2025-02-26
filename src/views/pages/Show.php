@@ -539,7 +539,6 @@ class Show
     public function show(): void
     {
         ob_start();
-        echo '<script src="/assets/js/page.js"></script>';
         $page = $this->pageControlleur->genererTitre();
         $this->genererIntro();
         $this->genererArticles();
