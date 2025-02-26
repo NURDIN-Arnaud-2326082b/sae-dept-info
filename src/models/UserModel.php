@@ -105,12 +105,9 @@ class UserModel
             . "https://departementinfoaix.alwaysdata.net/login\n\n"
             . "Cordialement, \nLa direction du BUT informatique.";
 
-
         if (!mail($email, $subject, $message)) {
             throw new \Exception('Erreur lors de l\'envoi de l\'email.');
         }
-
-        mail($email, $subject, $message);
     }
 
 
@@ -242,14 +239,11 @@ class UserModel
 
             error_log("Envoi d'email à: " . $email);
 
-            if (!mail($to, $subject, $message, $headers)) {
-                throw new \Exception('Échec de l\'envoi de l\'email.');
-            } else {
+            if (mail($to, $subject, $message, $headers)) {
                 error_log("Email envoyé avec succès à: " . $email);
                 echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
                 exit;
-            }
-
+                }
         } catch (\Exception $e) {
             echo json_encode(['error' => $e->getMessage()]);
             exit;
