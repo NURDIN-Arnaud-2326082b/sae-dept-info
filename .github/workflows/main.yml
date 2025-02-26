@@ -28,7 +28,7 @@ jobs:
           username: ${{ secrets.ALWAYSDATA_USER }}
           password: ${{ secrets.ALWAYSDATA_MDP }}
           key: ${{ secrets.ALWAYSDATA_SSH_KEY }}
-          source: "src/*, public/*, vendor/*, composer.json, composer.lock"
+          source: "src/*, public/*, composer.json, composer.lock"
           target: ${{ secrets.ALWAYSDATA_PATH }}
 
       - name: Exécuter des commandes sur AlwaysData (si besoin)
