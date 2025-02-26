@@ -34,7 +34,7 @@ class Navbar
                             <p id="success-message" style="color: green; display: none;"></p>
                         </div>
 
-                        <form id="password-form" action="/PageControlleur/mettreAjourMdpAction" method="post">
+                        <form id="password-form"  method="post">
                             <input type="hidden" name="name" value="<?= htmlspecialchars($user['name']) ?>">
 
                             <label>Mot de passe actuel :</label>
