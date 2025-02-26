@@ -236,17 +236,9 @@ class UserModel
             $message = "Bonjour $name,\n\nVotre nouveau mot de passe est : $nouveauMdp\n\nVeuillez le modifier après connexion.";
             $headers = "From: departementinfoaix@alwaysdata.net\n";
             $headers .= "Reply-To: departementinfoaix@alwaysdata.net";
+            echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
+            exit;
 
-
-            error_log("Envoi d'email à: " . $email);
-
-            if (!mail($to, $subject, $message, $headers)) {
-                throw new \Exception('Échec de l\'envoi de l\'email.');
-            } else {
-                error_log("Email envoyé avec succès à: " . $email);
-                echo json_encode(['success' => 'Un nouveau mot de passe a été envoyé à votre email.']);
-                exit;
-            }
 
         } catch (\Exception $e) {
             echo json_encode(['error' => $e->getMessage()]);
