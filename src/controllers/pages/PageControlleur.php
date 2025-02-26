@@ -313,7 +313,6 @@ class PageControlleur
  */
     public function reinitialiserMdpAction(): void
     {
-
         if (!isset($_POST['name'], $_POST['email'])) {
             echo json_encode(['error' => 'Tous les champs sont requis.']);
             exit;
@@ -324,7 +323,6 @@ class PageControlleur
         } catch (\Exception $e) {
             echo json_encode(['error' => $e->getMessage()]);
         }
-        header('Content-Type: application/json; charset=utf-8');
         exit;
     }
 
