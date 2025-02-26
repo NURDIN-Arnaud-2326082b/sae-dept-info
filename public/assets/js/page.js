@@ -113,17 +113,14 @@ document.addEventListener("DOMContentLoaded", function () {
         let isSubmitting = false;
 
         forgotPasswordForm.addEventListener("submit", function (event) {
-            if (isSubmitting) {
-                event.preventDefault();
-                return;
-            }
+            event.preventDefault();
+            if (isSubmitting) return;
 
             isSubmitting = true;
-            event.preventDefault(); // Empêche le rechargement de la page
 
-            // Désactiver le bouton de soumission
             const submitButton = this.querySelector('button[type="submit"]');
             submitButton.disabled = true;
+
 
             let formData = new FormData(this);
 
@@ -143,14 +140,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         successMessage.textContent = data.success;
                         successMessage.style.display = 'block';
                     }
-
-                    // Réactiver le bouton de soumission après la réponse
-                    submitButton.disabled = false;
-                    isSubmitting = false;
                 })
                 .catch(error => {
                     console.error('Erreur:', error);
-                    // Réactiver le bouton de soumission en cas d'erreur
+                })
+                .finally(() => {
                     submitButton.disabled = false;
                     isSubmitting = false;
                 });
