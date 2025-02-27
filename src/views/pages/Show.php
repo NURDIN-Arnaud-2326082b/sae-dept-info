@@ -406,6 +406,27 @@ class Show
                             case 'dlallusers' :
                                 echo '<div class="gestion"><h1> Supprimer tous les utilisateurs</h1><form action="/PageControlleur/deleteAllUsers" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><button class="btn-save" type="submit">Supprimer tous les utilisateurs</button></form>';
                                 echo '</div>';
+                        case 'profile':
+                            echo '<main>';
+                            echo '<section class="profile">';
+                            echo '<h1>Votre profil :</h1>';
+                            echo '<h2>' . $_SESSION['name'] . '</h2>';
+                            // Informations de profil
+                            echo '<div class="profile-info">';
+                            echo '<p><strong>Email:</strong> ' . $_SESSION['email'] . '</p>';
+                            echo '<p><strong>Année:</strong> ' . $_SESSION['annee'] . '</p>';
+                            echo '<p><strong>Groupe:</strong> ' . $_SESSION['groupe'] . '</p>';
+                            echo '</div>';
+
+
+
+
+                            echo '</section>';
+                            echo '</main>';
+
+                            echo '</body>';
+                            echo '</html>';
+                            break;
                         default:
                             break;
                     }
@@ -669,11 +690,7 @@ class Show
                             echo '<p><strong>Groupe:</strong> ' . $_SESSION['groupe'] . '</p>';
                             echo '</div>';
 
-                            if ($_SESSION['name'] === 'admin') {
-                                echo '<h2>Administration :</h2>';
-                                echo '<div class="profile-info">';
-                                echo '</div>';
-                            }
+
 
 
                             echo '</section>';
