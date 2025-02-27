@@ -77,4 +77,14 @@ class UserController
     {
         (new Connexion())->show();
     }
+
+    public function logLoginAttempt($ip): void
+    {
+        $this->userModel->logLoginAttempt($ip);
+    }
+
+    public function getLoginAttempts($ip,$minutes)
+    {
+        return $this->userModel->getLoginAttempts($ip,$minutes);
+    }
 }

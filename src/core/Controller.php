@@ -12,6 +12,7 @@ class Controller
 {
     protected ?\App\src\core\DatabaseConnection $database;
     protected \PDO $db;
+
     public function __construct()
     {
         $this->database = DatabaseConnection::getInstance();
@@ -36,12 +37,19 @@ class Controller
         if ($controllerSegment === 'login') {
             // Route pour la connexion
             $connexionController = new UserController();
+            $ip = $_SERVER['REMOTE_ADDR']; // Récupérer l'IP de l'utilisateur
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $attempts = $connexionController->getLoginAttempts($ip, 15); // Nombre d'essais dans les 15 dernières minutes
+                if ($attempts >= 5) {
+                    echo 'Trop de tentatives de connexion. Réessayez plus tard.';
+                    exit;
+                }
                 // Appelle la méthode de connexion
                 $result = $connexionController->connecter($_POST);
                 if ($result) {
-                    echo $result; // Afficher un message d'erreur si nécessaire
+                    $connexionController->logLoginAttempt($ip);
+                    echo $result;
                 }
             } else {
                 // Appeler la méthode par défaut pour afficher la page de connexion

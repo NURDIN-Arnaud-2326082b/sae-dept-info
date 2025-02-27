@@ -253,4 +253,22 @@ class UserModel
             exit;
         }
     }
+
+    public function logLoginAttempt($ip): void
+    {
+        $sql = 'INSERT INTO login_attempts (ip_address) VALUES (:ip)';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':ip', $ip, PDO::PARAM_INT);
+        $stmt->execute();
+    }
+
+    public function getLoginAttempts($ip , $minutes)
+    {
+        $sql = 'SELECT COUNT(*) FROM login_attempts WHERE ip_address = :ip  AND attempt_time > (NOW() - INTERVAL :minutes MINUTE)';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':ip', $ip, PDO::PARAM_INT);
+        $stmt->bindValue(':minutes', $minutes, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
 }
