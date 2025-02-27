@@ -70,9 +70,6 @@ class Navbar
                 <?php else: ?>
                     <a href="/login" class="btn btn-login">Se connecter</a>
                 <?php endif; ?>
-                <?php if (isset($user['admin'])): ?>
-                    <a href="/gestion" class="btn btn-login">Gestion</a>
-                <?php endif; ?>
             </div>
         </nav>
         <?php
