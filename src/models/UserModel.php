@@ -271,4 +271,13 @@ class UserModel
         $stmt->execute();
         return $stmt->fetchColumn();
     }
+
+    public function getAnneeGroupe(mixed $name)
+    {
+        $sql = 'SELECT annee, groupe FROM user WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 }

@@ -3,8 +3,15 @@
 namespace App\src\views\pages;
 
 use App\src\controllers\pages\PageControlleur;
+use DateInterval;
+use DateTime;
+use DateTimeZone;
 use Exception;
-
+use Sabre\VObject;
+/**
+ * Class Show
+ * @package App\src\views\pages
+ */
 class Show
 {
     /**
@@ -498,6 +505,167 @@ class Show
                             break;
                         case 'youtube':
                             echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                            break;
+                        case 'edt':
+                            $url1g1 = '';
+                            $url1g2 = '';
+                            $url1g3 = '';
+                            $url1g4 = '';
+                            $url2ga1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8396&calType=ical&firstDate=2025-02-24&lastDate=2025-02-28';
+                            $url2ga2 = '';
+                            $url2gb = '';
+                            $url3ga1 = '';
+                            $url3ga2 = '';
+                            $url3gb = '';
+                            $anneegroupe = $this->pageControlleur->getAnneeGroupe($_SESSION['name']);
+                            $annee = $anneegroupe['annee'];
+                            $groupe = $anneegroupe['groupe'];
+                            if ($annee == '1' && $groupe == '1') {
+                                $icsContent = file_get_contents($url1g1);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '1' && $groupe == '2') {
+                                $icsContent = file_get_contents($url1g2);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '1' && $groupe == '3') {
+                                $icsContent = file_get_contents($url1g3);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '1' && $groupe == '4') {
+                                $icsContent = file_get_contents($url1g4);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '2' && $groupe == 'A1') {
+
+                                $icsContent = file_get_contents($url2ga1);
+                                if (!$icsContent) {
+                                    break;
+                                }
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                $eventsByDay = [
+                                    "Lundi" => [], "Mardi" => [], "Mercredi" => [], "Jeudi" => [], "Vendredi" => [] , "Samedi" => [], "Dimanche" => []
+                                ];
+
+                                $daysMap = ["Monday" => "Lundi", "Tuesday" => "Mardi", "Wednesday" => "Mercredi", "Thursday" => "Jeudi", "Friday" => "Vendredi" , "Saturday" => "Samedi", "Sunday" => "Dimanche"];
+
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = $event->DTSTART->getDateTime()->format('l'); // Jour en anglais (Monday, Tuesday...)
+
+                                    if (isset($daysMap[$date])) {
+                                        $eventsByDay[$daysMap[$date]][] = $summary;
+                                    }
+                                }
+                                ?>
+                                <h2 style="text-align: center">Emploi du temps de la semaine</h2>
+                                <div class="calendar">
+                                    <?php foreach ($eventsByDay as $day => $events): ?>
+                                        <div class="day">
+                                            <strong><?= $day ?></strong>
+                                            <?php foreach ($events as $event): ?>
+                                                <div class="event"><?= htmlspecialchars($event) ?></div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+
+<?php
+
+
+                            }
+                            elseif ($annee == '2' && $groupe == 'A2') {
+                                $icsContent = file_get_contents($url2ga2);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '2' && $groupe == 'B') {
+                                $icsContent = file_get_contents($url2gb);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '3' && $groupe == 'A1') {
+                                $icsContent = file_get_contents($url3ga1);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '3' && $groupe == 'A2') {
+                                $icsContent = file_get_contents($url3ga2);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
+                            elseif ($annee == '3' && $groupe == 'B') {
+                                $icsContent = file_get_contents($url3gb);
+                                $vcalendar = VObject\Reader::read($icsContent);
+                                echo "<h2>Emploi du temps :</h2><ul>";
+                                foreach ($vcalendar->VEVENT as $event) {
+                                    $summary = (string) $event->SUMMARY;
+                                    $date = (string) $event->DTSTART->getDateTime()->format('Y-m-d H:i');
+
+                                    echo "<li><strong>$summary</strong> - Date : $date</li>";
+                                }
+                                echo "</ul>";
+                            }
                             break;
                         default:
                             break;

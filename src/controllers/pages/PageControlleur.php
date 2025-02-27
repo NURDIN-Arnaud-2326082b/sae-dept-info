@@ -377,5 +377,10 @@ class PageControlleur
         header('Location: /' . $name);
 
     }
+
+    public function getAnneeGroupe(mixed $name)
+    {
+        return $this->userModel->getAnneeGroupe($name);
+    }
 }
 

@@ -248,4 +248,3 @@ function applyDarkMode() {
 
 // Applique le mode sombre dès que la page est chargée
 window.onload = applyDarkMode;
-
