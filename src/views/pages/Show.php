@@ -388,10 +388,13 @@ class Show
                             echo '</div>';
                             break;
                         case 'gestion' :
+                            echo '<br>';
                             echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo '</div>';
+                            echo '<br>';
                             echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit">Supprimer l\'utilisateur</button></form>';
                             echo '</div>';
+                            echo '<br>';
                             break;
                         case 'youtube':
                             echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
@@ -400,6 +403,9 @@ class Show
                             echo '<div class="gestion"><h1> Ajouter un fichier csv </h1><form action="/PageControlleur/ajouterCsv" method="post" enctype="multipart/form-data" id="dropzoneCsv"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><label for="file" class="dropzone">Glissez & déposez un fichier csv ou cliquez ici</label><input type="file" id="file" name="file" accept="file/csv" onchange="this.form.submit()" style="display: none;"><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo '</div>';
                             break;
+                            case 'dlallusers' :
+                                echo '<div class="gestion"><h1> Supprimer tous les utilisateurs</h1><form action="/PageControlleur/deleteAllUsers" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><button class="btn-save" type="submit">Supprimer tous les utilisateurs</button></form>';
+                                echo '</div>';
                         default:
                             break;
                     }

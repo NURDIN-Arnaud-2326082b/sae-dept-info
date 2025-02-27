@@ -93,7 +93,7 @@ class UserModel
      * Envoie un email à l'utilisateur.
      * @param mixed $email Email de l'utilisateur.
      * @param mixed $password Mot de passe de l'utilisateur.
-     * @throws RandomException Erreur lors de l'envoi de l'email.
+     * @throws \Exception Erreur lors de l'envoi de l'email.
      */
     public function envoyerEmail(mixed $name,mixed $email, mixed $password): void
     {
@@ -131,7 +131,9 @@ class UserModel
      * Met à jour le mot de passe d'un utilisateur.
      *
      * @param string $name Nom de l'utilisateur.
-     * @param string $mdp Nouveau mot de passe.
+     * @param mixed $mdpActuel
+     * @param mixed $nouveauMdp1
+     * @param mixed $nouveauMdp2
      * @throws \Exception Erreur lors de la mise à jour du mot de passe.
      */
     public function mettreAjourMdpAction(mixed $name, mixed $mdpActuel, mixed $nouveauMdp1, mixed $nouveauMdp2): void
@@ -279,5 +281,13 @@ class UserModel
         $stmt->bindValue(':name', $name, PDO::PARAM_STR);
         $stmt->execute();
         return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function deleteAllUsers(): void
+    {
+        $sql = 'DELETE FROM user WHERE name != :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', 'admin', PDO::PARAM_STR);
+        $stmt->execute();
     }
 }

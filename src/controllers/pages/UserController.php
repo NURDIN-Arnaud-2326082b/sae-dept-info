@@ -45,10 +45,10 @@ class UserController
         // Connexion réussie
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['name'];
+
         $_SESSION['email'] = $user['email'];
         $_SESSION['annee'] = $user['annee'];
         $_SESSION['groupe'] = $user['groupe'];
-
         if ($_SESSION['name'] === 'admin') {
             $_SESSION['admin'] = true;
         }

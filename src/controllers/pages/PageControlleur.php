@@ -382,5 +382,12 @@ class PageControlleur
     {
         return $this->userModel->getAnneeGroupe($name);
     }
+
+    public function deleteAllUsersAction(): void
+    {
+        $name = $_POST['name'] ?? null;
+        $this->userModel->deleteAllUsers();
+        header('Location: /' . $name);
+    }
 }
 
