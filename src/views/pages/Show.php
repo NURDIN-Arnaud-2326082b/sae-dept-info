@@ -651,6 +651,13 @@ class Show
                                     <?php
                                 }
                             break;
+                        case 'profile' :
+                            echo '<div class="profile">';
+                            echo '<h2>' . $_SESSION['name'] . '</h2>';
+                            echo '<p>' . $_SESSION['email'] . '</p>';
+                            echo '<p>' . $_SESSION['annee'] . ' ' . $_SESSION['groupe'] . '</p>';
+                            echo '</div>';
+                            break;
                         default:
                             break;
                     }
