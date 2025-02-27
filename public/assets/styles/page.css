@@ -537,3 +537,61 @@ iframe {
 .dark-mode .event {
     background-color: #333;
 }
+
+
+.profile {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    padding: 30px;
+    text-align: center;
+}
+
+.profile h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.profile-info strong {
+    color: #007bff;
+}
+
+.profile .btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 15px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+}
+
+.profile .btn-primary {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.profile .btn-primary:hover {
+    background-color: #0056b3;
+    border: 1px solid #0056b3;
+}
+
+.profile .btn-danger {
+    background-color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.profile .btn-danger:hover {
+    background-color: #c82333;
+    border: 1px solid #c82333;
+}

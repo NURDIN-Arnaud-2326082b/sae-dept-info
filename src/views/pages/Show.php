@@ -651,13 +651,32 @@ class Show
                                     <?php
                                 }
                             break;
-                        case 'profile' :
-                            echo '<div class="profile">';
+                        case 'profile':
+                            echo '<main>';
+                            echo '<section class="profile">';
+                            echo '<h1>Votre profil :</h1>';
                             echo '<h2>' . $_SESSION['name'] . '</h2>';
-                            echo '<p>' . $_SESSION['email'] . '</p>';
-                            echo '<p>' . $_SESSION['annee'] . ' ' . $_SESSION['groupe'] . '</p>';
+                            // Informations de profil
+                            echo '<div class="profile-info">';
+                            echo '<p><strong>Email:</strong> ' . $_SESSION['email'] . '</p>';
+                            echo '<p><strong>Année:</strong> ' . $_SESSION['annee'] . '</p>';
+                            echo '<p><strong>Groupe:</strong> ' . $_SESSION['groupe'] . '</p>';
                             echo '</div>';
+
+                            if ($_SESSION['name'] === 'admin') {
+                                echo '<h2>Administration :</h2>';
+                                echo '<div class="profile-info">';
+                                echo '</div>';
+                            }
+
+
+                            echo '</section>';
+                            echo '</main>';
+
+                            echo '</body>';
+                            echo '</html>';
                             break;
+
                         default:
                             break;
                     }
