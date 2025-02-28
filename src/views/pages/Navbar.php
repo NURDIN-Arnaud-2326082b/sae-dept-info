@@ -59,15 +59,12 @@ class Navbar
                             <button class="btn-close" onclick="closePopup()">Fermer</button>
                         </form>
 
-
                     </div>
 
-
-
-                    <a href="/logout" class="btn btn-logout">Se déconnecter</a>
                     <a href="/menu" class="btn btn-menu">Menu</a>
                     <a href="/profil" class="btn btn-menu">Mon profil</a>
-                    <a href="#" onclick="openPopup(); return false;" class="btn btn-menu">Changer de<br> mot de passe</a>
+
+                   <!-- <a href="#" onclick="openPopup(); return false;" class="btn btn-menu">Changer de<br> mot de passe</a> -->
                 <?php else: ?>
                     <a href="/login" class="btn btn-login">Se connecter</a>
                 <?php endif; ?>

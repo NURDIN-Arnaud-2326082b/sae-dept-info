@@ -119,7 +119,8 @@ document.addEventListener("DOMContentLoaded", function () {
             isSubmitting = true;
 
             const submitButton = this.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
+            submitButton.disabled = true;f
+
 
 
             let formData = new FormData(this);

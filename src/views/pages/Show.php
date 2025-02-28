@@ -411,15 +411,16 @@ class Show
                             echo '<section class="profile">';
                             echo '<h1>Votre profil :</h1>';
                             echo '<h2>' . $_SESSION['name'] . '</h2>';
+
                             // Informations de profil
                             echo '<div class="profile-info">';
                             echo '<p><strong>Email:</strong> ' . $_SESSION['email'] . '</p>';
-                            echo '<p><strong>Année:</strong> ' . $_SESSION['annee'] . '</p>';
-                            echo '<p><strong>Groupe:</strong> ' . $_SESSION['groupe'] . '</p>';
+
+                            echo '<a href="#" onclick="openPopup(); return false;" class="btn-modif">Modifier mon <br> mot de passe</a>';
+                            echo '<br>';
+                            echo '<a href="/logout" class="btn-deco">Déconnexion</a>';
+
                             echo '</div>';
-
-
-
 
                             echo '</section>';
                             echo '</main>';
@@ -683,15 +684,18 @@ class Show
                             echo '<section class="profile">';
                             echo '<h1>Votre profil :</h1>';
                             echo '<h2>' . $_SESSION['name'] . '</h2>';
+
                             // Informations de profil
                             echo '<div class="profile-info">';
                             echo '<p><strong>Email:</strong> ' . $_SESSION['email'] . '</p>';
                             echo '<p><strong>Année:</strong> ' . $_SESSION['annee'] . '</p>';
                             echo '<p><strong>Groupe:</strong> ' . $_SESSION['groupe'] . '</p>';
+
+                            echo '<a href="#" onclick="openPopup(); return false;" class="btn-modif">Modifier mon <br> mot de passe</a>';
+                            echo '<br>';
+                            echo '<a href="/logout" class="btn-deco">Déconnexion</a>';
+
                             echo '</div>';
-
-
-
 
                             echo '</section>';
                             echo '</main>';

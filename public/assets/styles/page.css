@@ -540,6 +540,15 @@ iframe {
 
 
 .profile {
+    /* Centrer le contenu au milieu de la page */
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 506px;
+
+
+    margin: 0 auto;
     background-color: white;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -547,7 +556,10 @@ iframe {
     max-width: 600px;
     padding: 30px;
     text-align: center;
+    flex-direction: column;
 }
+
+
 
 .profile h1 {
     font-size: 28px;
@@ -576,22 +588,86 @@ iframe {
     color: white;
 }
 
-.profile .btn-primary {
-    background-color: #007bff;
-    border: 1px solid #007bff;
+.btn-modif {
+    background-color: #dc3545; /* Rouge Bootstrap */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
-.profile .btn-primary:hover {
-    background-color: #0056b3;
-    border: 1px solid #0056b3;
+.btn-modif:hover {
+    background-color: #c82333; /* Rouge plus foncé au survol */
+    transform: scale(1.05); /* Effet léger d'agrandissement */
 }
 
-.profile .btn-danger {
-    background-color: #dc3545;
-    border: 1px solid #dc3545;
+.btn-modif:active {
+    transform: scale(0.95); /* Effet clic */
 }
 
-.profile .btn-danger:hover {
-    background-color: #c82333;
-    border: 1px solid #c82333;
+.btn-deco {
+    background-color: #dc3546;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
 }
+
+.btn-deco:hover {
+    background-color: #c82333; /* Bleu plus foncé au survol */
+    transform: scale(1.1); /* Effet léger d'agrandissement */
+}
+
+.btn-deco:active {
+    transform: scale(0.95); /* Effet clic */
+}
+
+
+.dark-mode .profile {
+    background-color: #333;
+    color: white;
+}
+
+.dark-mode .profile h1 {
+    color: #f1f1f1;
+}
+
+.dark-mode .profile-info p {
+    color: #f1f1f1;
+}
+
+.dark-mode .profile-info strong {
+    color: #007bff;
+}
+
+.dark-mode .profile .btn {
+    color: white;
+}
+
+.dark-mode .btn-modif {
+    background-color: #333;
+}
+
+
+.dark-mode .btn-deco {
+    background-color: #333;
+}
+
+
+
+
+
+
