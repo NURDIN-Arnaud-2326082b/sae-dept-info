@@ -39,7 +39,7 @@ class Controller
             $connexionController = new UserController();
             $ip = $_SERVER['REMOTE_ADDR']; // Récupérer l'IP de l'utilisateur
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $attempts = $connexionController->getLoginAttempts($ip, 15); // Nombre d'essais dans les 15 dernières minutes
+                $attempts = $connexionController->getLoginAttempts($ip, 1); // Nombre d'essais dans les 1 dernières minutes
                 if ($attempts >= 5) {
                     echo 'Trop de tentatives de connexion. Réessayez plus tard.';
                     exit;

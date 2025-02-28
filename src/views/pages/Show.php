@@ -592,11 +592,8 @@ class Show
                                     }
                                     break;
                             }
-                                if (file_get_contents($url)) {
-                                    $icsContent = file_get_contents($url);
-                                    if (!$icsContent) {
-                                        break;
-                                    }
+                            $icsContent = file_get_contents($url);
+                            if ($icsContent) {
 
                                     $vcalendar = VObject\Reader::read($icsContent);
 
@@ -677,6 +674,9 @@ class Show
                                     </div>
                                     <?php
                                 }
+                            else {
+                                echo '<p>Rafraichissez la page pour charger l\'emploi du temps</p>';
+                            }
                             break;
                         case 'profile':
                             echo '<main>';
