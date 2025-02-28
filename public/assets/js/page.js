@@ -122,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function () {
             submitButton.disabled = true;f
 
 
-
             let formData = new FormData(this);
 
             fetch("/PageControlleur/reinitialiserMdp", {
@@ -204,16 +203,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-
-
-
-
-
 // Fonction pour basculer entre le mode sombre et clair
 function toggleDarkMode() {
-    // Récupère l'élément body ou l'élément global du site
     const body = document.body;
+    const toggleButton = document.getElementById("dark-mode-toggle");
+    const checkbox = document.getElementById("darkMode"); // L'élément checkbox
 
     // Vérifie si le mode sombre est déjà activé
     if (body.classList.contains('dark-mode')) {
@@ -221,34 +215,42 @@ function toggleDarkMode() {
         body.classList.remove('dark-mode');
         // Enregistre la préférence comme étant le mode clair
         localStorage.setItem('darkMode', 'false');
-        document.getElementById("dark-mode-toggle").textContent = "Mode Sombre";
+        toggleButton.textContent = "Mode Sombre"; // Texte du bouton
+        checkbox.checked = false; // Décoche la checkbox
     } else {
         // Active le mode sombre
         body.classList.add('dark-mode');
         // Enregistre la préférence comme étant le mode sombre
         localStorage.setItem('darkMode', 'true');
-        document.getElementById("dark-mode-toggle").textContent = "Mode Clair";
+        toggleButton.textContent = "Mode Clair"; // Texte du bouton
+        checkbox.checked = true; // Coche la checkbox
     }
 }
 
 // Fonction pour appliquer le mode sombre en fonction du stockage local
 function applyDarkMode() {
-    // Vérifie si le mode sombre est activé dans localStorage
     const darkMode = localStorage.getItem('darkMode');
     const body = document.body;
+    const toggleButton = document.getElementById("dark-mode-toggle");
+    const checkbox = document.getElementById("darkMode");
 
     // Si la préférence est stockée et vaut 'true', active le mode sombre
     if (darkMode === 'true') {
         body.classList.add('dark-mode');
-        document.getElementById("dark-mode-toggle").textContent = "Mode Clair";
+        toggleButton.textContent = "Mode Clair"; // Texte du bouton
+        checkbox.checked = true; // Coche la checkbox
     } else {
         body.classList.remove('dark-mode');
-        document.getElementById("dark-mode-toggle").textContent = "Mode Sombre";
+        toggleButton.textContent = "Mode Sombre"; // Texte du bouton
+        checkbox.checked = false; // Décoche la checkbox
     }
 }
 
 // Applique le mode sombre dès que la page est chargée
 window.onload = applyDarkMode;
+
+// Attache l'événement de changement d'état de la checkbox à la fonction toggleDarkMode
+document.getElementById("darkMode").addEventListener("change", toggleDarkMode);
 
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll("#article-type").forEach(select => {

@@ -15,7 +15,34 @@ class Navbar
             <a href="/">
                 <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
-            <button id="dark-mode-toggle" class="dark-mode-toggle" onclick="toggleDarkMode()">Mode Sombre</button>
+
+
+
+            <!-- Bouton pour activer/désactiver le mode sombre -->
+            <input class="darkmode-checkbox" id="darkMode" type="checkbox" />
+            <label for="darkMode">
+                <svg class="darkmode-icon" viewBox="0 0 64 64">
+                    <clipPath id="sun">
+                        <circle cx="32" cy="32" r="12" />
+                    </clipPath>
+                    <circle class="sun" cx="32" cy="32" r="12" />
+                    <circle class="moon-shadow" cx="60" cy="32" r="12" clip-path="url(#sun)" />
+                    <circle class="sun-stroke" cx="32" cy="32" r="12" />
+                    <g class="rays">
+                        <path d="M 32,4 l0,12" />
+                        <path d="M 32,4 l0,12" transform="rotate(45)" transform-origin="50% 50%" />
+                        <path d="M 32,4 l0,12" transform="rotate(90)" transform-origin="50% 50%" />
+                        <path d="M 32,4 l0,12" transform="rotate(135)" transform-origin="50% 50%" />
+                        <path d="M 32,4 l0,12" transform="rotate(180)" transform-origin="50% 50%" />
+                        <path d="M 32,4 l0,12" transform="rotate(225)" transform-origin="50% 50%" />
+                        <path d="M 32,4 l0,12" transform="rotate(270)" transform-origin="50% 50%" />
+                        <path d="M 32,4 l0,12" transform="rotate(315)" transform-origin="50% 50%" />
+                    </g>
+                </svg>
+            </label>
+
+
+
             <div class="name">
             <!-- Nom de l'utilisateur ou "Invité" -->
             <h1><?= isset($user['name']) ? htmlspecialchars($user['name']) : '' ?></h1>
