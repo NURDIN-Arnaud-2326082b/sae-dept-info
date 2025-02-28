@@ -3,7 +3,6 @@
 namespace App\src\views\pages;
 
 use App\src\controllers\pages\PageControlleur;
-use DateInterval;
 use DateTime;
 use DateTimeZone;
 use Exception;
@@ -421,6 +420,7 @@ class Show
                             case 'dlallusers' :
                                 echo '<div class="gestion"><h1> Supprimer tous les utilisateurs</h1><form action="/PageControlleur/deleteAllUsers" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><button class="btn-save" type="submit">Supprimer tous les utilisateurs</button></form>';
                                 echo '</div>';
+                                break;
                         case 'profile':
                             echo '<main>';
                             echo '<section class="profile">';
