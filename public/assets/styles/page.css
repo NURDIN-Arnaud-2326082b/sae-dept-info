@@ -658,12 +658,12 @@ iframe {
 }
 
 .dark-mode .btn-modif {
-    background-color: #333;
+    background-color: rgba(40, 40, 40, 0.9);;
 }
 
 
 .dark-mode .btn-deco {
-    background-color: #333;
+    background-color: rgba(40, 40, 40, 0.9);;
 }
 
 
