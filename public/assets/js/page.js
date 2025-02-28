@@ -249,3 +249,15 @@ function applyDarkMode() {
 
 // Applique le mode sombre dès que la page est chargée
 window.onload = applyDarkMode;
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll("#article-type").forEach(select => {
+        select.addEventListener("change", function() {
+            let input = this.parentElement.querySelector("#link-input");
+            if (input) {
+                input.style.display = this.value === "linked" ? "inline-block" : "none";
+            }
+        });
+    });
+});
+

@@ -130,6 +130,8 @@ main {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
     gap: 2rem;
+    grid-auto-flow: dense;
+    align-content: center;
 }
 
 .article-preview {
@@ -264,10 +266,16 @@ form button {
 
 .btn-save {
     background: #28a745;
+    max-width: 15%;
 }
 
 .btn-delete {
     background: #dc3545;
+    max-width: 15%;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 /* Dropzone */
@@ -308,6 +316,10 @@ form button {
     }
 
     .marquee {
+        padding: 1rem 0.5rem;
+        font-size: 1rem;
+    }
+    .marqueee {
         padding: 1rem 0.5rem;
         font-size: 1rem;
     }
@@ -666,8 +678,75 @@ iframe {
     background-color: rgba(40, 40, 40, 0.9);;
 }
 
+.add-article{
+    align-content: center;
+    text-align: center;
+}
 
+/* Marquee - Banderole */
+.marqueee {
+    background: linear-gradient(90deg, #F6F0F0 , #F6F0F0);
+    color: #ffff;
+    padding: 2rem 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 0.8rem;
+    margin: 2rem auto;
+    width: 100%;
+    max-width: 200rem;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 10;
+    box-sizing: border-box;
+    box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.1);
+    border: 0.2rem solid ghostwhite;
+}
 
+.marqueee form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0;
+}
 
+.marqueee button {
+    width: 100%;
+    color: #fff;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 1rem;
+}
 
+.marqueee button:hover {
+    background-color: #0056b3;
+}
 
+.marqueee h2 {
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+    white-space: nowrap;
+    line-height: 1.5;
+    box-sizing: border-box;
+    color: white;
+}
+
+@keyframes marqueee {
+    0% {
+        transform: translateX(130%);
+    }
+    100% {
+        transform: translateX(-140%);
+    }
+}
+
+.dark-mode .marqueee {
+    background: linear-gradient(90deg, #002d62, #0056b3);
+    border-color: #004b93;
+}
