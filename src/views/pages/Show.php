@@ -550,150 +550,127 @@ class Show
                             echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
                             break;
                         case 'edt':
-                            $url1g1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8382&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url1g2 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8380&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url1g3 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8383&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url1g4 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8381&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url2ga1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8396&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url2ga2 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8397&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url2gb = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8398&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url3ga1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42523&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url3ga2 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42524&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
-                            $url3gb = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42525&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $urls = [
+                                '1' => ['1' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8382&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22',
+                                    '2' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8380&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22',
+                                    '3' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8383&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22',
+                                    '4' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8381&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22'],
+                                '2' => ['A1' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8396&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22',
+                                    'A2' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8397&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22',
+                                    'B' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8398&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22'],
+                                '3' => ['A1' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42523&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22',
+                                    'A2' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42524&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22',
+                                    'B' => 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42525&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22']
+                            ];
+
                             $anneegroupe = $this->pageControlleur->getAnneeGroupe($_SESSION['name']);
                             $annee = $anneegroupe['annee'];
                             $groupe = $anneegroupe['groupe'];
-                            $url = '';
-                            switch ($annee) {
-                                case '1' :
-                                    switch ($groupe) {
-                                        case '1' :
-                                            $url = $url1g1;
-                                            break;
-                                        case '2' :
-                                            $url = $url1g2;
-                                            break;
-                                        case '3' :
-                                            $url = $url1g3;
-                                            break;
-                                        case '4' :
-                                            $url = $url1g4;
-                                            break;
-                                    }
-                                    break;
-                                case '2' :
-                                    switch ($groupe) {
-                                        case 'A1' :
-                                            $url = $url2ga1;
-                                            break;
-                                        case 'A2' :
-                                            $url = $url2ga2;
-                                            break;
-                                        case 'B' :
-                                            $url = $url2gb;
-                                            break;
-                                    }
-                                    break;
-                                case '3' :
-                                    switch ($groupe) {
-                                        case 'A1' :
-                                            $url = $url3ga1;
-                                            break;
-                                        case 'A2' :
-                                            $url = $url3ga2;
-                                            break;
-                                        case 'B' :
-                                            $url = $url3gb;
-                                            break;
-                                    }
-                                    break;
+
+                            // Vérification de l'existence de l'URL
+                            $url = $urls[$annee][$groupe] ?? null;
+
+                            if (!$url) {
+                                echo '<p style="color: red;">Emploi du temps introuvable pour votre groupe.</p>';
+                                break;
                             }
-                            $icsContent = file_get_contents($url);
-                            if ($icsContent) {
 
-                                    $vcalendar = VObject\Reader::read($icsContent);
+                            // Gestion du cache pour éviter les recharges inutiles
+                            $cacheFile = "cache_edt_{$annee}_{$groupe}.ics";
+                            if (!file_exists($cacheFile) || time() - filemtime($cacheFile) > 3600) {
+                                $icsContent = @file_get_contents($url);
+                                if ($icsContent) {
+                                    file_put_contents($cacheFile, $icsContent);
+                                } else {
+                                    echo '<p style="color: red;">Impossible de récupérer l\'emploi du temps. Vérifiez votre connexion.</p>';
+                                    break;
+                                }
+                            } else {
+                                $icsContent = file_get_contents($cacheFile);
+                            }
 
-                                    // Créer un tableau pour stocker les événements par jour
-                                    $eventsByDay = [
-                                        "Lundi" => [],
-                                        "Mardi" => [],
-                                        "Mercredi" => [],
-                                        "Jeudi" => [],
-                                        "Vendredi" => [],
-                                        "Samedi" => [],
-                                        "Dimanche" => []
-                                    ];
+                            // Lecture et parsing du fichier ICS
+                            try {
+                                $vcalendar = VObject\Reader::read($icsContent);
+                            } catch (Exception $e) {
+                                echo '<p style="color: red;">Erreur lors du chargement de l\'emploi du temps.</p>';
+                                break;
+                            }
 
-                                    $daysMap = [
-                                        "Monday" => "Lundi",
-                                        "Tuesday" => "Mardi",
-                                        "Wednesday" => "Mercredi",
-                                        "Thursday" => "Jeudi",
-                                        "Friday" => "Vendredi",
-                                        "Saturday" => "Samedi",
-                                        "Sunday" => "Dimanche"
-                                    ];
+                            // Préparation des événements triés par jour
+                            $eventsByDay = ["Lundi" => [], "Mardi" => [], "Mercredi" => [], "Jeudi" => [], "Vendredi" => [], "Samedi" => [], "Dimanche" => []];
+                            $daysMap = ["Monday" => "Lundi", "Tuesday" => "Mardi", "Wednesday" => "Mercredi", "Thursday" => "Jeudi", "Friday" => "Vendredi", "Saturday" => "Samedi", "Sunday" => "Dimanche"];
 
-                                    // Obtenir la date actuelle et le début/fin de la semaine en cours
-                                    $today = new DateTime(); // DateTime avec le fuseau horaire par défaut défini précédemment
-                                    $startOfWeek = clone $today;
-                                    $startOfWeek->modify('monday this week'); // Lundi de cette semaine
-                                    $endOfWeek = clone $today;
-                                    $endOfWeek->modify('sunday this week'); // Dimanche de cette semaine
+                            $today = new DateTime();
+                            $startOfWeek = clone $today;
+                            $startOfWeek->modify('monday this week');
+                            $endOfWeek = clone $today;
+                            $endOfWeek->modify('sunday this week');
 
-                                    foreach ($vcalendar->VEVENT as $event) {
-                                        $summary = (string)$event->SUMMARY;
-                                        // Assurez-vous que l'heure de début et de fin sont en Europe/Paris
-                                        $startDateTime = new DateTime($event->DTSTART->getValue(), new DateTimeZone('Europe/Paris'));
-                                        $endDateTime = new DateTime($event->DTEND->getValue(), new DateTimeZone('Europe/Paris'));
-                                        // Augmenter de 1 heure
-                                        $startDateTime->modify('+1 hour'); // Augmente l'heure de début de 1 heure
-                                        $endDateTime->modify('+1 hour'); // Augmente l'heure de fin de 1 heure
+                            foreach ($vcalendar->VEVENT as $event) {
+                                $summary = (string)$event->SUMMARY;
+                                $description = isset($event->DESCRIPTION) ? (string)$event->DESCRIPTION : "Aucune description";
+                                $location = isset($event->LOCATION) ? (string)$event->LOCATION : "Lieu inconnu";
 
-                                        // Vérifier si la date de l'événement est dans la semaine en cours
-                                        if ($startDateTime >= $startOfWeek && $startDateTime <= $endOfWeek) {
-                                            $dateFormatted = $startDateTime->format('l'); // Jour en anglais (Monday, Tuesday...)
+                                // Extraction du nom du professeur depuis la description
+                                $professor = "Professeur inconnu ou non spécifié";
+                                if (preg_match("/\n([A-ZÉÀÔÛÎÏËÖÜÇ-]+ [A-ZÉÀÔÛÎÏËÖÜÇ]+[a-zéèàôûîïëöüç]*)/", $description, $matches)) {
+                                    $professor = trim($matches[1]); // Récupération du nom trouvé
+                                }
 
-                                            if (isset($daysMap[$dateFormatted])) {
-                                                // Ajouter l'événement avec l'heure au tableau
-                                                $eventsByDay[$daysMap[$dateFormatted]][] = [
-                                                    'summary' => $summary,
-                                                    'startTime' => $startDateTime,
-                                                    'endTime' => $endDateTime // Stocker également l'heure de fin
-                                                ];
-                                            }
-                                        }
+
+                                $startDateTime = new DateTime($event->DTSTART->getValue(), new DateTimeZone('Europe/Paris'));
+                                $endDateTime = new DateTime($event->DTEND->getValue(), new DateTimeZone('Europe/Paris'));
+
+                                $startDateTime->modify('+1 hour');
+                                $endDateTime->modify('+1 hour');
+
+                                if ($startDateTime >= $startOfWeek && $startDateTime <= $endOfWeek) {
+                                    $dateFormatted = $startDateTime->format('l');
+                                    if (isset($daysMap[$dateFormatted])) {
+                                        $eventsByDay[$daysMap[$dateFormatted]][] = [
+                                            'summary' => $summary,
+                                            'professor' => $professor,
+                                            'location' => $location,
+                                            'startTime' => $startDateTime,
+                                            'endTime' => $endDateTime
+                                        ];
                                     }
+                                }
+                            }
 
-                                    // Trier les événements de chaque jour par heure de début
-                                    foreach ($eventsByDay as &$events) {
-                                        usort($events, function ($a, $b) {
-                                            return $a['startTime'] <=> $b['startTime']; // Comparer les heures de début pour le tri
-                                        });
-                                    }
-                                    ?>
 
-                                    <h2 style="text-align: center">Emploi du temps de la semaine</h2>
-                                    <div class="calendar">
-                                        <?php foreach ($eventsByDay as $day => $events): ?>
-                                            <div class="day">
-                                                <strong><?= $day ?></strong>
-                                                <?php foreach ($events as $event): ?>
-                                                    <div class="event">
-                                                        <?= htmlspecialchars($event['summary']) ?>
-                                                        <br>(<?= $event['startTime']->format('H:i') ?>
-                                                        - <?= $event['endTime']->format('H:i') ?>)
-                                                    </div>
-                                                <?php endforeach; ?>
+
+
+
+                            // Trier les événements par heure de début
+                            foreach ($eventsByDay as &$events) {
+                                usort($events, fn($a, $b) => $a['startTime'] <=> $b['startTime']);
+                            }
+                            ?>
+
+                            <h2 style="text-align: center">Emploi du temps de la semaine</h2>
+                            <div class="calendar">
+                                <?php foreach ($eventsByDay as $day => $events): ?>
+                                    <div class="day">
+                                        <strong><?= $day ?></strong>
+                                        <?php foreach ($events as $event): ?>
+                                            <div class="event">
+                                                <strong><?= htmlspecialchars($event['summary']) ?></strong><br>
+                                                <?= htmlspecialchars($event['professor']) ?><br> <!-- Affichage du prof -->
+                                                <?= htmlspecialchars($event['location']) ?><br> <!-- Affichage du lieu -->
+                                                (<?= $event['startTime']->format('H:i') ?> - <?= $event['endTime']->format('H:i') ?>)
                                             </div>
                                         <?php endforeach; ?>
                                     </div>
-                                    <?php
-                                }
-                            else {
-                                echo '<p>Rafraichissez la page pour charger l\'emploi du temps</p>';
-                            }
+                                <?php endforeach; ?>
+                            </div>
+
+
+
+                            <?php
                             break;
+
                         case 'profile':
                             echo '<main>';
                             echo '<section class="profile">';
