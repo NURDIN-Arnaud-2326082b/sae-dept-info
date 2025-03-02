@@ -658,43 +658,24 @@ class Show
                             }
                             ?>
 
-                                    <h2 style="text-align: center">Emploi du temps de la semaine</h2>
-                                    <div class="calendar">
-                                        <?php foreach ($eventsByDay as $day => $events): ?>
-                                            <div class="day">
-                                                <strong><?= $day ?></strong>
-                                                <?php foreach ($events as $event): ?>
-                                                    <div class="event">
-                                                        <?= htmlspecialchars($event['summary']) ?>
-                                                        <br>(<?= $event['startTime']->format('H:i') ?>
-                                                        - <?= $event['endTime']->format('H:i') ?>)
-                                                    </div>
-                                                <?php endforeach; ?>
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
+                                <h2 style="text-align: center">Emploi du temps de la semaine</h2>
+                                <div class="calendar">
+                                    <?php foreach ($eventsByDay as $day => $events): ?>
+                                        <div class="day">
+                                            <strong><?= $day ?></strong>
+                                            <?php foreach ($events as $event): ?>
+                                                <div class="event">
+                                                    <strong><?= htmlspecialchars($event['summary']) ?></strong><br>
+                                                    <?= htmlspecialchars($event['professor']) ?><br> <!-- Affichage du prof -->
+                                                    <?= htmlspecialchars($event['location']) ?><br> <!-- Affichage du lieu -->
+                                                    (<?= $event['startTime']->format('H:i') ?> - <?= $event['endTime']->format('H:i') ?>)
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
                                     <?php
                                 }
-                            <h2 style="text-align: center">Emploi du temps de la semaine</h2>
-                            <div class="calendar">
-                                <?php foreach ($eventsByDay as $day => $events): ?>
-                                    <div class="day">
-                                        <strong><?= $day ?></strong>
-                                        <?php foreach ($events as $event): ?>
-                                            <div class="event">
-                                                <strong><?= htmlspecialchars($event['summary']) ?></strong><br>
-                                                <?= htmlspecialchars($event['professor']) ?><br> <!-- Affichage du prof -->
-                                                <?= htmlspecialchars($event['location']) ?><br> <!-- Affichage du lieu -->
-                                                (<?= $event['startTime']->format('H:i') ?> - <?= $event['endTime']->format('H:i') ?>)
-                                            </div>
-                                        <?php endforeach; ?>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-
-
-
-                            <?php
                             break;
 
                         case 'profile':
