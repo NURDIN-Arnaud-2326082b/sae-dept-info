@@ -90,7 +90,8 @@ class Controller
                 'ajouterCsv',
                 'updatePdf',
                 'recupererListe',
-                'mettreAjourPlacement'
+                'mettreAjourPlacement',
+                'ajouterUser',
 
 
             ];
