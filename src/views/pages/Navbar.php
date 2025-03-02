@@ -19,7 +19,7 @@ class Navbar
 
 
             <!-- Bouton pour activer/désactiver le mode sombre -->
-            <input class="darkmode-checkbox" id="darkMode" type="checkbox" />
+            <input class="darkmode-checkbox" id="darkMode" type="checkbox" onclick="toggleDarkMode()"/>
             <label for="darkMode">
                 <svg class="darkmode-icon" viewBox="0 0 64 64">
                     <clipPath id="sun">
