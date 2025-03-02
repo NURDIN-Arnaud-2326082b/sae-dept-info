@@ -9,6 +9,8 @@ class Connexion
     public function show(): string
     {
         ob_start();
+        $error = $_SESSION['error'] ?? '';
+        unset($_SESSION['error']);
         ?>
         <link rel="stylesheet" href="/assets/styles/Connexion.css">
         <main>
@@ -22,6 +24,10 @@ class Connexion
                     <?php endif; ?>
 
                     <form action="/login" method="post">
+                        <?php if (!empty($error)): ?>
+                            <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+                        <?php endif; ?>
+
                         <label for="name">Identifiant</label>
                         <input type="text" id="name" name="name" required>
 

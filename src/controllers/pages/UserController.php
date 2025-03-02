@@ -28,27 +28,32 @@ class UserController
     /**
      * Permet de connecter un utilisateur.
      */
-    public function connecter(array $postData): string
+    public function connecter(array $postData)
     {
+        session_start();
         $name = htmlspecialchars($postData['name']);
         $password = $postData['password'];
         $user = $this->userModel->getUserByName($name);
 
         if (!$user) {
-            return 'Utilisateur introuvable.';
+            $_SESSION['error'] = 'Utilisateur introuvable.';
+            header("Location: /login");
+            exit;
         }
 
         if (!password_verify($password, $user['password'])) {
-            return 'Mot de passe incorrect.';
+            $_SESSION['error'] = 'Mot de passe incorrect.';
+            header("Location: /login");
+            exit;
         }
 
         // Connexion réussie
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['name'] = $user['name'];
-
         $_SESSION['email'] = $user['email'];
         $_SESSION['annee'] = $user['annee'];
         $_SESSION['groupe'] = $user['groupe'];
+
         if ($_SESSION['name'] === 'admin') {
             $_SESSION['admin'] = true;
         }
@@ -56,6 +61,7 @@ class UserController
         header("Location: /menu");
         exit;
     }
+
 
 
     /**
