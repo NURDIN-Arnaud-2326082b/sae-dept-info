@@ -550,16 +550,16 @@ class Show
                             echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
                             break;
                         case 'edt':
-                            $url1g1 = '';
-                            $url1g2 = '';
-                            $url1g3 = '';
-                            $url1g4 = '';
-                            $url2ga1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8396&calType=ical&firstDate=2025-02-24&lastDate=2025-03-07';
-                            $url2ga2 = '';
-                            $url2gb = '';
-                            $url3ga1 = '';
-                            $url3ga2 = '';
-                            $url3gb = '';
+                            $url1g1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8382&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url1g2 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8380&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url1g3 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8383&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url1g4 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8381&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url2ga1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8396&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url2ga2 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8397&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url2gb = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=8398&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url3ga1 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42523&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url3ga2 = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42524&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
+                            $url3gb = 'https://ade-web-consult.univ-amu.fr/jsp/custom/modules/plannings/anonymous_cal.jsp?projectId=8&resources=42525&calType=ical&firstDate=2025-02-24&lastDate=2025-06-22';
                             $anneegroupe = $this->pageControlleur->getAnneeGroupe($_SESSION['name']);
                             $annee = $anneegroupe['annee'];
                             $groupe = $anneegroupe['groupe'];
