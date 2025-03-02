@@ -531,7 +531,7 @@ class Show
                             echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
                             break;
                         case 'lien':
-                            echo '<div class="contour" ><a class="link" href="' . $ct['link'] . '" style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</a></div>';
+                            echo '<div class="contour" style="text-align:' . $ct['centrage'] . ';" ><a class="link" href="' . $ct['link'] . '" >' . $ct['content'] . '</a></div>';
                             break;
                         case 'paragraphe':
                             echo '<div><p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p></div>';
