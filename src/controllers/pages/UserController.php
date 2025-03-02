@@ -57,9 +57,6 @@ class UserController
         if ($_SESSION['name'] === 'admin') {
             $_SESSION['admin'] = true;
         }
-        else {
-            $_SESSION['admin'] = false;
-        }
 
         header("Location: /menu");
         exit;

@@ -31,6 +31,7 @@ class Show
 
     /**
      * Génère l'introduction de la page.
+     * @throws Exception
      */
     public function genererIntro(): void
     {
@@ -57,6 +58,7 @@ class Show
                         break;
                 }
             }
+            $this->genererNewArticle(2);
         }
         else {
             foreach ($content as $ct) {
@@ -596,16 +598,6 @@ class Show
                                 echo '<p style="color: red;">Erreur lors du chargement de l\'emploi du temps.</p>';
                                 break;
                             }
-                            $headers = @get_headers($url);
-
-                            if ($headers && str_contains($headers[0], '200')) {
-                                $icsContent = file_get_contents($url);
-                            } else {
-                                echo '<p>Rafraichissez la page pour charger l\'emploi du temps</p>';
-                            }
-                            if ($icsContent) {
-                                    $vcalendar = VObject\Reader::read($icsContent);
-
                             // Préparation des événements triés par jour
                             $eventsByDay = ["Lundi" => [], "Mardi" => [], "Mercredi" => [], "Jeudi" => [], "Vendredi" => [], "Samedi" => [], "Dimanche" => []];
                             $daysMap = ["Monday" => "Lundi", "Tuesday" => "Mardi", "Wednesday" => "Mercredi", "Thursday" => "Jeudi", "Friday" => "Vendredi", "Saturday" => "Samedi", "Sunday" => "Dimanche"];
@@ -675,7 +667,6 @@ class Show
                                     <?php endforeach; ?>
                                 </div>
                                     <?php
-                                }
                             break;
 
                         case 'profile':
@@ -732,7 +723,7 @@ class Show
         echo "<option value='pdf'>PDF</option>";
         echo '</select>';
         echo '<input type="hidden" name="placement" value="' .$placement .'"/>';
-        echo "<button type='submit' name='add'>Ajouter l'article</button></form></div></section>";
+        echo "<button type='submit' name='add'>Ajouter l'article</button></form></div></section><br>";
     }
 
 
@@ -748,9 +739,6 @@ class Show
         $page = $this->pageControlleur->genererTitre();
         $this->genererIntro();
         $this->genererArticles();
-        if ($_SESSION['admin'] == true && $this->pageControlleur->compterArticles() <= 1){
-            $this->genererNewArticle($this->pageControlleur->compterArticles()+1);
-        }
 
         (new Layout($page[0]['pagetitle'], ob_get_clean()))->show();
 
