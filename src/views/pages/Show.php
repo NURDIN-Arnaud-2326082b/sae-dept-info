@@ -87,6 +87,7 @@ class Show
     public function genererArticles(): void
     {
         $content = $this->pageControlleur->genererContenu();
+        $nbr = count($content);
         if (isset($_SESSION['admin'])) {
             if ($this->pageControlleur->getName() == 'Homepage') {
                 echo '  <div class="articles-grid">';
@@ -412,6 +413,9 @@ class Show
                             break;
                         case 'youtube':
                             echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
+                            $pl = $ct['placement'];
+                            $pl++;
+                            $this->genererNewArticle($pl);
                             break;
                         case 'csv' :
                             echo '<div class="gestion"><h1> Ajouter un fichier csv </h1><form action="/PageControlleur/ajouterCsv" method="post" enctype="multipart/form-data" id="dropzoneCsv"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><label for="file" class="dropzone">Glissez & déposez un fichier csv ou cliquez ici</label><input type="file" id="file" name="file" accept="file/csv" onchange="this.form.submit()" style="display: none;"><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
@@ -442,6 +446,9 @@ class Show
 
                             echo '</body>';
                             echo '</html>';
+                            break;
+                        case 'edt':
+                            echo 'l\emploi du temps s\'affiche ici';
                             break;
                         default:
                             break;
@@ -531,7 +538,7 @@ class Show
                             echo '<h2 style="text-align:' . $ct['centrage'] . '">' . $ct['title'] . '</h2>';
                             break;
                         case 'lien':
-                            echo '<div class="contour" ><a class="link" href="' . $ct['link'] . '" style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</a></div>';
+                            echo '<div class="contour" style="text-align:' . $ct['centrage'] . ';" ><a class="link" href="' . $ct['link'] . '" >' . $ct['content'] . '</a></div>';
                             break;
                         case 'paragraphe':
                             echo '<div><p style="text-align:' . $ct['centrage'] . '">' . $ct['content'] . '</p></div>';
@@ -608,9 +615,14 @@ class Show
                                     }
                                     break;
                             }
-                            $icsContent = file_get_contents($url);
-                            if ($icsContent) {
+                            $headers = @get_headers($url);
 
+                            if ($headers && str_contains($headers[0], '200')) {
+                                $icsContent = file_get_contents($url);
+                            } else {
+                                echo '<p>Rafraichissez la page pour charger l\'emploi du temps</p>';
+                            }
+                            if ($icsContent) {
                                     $vcalendar = VObject\Reader::read($icsContent);
 
                                     // Créer un tableau pour stocker les événements par jour
@@ -690,9 +702,6 @@ class Show
                                     </div>
                                     <?php
                                 }
-                            else {
-                                echo '<p>Rafraichissez la page pour charger l\'emploi du temps</p>';
-                            }
                             break;
                         case 'profile':
                             echo '<main>';
@@ -737,7 +746,6 @@ class Show
         echo '<section id="content"><div class="gestion"><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
         echo '<h2>Ajouter un article</h2>';
         echo '<select name="type" id="article-type">';
-        echo '<option value="texte">texte avec titre</option>';
         echo "<option value='list". $cpts['cpt']."'>liste d'article</option>";
         echo "<option value='lstlinked".$cpts['cpt2']."'>liste d'article avec lien</option>";
         echo "<option value='banderolle'>banderolle en haut de page</option>";
@@ -764,6 +772,9 @@ class Show
         $page = $this->pageControlleur->genererTitre();
         $this->genererIntro();
         $this->genererArticles();
+        if ($_SESSION['admin'] == true && $this->pageControlleur->compterArticles() <= 1){
+            $this->genererNewArticle($this->pageControlleur->compterArticles()+1);
+        }
 
         (new Layout($page[0]['pagetitle'], ob_get_clean()))->show();
 

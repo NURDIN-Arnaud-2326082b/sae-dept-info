@@ -46,6 +46,15 @@ class PageModel
         return $stmt->fetchAll();
     }
 
+    public function compterArticles(string $name): bool|array
+    {
+        $sql = 'SELECT COUNT(*) FROM article JOIN articledanspage ON article.id_article = articledanspage.id_article JOIN pages ON articledanspage.id = pages.id WHERE name = :name';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+
     /**
      * Méthode de mise à jour d'un article dans la base de données.
      * @throws \Exception Si une erreur survient lors de la mise à jour de l'article.
