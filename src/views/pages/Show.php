@@ -431,9 +431,9 @@ class Show
                             echo '<div class="profile-info">';
                             echo '<p><strong>Email:</strong> ' . $_SESSION['email'] . '</p>';
 
-                            echo '<a href="#" onclick="openPopup(); return false;" class="btn-modif">Modifier mon <br> mot de passe</a>';
+                            echo '<a href="#" onclick="openPopup(); return false;" class="profile-btn">Modifier mon <br> mot de passe</a>';
                             echo '<br>';
-                            echo '<a href="/logout" class="btn-deco">Déconnexion</a>';
+                            echo '<a href="/logout" class="profile-btn">Déconnexion</a>';
 
                             echo '</div>';
 

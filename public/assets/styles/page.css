@@ -266,7 +266,7 @@ form button {
 
 .btn-save {
     background: #28a745;
-    max-width: 15%;
+    /*max-width: 25%;*/
 }
 
 .btn-delete {
@@ -558,8 +558,6 @@ iframe {
     justify-content: center;
     align-items: center;
     height: 506px;
-
-
     margin: 0 auto;
     background-color: white;
     border-radius: 10px;
@@ -572,7 +570,53 @@ iframe {
 }
 
 
-/* css du boutton du dark mode */
+
+
+.profile h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.profile-info p {
+    font-size: 18px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.profile-info strong {
+    color: #007bff;
+}
+
+
+
+.profile-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.profile-btn:hover {
+    background-color: #c82333; /* Rouge plus foncé au survol */
+    transform: scale(1.05); /* Effet léger d'agrandissement */
+}
+
+.profile-btn:active {
+    transform: scale(0.95); /* Effet clic */
+}
+
+
+
+/* css du button du dark mode */
 
 body.darkmode {
     --bg: #222;
@@ -595,79 +639,7 @@ svg {
         stroke-dasharray: 12;
     }
 
-.profile h1 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
 
-.profile-info p {
-    font-size: 18px;
-    color: #555;
-    margin: 10px 0;
-}
-
-.profile-info strong {
-    color: #007bff;
-}
-
-.profile .btn {
-    display: inline-block;
-    padding: 12px 25px;
-    margin: 15px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
-    font-size: 16px;
-    color: white;
-}
-
-.btn-modif {
-    background-color: #dc3545; /* Rouge Bootstrap */
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none;
-    display: inline-block;
-}
-
-.btn-modif:hover {
-    background-color: #c82333; /* Rouge plus foncé au survol */
-    transform: scale(1.05); /* Effet léger d'agrandissement */
-}
-
-.btn-modif:active {
-    transform: scale(0.95); /* Effet clic */
-}
-
-.btn-deco {
-    background-color: #dc3546;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 10px;
-}
-
-.btn-deco:hover {
-    background-color: #c82333; /* Bleu plus foncé au survol */
-    transform: scale(1.1); /* Effet léger d'agrandissement */
-}
-
-.btn-deco:active {
-    transform: scale(0.95); /* Effet clic */
-}
 
     .moon-shadow {
         fill: black;
@@ -712,6 +684,10 @@ svg {
     color: white;
 }
 
+.dark-mode .profile-btn {
+    color: #f1f1f1;
+}
+
 .dark-mode .profile h1 {
     color: #f1f1f1;
 }
@@ -724,21 +700,10 @@ svg {
     color: #007bff;
 }
 
-.dark-mode .profile .btn {
-    color: white;
-}
-
-.dark-mode .btn-modif {
-    background-color: rgba(40, 40, 40, 0.9);;
-}
 
     .sun {
         fill: #ff7;
     }
-
-.dark-mode .btn-deco {
-    background-color: rgba(40, 40, 40, 0.9);;
-}
 
 .add-article{
     align-content: center;
