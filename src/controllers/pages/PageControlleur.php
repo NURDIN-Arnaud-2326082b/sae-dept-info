@@ -348,6 +348,12 @@ class PageControlleur
         header('Location: /'.$_POST['name']);
     }
 
+    /**
+     * méthode pour mettre à jour le placement des articles
+     * @param mixed $placement numéro de placement
+     * @param mixed $name nom de la page
+     * @return void retourne rien
+     */
     public function mettreAjourPlacement(mixed $placement, mixed $name) : void
     {
         $content = $this->pageModel->genererContenu($name);
@@ -362,7 +368,8 @@ class PageControlleur
     }
 
     /**
-     * @throws RandomException
+     * Méthode pour ajouter un fichier CSV
+     * @throws RandomException exception en cas d'erreur d'ajout dans le modèle
      */
     public function ajouterCsvAction(): void
     {
@@ -378,17 +385,30 @@ class PageControlleur
 
     }
 
+    /**
+     * Méthode pour récupérer l'année d'un groupe
+     * @param mixed $name nom du groupe
+     * @return mixed retourne l'année du groupe
+     */
     public function getAnneeGroupe(mixed $name)
     {
         return $this->userModel->getAnneeGroupe($name);
     }
 
+    /**
+     * méthode pour supprimer tous les utilisateurs
+     * @return void ne retourne rien
+     */
     public function deleteAllUsersAction(): void
     {
         $this->userModel->deleteAllUsers();
         header('Location: /User');
     }
 
+    /**
+     * Méthode pour mettre à jour l'email d'un utilisateur
+     * @throws \Exception exception en cas d'erreur de mise à jour dans le modèle
+     */
     public function mettreAjourEmailAction(): void
     {
 

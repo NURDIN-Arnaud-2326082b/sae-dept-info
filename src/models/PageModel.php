@@ -453,6 +453,10 @@ class PageModel
 
     }
 
+    /**
+     * Méthode pour mettre à jour le placement d'un article dans la base de données.
+     * @throws \Exception Si une erreur survient lors de la mise à jour du placement de l'article.
+     */
     public function updatePlacement(int $id, int $placement): void
     {
         $sql = 'UPDATE article SET placement = :placement WHERE id_article = :id';

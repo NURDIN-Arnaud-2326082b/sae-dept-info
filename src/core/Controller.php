@@ -13,13 +13,20 @@ class Controller
     protected ?\App\src\core\DatabaseConnection $database;
     protected \PDO $db;
 
+    /**
+     * Controller constructor.
+     */
     public function __construct()
     {
         $this->database = DatabaseConnection::getInstance();
         $this->db = $this->database->getConnection();
     }
 
-    public function root($segments): void
+    /**
+     * méthode de routage du site
+     * @param $segments mixed segments de l'URL
+     */
+    public function root(mixed $segments): void
     {
         $routePath = implode('/', $segments);
 

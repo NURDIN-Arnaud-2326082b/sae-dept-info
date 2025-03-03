@@ -59,7 +59,7 @@ class Show
                         break;
                 }
             }
-            if ($this->pageControlleur->getName() != 'Homepage' && $this->pageControlleur->getName() != 'User' && $this->pageControlleur->getName() != 'menu'){
+            if ($this->pageControlleur->getName() != 'Homepage' && $this->pageControlleur->getName() != 'User' && $this->pageControlleur->getName() != 'menu' && $this->pageControlleur->getName() != 'profil') {
                 $this->genererNewArticle(2);
             }
         }

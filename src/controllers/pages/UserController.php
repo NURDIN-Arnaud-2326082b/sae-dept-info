@@ -25,9 +25,6 @@ class UserController
     /**
      * Permet de connecter un utilisateur.
      */
-    /**
-     * Permet de connecter un utilisateur.
-     */
     public function connecter(array $postData): void
     {
         $name = htmlspecialchars($postData['name']);
@@ -86,11 +83,17 @@ class UserController
         (new Connexion())->show();
     }
 
+    /**
+     * Enregistre une tentative de connexion.
+     */
     public function logLoginAttempt($ip): void
     {
         $this->userModel->logLoginAttempt($ip);
     }
 
+    /**
+     * Récupère le nombre de tentatives de connexion.
+     */
     public function getLoginAttempts($ip,$minutes)
     {
         return $this->userModel->getLoginAttempts($ip,$minutes);

@@ -256,7 +256,12 @@ class UserModel
         }
     }
 
-    public function logLoginAttempt($ip): void
+    /**
+     * ajoute une tentative de connexion.
+     * @param $ip mixed Adresse IP de l'utilisateur.
+     * @return void ne retourne rien.
+     */
+    public function logLoginAttempt(mixed $ip): void
     {
         $sql = 'INSERT INTO login_attempts (ip_address) VALUES (:ip)';
         $stmt = $this->connect->getConnection()->prepare($sql);
@@ -264,6 +269,12 @@ class UserModel
         $stmt->execute();
     }
 
+    /**
+     * Récupère le nombre de tentatives de connexion.
+     * @param $ip mixed Adresse IP de l'utilisateur.
+     * @param $minutes mixed Nombre de minutes.
+     * @return mixed Nombre de tentatives de connexion.
+     */
     public function getLoginAttempts($ip , $minutes)
     {
         $sql = 'SELECT COUNT(*) FROM login_attempts WHERE ip_address = :ip  AND attempt_time > (NOW() - INTERVAL :minutes MINUTE)';
@@ -274,6 +285,11 @@ class UserModel
         return $stmt->fetchColumn();
     }
 
+    /**
+     * Récupère l'année et le groupe d'un utilisateur.
+     * @param mixed $name Nom de l'utilisateur.
+     * @return mixed Tableau associatif contenant l'année et le groupe de l'utilisateur.
+     */
     public function getAnneeGroupe(mixed $name)
     {
         $sql = 'SELECT annee, groupe FROM user WHERE name = :name';
@@ -283,6 +299,10 @@ class UserModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * méthode pour supprimer tous les utilisateurs sauf l'admin.
+     * @return void ne retourne rien.
+     */
     public function deleteAllUsers(): void
     {
         $sql = 'DELETE FROM user WHERE name != :name';
@@ -291,6 +311,12 @@ class UserModel
         $stmt->execute();
     }
 
+    /**
+     * Méthode pour mettre à jour l'email d'un utilisateur.
+     * @param mixed $email Email de l'utilisateur.
+     * @param mixed $newemail Nouvel email de l'utilisateur.
+     * @throws \Exception Erreur lors de la mise à jour de l'email.
+     */
     public function mettreAjourEmailAction(mixed $email, mixed $newemail): void
     {
         $sql = 'UPDATE user SET email = :newemail WHERE email = :email';
