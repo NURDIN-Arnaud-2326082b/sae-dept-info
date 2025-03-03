@@ -596,7 +596,7 @@ class Show
                                 if ($icsContent) {
                                     file_put_contents($cacheFile, $icsContent);
                                 } else {
-                                    echo '<p style="color: red;">Impossible de récupérer l\'emploi du temps. Vérifiez votre connexion.</p>';
+                                    echo '<p style="color: red;">Impossible de récupérer l\'emploi du temps. Veuillez recharger la page.</p>';
                                     break;
                                 }
                             } else {
