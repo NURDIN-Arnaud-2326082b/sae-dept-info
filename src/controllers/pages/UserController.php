@@ -30,7 +30,7 @@ class UserController
      */
     public function connecter(array $postData)
     {
-        session_start();
+        //   session_start();
         $name = htmlspecialchars($postData['name']);
         $password = $postData['password'];
         $user = $this->userModel->getUserByName($name);
