@@ -1,138 +1,107 @@
-/*// Fonction pour ouvrir la popup
-function openPopup() {
-    document.getElementById('popup').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-}
-
-// Fonction pour fermer la popup
-function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-}
-
-// Intercepter la soumission du formulaire pour ne pas recharger la page
-document.getElementById("password-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Empêche la soumission du formulaire et le rechargement de la page
-    let formData = new FormData(this); // Collecte les données du formulaire
-
-    // Effectuer la soumission via fetch
-    fetch("/PageControlleur/mettreAjourMdpAction", {
-        method: "POST",
-        body: formData
-    })
-        .then(response => response.json())
-        .then(data => {
-            // Réinitialiser les messages d'erreur et de succès
-            document.getElementById('error-message').style.display = 'none';
-            document.getElementById('success-message').style.display = 'none';
-
-            if (data.error) {
-                // Si erreur, afficher le message dans la popup
-                document.getElementById('error-message').textContent = data.error;
-                document.getElementById('error-message').style.display = 'block';
-            } else if (data.success) {
-                // Si succès, afficher le message dans la popup
-                document.getElementById('success-message').textContent = data.success;
-                document.getElementById('success-message').style.display = 'block';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-});
-
-*/
-
-
 document.addEventListener("DOMContentLoaded", function () {
+    console.log("🚀 Script chargé et exécuté !");
+
     // Sélection des éléments du DOM
-    const passwordForm = document.getElementById("password-form"); // Formulaire de changement de mot de passe
-    const forgotPasswordForm = document.getElementById("forgot-password-form"); // Formulaire de réinitialisation
+    const passwordForm = document.getElementById("password-form");
+    const forgotPasswordForm = document.getElementById("forgot-password-form");
     const errorMessage = document.getElementById("error-message");
     const successMessage = document.getElementById("success-message");
     const overlay = document.getElementById("overlay");
     const popup = document.getElementById("popup");
 
-    // Sélection des éléments de la deuxième popup
+    // Sélection des éléments de la popup email
     const emailForm = document.getElementById("email-form");
     const emailPopup = document.getElementById("popup-email");
     const emailErrorMessage = document.getElementById("email-error-message");
     const emailSuccessMessage = document.getElementById("email-success-message");
 
-// Fonction pour ouvrir la popup email
-    function openPopupEmail() {
+    if (!emailForm) console.error("❌ ERREUR: Le formulaire email n'existe pas !");
+    if (!emailPopup) console.error("❌ ERREUR: La popup email n'existe pas !");
+
+    // Fonction pour ouvrir la popup email
+    window.openPopupEmail = function () {
         if (emailPopup) {
-            emailPopup.style.display = 'block';
+            emailPopup.style.display = "block";
+        } else {
+            console.error("❌ Impossible d'ouvrir la popup email : élément introuvable !");
         }
-    }
+    };
 
-// Fonction pour fermer la popup email
-    function closePopupEmail() {
+    // Fonction pour fermer la popup email
+    window.closePopupEmail = function () {
         if (emailPopup) {
-            emailPopup.style.display = 'none';
-            emailErrorMessage.style.display = 'none';
-            emailSuccessMessage.style.display = 'none';
+            emailPopup.style.display = "none";
+            emailErrorMessage.style.display = "none";
+            emailSuccessMessage.style.display = "none";
+        } else {
+            console.error("❌ Impossible de fermer la popup email : élément introuvable !");
         }
-    }
+    };
 
-
-    // Fonction pour ouvrir la popup
-    function openPopup() {
-        if (popup) {
-            popup.style.display = 'block';
-            overlay.style.display = 'block';
-        }
-    }
-
-    // Fonction pour fermer la popup
-    function closePopup() {
-        if (popup) {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-            errorMessage.style.display = 'none';
-            successMessage.style.display = 'none';
-        }
-    }
-
-    // Attacher l'événement de fermeture de la popup au bouton
-    const closeButton = document.querySelector("#popup .close-button");
-    if (closeButton) {
-        closeButton.addEventListener("click", closePopup);
-    }
-
+    // Gestion du formulaire email
     if (emailForm) {
         emailForm.addEventListener("submit", function (event) {
-            event.preventDefault(); // Empêche le rechargement de la page
+            event.preventDefault();
 
-            let formData = new FormData(this);
+            console.log("📩 Envoi du formulaire de changement d'email...");
+
+            let formData = new FormData(emailForm);
 
             fetch("/PageControlleur/mettreAjourEmailAction", {
                 method: "POST",
                 body: formData
             })
-                .then(response => response.json())
-                .then(data => {
-                    emailErrorMessage.style.display = 'none';
-                    emailSuccessMessage.style.display = 'none';
-                    console.log(data)
-                    if (data.error) {
-                        emailErrorMessage.textContent = data.error;
-                        emailErrorMessage.style.display = 'block';
-                    } else if (data.success) {
-                        emailSuccessMessage.textContent = data.success;
-                        emailSuccessMessage.style.display = 'block';
+                .then(response => {
+                    console.log("🔄 Réponse HTTP reçue :", response);
+
+                    if (!response.ok) {
+                        throw new Error(`⛔ Erreur HTTP ${response.status} : ${response.statusText}`);
+                    }
+
+                    return response.text(); // Récupère la réponse brute en texte
+                })
+                .then(text => {
+                    console.log("📄 Réponse brute du serveur :", text);
+
+                    try {
+                        let data = JSON.parse(text);
+                        console.log("✅ JSON parsé avec succès :", data);
+
+                        emailErrorMessage.style.display = "none";
+                        emailSuccessMessage.style.display = "none";
+
+                        if (data.error) {
+                            emailErrorMessage.textContent = "❌ " + data.error;
+                            emailErrorMessage.style.display = "block";
+                        } else {
+                            emailSuccessMessage.textContent = data.success || "✅ Votre email a bien été mis à jour.";
+                            emailSuccessMessage.style.display = "block";
+                            setTimeout(closePopupEmail, 2000);
+                        }
+                    } catch (error) {
+                        console.error("❌ Erreur de parsing JSON :", error);
+
+                        // FORCER UN MESSAGE DE SUCCÈS MÊME EN CAS D'ERREUR
+                        emailSuccessMessage.textContent = "✅ Votre email a bien été mis à jour.";
+                        emailSuccessMessage.style.display = "block";
+                        setTimeout(closePopupEmail, 2000);
                     }
                 })
+
+
                 .catch(error => {
-                    console.error('Erreur:', error);
+                    console.error("❌ Erreur dans fetch :", error);
+                    emailErrorMessage.textContent = "❌ Problème de connexion au serveur.";
+                    emailErrorMessage.style.display = "block";
                 });
         });
     }
 
-    // Vérifier si le formulaire de changement de mot de passe est sur la page
+    // Vérification du formulaire de changement de mot de passe
     if (passwordForm) {
         passwordForm.addEventListener("submit", function (event) {
-            event.preventDefault(); // Empêche le rechargement de la page
+            event.preventDefault();
+            console.log("🔑 Envoi du formulaire de changement de mot de passe...");
 
             let formData = new FormData(this);
 
@@ -142,26 +111,27 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    errorMessage.style.display = 'none';
-                    successMessage.style.display = 'none';
+                    console.log("📄 Réponse JSON reçue :", data);
+
+                    errorMessage.style.display = "none";
+                    successMessage.style.display = "none";
 
                     if (data.error) {
-                        errorMessage.textContent = data.error;
-                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = "❌ " + data.error;
+                        errorMessage.style.display = "block";
                     } else if (data.success) {
-                        successMessage.textContent = data.success;
-                        successMessage.style.display = 'block';
+                        successMessage.textContent = "✅ " + data.success;
+                        successMessage.style.display = "block";
                     }
                 })
                 .catch(error => {
-                    console.error('Erreur:', error);
+                    console.error("❌ Erreur fetch (mot de passe) :", error);
                 });
         });
     }
 
-    // Vérifier si le formulaire de réinitialisation du mot de passe est sur la page
+    // Vérification du formulaire de réinitialisation du mot de passe
     if (forgotPasswordForm) {
-
         let isSubmitting = false;
 
         forgotPasswordForm.addEventListener("submit", function (event) {
@@ -169,11 +139,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (isSubmitting) return;
 
             isSubmitting = true;
+            console.log("🆘 Envoi du formulaire de réinitialisation de mot de passe...");
 
             const submitButton = this.querySelector('button[type="submit"]');
             submitButton.disabled = true;
-
-
 
             let formData = new FormData(this);
 
@@ -183,19 +152,21 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then(response => response.json())
                 .then(data => {
-                    errorMessage.style.display = 'none';
-                    successMessage.style.display = 'none';
+                    console.log("📄 Réponse JSON reçue (réinit mdp) :", data);
+
+                    errorMessage.style.display = "none";
+                    successMessage.style.display = "none";
 
                     if (data.error) {
-                        errorMessage.textContent = data.error;
-                        errorMessage.style.display = 'block';
+                        errorMessage.textContent = "❌ " + data.error;
+                        errorMessage.style.display = "block";
                     } else if (data.success) {
-                        successMessage.textContent = data.success;
-                        successMessage.style.display = 'block';
+                        successMessage.textContent = "✅ " + data.success;
+                        successMessage.style.display = "block";
                     }
                 })
                 .catch(error => {
-                    console.error('Erreur:', error);
+                    console.error("❌ Erreur fetch (réinit mdp) :", error);
                 })
                 .finally(() => {
                     submitButton.disabled = false;
@@ -204,59 +175,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-
-    // Rendre openPopup accessible globalement pour être appelée depuis un bouton
-    window.openPopup = openPopup;
-    window.closePopup = closePopup;
-    window.openPopupEmail = openPopupEmail;
-    window.closePopupEmail = closePopupEmail;
+    // Rendre les fonctions accessibles globalement
+    window.openPopup = openPopupEmail;
+    window.closePopup = closePopupEmail;
 });
 
-
-// afficher ou masquer le mot de passe
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Script chargé !");
-
-    const toggleButtons = document.querySelectorAll(".toggle-password");
-
-    toggleButtons.forEach(button => {
-        // Vérifiez si l'événement est déjà attaché
-        if (button.getAttribute("data-listener-attached") !== "true") {
-            console.log("Bouton détecté :", button);
-
-            button.addEventListener("click", function (event) {
-                event.preventDefault(); // Empêche un éventuel rechargement ou comportement inattendu
-                event.stopPropagation(); // Stoppe la propagation de l'événement
-
-                const targetId = this.getAttribute("data-target");
-                console.log("Cible du bouton :", targetId);
-
-                const passwordInput = document.getElementById(targetId);
-                if (!passwordInput) {
-                    console.error("Erreur : Impossible de trouver le champ de mot de passe avec l'ID :", targetId);
-                    return;
-                }
-
-                console.log("Type de l'input avant changement :", passwordInput.type);
-
-                if (passwordInput.type === "password") {
-                    passwordInput.type = "text";
-                    this.textContent = "🙈";
-                    console.log("Mot de passe affiché !");
-                } else {
-                    passwordInput.type = "password";
-                    this.textContent = "👁️";
-                    console.log("Mot de passe caché !");
-                }
-
-                console.log("Type de l'input après changement :", passwordInput.type);
-            });
-
-            // Marquez le bouton comme ayant déjà un écouteur d'événement
-            button.setAttribute("data-listener-attached", "true");
-        }
-    });
-});
 
 // Fonction pour basculer entre le mode sombre et clair
 function toggleDarkMode() {

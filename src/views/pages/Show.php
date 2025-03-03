@@ -448,7 +448,7 @@ class Show
 
                             <label>Nouvel email :</label>
                             <div class="password-container">
-                                <input type="text" id="newemail" name="newemail" required>
+                                <input type="email" id="newemail" name="newemail" required>
                             </div>
 
                             <button class="btn-save" type="submit">Enregistrer les modifications</button>
