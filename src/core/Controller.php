@@ -93,7 +93,9 @@ class Controller
                 'mettreAjourPlacement',
                 'ajouterUser',
                 'deleteAllUsersAction',
-                'deleteAllUsers'
+                'deleteAllUsers',
+                'mettreAjourEmailAction',
+                'mettreAjourEmail',
 
 
             ];

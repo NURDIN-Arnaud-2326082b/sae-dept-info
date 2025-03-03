@@ -436,6 +436,29 @@ class Show
                             echo '<div class="profile-info">';
                             echo '<p><strong>Email:</strong> ' . $_SESSION['email'] . '</p>';
                             echo '<!-- Popup -->
+                    <div class="popup" id="popup-email">
+                        <div id="message-container">
+                            <p id="email-error-message" style="color: red; display: none;"></p>
+
+                            <!-- Message de succès -->
+                            <p id="email-success-message" style="color: green; display: none;"></p>
+                        </div>
+
+                        <form id="email-form"  method="post">
+
+                            <label>Nouvel email :</label>
+                            <div class="password-container">
+                                <input type="text" id="newemail" name="newemail" required>
+                            </div>
+
+                            <button class="btn-save" type="submit">Enregistrer les modifications</button>
+                            <button class="btn-close" onclick="closePopupEmail()">Fermer</button>
+                        </form>
+
+                    </div>';
+                            echo '<a href="#" onclick="openPopupEmail(); return false;" class="profile-btn">Modifier mon <br> email</a>';
+                            echo '<br>';
+                            echo '<!-- Popup -->
                     <div class="popup" id="popup">
                         <div id="message-container">
                             <p id="error-message" style="color: red; display: none;"></p>

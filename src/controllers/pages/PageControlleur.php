@@ -388,5 +388,13 @@ class PageControlleur
         $this->userModel->deleteAllUsers();
         header('Location: /User');
     }
+
+    public function mettreAjourEmailAction(): void
+    {
+
+        $this->userModel->mettreAjourEmailAction($_SESSION['email'],$_POST['newemail']);
+        $_SESSION['email'] = $_POST['newemail'];
+        header('Location: /profil');
+    }
 }
 

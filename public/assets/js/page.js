@@ -52,7 +52,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const successMessage = document.getElementById("success-message");
     const overlay = document.getElementById("overlay");
     const popup = document.getElementById("popup");
-    const dlpopup = document.getElementById("dlpopup");
+
+    // Sélection des éléments de la deuxième popup
+    const emailForm = document.getElementById("email-form");
+    const emailPopup = document.getElementById("popup-email");
+    const emailErrorMessage = document.getElementById("email-error-message");
+    const emailSuccessMessage = document.getElementById("email-success-message");
+
+// Fonction pour ouvrir la popup email
+    function openPopupEmail() {
+        if (emailPopup) {
+            emailPopup.style.display = 'block';
+        }
+    }
+
+// Fonction pour fermer la popup email
+    function closePopupEmail() {
+        if (emailPopup) {
+            emailPopup.style.display = 'none';
+            emailErrorMessage.style.display = 'none';
+            emailSuccessMessage.style.display = 'none';
+        }
+    }
+
 
     // Fonction pour ouvrir la popup
     function openPopup() {
@@ -76,6 +98,35 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeButton = document.querySelector("#popup .close-button");
     if (closeButton) {
         closeButton.addEventListener("click", closePopup);
+    }
+
+    if (emailForm) {
+        emailForm.addEventListener("submit", function (event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            let formData = new FormData(this);
+
+            fetch("/PageControlleur/mettreAjourEmailAction", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    emailErrorMessage.style.display = 'none';
+                    emailSuccessMessage.style.display = 'none';
+                    console.log(data)
+                    if (data.error) {
+                        emailErrorMessage.textContent = data.error;
+                        emailErrorMessage.style.display = 'block';
+                    } else if (data.success) {
+                        emailSuccessMessage.textContent = data.success;
+                        emailSuccessMessage.style.display = 'block';
+                    }
+                })
+                .catch(error => {
+                    console.error('Erreur:', error);
+                });
+        });
     }
 
     // Vérifier si le formulaire de changement de mot de passe est sur la page
@@ -157,6 +208,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Rendre openPopup accessible globalement pour être appelée depuis un bouton
     window.openPopup = openPopup;
     window.closePopup = closePopup;
+    window.openPopupEmail = openPopupEmail;
+    window.closePopupEmail = closePopupEmail;
 });
 
 

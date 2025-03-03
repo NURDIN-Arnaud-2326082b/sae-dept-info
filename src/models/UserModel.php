@@ -290,4 +290,19 @@ class UserModel
         $stmt->bindValue(':name', 'admin', PDO::PARAM_STR);
         $stmt->execute();
     }
+
+    public function mettreAjourEmailAction(mixed $email, mixed $newemail): void
+    {
+        $sql = 'UPDATE user SET email = :newemail WHERE email = :email';
+        $stmt = $this->connect->getConnection()->prepare($sql);
+        $stmt->bindValue(':email', $email, PDO::PARAM_STR);
+        $stmt->bindValue(':newemail', $newemail, PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            throw new \Exception('Erreur lors de la mise à jour de l\'email.');
+        }
+        else {
+            error_log('ez');
+            echo json_encode(['success' => 'Email mis à jour.']);
+        }
+    }
 }
