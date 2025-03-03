@@ -291,3 +291,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+ function updateGroupes() {
+     let annee = document.getElementById("annee").value;
+     let groupeOptions = document.getElementById("groupe").options;
+
+     for (let option of groupeOptions) {
+         option.style.display = "none"; // Cache toutes les options
+     }
+
+     if (annee === "1") {
+         document.querySelectorAll(".groupe-1").forEach(opt => opt.style.display = "block");
+     } else {
+         document.querySelectorAll(".groupe-23").forEach(opt => opt.style.display = "block");
+     }
+ }
+
+ // Appeler la fonction au chargement pour s'assurer que la sélection correcte est affichée
+ window.onload = updateGroupes;

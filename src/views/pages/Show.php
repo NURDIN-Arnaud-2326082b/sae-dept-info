@@ -408,19 +408,22 @@ class Show
                             break;
                         case 'gestion' :
                             echo '<br>';
-                            echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><select name="annee">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-</select> <h2>groupe</h2><select name="groupe">
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="A1">A1</option>
-<option value="A2">A2</option>
-<option value="B">B</option>
-</select><button class="btn-diff" type="submit">Enregistrer les modifications</button></form>';
+                            echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2> <select name="annee" id="annee" onchange="updateGroupes()">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+
+        <h2>Groupe</h2>
+        <select name="groupe" id="groupe">
+            <option value="1" class="groupe-1">1</option>
+            <option value="2" class="groupe-1">2</option>
+            <option value="3" class="groupe-1">3</option>
+            <option value="4" class="groupe-1">4</option>
+            <option value="A1" class="groupe-23">A1</option>
+            <option value="A2" class="groupe-23">A2</option>
+            <option value="B" class="groupe-23">B</option>
+        </select><button class="btn-diff" type="submit">Enregistrer les modifications</button></form>';
                             echo '</div>';
                             echo '<br>';
                             echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.\')"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-diff" type="submit"><i class="fa-solid fa-trash"></i></button></form>';
