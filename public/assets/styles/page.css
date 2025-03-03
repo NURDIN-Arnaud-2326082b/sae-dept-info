@@ -807,3 +807,12 @@ label {
     background: linear-gradient(90deg, #002d62, #0056b3);
     border-color: #004b93;
 }
+
+.nommage {
+    text-align: left;
+    color: #4c4c4c
+}
+
+.dark-mode .nommage {
+    color: #f1f1f1;
+}
