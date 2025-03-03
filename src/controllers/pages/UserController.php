@@ -28,9 +28,8 @@ class UserController
     /**
      * Permet de connecter un utilisateur.
      */
-    public function connecter(array $postData)
+    public function connecter(array $postData): void
     {
-        //   session_start();
         $name = htmlspecialchars($postData['name']);
         $password = $postData['password'];
         $user = $this->userModel->getUserByName($name);

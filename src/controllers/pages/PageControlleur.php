@@ -385,15 +385,8 @@ class PageControlleur
 
     public function deleteAllUsersAction(): void
     {
-        $name = $_POST['name'] ?? null;
         $this->userModel->deleteAllUsers();
-        header('Location: /' . $name);
-    }
-
-    public function compterArticles(): int
-    {
-        $cpt = $this->pageModel->compterArticles($this->name);
-        return $cpt[0]['COUNT(*)'];
+        header('Location: /User');
     }
 }
 

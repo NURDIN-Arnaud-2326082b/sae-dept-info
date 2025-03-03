@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const successMessage = document.getElementById("success-message");
     const overlay = document.getElementById("overlay");
     const popup = document.getElementById("popup");
-    const deleteAllUsers = document.getElementById("dl-all-user");
+    const dlpopup = document.getElementById("dlpopup");
 
     // Fonction pour ouvrir la popup
     function openPopup() {
@@ -152,48 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     }
-        if (deleteAllUsers) {
 
-            let isSubmitting = false;
-
-            deleteAllUsers.addEventListener("submit", function (event) {
-                event.preventDefault();
-                if (isSubmitting) return;
-
-                isSubmitting = true;
-
-                const submitButton = this.querySelector('button[type="submit"]');
-                submitButton.disabled = true;
-
-
-                let formData = new FormData(this);
-
-                fetch("/PageControlleur/deleteAllUsers", {
-                    method: "POST",
-                    body: formData
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        errorMessage.style.display = 'none';
-                        successMessage.style.display = 'none';
-
-                        if (data.error) {
-                            errorMessage.textContent = data.error;
-                            errorMessage.style.display = 'block';
-                        } else if (data.success) {
-                            successMessage.textContent = data.success;
-                            successMessage.style.display = 'block';
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Erreur:', error);
-                    })
-                    .finally(() => {
-                        submitButton.disabled = false;
-                        isSubmitting = false;
-                    });
-            });
-        }
 
     // Rendre openPopup accessible globalement pour être appelée depuis un bouton
     window.openPopup = openPopup;

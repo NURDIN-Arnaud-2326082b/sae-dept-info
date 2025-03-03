@@ -44,7 +44,7 @@ class Show
                         echo '<div class="marqueee"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" class="admin-input" value="'.$this->pageControlleur->getName().'"/>';
                         echo '<input type="hidden" class="admin-input" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" name="titre"/>';
                         echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST' style='text-align: center;'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form></div>";
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST' style='text-align: center;' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form></div>";
                         break;
                     case 'intro':
                         echo ' <section class="hero-section"><div class="hero-content">';
@@ -106,7 +106,7 @@ class Show
                            <button type='submit' style='justify-self: center;' name='add'>+</button></form></div>";
                         echo '<div class="article-preview"><div class="article-content">';
                         echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
-                        echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
+                        echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                         echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'">';
                         echo '<label for="file-'.$ct['id_article'].'" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -117,7 +117,7 @@ class Show
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'"/><input type="text" class="admin-input" value="'.$ct['title'].'" name="titre"/>';
                         echo '<textarea rows="3" cols="50" name="contenu">'. $ct['content'] .'</textarea>';
                         echo '<a href="' . $ct['link'] . '" class="read-more">En savoir plus</a><br><br>';
-                        echo "<button class='btn-save' type='submit'><i class='fa-solid fa-floppy-disk'></i></button></form><form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='link' value='".$ct['link']. "'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form></div>";
+                        echo "<button class='btn-save' type='submit'><i class='fa-solid fa-floppy-disk'></i></button></form><form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='link' value='".$ct['link']. "'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form></div>";
                         echo '</div>';
                     }
                 }
@@ -148,7 +148,7 @@ class Show
                         echo '<div class="feature"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/>';
                         echo '<textarea rows="3" cols="50" name="titre">'. $ct['title'] .'</textarea>';
                         echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
-                        echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='link' value='".$ct['link']. "'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                        echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='link' value='".$ct['link']. "'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                         echo '<a href="' . $ct['link'] . '" class="read-more">Accéder à la page</a>';
                         echo '</div>';
                     }
@@ -184,7 +184,7 @@ class Show
                             $pl = $ct2['placement'];
                             echo '<div class="feature">';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct2['id_article'] . '" alt="' . $ct2['title'] . '" onerror="this.style.display=\'none\';"">';
-                            echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
+                            echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                             echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '">';
                             echo '<label for="file-' . $ct2['id_article'] . '" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -195,7 +195,7 @@ class Show
                             echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '"/><input type="text" class="admin-input" value="' . $ct2['title'] . '" name="titre"/>';
                             echo '<textarea rows="3" cols="50" name="contenu">' . $ct2['content'] . '</textarea>';
                             echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct2['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct2['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                             echo '</div>';
                             $cpt2++;
                                 }
@@ -222,7 +222,7 @@ class Show
                         if ($ct2['type'] == $ct['type']) {
                             echo '<div class="feature">';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct2['id_article'] . '" alt="' . $ct2['title'] . '" onerror="this.style.display=\'none\';">';
-                            echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
+                            echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                             echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '">';
                             echo '<label for="file-' . $ct2['id_article'] . '" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -233,7 +233,7 @@ class Show
                             echo '<input type="hidden" name="id" value="' . $ct2['id_article'] . '"/><input class="admin-input" type="text" value="' . $ct2['title'] . '" name="titre"/>';
                             echo '<textarea rows="3" cols="50" name="contenu">' . $ct2['content'] . '</textarea><textarea rows="3" cols="50" name="lien">' . $ct2['link'] . '</textarea>';
                             echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input class='admin-input' type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct2['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input class='admin-input' type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct2['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                             echo '</div>';
                             $cpt2++;
                             $pl = $ct2['placement'];
@@ -284,7 +284,7 @@ class Show
                             }
                             echo "</select><br>";
                             echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                             $pl = $ct['placement'];
                             $pl++;
                             $this->genererNewArticle($pl);
@@ -322,7 +322,7 @@ class Show
                             }
                             echo "</select><br>";
                             echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                             echo '</div>';
                             $pl = $ct['placement'];
                             $pl++;
@@ -361,7 +361,7 @@ class Show
                             }
                             echo "</select><br>";
                             echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                             echo '</div>';
                             $pl = $ct['placement'];
                             $pl++;
@@ -370,14 +370,14 @@ class Show
                         case 'img':
                             echo '<div>';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . $ct['title'] . '" onerror="this.style.display=\'none\';">';
-                            echo '<form action="/PageControlleur/deleteImage" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct['id_article'] . '"><i class="fa-solid fa-trash"></button></form>';
+                            echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct['id_article'] . '"><i class="fa-solid fa-trash"></button></form>';
                             echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                             echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '">';
                             echo '<label for="file-' . $ct['id_article'] . '" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
                             echo '<input type="file" id="file-' . $ct['id_article'] . '" name="image" accept="image/*" onchange="this.form.submit()" style="display: none;">';
                             echo '<input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
                             echo '</form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                             echo '</div>';
                             $pl = $ct['placement'];
                             $pl++;
@@ -392,7 +392,7 @@ class Show
                             echo '<input type="file" id="file-' . $ct['id_article'] . '" name="file" accept="file/pdf" onchange="this.form.submit()" style="display: none;">';
                             echo '<input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/>';
                             echo '</form>';
-                            echo "<form action='/PageControlleur/deleteArticle' method='POST'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
+                            echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='type' value='" . $ct['type'] . "'><input type='hidden' name='action' value='delete'><input type='hidden' name='name' value='" . $this->pageControlleur->getName() . "'/><button class='btn-delete' type='submit' name='delete' value='" . $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
                             echo '</div>';
                             $pl = $ct['placement'];
                             $pl++;
@@ -421,19 +421,7 @@ class Show
                             break;
                             case 'dlallusers' :
                                 echo '<div class="gestion"><h1> Supprimer tous les utilisateurs</h1>';
-                                echo '   <div class="popup" id="popup">
-                        <div id="message-container">
-                            <p id="error-message" style="color: red; display: none;"></p>
-                            <p id="success-message" style="color: green; display: none;"></p>
-                        </div>
-                        <form id="dl-all-user" method="post">
-                            <p>Etes vous sûr de vouloir supprimer tous les utilisateurs ? Cette action est définitive.</p>
-                            <input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/>
-                            <button class="btn-save" type="submit">Confirmer</button>
-                        </form>
-                        <button onclick="closePopup(); return false;" class="btn btn-menu">Annuler</button>
-                    </div>';
-                                echo '<a href="#" onclick="openPopup()">Supprimer</a></div>';
+                                echo '<form action="/PageControlleur/deleteAllUsers" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer tous les utilisateurs ? Cette action est irréversible.\')"><button class="btn-save" type="submit">Supprimer tous les utilisateurs</button></form>';
                                 break;
                         case 'profile':
                             echo '<main>';
