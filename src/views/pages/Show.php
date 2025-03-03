@@ -724,12 +724,12 @@ class Show
         echo '<section id="content"><div class="gestion"><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
         echo '<h2>Ajouter un article</h2>';
         echo '<select name="type" id="article-type">';
+        echo "<option value='titre'>titre</option>";
+        echo "<option value='paragraphe'>paragraphe</option>";
         echo "<option value='list". $cpts['cpt']."'>liste d'article</option>";
         echo "<option value='lstlinked".$cpts['cpt2']."'>liste d'article avec lien</option>";
         echo "<option value='banderolle'>banderolle en haut de page</option>";
         echo "<option value='lien'>lien</option>";
-        echo "<option value='titre'>titre</option>";
-        echo "<option value='paragraphe'>paragraphe</option>";
         echo "<option value='img'>image</option>";
         echo "<option value='pdf'>PDF</option>";
         echo '</select>';
