@@ -679,9 +679,45 @@ class Show
                             echo '<p><strong>Email:</strong> ' . $_SESSION['email'] . '</p>';
                             echo '<p><strong>Année:</strong> ' . $_SESSION['annee'] . '</p>';
                             echo '<p><strong>Groupe:</strong> ' . $_SESSION['groupe'] . '</p>';
+                            echo '<!-- Popup -->
+                    <div class="popup" id="popup">
+                        <div id="message-container">
+                            <p id="error-message" style="color: red; display: none;"></p>
+
+                            <!-- Message de succès -->
+                            <p id="success-message" style="color: green; display: none;"></p>
+                        </div>
+
+                        <form id="password-form"  method="post">
+                            <input type="hidden" name="name" value="'.$_SESSION['name'] .'">
+
+                            <label>Mot de passe actuel :</label>
+                            <div class="password-container">
+                                <input type="password" id="mdpActuel" name="mdpActuel" required>
+                                <button type="button" class="toggle-password" data-target="mdpActuel">👁️</button>
+                            </div>
+
+                            <label>Nouveau mot de passe :</label>
+                            <div class="password-container">
+                                <input type="password" id="nouveauMdp1" name="nouveauMdp1" required>
+                                <button type="button" class="toggle-password" data-target="nouveauMdp1">👁️</button>
+                            </div>
+
+                            <label>Confirmer le nouveau mot de passe :</label>
+                            <div class="password-container">
+                                <input type="password" id="nouveauMdp2" name="nouveauMdp2" required>
+                                <button type="button" class="toggle-password" data-target="nouveauMdp2">👁️</button>
+                            </div>
+
+                            <button class="btn-save" type="submit">Enregistrer les modifications</button>
+                            <button class="btn-close" onclick="closePopup()">Fermer</button>
+                        </form>
+
+                    </div>';
                             echo '<a href="#" onclick="openPopup(); return false;" class="profile-btn">Modifier mon <br> mot de passe</a>';
                             echo '<br>';
                             echo '<a href="/logout" class="profile-btn">Déconnexion</a>';
+
 
                             echo '</div>';
 

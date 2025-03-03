@@ -23,42 +23,7 @@ class Navbar
             <div class="actions">
                 <?php if (isset($user['name'])): ?>
 
-                    <!-- Popup -->
-                    <div class="popup" id="popup">
-                        <div id="message-container">
-                            <!-- Message d'erreur -->
-                            <p id="error-message" style="color: red; display: none;"></p>
 
-                            <!-- Message de succès -->
-                            <p id="success-message" style="color: green; display: none;"></p>
-                        </div>
-
-                        <form id="password-form"  method="post">
-                            <input type="hidden" name="name" value="<?= htmlspecialchars($user['name']) ?>">
-
-                            <label>Mot de passe actuel :</label>
-                            <div class="password-container">
-                                <input type="password" id="mdpActuel" name="mdpActuel" required>
-                                <button type="button" class="toggle-password" data-target="mdpActuel">👁️</button>
-                            </div>
-
-                            <label>Nouveau mot de passe :</label>
-                            <div class="password-container">
-                                <input type="password" id="nouveauMdp1" name="nouveauMdp1" required>
-                                <button type="button" class="toggle-password" data-target="nouveauMdp1">👁️</button>
-                            </div>
-
-                            <label>Confirmer le nouveau mot de passe :</label>
-                            <div class="password-container">
-                                <input type="password" id="nouveauMdp2" name="nouveauMdp2" required>
-                                <button type="button" class="toggle-password" data-target="nouveauMdp2">👁️</button>
-                            </div>
-
-                            <button class="btn-save" type="submit">Enregistrer les modifications</button>
-                            <button class="btn-close" onclick="closePopup()">Fermer</button>
-                        </form>
-
-                    </div>
 
                     <a href="/menu" class="btn btn-menu">Menu</a>
                     <a href="/profil" class="btn btn-menu">Mon profil</a>

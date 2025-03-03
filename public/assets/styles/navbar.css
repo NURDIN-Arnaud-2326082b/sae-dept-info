@@ -79,6 +79,7 @@
 
 .navbar .btn-login {
     background-color: #007bff;
+    width: 40px;
 }
 
 .navbar .btn-logout {
@@ -112,7 +113,7 @@
 
     .navbar .actions a {
         padding: 0.5rem 0.75rem;
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
 }
 
@@ -137,7 +138,7 @@
 
     .navbar .actions a {
         padding: 0.2rem 0.3rem;  /* Réduction du padding des boutons */
-        font-size: 0.75rem; /* Réduction de la taille du texte */
+        font-size: 1rem; /* Réduction de la taille du texte */
     }
 }
 
@@ -169,7 +170,7 @@
 
     .navbar .actions a {
         padding: 0.15rem 0.25rem; /* Encore plus petit */
-        font-size: 0.65rem; /* Taille de texte encore plus petite */
+        font-size: 1rem; /* Taille de texte encore plus petite */
     }
 }
 
