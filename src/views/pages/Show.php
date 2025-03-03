@@ -220,7 +220,7 @@ class Show
                     $tmp = $ct['type'];
                     $pl = 0;
                     $cpt2 = 0;
-                    echo '<div class="features-grid"><p class="nommage">liste d\'articles avec lien</p><br>';
+                    echo '<p class="nommage">liste d\'articles avec lien</p><div class="features-grid">';
                     foreach ($content as $ct2) {
                         if ($ct2['type'] == $ct['type']) {
                             echo '<div class="feature"><p class="nommage">article de la liste</p><br>';
@@ -408,10 +408,22 @@ class Show
                             break;
                         case 'gestion' :
                             echo '<br>';
-                            echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><select name="annee">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+</select> <h2>groupe</h2><select name="groupe">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="A1">A1</option>
+<option value="A2">A2</option>
+<option value="B">B</option>
+</select><button class="btn-diff" type="submit">Enregistrer les modifications</button></form>';
                             echo '</div>';
                             echo '<br>';
-                            echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.\')"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit"><i class="fa-solid fa-trash"></i></button></form>';
+                            echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.\')"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-diff" type="submit"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '</div>';
                             echo '<br>';
                             break;
@@ -419,12 +431,12 @@ class Show
                             echo '<div class="video-container"><iframe width="560" height="315" src="https://www.youtube.com/embed/sVoBk3g-ZmA?si=_GRzxx9eprOXzGQ4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>';
                             break;
                         case 'csv' :
-                            echo '<div class="gestion"><h1> Ajouter un fichier csv </h1><form action="/PageControlleur/ajouterCsv" method="post" enctype="multipart/form-data" id="dropzoneCsv"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><label for="file" class="dropzone">Glissez & déposez un fichier csv ou cliquez ici</label><input type="file" id="file" name="file" accept="file/csv" onchange="this.form.submit()" style="display: none;"><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
+                            echo '<div class="gestion"><h1> Ajouter un fichier csv </h1><form action="/PageControlleur/ajouterCsv" method="post" enctype="multipart/form-data" id="dropzoneCsv"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><label for="file" class="dropzone">Glissez & déposez un fichier csv ou cliquez ici</label><input type="file" id="file" name="file" accept="file/csv" onchange="this.form.submit()" style="display: none;"><button class="btn-diff" type="submit">Enregistrer les modifications</button></form>';
                             echo '</div>';
                             break;
                             case 'dlallusers' :
                                 echo '<div class="gestion"><h1> Supprimer tous les utilisateurs</h1>';
-                                echo '<form action="/PageControlleur/deleteAllUsers" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer tous les utilisateurs ? Cette action est irréversible.\')"><button class="btn-save" type="submit">Supprimer tous les utilisateurs</button></form>';
+                                echo '<form action="/PageControlleur/deleteAllUsers" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer tous les utilisateurs ? Cette action est irréversible.\')"><button class="btn-diff" type="submit">Supprimer tous les utilisateurs</button></form>';
                                 break;
                         case 'profile':
                             echo '<main>';
@@ -451,7 +463,7 @@ class Show
                                 <input type="email" id="newemail" name="newemail" required>
                             </div>
 
-                            <button class="btn-save" type="submit">Enregistrer les modifications</button>
+                            <button class="btn-diff" type="submit">Enregistrer les modifications</button>
                             <button class="btn-close" onclick="closePopupEmail()">Fermer</button>
                         </form>
 
@@ -488,7 +500,7 @@ class Show
                                 <button type="button" class="toggle-password" data-target="nouveauMdp2">👁️</button>
                             </div>
 
-                            <button class="btn-save" type="submit">Enregistrer les modifications</button>
+                            <button class="btn-diff" type="submit">Enregistrer les modifications</button>
                             <button class="btn-close" onclick="closePopup()">Fermer</button>
                         </form>
 
@@ -766,7 +778,7 @@ class Show
                                 <button type="button" class="toggle-password" data-target="nouveauMdp2">👁️</button>
                             </div>
 
-                            <button class="btn-save" type="submit">Enregistrer les modifications</button>
+                            <button class="btn-diff" type="submit">Enregistrer les modifications</button>
                             <button class="btn-close" onclick="closePopup()">Fermer</button>
                         </form>
 

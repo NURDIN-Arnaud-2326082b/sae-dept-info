@@ -270,6 +270,10 @@ form button {
 
 }
 
+.btn-diff {
+    background: #28a745;
+}
+
 .btn-delete {
     background: #dc3545;
     max-width: 15%;

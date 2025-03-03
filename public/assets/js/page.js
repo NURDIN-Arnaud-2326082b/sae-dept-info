@@ -1,184 +1,198 @@
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("🚀 Script chargé et exécuté !");
+ document.addEventListener("DOMContentLoaded", function () {
+        // Sélection des éléments du DOM
+        const passwordForm = document.getElementById("password-form"); // Formulaire de changement de mot de passe
+        const forgotPasswordForm = document.getElementById("forgot-password-form"); // Formulaire de réinitialisation
+        const errorMessage = document.getElementById("error-message");
+        const successMessage = document.getElementById("success-message");
+        const overlay = document.getElementById("overlay");
+        const popup = document.getElementById("popup");
+        // Sélection des éléments de la popup email
+        const emailForm = document.getElementById("email-form");
+        const emailPopup = document.getElementById("popup-email");
+        const emailErrorMessage = document.getElementById("email-error-message");
+        const emailSuccessMessage = document.getElementById("email-success-message");
 
-    // Sélection des éléments du DOM
-    const passwordForm = document.getElementById("password-form");
-    const forgotPasswordForm = document.getElementById("forgot-password-form");
-    const errorMessage = document.getElementById("error-message");
-    const successMessage = document.getElementById("success-message");
-    const overlay = document.getElementById("overlay");
-    const popup = document.getElementById("popup");
-
-    // Sélection des éléments de la popup email
-    const emailForm = document.getElementById("email-form");
-    const emailPopup = document.getElementById("popup-email");
-    const emailErrorMessage = document.getElementById("email-error-message");
-    const emailSuccessMessage = document.getElementById("email-success-message");
-
-    if (!emailForm) console.error("❌ ERREUR: Le formulaire email n'existe pas !");
-    if (!emailPopup) console.error("❌ ERREUR: La popup email n'existe pas !");
-
-    // Fonction pour ouvrir la popup email
-    window.openPopupEmail = function () {
-        if (emailPopup) {
-            emailPopup.style.display = "block";
-        } else {
-            console.error("❌ Impossible d'ouvrir la popup email : élément introuvable !");
+        // Fonction pour ouvrir la popup
+        function openPopup() {
+            if (popup) {
+                popup.style.display = 'block';
+                overlay.style.display = 'block';
+            }
         }
-    };
 
-    // Fonction pour fermer la popup email
-    window.closePopupEmail = function () {
-        if (emailPopup) {
-            emailPopup.style.display = "none";
-            emailErrorMessage.style.display = "none";
-            emailSuccessMessage.style.display = "none";
-        } else {
-            console.error("❌ Impossible de fermer la popup email : élément introuvable !");
+        // Fonction pour fermer la popup
+        function closePopup() {
+            if (popup) {
+                popup.style.display = 'none';
+                overlay.style.display = 'none';
+                errorMessage.style.display = 'none';
+                successMessage.style.display = 'none';
+            }
         }
-    };
 
-    // Gestion du formulaire email
-    if (emailForm) {
-        emailForm.addEventListener("submit", function (event) {
-            event.preventDefault();
+        // Fonction pour ouvrir la popup email
+        window.openPopupEmail = function () {
+            if (emailPopup) {
+                emailPopup.style.display = "block";
+            } else {
+                console.error("❌ Impossible d'ouvrir la popup email : élément introuvable !");
+            }
+        };
 
-            console.log("📩 Envoi du formulaire de changement d'email...");
+        // Fonction pour fermer la popup email
+        window.closePopupEmail = function () {
+            if (emailPopup) {
+                emailPopup.style.display = "none";
+                emailErrorMessage.style.display = "none";
+                emailSuccessMessage.style.display = "none";
+            } else {
+                console.error("❌ Impossible de fermer la popup email : élément introuvable !");
+            }
+        };
+        // Attacher l'événement de fermeture de la popup au bouton
+        const closeButton = document.querySelector("#popup .close-button");
+        if (closeButton) {
+            closeButton.addEventListener("click", closePopup);
+        }
+        // Gestion du formulaire email
+        if (emailForm) {
+            emailForm.addEventListener("submit", function (event) {
+                event.preventDefault();
 
-            let formData = new FormData(emailForm);
+                console.log("📩 Envoi du formulaire de changement d'email...");
 
-            fetch("/PageControlleur/mettreAjourEmailAction", {
-                method: "POST",
-                body: formData
-            })
-                .then(response => {
-                    console.log("🔄 Réponse HTTP reçue :", response);
+                let formData = new FormData(emailForm);
 
-                    if (!response.ok) {
-                        throw new Error(`⛔ Erreur HTTP ${response.status} : ${response.statusText}`);
-                    }
-
-                    return response.text(); // Récupère la réponse brute en texte
+                fetch("/PageControlleur/mettreAjourEmailAction", {
+                    method: "POST",
+                    body: formData
                 })
-                .then(text => {
-                    console.log("📄 Réponse brute du serveur :", text);
+                    .then(response => {
+                        console.log("🔄 Réponse HTTP reçue :", response);
 
-                    try {
-                        let data = JSON.parse(text);
-                        console.log("✅ JSON parsé avec succès :", data);
+                        if (!response.ok) {
+                            throw new Error(`⛔ Erreur HTTP ${response.status} : ${response.statusText}`);
+                        }
 
-                        emailErrorMessage.style.display = "none";
-                        emailSuccessMessage.style.display = "none";
+                        return response.text(); // Récupère la réponse brute en texte
+                    })
+                    .then(text => {
+                        console.log("📄 Réponse brute du serveur :", text);
 
-                        if (data.error) {
-                            emailErrorMessage.textContent = "❌ " + data.error;
-                            emailErrorMessage.style.display = "block";
-                        } else {
-                            emailSuccessMessage.textContent = data.success || "✅ Votre email a bien été mis à jour.";
+                        try {
+                            let data = JSON.parse(text);
+                            console.log("✅ JSON parsé avec succès :", data);
+
+                            emailErrorMessage.style.display = "none";
+                            emailSuccessMessage.style.display = "none";
+
+                            if (data.error) {
+                                emailErrorMessage.textContent = "❌ " + data.error;
+                                emailErrorMessage.style.display = "block";
+                            } else {
+                                emailSuccessMessage.textContent = data.success || "✅ Votre email a bien été mis à jour.";
+                                emailSuccessMessage.style.display = "block";
+                                setTimeout(closePopupEmail, 2000);
+                            }
+                        } catch (error) {
+                            console.error("❌ Erreur de parsing JSON :", error);
+
+                            // FORCER UN MESSAGE DE SUCCÈS MÊME EN CAS D'ERREUR
+                            emailSuccessMessage.textContent = "✅ Votre email a bien été mis à jour.";
                             emailSuccessMessage.style.display = "block";
                             setTimeout(closePopupEmail, 2000);
                         }
-                    } catch (error) {
-                        console.error("❌ Erreur de parsing JSON :", error);
+                    })
 
-                        // FORCER UN MESSAGE DE SUCCÈS MÊME EN CAS D'ERREUR
-                        emailSuccessMessage.textContent = "✅ Votre email a bien été mis à jour.";
-                        emailSuccessMessage.style.display = "block";
-                        setTimeout(closePopupEmail, 2000);
-                    }
+
+                    .catch(error => {
+                        console.error("❌ Erreur dans fetch :", error);
+                        emailErrorMessage.textContent = "❌ Problème de connexion au serveur.";
+                        emailErrorMessage.style.display = "block";
+                    });
+            });
+        }
+        // Vérifier si le formulaire de changement de mot de passe est sur la page
+        if (passwordForm) {
+            passwordForm.addEventListener("submit", function (event) {
+                event.preventDefault(); // Empêche le rechargement de la page
+
+                let formData = new FormData(this);
+
+                fetch("/PageControlleur/mettreAjourMdpAction", {
+                    method: "POST",
+                    body: formData
                 })
+                    .then(response => response.json())
+                    .then(data => {
+                        errorMessage.style.display = 'none';
+                        successMessage.style.display = 'none';
+
+                        if (data.error) {
+                            errorMessage.textContent = data.error;
+                            errorMessage.style.display = 'block';
+                        } else if (data.success) {
+                            successMessage.textContent = data.success;
+                            successMessage.style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                    });
+            });
+        }
+
+        // Vérifier si le formulaire de réinitialisation du mot de passe est sur la page
+        if (forgotPasswordForm) {
+
+            let isSubmitting = false;
+
+            forgotPasswordForm.addEventListener("submit", function (event) {
+                event.preventDefault();
+                if (isSubmitting) return;
+
+                isSubmitting = true;
+
+                const submitButton = this.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
 
 
-                .catch(error => {
-                    console.error("❌ Erreur dans fetch :", error);
-                    emailErrorMessage.textContent = "❌ Problème de connexion au serveur.";
-                    emailErrorMessage.style.display = "block";
-                });
-        });
-    }
 
-    // Vérification du formulaire de changement de mot de passe
-    if (passwordForm) {
-        passwordForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            console.log("🔑 Envoi du formulaire de changement de mot de passe...");
+                let formData = new FormData(this);
 
-            let formData = new FormData(this);
-
-            fetch("/PageControlleur/mettreAjourMdpAction", {
-                method: "POST",
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("📄 Réponse JSON reçue :", data);
-
-                    errorMessage.style.display = "none";
-                    successMessage.style.display = "none";
-
-                    if (data.error) {
-                        errorMessage.textContent = "❌ " + data.error;
-                        errorMessage.style.display = "block";
-                    } else if (data.success) {
-                        successMessage.textContent = "✅ " + data.success;
-                        successMessage.style.display = "block";
-                    }
+                fetch("/PageControlleur/reinitialiserMdp", {
+                    method: "POST",
+                    body: formData
                 })
-                .catch(error => {
-                    console.error("❌ Erreur fetch (mot de passe) :", error);
-                });
-        });
-    }
+                    .then(response => response.json())
+                    .then(data => {
+                        errorMessage.style.display = 'none';
+                        successMessage.style.display = 'none';
 
-    // Vérification du formulaire de réinitialisation du mot de passe
-    if (forgotPasswordForm) {
-        let isSubmitting = false;
+                        if (data.error) {
+                            errorMessage.textContent = data.error;
+                            errorMessage.style.display = 'block';
+                        } else if (data.success) {
+                            successMessage.textContent = data.success;
+                            successMessage.style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Erreur:', error);
+                    })
+                    .finally(() => {
+                        submitButton.disabled = false;
+                        isSubmitting = false;
+                    });
+            });
+        }
 
-        forgotPasswordForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            if (isSubmitting) return;
 
-            isSubmitting = true;
-            console.log("🆘 Envoi du formulaire de réinitialisation de mot de passe...");
+        // Rendre openPopup accessible globalement pour être appelée depuis un bouton
+        window.openPopup = openPopup;
+        window.closePopup = closePopup;
+    });
 
-            const submitButton = this.querySelector('button[type="submit"]');
-            submitButton.disabled = true;
-
-            let formData = new FormData(this);
-
-            fetch("/PageControlleur/reinitialiserMdp", {
-                method: "POST",
-                body: formData
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log("📄 Réponse JSON reçue (réinit mdp) :", data);
-
-                    errorMessage.style.display = "none";
-                    successMessage.style.display = "none";
-
-                    if (data.error) {
-                        errorMessage.textContent = "❌ " + data.error;
-                        errorMessage.style.display = "block";
-                    } else if (data.success) {
-                        successMessage.textContent = "✅ " + data.success;
-                        successMessage.style.display = "block";
-                    }
-                })
-                .catch(error => {
-                    console.error("❌ Erreur fetch (réinit mdp) :", error);
-                })
-                .finally(() => {
-                    submitButton.disabled = false;
-                    isSubmitting = false;
-                });
-        });
-    }
-
-    // Rendre les fonctions accessibles globalement
-    window.openPopup = openPopupEmail;
-    window.closePopup = closePopupEmail;
-});
 
 
 // Fonction pour basculer entre le mode sombre et clair
