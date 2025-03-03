@@ -208,24 +208,17 @@ document.addEventListener("DOMContentLoaded", function () {
 // Fonction pour basculer entre le mode sombre et clair
 function toggleDarkMode() {
     const body = document.body;
-    const toggleButton = document.getElementById("dark-mode-toggle");
-    const checkbox = document.getElementById("darkMode"); // L'élément checkbox
+    const checkbox = document.getElementById("darkMode");
+    const logo = document.getElementById("logo"); // Récupération de l'image
 
-    // Vérifie si le mode sombre est déjà activé
-    if (body.classList.contains('dark-mode')) {
-        // Désactive le mode sombre
-        body.classList.remove('dark-mode');
-        // Enregistre la préférence comme étant le mode clair
-        localStorage.setItem('darkMode', 'false');
-        toggleButton.textContent = "Mode Sombre"; // Texte du bouton
-        checkbox.checked = false; // Décoche la checkbox
-    } else {
-        // Active le mode sombre
+    if (checkbox.checked) {
         body.classList.add('dark-mode');
-        // Enregistre la préférence comme étant le mode sombre
         localStorage.setItem('darkMode', 'true');
-        toggleButton.textContent = "Mode Clair"; // Texte du bouton
-        checkbox.checked = true; // Coche la checkbox
+        logo.src = "/assets/images/logo_amu_dark.png"; // Logo sombre
+    } else {
+        body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'false');
+        logo.src = "/assets/images/logo_amu.png"; // Logo clair
     }
 }
 
@@ -233,28 +226,27 @@ function toggleDarkMode() {
 function applyDarkMode() {
     const darkMode = localStorage.getItem('darkMode');
     const body = document.body;
-    const toggleButton = document.getElementById("dark-mode-toggle");
     const checkbox = document.getElementById("darkMode");
+    const logo = document.getElementById("logo"); // Récupération de l'image
 
-    // Si la préférence est stockée et vaut 'true', active le mode sombre
     if (darkMode === 'true') {
         body.classList.add('dark-mode');
-        toggleButton.textContent = "Mode Clair"; // Texte du bouton
-        checkbox.checked = true; // Coche la checkbox
+        checkbox.checked = true;
+        logo.src = "/assets/images/logo_amu_dark.png"; // Logo sombre
     } else {
         body.classList.remove('dark-mode');
-        toggleButton.textContent = "Mode Sombre"; // Texte du bouton
-        checkbox.checked = false; // Décoche la checkbox
+        checkbox.checked = false;
+        logo.src = "/assets/images/logo_amu.png"; // Logo clair
     }
 }
 
 // Applique le mode sombre dès que la page est chargée
-window.onload = applyDarkMode;
-
-// Attache l'événement de changement d'état de la checkbox à la fonction toggleDarkMode
-document.getElementById("darkMode").addEventListener("change", toggleDarkMode);
-
 document.addEventListener("DOMContentLoaded", function () {
+    applyDarkMode();
+
+    // Attache l'événement de changement d'état de la checkbox à la fonction toggleDarkMode
+    document.getElementById("darkMode").addEventListener("change", toggleDarkMode);
+    
     document.querySelectorAll("#article-type").forEach(select => {
         select.addEventListener("change", function() {
             let input = this.parentElement.querySelector("#link-input");

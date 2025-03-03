@@ -10,10 +10,9 @@ class Navbar
         ?>
         <link rel="stylesheet" href="/assets/styles/navbar.css">
         <script src="/assets/js/page.js"></script>
-
         <nav class="navbar">
             <a href="/">
-                <img src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
+                <img id="logo" src="/assets/images/logo_amu.png" alt="Logo amu noir" class="logo">
             </a>
 
             <div class="name">
