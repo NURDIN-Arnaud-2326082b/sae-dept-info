@@ -266,7 +266,8 @@ form button {
 
 .btn-save {
     background: #28a745;
-    /*max-width: 25%;*/
+    max-width: 15%;
+
 }
 
 .btn-delete {
@@ -276,6 +277,7 @@ form button {
     border: none;
     border-radius: 0.5rem;
     cursor: pointer;
+    margin: 0;
 }
 
 /* Dropzone */

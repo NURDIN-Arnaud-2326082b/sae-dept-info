@@ -58,7 +58,9 @@ class Show
                         break;
                 }
             }
-            $this->genererNewArticle(2);
+            if ($this->pageControlleur->getName() != 'Homepage' && $this->pageControlleur->getName() != 'User' && $this->pageControlleur->getName() != 'menu'){
+                $this->genererNewArticle(2);
+            }
         }
         else {
             foreach ($content as $ct) {
