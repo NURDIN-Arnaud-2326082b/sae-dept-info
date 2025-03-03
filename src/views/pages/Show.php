@@ -370,7 +370,7 @@ class Show
                         case 'img':
                             echo '<div>';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . $ct['title'] . '" onerror="this.style.display=\'none\';">';
-                            echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct['id_article'] . '"><i class="fa-solid fa-trash"></button></form>';
+                            echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
                             echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '">';
                             echo '<label for="file-' . $ct['id_article'] . '" class="dropzone">Glissez & déposez une image ou cliquez ici</label>';
@@ -408,7 +408,7 @@ class Show
                             echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo '</div>';
                             echo '<br>';
-                            echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.\')"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit">cc</button></form>';
+                            echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cet utilisateur ? Cette action est irréversible.\')"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '</div>';
                             echo '<br>';
                             break;
