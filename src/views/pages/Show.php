@@ -41,13 +41,14 @@ class Show
             foreach ($content as $ct) {
                 switch ($ct['type']) {
                     case 'banderolle':
-                        echo '<div class="marqueee"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" class="admin-input" value="'.$this->pageControlleur->getName().'"/>';
+                        echo '<div class="marqueee"><p style="text-align: left; color: #4c4c4c">banderolle</p><br><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" class="admin-input" value="'.$this->pageControlleur->getName().'"/>';
+                        echo '';
                         echo '<input type="hidden" class="admin-input" name="id" value="'.$ct['id_article'].'" /><input type="text" value="'.$ct['title'].'" name="titre"/>';
                         echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
                         echo "<form action='/PageControlleur/deleteArticle' method='POST' style='text-align: center;' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form></div>";
                         break;
                     case 'intro':
-                        echo ' <section class="hero-section"><div class="hero-content">';
+                        echo ' <section class="hero-section"><div class="hero-content"><p style="text-align: left; color: #4c4c4c">intro</p><br>';
                         echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
                         echo '<input type="hidden" name="id" value="'.$ct['id_article'].'" /><input type="text" class="admin-input" value="'.$ct['title'].'" name="titre"/>';
                         echo '<textarea rows="3" cols="50" name="contenu">'. $ct['content'] .'</textarea>';
@@ -106,7 +107,7 @@ class Show
                         </select><br>
                         <input type='text' name='link'  id='link-input' style='align-self: center; display: none;' placeholder='Entrez le lien'/>
                            <button type='submit' style='justify-self: center;' name='add'>+</button></form></div>";
-                        echo '<div class="article-preview"><div class="article-content">';
+                        echo '<div class="article-preview"><div class="article-content"><p style="text-align: left; color: #4c4c4c">article homepage</p><br>';
                         echo '<img src="/PageControlleur/getImage?id='.$ct['id_article'].'" alt="'.$ct['title'].'" onerror="this.style.display=\'none\';">';
                         echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><button class="btn-delete" type="submit" name="delete" value="'. $ct['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                         echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
@@ -147,7 +148,7 @@ class Show
                         </select><br>
                         <input type='text' name='link' id='link-input' class='admin-input' style='display: none;' placeholder='Entrez le lien'/>
                            <button type='submit' name='add'>+</button></form>";
-                        echo '<div class="feature"><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/>';
+                        echo '<div class="feature"><p style="text-align: left; color: #4c4c4c">article menu</p><br><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/><input type="hidden" name="id" value="'.$ct['id_article'].'"/>';
                         echo '<textarea rows="3" cols="50" name="titre">'. $ct['title'] .'</textarea>';
                         echo '<button class="btn-save" type="submit"><i class="fa-solid fa-floppy-disk"></i></button></form>';
                         echo "<form action='/PageControlleur/deleteArticle' method='POST' onsubmit='return confirm(\"Êtes-vous sûr de vouloir supprimer cet article ? Cette action est irréversible.\")'><input type='hidden' name='action' value='delete'><input type='hidden' name='link' value='".$ct['link']. "'><input type='hidden' name='type' value='".$ct['type']. "'><input type='hidden' name='name' value='".$this->pageControlleur->getName()."'/><button class='btn-delete' type='submit' name='delete' value='". $ct['id_article'] . "'><i class='fa-solid fa-trash'></i></button></form>";
@@ -180,11 +181,11 @@ class Show
                     $tmp = $ct['type'];
                     $cpt2 = 0;
                     $pl = 0;
-                    echo '<div class="features-grid">';
+                    echo '<p style="text-align: left; color: #4c4c4c">liste d\'articles</p><br><div class="features-grid">';
                     foreach ($content as $ct2) {
                         if ($ct2['type'] == $ct['type']) {
                             $pl = $ct2['placement'];
-                            echo '<div class="feature">';
+                            echo '<div class="feature"><p style="text-align: left; color: #4c4c4c">article de la liste</p><br>';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct2['id_article'] . '" alt="' . $ct2['title'] . '" onerror="this.style.display=\'none\';"">';
                             echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
@@ -219,10 +220,10 @@ class Show
                     $tmp = $ct['type'];
                     $pl = 0;
                     $cpt2 = 0;
-                    echo '<div class="features-grid">';
+                    echo '<div class="features-grid"><p style="text-align: left; color: #4c4c4c">liste d\'articles avec lien</p><br>';
                     foreach ($content as $ct2) {
                         if ($ct2['type'] == $ct['type']) {
-                            echo '<div class="feature">';
+                            echo '<div class="feature"><p style="text-align: left; color: #4c4c4c">article de la liste</p><br>';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct2['id_article'] . '" alt="' . $ct2['title'] . '" onerror="this.style.display=\'none\';">';
                             echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct2['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
@@ -254,7 +255,7 @@ class Show
                 else {
                     switch ($ct['type']) {
                         case 'titre':
-                            echo '<form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" class="admin-input" value="' . $ct['title'] . '" name="titre"/>';
+                            echo '<p style="text-align: left; color: #4c4c4c">titre</p><br><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><input type="text" class="admin-input" value="' . $ct['title'] . '" name="titre"/>';
                             echo "<select name='centrage' id='article-type'>";
                             switch ($ct['centrage']) {
                                 case 'center':
@@ -292,7 +293,7 @@ class Show
                             $this->genererNewArticle($pl);
                             break;
                         case 'lien':
-                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                            echo '<div><p style="text-align: left; color: #4c4c4c">lien</p><br><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="lien">' . $ct['link'] . '</textarea><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
                             echo "<select name='centrage' id='article-type'>";
                             switch ($ct['centrage']) {
                                 case 'center':
@@ -331,7 +332,7 @@ class Show
                             $this->genererNewArticle($pl);
                             break;
                         case 'paragraphe':
-                            echo '<div><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
+                            echo '<div><p style="text-align: left; color: #4c4c4c">paragraphe</p><br><form action="/PageControlleur/updateArticle" method="post"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><input type="hidden" name="id" value="' . $ct['id_article'] . '"/><textarea rows="3" cols="50" name="contenu">' . $ct['content'] . '</textarea>';
                             echo "<select name='centrage' id='article-type'>";
                             switch ($ct['centrage']) {
                                 case 'center':
@@ -370,7 +371,7 @@ class Show
                             $this->genererNewArticle($pl);
                             break;
                         case 'img':
-                            echo '<div>';
+                            echo '<div><p style="text-align: left; color: #4c4c4c">image</p><br>';
                             echo '<img src="/PageControlleur/getImage?id=' . $ct['id_article'] . '" alt="' . $ct['title'] . '" onerror="this.style.display=\'none\';">';
                             echo '<form action="/PageControlleur/deleteImage" method="post" onsubmit="return confirm(\'Êtes-vous sûr de vouloir supprimer cette image ? Cette action est irréversible.\')"><input type="hidden" name="name" value="' . $this->pageControlleur->getName() . '"/><button class="btn-delete" type="submit" name="delete" value="' . $ct['id_article'] . '"><i class="fa-solid fa-trash"></i></button></form>';
                             echo '<form action="/PageControlleur/updateImage" method="post" enctype="multipart/form-data">';
@@ -386,7 +387,7 @@ class Show
                             $this->genererNewArticle($pl);
                             break;
                         case 'pdf':
-                            echo '<div>';
+                            echo '<div><p style="text-align: left; color: #4c4c4c">pdf</p><br>';
                             echo '<a href="/PageControlleur/getPdf?id=' . $ct['id_article'] . '" download="fichier.pdf">Télécharger le PDF</a>';
                             echo '<form action="/PageControlleur/updatePdf" method="post" enctype="multipart/form-data">';
                             echo '<input type="hidden" name="id" value="' . $ct['id_article'] . '">';
