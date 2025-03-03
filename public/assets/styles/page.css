@@ -619,15 +619,15 @@ iframe {
 
 
 
-/* css du button du dark mode */
-
+/* Ajustement général pour le mode sombre */
 body.darkmode {
     --bg: #222;
 }
 
+/* Réduction de la taille de l'icône pour mobile */
 svg {
-    width: 100px;
-    height: 100px;
+    width: 50px; /* Taille plus petite pour mobile */
+    height: 50px;
 }
 
 /* light mode */
@@ -641,8 +641,6 @@ svg {
         stroke-dashoffset: 24;
         stroke-dasharray: 12;
     }
-
-
 
     .moon-shadow {
         fill: black;
@@ -678,9 +676,38 @@ svg {
     transition: transform 0.4s ease;
 }
 
+/* Rotation en mode sombre */
 .darkmode-checkbox:checked ~ label .darkmode-icon {
-    transform: rotate(180deg); /* Rotation pour passer de l'icône soleil à lune */
+    transform: rotate(180deg);
 }
+
+/* Ajustement de la taille et de l'espacement pour mobile */
+label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px; /* Réduction du padding */
+    cursor: pointer;
+}
+
+/* Soleil plus petit */
+.sun {
+    fill: #ff7;
+}
+
+/* Media query pour écrans mobiles */
+@media (max-width: 600px) {
+    svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    label {
+        padding: 3px;
+    }
+}
+
+
 
 .dark-mode .profile {
     background-color: #333;
@@ -704,9 +731,7 @@ svg {
 }
 
 
-    .sun {
-        fill: #ff7;
-    }
+
 
 .add-article{
     align-content: center;
