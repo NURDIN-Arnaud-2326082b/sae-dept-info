@@ -92,6 +92,8 @@ class Controller
                 'recupererListe',
                 'mettreAjourPlacement',
                 'ajouterUser',
+                'deleteAllUsersAction',
+                'deleteAllUsers'
 
 
             ];

@@ -408,7 +408,7 @@ class Show
                             echo '<div class="gestion"><h1> Ajouter un utilisateur </h1><form action="/PageControlleur/ajouterUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><h2>Nom d\'utilisateur</h2><input type="text" value="" name="name"/><h2>annee</h2><input type="text" value="" name="annee"/><h2>groupe</h2><input type="text" value="" name="groupe"/><button class="btn-save" type="submit">Enregistrer les modifications</button></form>';
                             echo '</div>';
                             echo '<br>';
-                            echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit"><i class="fa-solid fa-trash"></button></form>';
+                            echo '<div class="gestion"><h1> Supprimer un utilisateur </h1><form action="/PageControlleur/supprimerUser" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><h2>email</h2><input type="text" value="" name="email"/><button class="btn-save" type="submit">cc</button></form>';
                             echo '</div>';
                             echo '<br>';
                             break;
@@ -420,8 +420,20 @@ class Show
                             echo '</div>';
                             break;
                             case 'dlallusers' :
-                                echo '<div class="gestion"><h1> Supprimer tous les utilisateurs</h1><form action="/PageControlleur/deleteAllUsers" method="post"><input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/><button class="btn-save" type="submit">Supprimer tous les utilisateurs</button></form>';
-                                echo '</div>';
+                                echo '<div class="gestion"><h1> Supprimer tous les utilisateurs</h1>';
+                                echo '   <div class="popup" id="popup">
+                        <div id="message-container">
+                            <p id="error-message" style="color: red; display: none;"></p>
+                            <p id="success-message" style="color: green; display: none;"></p>
+                        </div>
+                        <form id="dl-all-user" method="post">
+                            <p>Etes vous sûr de vouloir supprimer tous les utilisateurs ? Cette action est définitive.</p>
+                            <input type="hidden" name="page" value="' . $this->pageControlleur->getName() . '"/>
+                            <button class="btn-save" type="submit">Confirmer</button>
+                        </form>
+                        <button onclick="closePopup(); return false;" class="btn btn-menu">Annuler</button>
+                    </div>';
+                                echo '<a href="#" onclick="openPopup()">Supprimer</a></div>';
                                 break;
                         case 'profile':
                             echo '<main>';
@@ -712,7 +724,6 @@ class Show
         echo '<section id="content"><div class="gestion"><form action="/PageControlleur/ajouterArticle" method="post"  enctype="multipart/form-data"><input type="hidden" name="name" value="'.$this->pageControlleur->getName().'"/>';
         echo '<h2>Ajouter un article</h2>';
         echo '<select name="type" id="article-type">';
-        echo '<option value="texte">texte avec titre</option>';
         echo "<option value='list". $cpts['cpt']."'>liste d'article</option>";
         echo "<option value='lstlinked".$cpts['cpt2']."'>liste d'article avec lien</option>";
         echo "<option value='banderolle'>banderolle en haut de page</option>";
