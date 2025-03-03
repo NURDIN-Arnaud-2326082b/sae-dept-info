@@ -79,6 +79,7 @@
 
 .navbar .btn-login {
     background-color: #007bff;
+    width: 40px;
 }
 
 .navbar .btn-logout {
