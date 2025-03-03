@@ -525,7 +525,7 @@ iframe {
 
 .calendar {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
     padding: 10px;
 }
@@ -536,6 +536,7 @@ iframe {
     text-align: center;
     font-weight: bold;
     border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 .event {
@@ -545,6 +546,19 @@ iframe {
     border-radius: 5px;
     font-size: 16px;
 }
+
+/* Mode responsive pour mobile */
+@media (max-width: 768px) {
+    .calendar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .day {
+        width: 100%;
+    }
+}
+
 
 .dark-mode .day {
     background-color: #4c4c4c;
