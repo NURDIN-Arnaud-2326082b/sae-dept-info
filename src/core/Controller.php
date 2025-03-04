@@ -90,6 +90,7 @@ class Controller
                 'reinitialiserMdp',
                 'ajouterUserAction',
                 'supprimerUserAction',
+                'supprimerUser',
                 'getPdf',
                 'deletePdf',
                 'updatePdfAction',
